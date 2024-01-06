@@ -1,0 +1,32 @@
+table:
+  name: user
+  schema: auth
+array_relationships:
+  - name: accounts
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          name: account
+          schema: auth
+  - name: activate_tokens
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          name: activate_token
+          schema: auth
+  - name: password_reset_tokens
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          name: password_reset_token
+          schema: auth
+  - name: sessions
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          name: session
+          schema: auth

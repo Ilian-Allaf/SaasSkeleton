@@ -1,0 +1,5 @@
+- "!include auth_account.yaml"
+- "!include auth_activate_token.yaml"
+- "!include auth_password_reset_token.yaml"
+- "!include auth_session.yaml"
+- "!include auth_user.yaml"

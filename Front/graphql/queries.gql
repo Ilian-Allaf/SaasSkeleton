@@ -1,0 +1,6 @@
+query GetUsers {
+  auth_user {
+    email
+    id
+  }
+}
