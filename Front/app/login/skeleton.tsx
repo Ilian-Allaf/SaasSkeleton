@@ -3,7 +3,7 @@
 import "../globals.css";
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { signIn } from 'next-auth/react';
+import { credentialsSignInAction, googleSignInAction } from '../../action/signinAction';
 import BellowInputError from "@/components/BellowInputError";
 import InputField from "@/components/InputField";
 import Button from "@/components/Button";
@@ -16,14 +16,10 @@ function Login() {
   const router = useRouter();
 
   const handleGoogleSignIn = async () => {
-    await signIn('google')
+    googleSignInAction()
   };
   
-  const handleFacebookSignIn = async () => {
-    const res = await signIn('facebook');
-    console.log(res)
-  };
-
+  
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newEmail = event.target.value.slice(0, 100);
     setEmail(newEmail);
@@ -42,18 +38,12 @@ function Login() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    signIn('credentials', {
-      redirect: false,
-      email,
-      password,
-      callbackUrl: '/',
-    }).then((result) => {
+    const result = await credentialsSignInAction(email, password)
       if (result?.error) {
         setError('Wrong email or password');
       } else {
         router.push('/dashboard');
       }
-    });
   };
 
   return (

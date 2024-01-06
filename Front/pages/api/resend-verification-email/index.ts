@@ -1,15 +1,13 @@
 import { prisma } from "@/lib/prismaclient";
 import { sendVerificationEmail } from "@/utils/sendEmail";
 import { NextApiRequest, NextApiResponse } from "next";
-import { getServerSession } from "next-auth/next"
-import { authOptions } from "pages/api/auth/[...nextauth]"
-
+import { auth } from "../../../auth"
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method !== 'GET') {
       return res.status(405).json({ message: 'Method Not Allowed' });
     }
     
-    const session = await getServerSession(req, res, authOptions)
+    const session = await auth(req, res)
     if (!session) {
      return res.status(401);
     }

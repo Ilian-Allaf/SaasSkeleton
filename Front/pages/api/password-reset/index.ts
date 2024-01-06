@@ -1,6 +1,6 @@
 import { prisma } from '@/lib/prismaclient'
 import { NextApiRequest, NextApiResponse } from 'next'
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import { isPasswordValid } from '@/utils/passwordCheck'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -43,7 +43,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         where: { id: passwordResetToken.userId },
         data: {
           password: hashedPassword,
-          active: true
+          emailVerified: true
         },
     });
 

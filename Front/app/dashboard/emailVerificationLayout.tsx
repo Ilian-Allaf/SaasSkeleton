@@ -8,7 +8,7 @@ const EmailVerificationLayout = ({ children }) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (session?.user && !session.user.active) {
+    if (session?.user && !session.user.emailVerified) {
       router.push('/verify-email');
     }
   }, [session, router]);

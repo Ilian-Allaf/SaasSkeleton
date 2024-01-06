@@ -5,11 +5,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const token  = req.query.token as string
   const user = await prisma.user.findFirst({
     where: {
-      activateTokens: {
+      verificationRequests: {
         some: {
           AND: [
             {
-              activatedAt: null,
+              verifiedAt: null,
             },
             {
               createdAt: {
@@ -33,16 +33,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       id: user.id,
     },
     data: {
-      active: true,
+      emailVerified: true,
     },
   })
 
-  await prisma.activateToken.update({
+  await prisma.verificationRequest.update({
     where: {
       token,
     },
     data: {
-      activatedAt: new Date(),
+      verifiedAt: new Date(),
     },
   })
 

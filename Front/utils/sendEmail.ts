@@ -29,7 +29,7 @@ export async function sendEmail({ to, subject, html }: { to: string; subject: st
 }
 
 export async function sendVerificationEmail({email, userId}:{email: string, userId: string}){
-  const token = await prisma.activateToken.create({
+  const token = await prisma.verificationRequest.create({
     data: {
       userId: userId,
       token: `${randomUUID()}${randomUUID()}`.replace(/-/g, ''),

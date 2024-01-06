@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import { prisma } from '@/lib/prismaclient';
 import { NextApiRequest, NextApiResponse } from 'next';
 import validator from 'validator';
@@ -61,7 +61,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         },
       });
     
-    await sendVerificationEmail({email: createdUser.email, userId: createdUser.id, prisma: prisma})
+    await sendVerificationEmail({email: createdUser.email, userId: createdUser.id})
 
     await prisma.$disconnect()
     

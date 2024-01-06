@@ -1,7 +1,9 @@
-import { withAuth } from "next-auth/middleware";
-export default withAuth({
-  secret: process.env.NEXTAUTH_SECRET,
-});
-export const config = {
-  matcher: ["/dashboard/:path*"],
-};
+// import { withAuth } from "next-auth/middleware";
+// export default withAuth({
+//   secret: process.env.NEXTAUTH_SECRET,
+// });
+// export const config = {
+//   matcher: ["/dashboard/:path*"],
+export { auth as middleware } from "./auth"
+export const config = { matcher: ["/dashboard/:path*"] };
+

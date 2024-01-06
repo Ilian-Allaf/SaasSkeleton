@@ -5,6 +5,7 @@ import { useSession} from 'next-auth/react'
 
 export default function Skeleton() {
   const { data: session } = useSession();
+  console.log(session)
   return (
     <div> 
       {session ? (

@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, XIcon } from '@heroicons/react/outline';
-import { signOut } from 'next-auth/react'
+import { signOutAction } from 'action/signoutAction'
 
 const navigation = [
   { name: 'Dashboard', href: '#', current: true },
@@ -116,7 +116,7 @@ export default function NavigationBar() {
                         {({ active }) => (
                           <a
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                            onClick={() => signOut()}
+                            onClick={() => signOutAction()}
                           >
                             Sign out
                           </a>
