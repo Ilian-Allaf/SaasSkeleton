@@ -5,23 +5,44 @@ const plans = [
     name: 'Hobby',
     price: 15,
     features: ['5 products', 'Up to 1,000 subscribers', 'Basic analytics'],
+    price_id: 'price_1OVx69BeHVeQHE2CtarYVQK6',
   },
   {
     name: 'Freelancer',
     price: 30,
     features: ['5 products', 'Up to 1,000 subscribers', 'Basic analytics', '48-hour support response time'],
+    price_id: 'price_1OVx69BeHVeQHE2CtarYVQK6',
   },
   {
     name: 'Startup',
     price: 60,
     features: ['25 products', 'Up to 10,000 subscribers', 'Advanced analytics', '24-hour support response time', 'Marketing automations'],
+    price_id: 'price_1OVx69BeHVeQHE2CtarYVQK6',
   },
   {
     name: 'Enterprise',
     price: 90,
     features: ['Unlimited products', 'Unlimited subscribers', 'Advanced analytics', '1-hour, dedicated support response time', 'Marketing automations', 'Custom reporting tools'],
+    price_id: 'price_1OVx69BeHVeQHE2CtarYVQK6',
   },
 ];
+
+const Subscribe = async (price_id: string) => {
+  try {
+    const response = await fetch('/api/subscribtion/create-checkout-session', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ price_id: price_id }),
+    });
+    if (!response.ok) {
+      window.location.href =(await response.json()).url;
+    }
+  } catch (error) {
+    console.error('An error occurred', error);
+  }
+};
 
 const PricingPlan = () => {
   return (
@@ -46,7 +67,9 @@ const PricingPlan = () => {
                     <span className="text-4xl font-extrabold text-gray-900">${plan.price}</span>
                     /month
                   </p>
-                  <button className="mt-6 w-full border border-indigo-600 text-indigo-600 bg-white rounded-md py-2 px-4 text-sm font-semibold hover:bg-indigo-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-opacity-50">
+                  <button className="mt-6 w-full border border-indigo-600 text-indigo-600 bg-white rounded-md py-2 px-4 text-sm font-semibold hover:bg-indigo-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-opacity-50"
+                  onClick={() => Subscribe(plan.price_id)}
+                  >
                     Buy plan
                   </button>
                   <ul className="mt-6 space-y-4 flex-1">

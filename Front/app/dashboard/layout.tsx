@@ -10,7 +10,7 @@ const RootLayout = ({ children }) => {
       <SessionProvider>
         <EmailVerificationLayout>
             <NavigationBar />
-            {children}
+            <div style={{ marginTop: '6%', marginLeft: '2%', marginRight: '2%'}}>{children}</div>
         </EmailVerificationLayout>
       </SessionProvider>
     </>
@@ -18,3 +18,4 @@ const RootLayout = ({ children }) => {
 };
 
 export default RootLayout;
+

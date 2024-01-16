@@ -3,6 +3,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 -- CreateTable
 CREATE TABLE "auth"."user" (
     "id" UUID DEFAULT gen_random_uuid() NOT NULL,
+    "subsciption_plan_id" TEXT,
     "username" TEXT NOT NULL,
     "password" TEXT,
     "email" TEXT NOT NULL,
@@ -15,6 +16,7 @@ CREATE TABLE "auth"."user" (
     CONSTRAINT "user_pkey" PRIMARY KEY ("id")
 );
 CREATE UNIQUE INDEX "user_email_key" ON "auth"."user"("email");
+ALTER TABLE "auth"."user" ADD CONSTRAINT "user_subsciption_plan_id_fkey" FOREIGN KEY ("subsciption_plan_id") REFERENCES "public"."subscibtion_plan"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 CREATE TABLE "auth"."account" (
     "id" UUID DEFAULT gen_random_uuid() NOT NULL,

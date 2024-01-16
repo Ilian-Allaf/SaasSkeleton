@@ -1,0 +1,11 @@
+{
+    plans: [
+      {
+        name: 'Hobby',
+        description: '',
+        price: '15€/month',
+        stripePriceId: 'price_1OVx69BeHVeQHE2CtarYVQK6',
+      },
+
+    ],
+  }

@@ -63,7 +63,6 @@ function Login() {
           <form onSubmit={handleSubmit}>
             <h2 className="text-center text-3xl font-extrabold text-gray-900">Welcome back</h2>
             <InputField
-              type="email"
               label="Email address"
               value={email}
               onChange={handleEmailChange}
@@ -71,7 +70,7 @@ function Login() {
               maxLength={100}
             />
             <InputField
-              type="password"
+              isPassword={true}
               label="Password"
               value={password}
               onChange={handlePasswordChange}

@@ -3,47 +3,49 @@ import { EyeIcon, EyeOffIcon } from '@heroicons/react/outline';
 import { isPasswordValid } from '@/utils/passwordCheck';
 
 interface InputFieldProps {
-  type: string;
-  label: string;
+  isPassword?: boolean;
+  label?: string;
   value: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   error?: boolean;
   maxLength?: number;
+  height?: number;
   passwordVisible?: boolean;
   disableText?: boolean;
   onTogglePasswordVisibility?: () => void;
 }
 
 const InputField: React.FC<InputFieldProps> = ({
-  type,
+  isPassword = false,
   label,
   value,
   onChange,
   error = false,
   maxLength,
+  height = 2,
   passwordVisible = false,
   disableText = false,
   onTogglePasswordVisibility,
 }) => {
-  const showErrorMessage = type === 'password' && !isPasswordValid(value);
+  const showErrorMessage = isPassword && !isPasswordValid(value);
 
   return (
     <div className={`mt-4 ${error ? 'border-red-500' : ''}`}>
+      {label && (
       <label htmlFor={label.toLowerCase()} className="block text-sm font-medium text-gray-700">
         {label}
       </label>
+      )}
       <div className="relative">
         <input
-          type={type === 'password' && !passwordVisible ? 'password' : 'text'}
-          id={label.toLowerCase()}
-          name={label.toLowerCase()}
+          type={isPassword  && !passwordVisible ? 'password' : 'text'}
           value={value}
           onChange={onChange}
           required
           maxLength={maxLength}
-          className={`mt-1 p-2 w-full border rounded-md ${error ? 'border-red-500' : ''}`}
+          className={`mt-1 p-${height != null ? height : 2} w-full border focus:outline-none focus:ring-1 focus:ring-indigo-600 rounded-md ${error ? 'border-red-500' : ''}`}
         />
-        {type === 'password' && (
+        {isPassword && (
           <div
             className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
             onClick={onTogglePasswordVisibility}

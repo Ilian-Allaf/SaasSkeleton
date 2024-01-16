@@ -39,7 +39,7 @@ export async function sendVerificationEmail({email, userId}:{email: string, user
   const emailContent = baseTemplate({
     title: 'Verify your email address',
     subtitle: 'To continue setting up your account, please verify that this is your email address.',
-    buttonLink: `${process.env.NEXTAUTH_URL}/api/verify-email/${token.token}`,
+    buttonLink: `${process.env.NEXT_URL}/api/verify-email/${token.token}`,
     buttonText: 'Verify email address',
     additionalText: 'This link will expire in 5 days. if you did not make this request, please disregard this email.'
   });
@@ -64,7 +64,7 @@ export async function sendResetPasswordEmail({email, userId}:{email: string, use
   const emailContent = baseTemplate({
     title: 'Reset password',
     subtitle: 'A password change has been requested for your account. If this was you, please use the link below to reset your password',
-    buttonLink: `${process.env.NEXTAUTH_URL}/password-reset/${token.token}`,
+    buttonLink: `${process.env.NEXT_URL}/password-reset/${token.token}`,
     buttonText: 'Reset password',
     additionalText: ''
   });
@@ -72,6 +72,24 @@ export async function sendResetPasswordEmail({email, userId}:{email: string, use
   await sendEmail({
     to: email,
     subject: "Reset password",
+    html: emailContent,
+  });
+    
+  await prisma.$disconnect()
+}
+
+export async function sendInvoiceEmail({email, userId}:{email: string, userId: string}){
+  const emailContent = baseTemplate({
+    title: 'Subscription invoice',
+    subtitle: 'Thanks for your subscription.',
+    buttonLink: `${process.env.NEXT_URL}`,
+    buttonText: 'Dashboard',
+    additionalText: ''
+  });
+
+  await sendEmail({
+    to: email,
+    subject: "Subscription invoice",
     html: emailContent,
   });
     

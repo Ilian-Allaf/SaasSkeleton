@@ -1,6 +1,13 @@
 query GetUsers {
   auth_user {
     email
+    username
     id
+  }
+}
+
+mutation UpdateUsername($id: uuid!, $username: String!) {
+  update_auth_user_by_pk(pk_columns: {id: $id}, _set: {username: $username}) {
+    username
   }
 }

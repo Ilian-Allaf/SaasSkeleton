@@ -41,19 +41,20 @@ model Session {
 }
 
 model User {
-  id             String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  active         Boolean   @default(false)
-  username       String
-  password       String?
-  email          String    @unique
-  role           String    @default("user")
-  image          String?
-  createdAt     DateTime  @default(now()) @map("created_at")
-  updatedAt     DateTime  @default(now()) @map("updated_at")
-  account        Account[]
-  session        Session[]
-  activateTokens ActivateToken[]
-  passwordResetToken PasswordResetToken[]
+  id                    String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  active                Boolean   @default(false)
+  subscibtionPlanId     String?   @map("subsciption_plan_id")
+  username              String
+  password              String?
+  email                 String    @unique
+  role                  String    @default("user")
+  image                 String?
+  createdAt             DateTime  @default(now()) @map("created_at")
+  updatedAt             DateTime  @default(now()) @map("updated_at")
+  account               Account[]
+  session               Session[]
+  activateTokens        ActivateToken[]
+  passwordResetToken    PasswordResetToken[]
 
   @@map("user")
 }
