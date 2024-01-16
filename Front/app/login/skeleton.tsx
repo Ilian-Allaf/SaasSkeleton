@@ -4,7 +4,7 @@ import "../globals.css";
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
-import BellowInputError from "@/components/BellowInputError";
+import InputError from "@/components/InputError";
 import InputField from "@/components/InputField";
 import Button from "@/components/Button";
 
@@ -79,7 +79,7 @@ function Login() {
               onTogglePasswordVisibility={handleTogglePasswordVisibility}
               disableText={true}
               />
-            {error && (<BellowInputError error={error}/>)}
+            {error && (<InputError error={error}/>)}
             <div className="mt-2">
               <p>
                 <a href="/forgot-password" className="text-indigo-600 hover:underline">

@@ -6,6 +6,7 @@ import { PencilAltIcon } from '@heroicons/react/outline';
 import Modal from '@/components/Modal';
 import InputField from '@/components/InputField';
 import { UpdateUsername } from './actions';
+import InputError from '@/components/InputError';
 
 
 function General() {
@@ -21,23 +22,24 @@ function General() {
 function ProfileFields() {
   const { data: session } = useSession();
   let [isPending, startTransition] = useTransition();
+  const [error, setError] = useState({ message: '', field: '' });
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [newUsername, setNewUsername] = useState('');
 
   const [profileItems, setProfileItems] = useState([
     { label: 'Username', value: session?.user.username },
     { label: 'Email', value: session?.user.email },
   ]);
 
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const [newUsername, setNewUsername] = useState('');
 
-  // const handleInputChange = (event, index) => {
-  //   const newProfileItems = [...profileItems];
-  //   newProfileItems[index].value = event.target.value;
-  //   setProfileItems(newProfileItems);
-  // };
   const handleApplyNewUsername = async () => {
     try {
-      await UpdateUsername(newUsername);
+      const result = await UpdateUsername(newUsername);
+      if (result?.error) {
+        setError({message: result.error, field: 'username'});
+        console.log(result.error);
+        return;
+      }
       setIsModalOpen(false);
       const newProfileItems = [...profileItems];
       newProfileItems[0].value = newUsername;
@@ -49,12 +51,23 @@ function ProfileFields() {
     }
   }
 
+  const handlUsernameChange = async (event) => {
+    setNewUsername(event.target.value);
+    if (error.field === 'username') {
+      setError({ message: '', field: '' });
+    }
+  }
+
 
   return (
     <>
       <Modal isOpen={isModalOpen} setIsOpen={setIsModalOpen} title='Update Username'>
         <div className="mt-6">
-          <InputField value={newUsername} height={0} label='Username' onChange={(event) => setNewUsername(event.target.value) }/>
+
+          <InputField value={newUsername} height={0} label='Username' onChange={(event) => handlUsernameChange(event) }/>
+          {error.message && error.field === 'username' && (
+            <InputError error={error.message}/>
+          )}
         </div>
         <div className="flex justify-center space-x-4 mt-6">
           <button

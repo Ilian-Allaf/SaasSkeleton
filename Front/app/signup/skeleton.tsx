@@ -7,7 +7,7 @@ import ProgressBar from '@/components/ProgressBar';
 import "../globals.css";
 import { isPasswordValid, calculatePasswordProgress } from '@/utils/passwordCheck';
 import Button from '@/components/Button';
-import BellowInputError from '@/components/BellowInputError';
+import InputError from '@/components/InputError';
 import SendEmailSuccess from '@/components/SendEmailSuccess';
 import { signIn } from 'next-auth/react';
 
@@ -88,10 +88,9 @@ function SignUp() {
           <form onSubmit={handleSubmit}>
             <h2 className="text-center text-3xl font-extrabold text-gray-900">Create your account</h2>
             {error.message && (
-              <BellowInputError error={error.message}/>
+              <InputError error={error.message}/>
             )}
             <InputField
-              type="email"
               label="Email address"
               value={email}
               onChange={handleEmailChange}
@@ -99,7 +98,6 @@ function SignUp() {
               maxLength={100}
             />
             <InputField
-              type="text"
               label="Username"
               value={username}
               onChange={handleUsernameChange}
@@ -107,7 +105,7 @@ function SignUp() {
               maxLength={50}
             />
             <InputField
-              type="password"
+              isPassword={true}
               label="Password"
               value={password}
               onChange={handlePasswordChange}

@@ -1,10 +1,10 @@
 import React from 'react';
 
-interface BellowInputErrorProps {
+interface InputErrorProps {
   error: string;
 }
 
-const BellowInputError: React.FC<BellowInputErrorProps> = ({ error }) => {
+const InputError: React.FC<InputErrorProps> = ({ error }) => {
   return (
     <div className="flex items-center mt-2">
       <svg
@@ -22,4 +22,4 @@ const BellowInputError: React.FC<BellowInputErrorProps> = ({ error }) => {
   );
 };
 
-export default BellowInputError;
+export default InputError;

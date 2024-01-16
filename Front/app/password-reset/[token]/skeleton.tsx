@@ -5,7 +5,7 @@ import "../../globals.css";
 import InputField from '@/components/InputField';
 import ProgressBar from '@/components/ProgressBar';
 import { calculatePasswordProgress, isPasswordValid } from '@/utils/passwordCheck';
-import BellowInputError from '@/components/BellowInputError';
+import InputError from '@/components/InputError';
 
 
 function ResetPassword({token}: {token:string}) {
@@ -105,7 +105,7 @@ function ResetPassword({token}: {token:string}) {
                 onTogglePasswordVisibility={handleToggleConfirmPasswordVisibility}
                 disableText={true}
             />
-            {error && (<BellowInputError error={error}/>)}
+            {error && (<InputError error={error}/>)}
           </div>
           <div>
             <button

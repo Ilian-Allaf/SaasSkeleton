@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import "../globals.css";
 import InputField from '@/components/InputField';
-import BellowInputError from '@/components/BellowInputError';
+import InputError from '@/components/InputError';
 import SendEmailSuccess from '@/components/SendEmailSuccess';
 
 
@@ -67,7 +67,7 @@ function ResetPassword() {
                 error={error ? true : false}
                 maxLength={100}
               />
-              {error && (<BellowInputError error={error} />)}
+              {error && (<InputError error={error} />)}
             </div>
             <div>
               <button
