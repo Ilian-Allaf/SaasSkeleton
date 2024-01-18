@@ -28,7 +28,7 @@ export async function sendEmail({ to, subject, html }: { to: string; subject: st
     
 }
 
-export async function sendVerificationEmail({email, userId}:{email: string, userId: string}){
+export async function sendVerificationEmail({email, userId, update}:{email: string, userId: string, update?: boolean}){
   const token = await prisma.activateToken.create({
     data: {
       userId: userId,
@@ -36,10 +36,12 @@ export async function sendVerificationEmail({email, userId}:{email: string, user
     },
   });
 
+  const routeName = update ? 'verify-updated-email' : 'verify-email'
+  const subtitle = update ? 'To link the email address to your account, please verify that this is your email address.' : 'To continue setting up your account, please verify that this is your email address.'
   const emailContent = baseTemplate({
     title: 'Verify your email address',
-    subtitle: 'To continue setting up your account, please verify that this is your email address.',
-    buttonLink: `${process.env.NEXT_URL}/api/verify-email/${token.token}`,
+    subtitle: subtitle,
+    buttonLink: `${process.env.NEXT_URL}/api/${routeName}/${token.token}`,
     buttonText: 'Verify email address',
     additionalText: 'This link will expire in 5 days. if you did not make this request, please disregard this email.'
   });

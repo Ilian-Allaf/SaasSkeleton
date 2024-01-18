@@ -1,13 +1,14 @@
 "use server"
 
 import { setupGraphQLClient } from "@/lib/gqlclient";
-import { UpdateUsernameDocument } from "@/src/gql/graphql";
+import { GetUserEmailDocument } from "@/src/gql/graphql";
 import { getServerSession } from "next-auth"
 import { authOptions } from 'pages/api/auth/[...nextauth]'
 import { revalidatePath } from "next/cache";
+import { prisma } from "@/lib/prismaclient";
 
 
-export async function UpdateUsername(newUsername: string) {
+export async function GetUpdatedEmail() {
     try {
         const session = await getServerSession(authOptions)
         const gqlClient = await setupGraphQLClient();
@@ -18,19 +19,16 @@ export async function UpdateUsername(newUsername: string) {
             };
         };
 
-        //Validate newUsername
-        if(newUsername.length < 3  || newUsername.length > 20){
-            return {
-                error: 'Username must be at least 3 characters long',
-            };
-        };
-        const result = await gqlClient!.request( UpdateUsernameDocument, { id: session?.user.id, username: newUsername} );
-        if (result.update_auth_user_by_pk?.username === null) {
+        const result = await gqlClient!.request( GetUserEmailDocument, { id: session?.user.id} );
+        if (result.auth_user_by_pk?.email === null) {
             return {
                 error: 'Internal Server Error',
             };
         }
         revalidatePath('/dashboard/settings');
+        await prisma.$disconnect()
+
+        return result.auth_user_by_pk?.email
     }
 
     catch (error) {

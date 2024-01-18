@@ -102,7 +102,19 @@ export const authOptions: NextAuthOptions = {
     async redirect({ url, baseUrl }) {
       return baseUrl
     },
-    async jwt({ token, user }) {
+    async jwt({ token, trigger, user, session  }) {
+      if (trigger === 'update' ) {
+        if(session?.username){
+          token.username = session.username
+        }
+        else if(session?.email){
+          token.email = session.email
+        }
+        else if(session?.name){
+          token.name = session.name
+        }
+      }
+
       if (user) {
         return {
           ...token,

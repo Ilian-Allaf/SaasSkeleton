@@ -10,7 +10,8 @@ export default function Skeleton() {
     <div> 
       {session ? (
         <>
-          <p>Welcome, {session.user?.username || session.user?.email}</p>
+          <p>Welcome, {session.user?.username }</p>
+          <p>{session.user?.email}</p>
         </>
       ) : (
         <p>You are not authenticated</p>

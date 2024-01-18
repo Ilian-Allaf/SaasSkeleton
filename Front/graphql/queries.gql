@@ -6,8 +6,20 @@ query GetUsers {
   }
 }
 
+query GetUserEmail($id: uuid!) {
+  auth_user_by_pk(id: $id) {
+    email
+  }
+}
+
 mutation UpdateUsername($id: uuid!, $username: String!) {
   update_auth_user_by_pk(pk_columns: {id: $id}, _set: {username: $username}) {
     username
+  }
+}
+
+mutation UpdateEmail($id: uuid!, $email: String!) {
+  update_auth_user_by_pk(pk_columns: {id: $id}, _set: {email: $email}) {
+    email
   }
 }

@@ -13,7 +13,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-    "query GetUsers {\n  auth_user {\n    email\n    username\n    id\n  }\n}\n\nmutation UpdateUsername($id: uuid!, $username: String!) {\n  update_auth_user_by_pk(pk_columns: {id: $id}, _set: {username: $username}) {\n    username\n  }\n}": types.GetUsersDocument,
+    "query GetUsers {\n  auth_user {\n    email\n    username\n    id\n  }\n}\n\nquery GetUserEmail($id: uuid!) {\n  auth_user_by_pk(id: $id) {\n    email\n  }\n}\n\nmutation UpdateUsername($id: uuid!, $username: String!) {\n  update_auth_user_by_pk(pk_columns: {id: $id}, _set: {username: $username}) {\n    username\n  }\n}\n\nmutation UpdateEmail($id: uuid!, $email: String!) {\n  update_auth_user_by_pk(pk_columns: {id: $id}, _set: {email: $email}) {\n    email\n  }\n}": types.GetUsersDocument,
 };
 
 /**
@@ -33,7 +33,7 @@ export function graphql(source: string): unknown;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "query GetUsers {\n  auth_user {\n    email\n    username\n    id\n  }\n}\n\nmutation UpdateUsername($id: uuid!, $username: String!) {\n  update_auth_user_by_pk(pk_columns: {id: $id}, _set: {username: $username}) {\n    username\n  }\n}"): (typeof documents)["query GetUsers {\n  auth_user {\n    email\n    username\n    id\n  }\n}\n\nmutation UpdateUsername($id: uuid!, $username: String!) {\n  update_auth_user_by_pk(pk_columns: {id: $id}, _set: {username: $username}) {\n    username\n  }\n}"];
+export function graphql(source: "query GetUsers {\n  auth_user {\n    email\n    username\n    id\n  }\n}\n\nquery GetUserEmail($id: uuid!) {\n  auth_user_by_pk(id: $id) {\n    email\n  }\n}\n\nmutation UpdateUsername($id: uuid!, $username: String!) {\n  update_auth_user_by_pk(pk_columns: {id: $id}, _set: {username: $username}) {\n    username\n  }\n}\n\nmutation UpdateEmail($id: uuid!, $email: String!) {\n  update_auth_user_by_pk(pk_columns: {id: $id}, _set: {email: $email}) {\n    email\n  }\n}"): (typeof documents)["query GetUsers {\n  auth_user {\n    email\n    username\n    id\n  }\n}\n\nquery GetUserEmail($id: uuid!) {\n  auth_user_by_pk(id: $id) {\n    email\n  }\n}\n\nmutation UpdateUsername($id: uuid!, $username: String!) {\n  update_auth_user_by_pk(pk_columns: {id: $id}, _set: {username: $username}) {\n    username\n  }\n}\n\nmutation UpdateEmail($id: uuid!, $email: String!) {\n  update_auth_user_by_pk(pk_columns: {id: $id}, _set: {email: $email}) {\n    email\n  }\n}"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

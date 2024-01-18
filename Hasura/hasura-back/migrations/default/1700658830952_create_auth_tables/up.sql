@@ -7,6 +7,7 @@ CREATE TABLE "auth"."user" (
     "username" TEXT NOT NULL,
     "password" TEXT,
     "email" TEXT NOT NULL,
+    "updated_email" TEXT,
     "active" BOOLEAN DEFAULT false,
     "role" TEXT NOT NULL DEFAULT 'user',
     "image" TEXT,

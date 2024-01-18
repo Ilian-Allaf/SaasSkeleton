@@ -47,6 +47,7 @@ model User {
   username              String
   password              String?
   email                 String    @unique
+  updatedEmail          String?    @map("updated_email")
   role                  String    @default("user")
   image                 String?
   createdAt             DateTime  @default(now()) @map("created_at")

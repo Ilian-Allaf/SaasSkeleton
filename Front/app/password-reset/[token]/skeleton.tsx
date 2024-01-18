@@ -85,7 +85,7 @@ function ResetPassword({token}: {token:string}) {
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <InputField
-              type="password"
+              isPassword={true}
               label="Password"
               value={password}
               onChange={handlePasswordChange}
@@ -96,7 +96,7 @@ function ResetPassword({token}: {token:string}) {
           {password && <ProgressBar progress={calculatePasswordProgress(password)} />}
           <div>
             <InputField
-                type="password"
+                isPassword={true}
                 label="Confirm password"
                 value={confirmPassword}
                 onChange={handleConfirmPasswordChange}

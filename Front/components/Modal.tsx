@@ -1,6 +1,6 @@
 import { Dialog, Transition } from '@headlessui/react'
-import { Fragment, useState } from 'react'
-import InputField from './InputField'
+import { Fragment } from 'react'
+import { XIcon } from '@heroicons/react/outline'
 
 type ModalProps = {
     isOpen: boolean;
@@ -25,7 +25,7 @@ export default function Modal({isOpen, setIsOpen, title, subtitle, children}: Mo
             enter="ease-out duration-300"
             enterFrom="opacity-0"
             enterTo="opacity-100"
-            leave="ease-in duration-200"
+            leave="ease-in duration-0"
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
@@ -39,17 +39,23 @@ export default function Modal({isOpen, setIsOpen, title, subtitle, children}: Mo
                 enter="ease-out duration-300"
                 enterFrom="opacity-0 scale-95"
                 enterTo="opacity-100 scale-100"
-                leave="ease-in duration-200"
+                leave="ease-in duration-0"
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <div className="flex justify-between items-center">
                   <Dialog.Title
                     as="h3"
                     className="text-lg font-medium leading-6 text-gray-900"
                   >
                     {title}
                   </Dialog.Title>
+                  <button onClick={closeModal} className="text-gray-500 hover:text-gray-700 focus:outline-none">
+                    <XIcon className="h-6 w-6" />
+                  </button>
+                </div>
+                  
                   {subtitle && (<p className="text-sm text-gray-600 mb-4">{subtitle}</p>)}
                   
                   {children}

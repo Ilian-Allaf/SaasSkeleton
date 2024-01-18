@@ -7,7 +7,8 @@
       "@/components/*": ["components/*"],
       "@/types/*": ["types/*"],
       "@/auth/*":["pages/api/auth/*"],
-      "@/utils/*":["utils/*"]
+      "@/utils/*":["utils/*"],
+      "@/actions/*":["actions/*"]
     },
     "lib": [
       "dom",
