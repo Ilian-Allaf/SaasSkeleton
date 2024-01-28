@@ -7,21 +7,18 @@ import { signIn } from 'next-auth/react';
 import InputError from "@/components/InputError";
 import InputField from "@/components/InputField";
 import Button from "@/components/Button";
+import { useTranslation } from '@/i18n/client'
 
 function Login() {
+  const { t } = useTranslation('login')
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const router = useRouter();
 
   const handleGoogleSignIn = async () => {
     await signIn('google')
-  };
-  
-  const handleFacebookSignIn = async () => {
-    const res = await signIn('facebook');
-    console.log(res)
   };
 
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -61,9 +58,9 @@ function Login() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="max-w-md w-full space-y-8">
           <form onSubmit={handleSubmit}>
-            <h2 className="text-center text-3xl font-extrabold text-gray-900">Welcome back</h2>
+            <h2 className="text-center text-3xl font-extrabold">{t("welcome")}</h2>
             <InputField
-              label="Email address"
+              label={t("email")}
               value={email}
               onChange={handleEmailChange}
               error={error ? true : false}
@@ -71,7 +68,7 @@ function Login() {
             />
             <InputField
               isPassword={true}
-              label="Password"
+              label={t("password")}
               value={password}
               onChange={handlePasswordChange}
               error={error ? true : false}
@@ -83,23 +80,23 @@ function Login() {
             <div className="mt-2">
               <p>
                 <a href="/forgot-password" className="text-indigo-600 hover:underline">
-                  Forgot password?
+                {t("forgot-password")}
                 </a>
               </p>
             </div>
-            <Button label="Continue" onClick={(e: React.FormEvent) => {handleSubmit(e)}}/>
+            <Button label={t("continue")} onClick={(e: React.FormEvent) => {handleSubmit(e)}}/>
             <div className="mt-2 text-center">
               <p>
-                Don't have an account?{' '}
+              {t("no-account")}{' '}
                 <a href="/signup" className="text-indigo-600 hover:underline">
-                  Sign up
+                  {t("sign-up")}
                 </a>
               </p>
             </div>
           </form>
             <div className="flex justify-center">
               <button
-                className="flex items-center justify-center px-4 py-2 border border-black dark:border-gray-400 rounded-lg text-black text-sm hover:bg-gray-100 dark:hover:bg-gray-200 hover:text-black-900 dark:hover:text-black-300 hover:shadow transition duration-10"
+                className="flex items-center justify-center px-4 py-2 border border-black dark:border-gray-400 rounded-lg text-sm hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-black-900 dark:hover:text-black-300 hover:shadow transition duration-10"
                 onClick={handleGoogleSignIn}
               >
                 <img
@@ -108,7 +105,7 @@ function Login() {
                   loading="lazy"
                   alt="google logo"
                 />
-                <span className="whitespace-nowrap">Continue with Google</span>
+                <span className="whitespace-nowrap">{t("continue-with-google")}</span>
               </button>
             </div>
         </div>
@@ -118,5 +115,10 @@ function Login() {
 }
 
 export default function Skeleton() {
-  return <Login />;
+  return(
+    <>
+      <Login />
+    </>
+  );
+
 }

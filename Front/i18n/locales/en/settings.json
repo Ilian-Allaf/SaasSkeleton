@@ -1,0 +1,32 @@
+{
+    "general": {
+        "profile-title": "Profile",
+        "profile-subtitle": "This information will be displayed publicly so be careful what you share.",
+        "username": "Username",
+        "email": "Email",
+        "others-title": "Others",
+        "language": "Language",
+        "currency": "Currency"
+    },
+    "security": {
+        "title": "Security",
+        "password": "Password",
+        "phone": "Phone number",
+        "2fa": "2-step verification"
+    },
+    "notifications": {
+        "title": "Notifications",
+        "new-offers": "New offers",
+        "newsletter": "Newsletter"
+    },
+    "billing": {
+        "title": "Payment methods",
+        "subtitle": "Manage your payment methods"
+    },
+    "sidebar": {
+        "general": "General",
+        "security": "Security",
+        "notifications": "Notifications",
+        "billing": "Billing"
+    }
+}

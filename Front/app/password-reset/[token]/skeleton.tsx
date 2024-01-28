@@ -48,7 +48,7 @@ function ResetPassword({token}: {token:string}) {
 
     if (password !== confirmPassword) {
       setConfirmPasswordError(true)
-      setError('Passwords do not match');
+      setError("Passwords don't match");
       return;
     }
     

@@ -1,12 +1,14 @@
 "use server"
 
 import { authOptions } from "@/auth/[...nextauth]";
-import { prisma } from "@/lib/prismaclient";
+import { setupGraphQLClient } from "@/lib/gqlclient";
+import { UpdateUpdatedEmailDocument } from "@/src/gql/graphql";
 import { getServerSession } from "next-auth"
 
 
 export async function SaveSubmittedEmailUpdate(email: string) {
     const session = await getServerSession(authOptions)
+    const gqlClient = await setupGraphQLClient();
     if(!session){
         return {
             error: 'Not Authenticated',
@@ -14,18 +16,12 @@ export async function SaveSubmittedEmailUpdate(email: string) {
     };
 
     try {
-        //find user by id and update updated_email
-        const user = await prisma.user.update({
-            where: {
-                id: session.user.id,
-            },
-            data: {
-                updatedEmail: email,
-            },
-        })
-        return {
-            success: 'Email saved',
-        };
+        const result = await gqlClient!.request( UpdateUpdatedEmailDocument, { id: session?.user.id, updated_email: email} );
+        if(result.update_auth_user_by_pk != email){
+            return {
+                error: 'Internal Server Error',
+            };
+        }
     }
     catch (error) {
         return {

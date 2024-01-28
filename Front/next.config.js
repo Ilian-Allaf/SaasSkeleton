@@ -1,9 +1,13 @@
 // /** @type {import('next').NextConfig} */
  
-// module.exports = {
+// export const config = {
 //     experimental: {
 //       serverActions: {
 //         allowedOrigins: ['my-proxy.com', '*.my-proxy.com'],
 //       },
 //     },
 //   }
+
+// export const nextConfig  = {
+//     transpilePackages: ['next-international', 'international-types'],
+// }

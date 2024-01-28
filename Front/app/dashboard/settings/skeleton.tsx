@@ -3,13 +3,14 @@
 import React from 'react';
 import { useSession} from 'next-auth/react'
 import SideBar from './SideBar';
-import ProfileForm from './General';
+import General from './General';
 import Security from './Security';
 import { useSearchParams } from 'next/navigation'
 import Billing from './Billing';
+import Notifications from './Notifications';
 
 
-export default function Skeleton({last4digits:string}) {
+export default function Skeleton() {
   const { data: session } = useSession();
   const searchParams = useSearchParams()
   const param = searchParams?.get('tab')
@@ -26,7 +27,7 @@ export default function Skeleton({last4digits:string}) {
     return (
       <div className="grid grid-flow-col gap-7">
           <div className="col-span-1"><SideBar /></div>
-          <div className="col-span-4"><ProfileForm /></div>
+          <div className="col-span-4"><Notifications /></div>
       </div>
     );
   }
@@ -42,7 +43,7 @@ export default function Skeleton({last4digits:string}) {
     return (
       <div className="grid grid-flow-col gap-7">
           <div className="col-span-1"><SideBar /></div>
-          <div className="col-span-4"><ProfileForm /></div>
+          <div className="col-span-4"><General /></div>
       </div>
     );
   }

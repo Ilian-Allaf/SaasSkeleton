@@ -5,7 +5,7 @@ function MultiSelector({ defaultValue, options, onChange }: { defaultValue: stri
     <div>
       <select
         id="custom-select"
-        className="border text-xs rounded-md focus:border-indigo-500 block p-2 border-gray-200 dark:placeholder-indigo-500 placeholder-indigo-500"
+        className="border text-xs rounded-md focus:border-indigo-500 block p-2 border-gray-200 dark:placeholder-indigo-500 dark:bg-background-darkmode placeholder-indigo-500"
         defaultValue={defaultValue}
         onChange={onChange}
       >

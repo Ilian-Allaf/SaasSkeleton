@@ -1,7 +1,6 @@
 "use server"
 
 import { sendVerificationEmail } from "@/utils/sendEmail";
-import { GetUserEmailDocument } from "@/src/gql/graphql";
 import { getServerSession } from "next-auth"
 import { authOptions } from 'pages/api/auth/[...nextauth]'
 

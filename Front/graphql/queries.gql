@@ -23,3 +23,9 @@ mutation UpdateEmail($id: uuid!, $email: String!) {
     email
   }
 }
+
+mutation UpdateUpdatedEmail($id: uuid!, $updated_email: String!) {
+  update_auth_user_by_pk(pk_columns: {id: $id}, _set: {updated_email: $updated_email}) {
+    updated_email
+  }
+}

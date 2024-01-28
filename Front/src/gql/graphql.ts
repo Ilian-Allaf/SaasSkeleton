@@ -1223,6 +1223,8 @@ export type Auth_User = {
   sessions: Array<Auth_Session>;
   /** An aggregate relationship */
   sessions_aggregate: Auth_Session_Aggregate;
+  /** An object relationship */
+  subscibtion_plan?: Maybe<Subscibtion_Plan>;
   subsciption_plan_id?: Maybe<Scalars['String']['output']>;
   updated_at: Scalars['timestamp']['output'];
   updated_email?: Maybe<Scalars['String']['output']>;
@@ -1392,6 +1394,7 @@ export type Auth_User_Bool_Exp = {
   role?: InputMaybe<String_Comparison_Exp>;
   sessions?: InputMaybe<Auth_Session_Bool_Exp>;
   sessions_aggregate?: InputMaybe<Auth_Session_Aggregate_Bool_Exp>;
+  subscibtion_plan?: InputMaybe<Subscibtion_Plan_Bool_Exp>;
   subsciption_plan_id?: InputMaybe<String_Comparison_Exp>;
   updated_at?: InputMaybe<Timestamp_Comparison_Exp>;
   updated_email?: InputMaybe<String_Comparison_Exp>;
@@ -1419,6 +1422,7 @@ export type Auth_User_Insert_Input = {
   password_reset_tokens?: InputMaybe<Auth_Password_Reset_Token_Arr_Rel_Insert_Input>;
   role?: InputMaybe<Scalars['String']['input']>;
   sessions?: InputMaybe<Auth_Session_Arr_Rel_Insert_Input>;
+  subscibtion_plan?: InputMaybe<Subscibtion_Plan_Obj_Rel_Insert_Input>;
   subsciption_plan_id?: InputMaybe<Scalars['String']['input']>;
   updated_at?: InputMaybe<Scalars['timestamp']['input']>;
   updated_email?: InputMaybe<Scalars['String']['input']>;
@@ -1519,6 +1523,7 @@ export type Auth_User_Order_By = {
   password_reset_tokens_aggregate?: InputMaybe<Auth_Password_Reset_Token_Aggregate_Order_By>;
   role?: InputMaybe<Order_By>;
   sessions_aggregate?: InputMaybe<Auth_Session_Aggregate_Order_By>;
+  subscibtion_plan?: InputMaybe<Subscibtion_Plan_Order_By>;
   subsciption_plan_id?: InputMaybe<Order_By>;
   updated_at?: InputMaybe<Order_By>;
   updated_email?: InputMaybe<Order_By>;
@@ -2357,6 +2362,13 @@ export type Subscibtion_Plan_Mutation_Response = {
   returning: Array<Subscibtion_Plan>;
 };
 
+/** input type for inserting object relation for remote table "subscibtion_plan" */
+export type Subscibtion_Plan_Obj_Rel_Insert_Input = {
+  data: Subscibtion_Plan_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Subscibtion_Plan_On_Conflict>;
+};
+
 /** on_conflict condition type for table "subscibtion_plan" */
 export type Subscibtion_Plan_On_Conflict = {
   constraint: Subscibtion_Plan_Constraint;
@@ -2770,8 +2782,17 @@ export type UpdateEmailMutationVariables = Exact<{
 
 export type UpdateEmailMutation = { __typename?: 'mutation_root', update_auth_user_by_pk?: { __typename?: 'auth_user', email: string } | null };
 
+export type UpdateUpdatedEmailMutationVariables = Exact<{
+  id: Scalars['uuid']['input'];
+  updated_email: Scalars['String']['input'];
+}>;
+
+
+export type UpdateUpdatedEmailMutation = { __typename?: 'mutation_root', update_auth_user_by_pk?: { __typename?: 'auth_user', updated_email?: string | null } | null };
+
 
 export const GetUsersDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetUsers"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"auth_user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<GetUsersQuery, GetUsersQueryVariables>;
 export const GetUserEmailDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetUserEmail"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"auth_user_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"email"}}]}}]}}]} as unknown as DocumentNode<GetUserEmailQuery, GetUserEmailQueryVariables>;
 export const UpdateUsernameDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateUsername"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"username"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"update_auth_user_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"pk_columns"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"_set"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"username"},"value":{"kind":"Variable","name":{"kind":"Name","value":"username"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"username"}}]}}]}}]} as unknown as DocumentNode<UpdateUsernameMutation, UpdateUsernameMutationVariables>;
 export const UpdateEmailDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateEmail"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"email"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"update_auth_user_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"pk_columns"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"_set"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"email"},"value":{"kind":"Variable","name":{"kind":"Name","value":"email"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"email"}}]}}]}}]} as unknown as DocumentNode<UpdateEmailMutation, UpdateEmailMutationVariables>;
+export const UpdateUpdatedEmailDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateUpdatedEmail"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"updated_email"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"update_auth_user_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"pk_columns"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"_set"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"updated_email"},"value":{"kind":"Variable","name":{"kind":"Name","value":"updated_email"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updated_email"}}]}}]}}]} as unknown as DocumentNode<UpdateUpdatedEmailMutation, UpdateUpdatedEmailMutationVariables>;

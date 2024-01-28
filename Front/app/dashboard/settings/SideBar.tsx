@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { FingerPrintIcon, UserCircleIcon, BellIcon, CreditCardIcon } from '@heroicons/react/outline';
 
 function Sidebar() {
+  const switchThemeDuration = process.env.SWITCH_THEME_DURATION;
 
   const [menuItems, setMenuItems] = useState([
     { name: 'General', icon: <UserCircleIcon className="h-5 w-5" />, selected: true, label: 'general' },
@@ -26,16 +27,28 @@ function Sidebar() {
   };
 
   return (
-    <div className="bg-white text-gray-800">
+    <div className="">
       <ul className="text-sm font-medium">
         {menuItems.map((item, index) => (
-          <li
-            key={index}
-            className={`flex items-center p-3 hover:bg-gray-50 hover:text-indigo-700 ${item.selected ? 'bg-gray-50  text-indigo-700' : ''}`}
-            onClick={() => handleItemClick(index)}
-          >
-            <span className="mr-2">{item.icon}</span> {item.name}
-          </li>
+          <>
+            {item.selected ? 
+            <li
+              key={index}
+              className={`flex items-center p-3 hover:bg-gray-100 cursor-pointer dark:hover:bg-gray-800 hover:text-indigo-700 bg-gray-100 dark:bg-gray-800 text-indigo-700 dark:hover:text-gray-300 dark:text-gray-300 ${switchThemeDuration}`}
+              onClick={() => handleItemClick(index)}
+              >
+              <span className="mr-2">{item.icon}</span> {item.name}
+            </li>
+            :
+            <li
+              key={index}
+              className={`flex items-center p-3 hover:bg-gray-100 cursor-pointer dark:hover:bg-gray-800 hover:text-indigo-700 dark:hover:text-gray-300`}
+              onClick={() => handleItemClick(index)}
+              >
+              <span className="mr-2">{item.icon}</span> {item.name}
+              </li>
+              }
+          </>
         ))}
       </ul>
     </div>

@@ -5,13 +5,14 @@ import { useRouter } from 'next/navigation';
 import InputField from '@/components/InputField';
 import ProgressBar from '@/components/ProgressBar';
 import "../globals.css";
-import { isPasswordValid, calculatePasswordProgress } from '@/utils/passwordCheck';
+import { calculatePasswordProgress } from '@/utils/passwordCheck';
 import Button from '@/components/Button';
 import InputError from '@/components/InputError';
-import SendEmailSuccess from '@/components/SendEmailSuccess';
 import { signIn } from 'next-auth/react';
+import { useTranslation } from '@/i18n/client'
 
 function SignUp() {
+  const { t } = useTranslation('signup')
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
@@ -86,19 +87,19 @@ function SignUp() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="max-w-md w-full space-y-8">
           <form onSubmit={handleSubmit}>
-            <h2 className="text-center text-3xl font-extrabold text-gray-900">Create your account</h2>
+            <h2 className="text-center text-3xl font-extrabold">{t("title")}</h2>
             {error.message && (
               <InputError error={error.message}/>
             )}
             <InputField
-              label="Email address"
+              label={t("email")}
               value={email}
               onChange={handleEmailChange}
               error={error.field === 'email'}
               maxLength={100}
             />
             <InputField
-              label="Username"
+              label={t("username")}
               value={username}
               onChange={handleUsernameChange}
               error={error.field === 'username'}
@@ -106,7 +107,7 @@ function SignUp() {
             />
             <InputField
               isPassword={true}
-              label="Password"
+              label={t("password")}
               value={password}
               onChange={handlePasswordChange}
               error={passwordError}
@@ -114,12 +115,12 @@ function SignUp() {
               onTogglePasswordVisibility={handleTogglePasswordVisibility}
             />
             {password && <ProgressBar progress={calculatePasswordProgress(password)} />}
-            <Button label="Continue" onClick={(e: React.FormEvent) => {handleSubmit(e)}}/>
+            <Button label={t("continue")} onClick={(e: React.FormEvent) => {handleSubmit(e)}}/>
             <div className="mt-2 text-center">
               <p>
-                Already have an account?{' '}
+                {t("already-an-account")}{' '}
                 <a href="/login" className="text-indigo-600 hover:underline">
-                  Log in
+                {t("login")}
                 </a>
               </p>
             </div>

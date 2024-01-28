@@ -1,23 +1,27 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { BellIcon, XIcon } from '@heroicons/react/outline';
+import { XIcon } from '@heroicons/react/outline';
 import { signOut } from 'next-auth/react'
 import { usePathname } from 'next/navigation'
+import { ThemeSwitcher } from './ThemeSwitcher';
+import { useTranslation } from '@/i18n/client'
 
-const navigation = [
-  { name: 'Dashboard', href: '/dashboard', current: false },
-  { name: 'Pricing', href: '/dashboard/pricing', current: false },
 
-]
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 export default function NavigationBar() {
+  const { t } = useTranslation('navbar')
+  const navigation = [
+    { name: t("dashboard"), href: '/dashboard', current: false },
+    { name: t("pricing"), href: '/dashboard/pricing', current: false },
+  ]
+  
   const pathname = usePathname() 
   return (
-    <Disclosure as="nav" className="bg-gray-800">
+    <Disclosure as="nav" className="bg-bright-background-darkmode">
   {({ open }) => (
     <>
       <div className="max-w-full px-2 sm:px-6 lg:px-8">
@@ -60,15 +64,17 @@ export default function NavigationBar() {
                   </div>
                 </div>
               </div>
+              <ThemeSwitcher />
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <button
+                {/* <button
                   type="button"
                   className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                 >
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">View notifications</span>
+                  
                   <BellIcon className="h-6 w-6" aria-hidden="true" />
-                </button>
+                </button> */}
 
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
@@ -90,34 +96,24 @@ export default function NavigationBar() {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                          >
-                            Your Profile
-                          </a>
-                        )}
-                      </Menu.Item>
+                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white dark:bg-bright-background-darkmode py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <Menu.Item>
                         {({ active }) => (
                           <a
                             href="/dashboard/settings/?tab=general"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            className={classNames(active ? '' : '', 'block px-4 py-2 text-sm ')}
                           >
-                            Settings
+                            {t("settings")}
                           </a>
                         )}
                       </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            className={classNames(active ? '' : '', 'block px-4 py-2 text-sm cursor-pointer')}
                             onClick={() => signOut()}
                           >
-                            Sign out
+                            {t("signout")}
                           </a>
                         )}
                       </Menu.Item>

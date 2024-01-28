@@ -2,7 +2,7 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import { useSession} from 'next-auth/react'
 import MultiSelector from "@/components/MultiSelector"
-import { PencilAltIcon } from '@heroicons/react/outline';
+import { PencilIcon } from '@heroicons/react/outline';
 import Modal from '@/components/Modal';
 import InputField from '@/components/InputField';
 import { UpdateUsername } from '@/actions/updateUserAcitons/updateUsername';
@@ -10,18 +10,30 @@ import { SubmitEmailUpdateRequest } from '@/actions/updateUserAcitons/submitEmai
 import { ValidateEmail } from '@/actions/updateUserAcitons/validateEmail';
 import InputError from '@/components/InputError';
 import { MailIcon } from '@heroicons/react/solid'
+import { languageDict, languageOptions } from '@/i18n/settings';
+import { useTranslation } from '@/i18n/client'
+import { getCookie } from 'cookies-next';
+import Button from '@/components/Button';
+
+
 
 function General() {
+  const [switchLanguage, setSwitchLanguage] = useState(false)
   return (
     <div className='space-y-20'>
-      <div><ProfileFields /></div>
-      <div><OthersFields /></div>
+      <div><ProfileFields switchLanguage={switchLanguage} setSwitchLanguage={setSwitchLanguage}/></div>
+      <div><OthersFields switchLanguage={switchLanguage} setSwitchLanguage={setSwitchLanguage} /></div>
     </div>
   );
 }
 
+interface Props {
+  switchLanguage: boolean;
+  setSwitchLanguage: (value: boolean) => void;
+}
 
-function ProfileFields() {
+function ProfileFields({ switchLanguage, setSwitchLanguage }: Props){
+  const { t } = useTranslation('settings')
   const { data: session, update  } = useSession();
   const [error, setError] = useState({ message: '', field: '' });
   const [isUsernameModalOpen, setIsUsernameModalOpen] = useState(false)
@@ -36,11 +48,20 @@ function ProfileFields() {
   const [password, setPassword] = useState('');
 
 
+
+
   const [profileItems, setProfileItems] = useState([
-    { label: 'Username', value: session?.user.username, updateSetting: () => { setModalTitle("Update Username"); setModalSubTitle(""); setIsUsernameModalOpen(true); } },
-    { label: 'Email', value: session?.user.email, updateSetting: () => { setModalTitle("Update Email"); setModalSubTitle(""); setIsEmailModalOpen(true); } },
+    { label: t("general.username"), value: session?.user.username, updateSetting: () => { setModalTitle("Update Username"); setModalSubTitle(""); setIsUsernameModalOpen(true); } },
+    { label: t("general.email"), value: session?.user.email, updateSetting: () => { setModalTitle("Update Email"); setModalSubTitle(""); setIsEmailModalOpen(true); } },
   ]);
 
+  useEffect(() => {
+    setProfileItems([
+      { label: t("general.username"), value: session?.user.username, updateSetting: () => {setModalTitle("Update Username"); setModalSubTitle(""); setIsUsernameModalOpen(true);} },
+      { label: t("general.email"), value: session?.user.email, updateSetting: () => {setModalTitle("Update Email"); setModalSubTitle(""); setIsEmailModalOpen(true);} },
+    ]);
+    setSwitchLanguage(false)
+  }, [switchLanguage]);
 
   //#region Hooks
   useEffect(() => {
@@ -154,20 +175,8 @@ const handleTogglePasswordVisibility = () => {
             <InputError error={error.message}/>
           )}
           <div className="flex justify-center space-x-4 mt-6">
-            <button
-              type="button"
-              className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-              onClick={() =>  handleUsernameSubmission()}
-            >
-              Apply
-            </button>
-            <button
-              type="button"
-              className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-              onClick={() => {setIsUsernameModalOpen(false); setUsername('')}}
-            >
-              Cancel
-            </button>
+            <Button label='Apply' onClick={() => handleUsernameSubmission()}/>
+            <Button label='Cancel' onClick={() => {setIsUsernameModalOpen(false); setUsername('')}}/>
           </div>
         </div>
       </Modal>
@@ -183,21 +192,8 @@ const handleTogglePasswordVisibility = () => {
             )}
           
             <div className="flex justify-center space-x-4 mt-6">
-              <button
-                type="button"
-                className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                onClick={() => setIsEmailModalOpen(false)}
-              >
-                Cancel
-              </button>
-              <button
-                type="button"
-                className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                onClick={() => handleEmailSubmission()}
-              >
-                Next
-              </button>
-
+              <Button label='Next' onClick={() => handleEmailSubmission()}/>
+              <Button label='Cancel' onClick={() => setIsEmailModalOpen(false)}/>
             </div>
           </div>
         } 
@@ -210,20 +206,8 @@ const handleTogglePasswordVisibility = () => {
               )}
             
             <div className="flex justify-center space-x-4 mt-6">
-            <button
-              type="button"
-              className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-              onClick={() => setIsEmailModalOpen(false) }
-            >
-              Cancel
-            </button>
-            <button
-              type="button"
-              className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-              onClick={() => handlePasswordSubmission()}
-            >
-              Comfirm 
-            </button>
+              <Button label='Cancel' onClick={() => setIsEmailModalOpen(false)}/>
+              <Button label='Comfirm' onClick={() => handlePasswordSubmission()}/>
             </div>
           </div>
         }
@@ -236,29 +220,23 @@ const handleTogglePasswordVisibility = () => {
               <p className="text-center">{email}</p>
             </div>
             <div className="flex justify-center space-x-4 mt-6">
-              <button
-                type="button"
-                className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                onClick={() => setIsEmailModalOpen(false)}
-              >
-                Close
-              </button>
+              <Button label='Close' onClick={() => setIsEmailModalOpen(false)}/>
             </div>
           </div>
         }
 
       </Modal>
-
-      <h1 className="text-m font-medium">Profile</h1>
-      <p className="text-sm text-gray-600 mb-4">This information will be displayed publicly so be careful what you share.</p>
+ 
+      <h1 className="text-m font-medium">{t("general.profile-title")}</h1>
+      <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">{t("general.profile-subtitle")}</p>
       <div className="border-t border-gray-300" />
       <div className="grid grid-rows gap-6 mt-6">
         {profileItems.map((item, index) => (
           <div key={index} className="grid grid-cols-3 items-center ">
-            <span className="col-span-1 text-gray-700 text-sm font-medium">{item.label?.toString()}</span>
-            <div className="col-span-1 text-gray-700 text-left text-sm">{item.value?.toString()}</div>
+            <span className="col-span-1 text-sm font-medium">{item.label?.toString()}</span>
+            <div className="col-span-1 text-left text-sm">{item.value?.toString()}</div>
             <span className="col-span-1 flex justify-end cursor-pointer" onClick={() => item.updateSetting()}>
-              <PencilAltIcon className="h-5 w-5 hover:text-indigo-700" />
+              <PencilIcon className="h-5 w-5 hover:text-indigo-700" />
             </span>
             {index !== profileItems.length - 1 && (
               <div className="col-start-1 col-end-4 border-t border-gray-200 mt-5" />
@@ -270,8 +248,11 @@ const handleTogglePasswordVisibility = () => {
   );
 }
 
-function OthersFields() {
-  const defaultLanguage = "English"  //get from session or cookie
+function OthersFields({ switchLanguage, setSwitchLanguage }: Props) {
+  const { i18n } = useTranslation();
+  const { t } = useTranslation('settings');
+  const i18nCookie = getCookie(process.env.NEXT_PUBLIC_I18N_COOKIE_NAME as string) as  string
+  const defaultLanguage = languageDict[i18nCookie]
   const defaultCurrency = "Dollar" //get from session or cookie
 
   const [isLanguageModalOpen, setIsLanguageModalOpen] = useState(false)
@@ -286,20 +267,13 @@ function OthersFields() {
   const currencyOptions = [
     { value: 'Dollar', label: 'USD' },
     { value: 'Euro', label: 'EUR' },
-  ]
+  ];
 
-  const languageOptions = [
-    { value: 'Français', label: 'FR' },
-    { value: 'English', label: 'EN' },
-    { value: 'Español', label: 'ES'},
-
-  ]
-  
   const [OthersItems, setOthersItems] = useState([
-    { label: 'Language', value: language, updateSetting: () => {setIsLanguageModalOpen(true)} },
-    { label: 'Currency', value: currency, updateSetting: () => {setIsCurrencyModalOpen(true)} },
+    { label: t("general.language"), value: language, updateSetting: () => {setIsLanguageModalOpen(true)} },
+    { label: t("general.currency"), value: currency, updateSetting: () => {setIsCurrencyModalOpen(true)} },
   ]);
-
+  
 
   //#region Hooks
 useEffect(() => {
@@ -316,17 +290,20 @@ useEffect(() => {
 
 useEffect(() => {
   setOthersItems([
-    { label: 'Language', value: language, updateSetting: () => {setIsLanguageModalOpen(true)} },
-    { label: 'Currency', value: currency, updateSetting: () => {setIsCurrencyModalOpen(true)} },
+    { label: t("general.language"), value: language, updateSetting: () => {setIsLanguageModalOpen(true)} },
+    { label: t("general.currency"), value: currency, updateSetting: () => {setIsCurrencyModalOpen(true)} },
   ]);
+  setSwitchLanguage(true)
 }, [language, currency]);
 
 //#endregion
 
   //#region functions
-  const handleLanguageSubmission = async () => {
+  const handleLanguageSubmission = () => {
     //update language in cookie or session
     setLanguage(selectedLanguage); 
+    const label = Object.keys(languageDict).find(key => languageDict[key] === selectedLanguage)
+    i18n.changeLanguage(label)
     setIsLanguageModalOpen(false);
   }
 
@@ -336,7 +313,6 @@ useEffect(() => {
     setIsCurrencyModalOpen(false);
   }
   //#endregion
-
   return (
     <>
     {/* Language Modal*/}
@@ -345,24 +321,12 @@ useEffect(() => {
           <div className="flex justify-center items-center">
             <MultiSelector 
             options={languageOptions} 
-            onChange={(event: ChangeEvent<HTMLSelectElement>) => setSelectedLanguage(event.target.value)}
+            onChange={(event: ChangeEvent<HTMLSelectElement>) => {setSelectedLanguage(event.target.value);}}
             defaultValue={selectedLanguage}/>
           </div>          
           <div className="flex justify-center space-x-4 mt-6">
-            <button
-              type="button"
-              className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-              onClick={() => { handleLanguageSubmission() }}
-            >
-              Apply
-            </button>
-            <button
-              type="button"
-              className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-              onClick={() => { setIsLanguageModalOpen(false); }}
-            >
-              Cancel
-            </button>
+            <Button label='Apply' onClick={() => handleLanguageSubmission()}/>
+            <Button label='Cancel' onClick={() => setIsLanguageModalOpen(false)}/>
           </div>
         </div>
       </Modal>
@@ -377,33 +341,21 @@ useEffect(() => {
               defaultValue={selectedCurrency}/>
             </div>          
             <div className="flex justify-center space-x-4 mt-6">
-              <button
-                type="button"
-                className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                onClick={() => { handleCurrencySubmission() }}
-              >
-                Apply
-              </button>
-              <button
-                type="button"
-                className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                onClick={() => { setIsCurrencyModalOpen(false); }}
-              >
-                Cancel
-              </button>
+            <Button label='Apply' onClick={() => handleCurrencySubmission()}/>
+            <Button label='Cancel' onClick={() => setIsCurrencyModalOpen(false)}/>
             </div>
           </div>
         </Modal>
-      <h1 className="text-m font-medium mb-4">Others</h1>
+      <h1 className="text-m font-medium mb-4">{t("general.others-title")}</h1>
       <div className="border-t border-gray-300" />
       <div className="grid grid-rows gap-6 mt-6">
         {OthersItems.map((item, index) => (
           <div key={index} className="grid grid-cols-3 items-center ">
-            <span className="col-span-1 text-gray-700 text-sm font-medium">{item.label}</span>
-            <div className="col-span-1 text-gray-700 text-left text-sm">{item.value}</div>
+            <span className="col-span-1 text-sm font-medium">{item.label}</span>
+            <div className="col-span-1 text-left text-sm">{item.value}</div>
 
             <span className="col-span-1 flex justify-end cursor-pointer" onClick={() => item.updateSetting()}>
-              <PencilAltIcon className="h-5 w-5 hover:text-indigo-700" />
+              <PencilIcon className="h-5 w-5 hover:text-indigo-700" />
             </span>
             {index !== OthersItems.length - 1 && (
               <div className="col-start-1 col-end-4 border-t border-gray-200 mt-5" />
@@ -411,6 +363,7 @@ useEffect(() => {
           </div>
         ))}
       </div>
+      
     </>
   );
 }

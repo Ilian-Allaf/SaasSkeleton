@@ -1,6 +1,10 @@
 table:
   name: user
   schema: auth
+object_relationships:
+  - name: subscibtion_plan
+    using:
+      foreign_key_constraint_on: subsciption_plan_id
 array_relationships:
   - name: accounts
     using:
@@ -38,6 +42,7 @@ select_permissions:
         - id
         - image
         - role
+        - updated_email
         - username
       filter:
         id:
@@ -48,6 +53,7 @@ update_permissions:
     permission:
       columns:
         - email
+        - updated_email
         - username
       filter:
         id:

@@ -1,0 +1,32 @@
+{
+    "general": {
+      "profile-title": "Profil",
+      "profile-subtitle": "Ces informations seront affichées publiquement, alors faites attention à ce que vous partagez.",
+      "username": "Nom d'utilisateur",
+      "email": "E-mail",
+      "others-title": "Autres",
+      "language": "Langue",
+      "currency": "Devise"
+    },
+    "security": {
+      "title": "Sécurité",
+      "password": "Mot de passe",
+      "phone": "Numéro de téléphone",
+      "2fa": "Vérification en 2 étapes"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "new-offers": "Nouvelles offres",
+      "news-letter": "Lettre d'information"
+    },
+    "billing": {
+      "title": "Méthodes de payement",
+      "subtitle": "Gérez vos moyens de paiement"
+    },
+    "sidebar": {
+      "general": "Général",
+      "security": "Sécurité",
+      "notifications": "Notifications",
+      "billing": "Facturation"
+    }
+  }

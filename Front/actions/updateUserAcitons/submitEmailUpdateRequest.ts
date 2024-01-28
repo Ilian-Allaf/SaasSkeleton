@@ -1,13 +1,5 @@
 "use server"
 
-import { setupGraphQLClient } from "@/lib/gqlclient";
-import { UpdateEmailDocument } from "@/src/gql/graphql";
-import { getServerSession } from "next-auth"
-import { authOptions } from 'pages/api/auth/[...nextauth]'
-import { revalidatePath } from "next/cache";
-import { prisma } from "@/lib/prismaclient";
-
-import { sendVerificationEmail } from "@/utils/sendEmail";
 import { ValidateEmail } from "./validateEmail";
 import { CheckPassword } from "./checkPassword";
 import { SaveSubmittedEmailUpdate } from "./saveSubmittedEmailUpdate";
@@ -24,8 +16,8 @@ export async function SubmitEmailUpdateRequest(email: string, password: string) 
             };
         }
 
-        const isPasswordValid = await CheckPassword(password);
-        if (isPasswordValid?.error) {
+        const isPasswordMatching = await CheckPassword(password);
+        if (isPasswordMatching?.error) {
             return{
                 error: 'Incorrect password',
                 field: "password",
