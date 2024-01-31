@@ -14,7 +14,6 @@ export type Scalars = {
   Boolean: { input: boolean; output: boolean; }
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
-  numeric: { input: any; output: any; }
   timestamp: { input: any; output: any; }
   uuid: { input: any; output: any; }
 };
@@ -1224,8 +1223,8 @@ export type Auth_User = {
   /** An aggregate relationship */
   sessions_aggregate: Auth_Session_Aggregate;
   /** An object relationship */
-  subscibtion_plan?: Maybe<Subscibtion_Plan>;
-  subsciption_plan_id?: Maybe<Scalars['String']['output']>;
+  subscribtionPlanBySubscribtionPlan?: Maybe<Subscribtion_Plan>;
+  subscribtion_plan?: Maybe<Scalars['String']['output']>;
   updated_at: Scalars['timestamp']['output'];
   updated_email?: Maybe<Scalars['String']['output']>;
   username: Scalars['String']['output'];
@@ -1394,8 +1393,8 @@ export type Auth_User_Bool_Exp = {
   role?: InputMaybe<String_Comparison_Exp>;
   sessions?: InputMaybe<Auth_Session_Bool_Exp>;
   sessions_aggregate?: InputMaybe<Auth_Session_Aggregate_Bool_Exp>;
-  subscibtion_plan?: InputMaybe<Subscibtion_Plan_Bool_Exp>;
-  subsciption_plan_id?: InputMaybe<String_Comparison_Exp>;
+  subscribtionPlanBySubscribtionPlan?: InputMaybe<Subscribtion_Plan_Bool_Exp>;
+  subscribtion_plan?: InputMaybe<String_Comparison_Exp>;
   updated_at?: InputMaybe<Timestamp_Comparison_Exp>;
   updated_email?: InputMaybe<String_Comparison_Exp>;
   username?: InputMaybe<String_Comparison_Exp>;
@@ -1422,8 +1421,8 @@ export type Auth_User_Insert_Input = {
   password_reset_tokens?: InputMaybe<Auth_Password_Reset_Token_Arr_Rel_Insert_Input>;
   role?: InputMaybe<Scalars['String']['input']>;
   sessions?: InputMaybe<Auth_Session_Arr_Rel_Insert_Input>;
-  subscibtion_plan?: InputMaybe<Subscibtion_Plan_Obj_Rel_Insert_Input>;
-  subsciption_plan_id?: InputMaybe<Scalars['String']['input']>;
+  subscribtionPlanBySubscribtionPlan?: InputMaybe<Subscribtion_Plan_Obj_Rel_Insert_Input>;
+  subscribtion_plan?: InputMaybe<Scalars['String']['input']>;
   updated_at?: InputMaybe<Scalars['timestamp']['input']>;
   updated_email?: InputMaybe<Scalars['String']['input']>;
   username?: InputMaybe<Scalars['String']['input']>;
@@ -1438,7 +1437,7 @@ export type Auth_User_Max_Fields = {
   image?: Maybe<Scalars['String']['output']>;
   password?: Maybe<Scalars['String']['output']>;
   role?: Maybe<Scalars['String']['output']>;
-  subsciption_plan_id?: Maybe<Scalars['String']['output']>;
+  subscribtion_plan?: Maybe<Scalars['String']['output']>;
   updated_at?: Maybe<Scalars['timestamp']['output']>;
   updated_email?: Maybe<Scalars['String']['output']>;
   username?: Maybe<Scalars['String']['output']>;
@@ -1452,7 +1451,7 @@ export type Auth_User_Max_Order_By = {
   image?: InputMaybe<Order_By>;
   password?: InputMaybe<Order_By>;
   role?: InputMaybe<Order_By>;
-  subsciption_plan_id?: InputMaybe<Order_By>;
+  subscribtion_plan?: InputMaybe<Order_By>;
   updated_at?: InputMaybe<Order_By>;
   updated_email?: InputMaybe<Order_By>;
   username?: InputMaybe<Order_By>;
@@ -1467,7 +1466,7 @@ export type Auth_User_Min_Fields = {
   image?: Maybe<Scalars['String']['output']>;
   password?: Maybe<Scalars['String']['output']>;
   role?: Maybe<Scalars['String']['output']>;
-  subsciption_plan_id?: Maybe<Scalars['String']['output']>;
+  subscribtion_plan?: Maybe<Scalars['String']['output']>;
   updated_at?: Maybe<Scalars['timestamp']['output']>;
   updated_email?: Maybe<Scalars['String']['output']>;
   username?: Maybe<Scalars['String']['output']>;
@@ -1481,7 +1480,7 @@ export type Auth_User_Min_Order_By = {
   image?: InputMaybe<Order_By>;
   password?: InputMaybe<Order_By>;
   role?: InputMaybe<Order_By>;
-  subsciption_plan_id?: InputMaybe<Order_By>;
+  subscribtion_plan?: InputMaybe<Order_By>;
   updated_at?: InputMaybe<Order_By>;
   updated_email?: InputMaybe<Order_By>;
   username?: InputMaybe<Order_By>;
@@ -1523,8 +1522,8 @@ export type Auth_User_Order_By = {
   password_reset_tokens_aggregate?: InputMaybe<Auth_Password_Reset_Token_Aggregate_Order_By>;
   role?: InputMaybe<Order_By>;
   sessions_aggregate?: InputMaybe<Auth_Session_Aggregate_Order_By>;
-  subscibtion_plan?: InputMaybe<Subscibtion_Plan_Order_By>;
-  subsciption_plan_id?: InputMaybe<Order_By>;
+  subscribtionPlanBySubscribtionPlan?: InputMaybe<Subscribtion_Plan_Order_By>;
+  subscribtion_plan?: InputMaybe<Order_By>;
   updated_at?: InputMaybe<Order_By>;
   updated_email?: InputMaybe<Order_By>;
   username?: InputMaybe<Order_By>;
@@ -1552,7 +1551,7 @@ export enum Auth_User_Select_Column {
   /** column name */
   Role = 'role',
   /** column name */
-  SubsciptionPlanId = 'subsciption_plan_id',
+  SubscribtionPlan = 'subscribtion_plan',
   /** column name */
   UpdatedAt = 'updated_at',
   /** column name */
@@ -1582,7 +1581,7 @@ export type Auth_User_Set_Input = {
   image?: InputMaybe<Scalars['String']['input']>;
   password?: InputMaybe<Scalars['String']['input']>;
   role?: InputMaybe<Scalars['String']['input']>;
-  subsciption_plan_id?: InputMaybe<Scalars['String']['input']>;
+  subscribtion_plan?: InputMaybe<Scalars['String']['input']>;
   updated_at?: InputMaybe<Scalars['timestamp']['input']>;
   updated_email?: InputMaybe<Scalars['String']['input']>;
   username?: InputMaybe<Scalars['String']['input']>;
@@ -1605,7 +1604,7 @@ export type Auth_User_Stream_Cursor_Value_Input = {
   image?: InputMaybe<Scalars['String']['input']>;
   password?: InputMaybe<Scalars['String']['input']>;
   role?: InputMaybe<Scalars['String']['input']>;
-  subsciption_plan_id?: InputMaybe<Scalars['String']['input']>;
+  subscribtion_plan?: InputMaybe<Scalars['String']['input']>;
   updated_at?: InputMaybe<Scalars['timestamp']['input']>;
   updated_email?: InputMaybe<Scalars['String']['input']>;
   username?: InputMaybe<Scalars['String']['input']>;
@@ -1628,7 +1627,7 @@ export enum Auth_User_Update_Column {
   /** column name */
   Role = 'role',
   /** column name */
-  SubsciptionPlanId = 'subsciption_plan_id',
+  SubscribtionPlan = 'subscribtion_plan',
   /** column name */
   UpdatedAt = 'updated_at',
   /** column name */
@@ -1651,6 +1650,229 @@ export enum Cursor_Ordering {
   /** descending ordering of the cursor */
   Desc = 'DESC'
 }
+
+/** columns and relationships of "language" */
+export type Language = {
+  __typename?: 'language';
+  code: Scalars['String']['output'];
+  created_at: Scalars['timestamp']['output'];
+  name: Scalars['String']['output'];
+  /** An array relationship */
+  text_contents: Array<Text_Content>;
+  /** An aggregate relationship */
+  text_contents_aggregate: Text_Content_Aggregate;
+  /** An array relationship */
+  translations: Array<Translation>;
+  /** An aggregate relationship */
+  translations_aggregate: Translation_Aggregate;
+  updated_at: Scalars['timestamp']['output'];
+};
+
+
+/** columns and relationships of "language" */
+export type LanguageText_ContentsArgs = {
+  distinct_on?: InputMaybe<Array<Text_Content_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Text_Content_Order_By>>;
+  where?: InputMaybe<Text_Content_Bool_Exp>;
+};
+
+
+/** columns and relationships of "language" */
+export type LanguageText_Contents_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Text_Content_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Text_Content_Order_By>>;
+  where?: InputMaybe<Text_Content_Bool_Exp>;
+};
+
+
+/** columns and relationships of "language" */
+export type LanguageTranslationsArgs = {
+  distinct_on?: InputMaybe<Array<Translation_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Translation_Order_By>>;
+  where?: InputMaybe<Translation_Bool_Exp>;
+};
+
+
+/** columns and relationships of "language" */
+export type LanguageTranslations_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Translation_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Translation_Order_By>>;
+  where?: InputMaybe<Translation_Bool_Exp>;
+};
+
+/** aggregated selection of "language" */
+export type Language_Aggregate = {
+  __typename?: 'language_aggregate';
+  aggregate?: Maybe<Language_Aggregate_Fields>;
+  nodes: Array<Language>;
+};
+
+/** aggregate fields of "language" */
+export type Language_Aggregate_Fields = {
+  __typename?: 'language_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<Language_Max_Fields>;
+  min?: Maybe<Language_Min_Fields>;
+};
+
+
+/** aggregate fields of "language" */
+export type Language_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Language_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Boolean expression to filter rows from the table "language". All fields are combined with a logical 'AND'. */
+export type Language_Bool_Exp = {
+  _and?: InputMaybe<Array<Language_Bool_Exp>>;
+  _not?: InputMaybe<Language_Bool_Exp>;
+  _or?: InputMaybe<Array<Language_Bool_Exp>>;
+  code?: InputMaybe<String_Comparison_Exp>;
+  created_at?: InputMaybe<Timestamp_Comparison_Exp>;
+  name?: InputMaybe<String_Comparison_Exp>;
+  text_contents?: InputMaybe<Text_Content_Bool_Exp>;
+  text_contents_aggregate?: InputMaybe<Text_Content_Aggregate_Bool_Exp>;
+  translations?: InputMaybe<Translation_Bool_Exp>;
+  translations_aggregate?: InputMaybe<Translation_Aggregate_Bool_Exp>;
+  updated_at?: InputMaybe<Timestamp_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "language" */
+export enum Language_Constraint {
+  /** unique or primary key constraint on columns "name" */
+  LanguageNameKey = 'language_name_key',
+  /** unique or primary key constraint on columns "code" */
+  LanguagePkey = 'language_pkey'
+}
+
+/** input type for inserting data into table "language" */
+export type Language_Insert_Input = {
+  code?: InputMaybe<Scalars['String']['input']>;
+  created_at?: InputMaybe<Scalars['timestamp']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  text_contents?: InputMaybe<Text_Content_Arr_Rel_Insert_Input>;
+  translations?: InputMaybe<Translation_Arr_Rel_Insert_Input>;
+  updated_at?: InputMaybe<Scalars['timestamp']['input']>;
+};
+
+/** aggregate max on columns */
+export type Language_Max_Fields = {
+  __typename?: 'language_max_fields';
+  code?: Maybe<Scalars['String']['output']>;
+  created_at?: Maybe<Scalars['timestamp']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  updated_at?: Maybe<Scalars['timestamp']['output']>;
+};
+
+/** aggregate min on columns */
+export type Language_Min_Fields = {
+  __typename?: 'language_min_fields';
+  code?: Maybe<Scalars['String']['output']>;
+  created_at?: Maybe<Scalars['timestamp']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  updated_at?: Maybe<Scalars['timestamp']['output']>;
+};
+
+/** response of any mutation on the table "language" */
+export type Language_Mutation_Response = {
+  __typename?: 'language_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Language>;
+};
+
+/** input type for inserting object relation for remote table "language" */
+export type Language_Obj_Rel_Insert_Input = {
+  data: Language_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Language_On_Conflict>;
+};
+
+/** on_conflict condition type for table "language" */
+export type Language_On_Conflict = {
+  constraint: Language_Constraint;
+  update_columns?: Array<Language_Update_Column>;
+  where?: InputMaybe<Language_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "language". */
+export type Language_Order_By = {
+  code?: InputMaybe<Order_By>;
+  created_at?: InputMaybe<Order_By>;
+  name?: InputMaybe<Order_By>;
+  text_contents_aggregate?: InputMaybe<Text_Content_Aggregate_Order_By>;
+  translations_aggregate?: InputMaybe<Translation_Aggregate_Order_By>;
+  updated_at?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: language */
+export type Language_Pk_Columns_Input = {
+  code: Scalars['String']['input'];
+};
+
+/** select columns of table "language" */
+export enum Language_Select_Column {
+  /** column name */
+  Code = 'code',
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** input type for updating data in table "language" */
+export type Language_Set_Input = {
+  code?: InputMaybe<Scalars['String']['input']>;
+  created_at?: InputMaybe<Scalars['timestamp']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamp']['input']>;
+};
+
+/** Streaming cursor of the table "language" */
+export type Language_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Language_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Language_Stream_Cursor_Value_Input = {
+  code?: InputMaybe<Scalars['String']['input']>;
+  created_at?: InputMaybe<Scalars['timestamp']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamp']['input']>;
+};
+
+/** update columns of table "language" */
+export enum Language_Update_Column {
+  /** column name */
+  Code = 'code',
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+export type Language_Updates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Language_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Language_Bool_Exp;
+};
 
 /** mutation root */
 export type Mutation_Root = {
@@ -1675,10 +1897,30 @@ export type Mutation_Root = {
   delete_auth_user?: Maybe<Auth_User_Mutation_Response>;
   /** delete single row from the table: "auth.user" */
   delete_auth_user_by_pk?: Maybe<Auth_User>;
-  /** delete data from the table: "subscibtion_plan" */
-  delete_subscibtion_plan?: Maybe<Subscibtion_Plan_Mutation_Response>;
-  /** delete single row from the table: "subscibtion_plan" */
-  delete_subscibtion_plan_by_pk?: Maybe<Subscibtion_Plan>;
+  /** delete data from the table: "language" */
+  delete_language?: Maybe<Language_Mutation_Response>;
+  /** delete single row from the table: "language" */
+  delete_language_by_pk?: Maybe<Language>;
+  /** delete data from the table: "subscribtion_feature" */
+  delete_subscribtion_feature?: Maybe<Subscribtion_Feature_Mutation_Response>;
+  /** delete single row from the table: "subscribtion_feature" */
+  delete_subscribtion_feature_by_pk?: Maybe<Subscribtion_Feature>;
+  /** delete data from the table: "subscribtion_plan" */
+  delete_subscribtion_plan?: Maybe<Subscribtion_Plan_Mutation_Response>;
+  /** delete single row from the table: "subscribtion_plan" */
+  delete_subscribtion_plan_by_pk?: Maybe<Subscribtion_Plan>;
+  /** delete data from the table: "subscribtion_plan_subscribtion_feature_assoc" */
+  delete_subscribtion_plan_subscribtion_feature_assoc?: Maybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Mutation_Response>;
+  /** delete single row from the table: "subscribtion_plan_subscribtion_feature_assoc" */
+  delete_subscribtion_plan_subscribtion_feature_assoc_by_pk?: Maybe<Subscribtion_Plan_Subscribtion_Feature_Assoc>;
+  /** delete data from the table: "text_content" */
+  delete_text_content?: Maybe<Text_Content_Mutation_Response>;
+  /** delete single row from the table: "text_content" */
+  delete_text_content_by_pk?: Maybe<Text_Content>;
+  /** delete data from the table: "translation" */
+  delete_translation?: Maybe<Translation_Mutation_Response>;
+  /** delete single row from the table: "translation" */
+  delete_translation_by_pk?: Maybe<Translation>;
   /** insert data into the table: "auth.account" */
   insert_auth_account?: Maybe<Auth_Account_Mutation_Response>;
   /** insert a single row into the table: "auth.account" */
@@ -1699,10 +1941,30 @@ export type Mutation_Root = {
   insert_auth_user?: Maybe<Auth_User_Mutation_Response>;
   /** insert a single row into the table: "auth.user" */
   insert_auth_user_one?: Maybe<Auth_User>;
-  /** insert data into the table: "subscibtion_plan" */
-  insert_subscibtion_plan?: Maybe<Subscibtion_Plan_Mutation_Response>;
-  /** insert a single row into the table: "subscibtion_plan" */
-  insert_subscibtion_plan_one?: Maybe<Subscibtion_Plan>;
+  /** insert data into the table: "language" */
+  insert_language?: Maybe<Language_Mutation_Response>;
+  /** insert a single row into the table: "language" */
+  insert_language_one?: Maybe<Language>;
+  /** insert data into the table: "subscribtion_feature" */
+  insert_subscribtion_feature?: Maybe<Subscribtion_Feature_Mutation_Response>;
+  /** insert a single row into the table: "subscribtion_feature" */
+  insert_subscribtion_feature_one?: Maybe<Subscribtion_Feature>;
+  /** insert data into the table: "subscribtion_plan" */
+  insert_subscribtion_plan?: Maybe<Subscribtion_Plan_Mutation_Response>;
+  /** insert a single row into the table: "subscribtion_plan" */
+  insert_subscribtion_plan_one?: Maybe<Subscribtion_Plan>;
+  /** insert data into the table: "subscribtion_plan_subscribtion_feature_assoc" */
+  insert_subscribtion_plan_subscribtion_feature_assoc?: Maybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Mutation_Response>;
+  /** insert a single row into the table: "subscribtion_plan_subscribtion_feature_assoc" */
+  insert_subscribtion_plan_subscribtion_feature_assoc_one?: Maybe<Subscribtion_Plan_Subscribtion_Feature_Assoc>;
+  /** insert data into the table: "text_content" */
+  insert_text_content?: Maybe<Text_Content_Mutation_Response>;
+  /** insert a single row into the table: "text_content" */
+  insert_text_content_one?: Maybe<Text_Content>;
+  /** insert data into the table: "translation" */
+  insert_translation?: Maybe<Translation_Mutation_Response>;
+  /** insert a single row into the table: "translation" */
+  insert_translation_one?: Maybe<Translation>;
   /** update data of the table: "auth.account" */
   update_auth_account?: Maybe<Auth_Account_Mutation_Response>;
   /** update single row of the table: "auth.account" */
@@ -1733,12 +1995,42 @@ export type Mutation_Root = {
   update_auth_user_by_pk?: Maybe<Auth_User>;
   /** update multiples rows of table: "auth.user" */
   update_auth_user_many?: Maybe<Array<Maybe<Auth_User_Mutation_Response>>>;
-  /** update data of the table: "subscibtion_plan" */
-  update_subscibtion_plan?: Maybe<Subscibtion_Plan_Mutation_Response>;
-  /** update single row of the table: "subscibtion_plan" */
-  update_subscibtion_plan_by_pk?: Maybe<Subscibtion_Plan>;
-  /** update multiples rows of table: "subscibtion_plan" */
-  update_subscibtion_plan_many?: Maybe<Array<Maybe<Subscibtion_Plan_Mutation_Response>>>;
+  /** update data of the table: "language" */
+  update_language?: Maybe<Language_Mutation_Response>;
+  /** update single row of the table: "language" */
+  update_language_by_pk?: Maybe<Language>;
+  /** update multiples rows of table: "language" */
+  update_language_many?: Maybe<Array<Maybe<Language_Mutation_Response>>>;
+  /** update data of the table: "subscribtion_feature" */
+  update_subscribtion_feature?: Maybe<Subscribtion_Feature_Mutation_Response>;
+  /** update single row of the table: "subscribtion_feature" */
+  update_subscribtion_feature_by_pk?: Maybe<Subscribtion_Feature>;
+  /** update multiples rows of table: "subscribtion_feature" */
+  update_subscribtion_feature_many?: Maybe<Array<Maybe<Subscribtion_Feature_Mutation_Response>>>;
+  /** update data of the table: "subscribtion_plan" */
+  update_subscribtion_plan?: Maybe<Subscribtion_Plan_Mutation_Response>;
+  /** update single row of the table: "subscribtion_plan" */
+  update_subscribtion_plan_by_pk?: Maybe<Subscribtion_Plan>;
+  /** update multiples rows of table: "subscribtion_plan" */
+  update_subscribtion_plan_many?: Maybe<Array<Maybe<Subscribtion_Plan_Mutation_Response>>>;
+  /** update data of the table: "subscribtion_plan_subscribtion_feature_assoc" */
+  update_subscribtion_plan_subscribtion_feature_assoc?: Maybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Mutation_Response>;
+  /** update single row of the table: "subscribtion_plan_subscribtion_feature_assoc" */
+  update_subscribtion_plan_subscribtion_feature_assoc_by_pk?: Maybe<Subscribtion_Plan_Subscribtion_Feature_Assoc>;
+  /** update multiples rows of table: "subscribtion_plan_subscribtion_feature_assoc" */
+  update_subscribtion_plan_subscribtion_feature_assoc_many?: Maybe<Array<Maybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Mutation_Response>>>;
+  /** update data of the table: "text_content" */
+  update_text_content?: Maybe<Text_Content_Mutation_Response>;
+  /** update single row of the table: "text_content" */
+  update_text_content_by_pk?: Maybe<Text_Content>;
+  /** update multiples rows of table: "text_content" */
+  update_text_content_many?: Maybe<Array<Maybe<Text_Content_Mutation_Response>>>;
+  /** update data of the table: "translation" */
+  update_translation?: Maybe<Translation_Mutation_Response>;
+  /** update single row of the table: "translation" */
+  update_translation_by_pk?: Maybe<Translation>;
+  /** update multiples rows of table: "translation" */
+  update_translation_many?: Maybe<Array<Maybe<Translation_Mutation_Response>>>;
 };
 
 
@@ -1803,14 +2095,74 @@ export type Mutation_RootDelete_Auth_User_By_PkArgs = {
 
 
 /** mutation root */
-export type Mutation_RootDelete_Subscibtion_PlanArgs = {
-  where: Subscibtion_Plan_Bool_Exp;
+export type Mutation_RootDelete_LanguageArgs = {
+  where: Language_Bool_Exp;
 };
 
 
 /** mutation root */
-export type Mutation_RootDelete_Subscibtion_Plan_By_PkArgs = {
-  id: Scalars['String']['input'];
+export type Mutation_RootDelete_Language_By_PkArgs = {
+  code: Scalars['String']['input'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Subscribtion_FeatureArgs = {
+  where: Subscribtion_Feature_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Subscribtion_Feature_By_PkArgs = {
+  name: Scalars['String']['input'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Subscribtion_PlanArgs = {
+  where: Subscribtion_Plan_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Subscribtion_Plan_By_PkArgs = {
+  name: Scalars['String']['input'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Subscribtion_Plan_Subscribtion_Feature_AssocArgs = {
+  where: Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Subscribtion_Plan_Subscribtion_Feature_Assoc_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Text_ContentArgs = {
+  where: Text_Content_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Text_Content_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_TranslationArgs = {
+  where: Translation_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Translation_By_PkArgs = {
+  id: Scalars['uuid']['input'];
 };
 
 
@@ -1885,16 +2237,86 @@ export type Mutation_RootInsert_Auth_User_OneArgs = {
 
 
 /** mutation root */
-export type Mutation_RootInsert_Subscibtion_PlanArgs = {
-  objects: Array<Subscibtion_Plan_Insert_Input>;
-  on_conflict?: InputMaybe<Subscibtion_Plan_On_Conflict>;
+export type Mutation_RootInsert_LanguageArgs = {
+  objects: Array<Language_Insert_Input>;
+  on_conflict?: InputMaybe<Language_On_Conflict>;
 };
 
 
 /** mutation root */
-export type Mutation_RootInsert_Subscibtion_Plan_OneArgs = {
-  object: Subscibtion_Plan_Insert_Input;
-  on_conflict?: InputMaybe<Subscibtion_Plan_On_Conflict>;
+export type Mutation_RootInsert_Language_OneArgs = {
+  object: Language_Insert_Input;
+  on_conflict?: InputMaybe<Language_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Subscribtion_FeatureArgs = {
+  objects: Array<Subscribtion_Feature_Insert_Input>;
+  on_conflict?: InputMaybe<Subscribtion_Feature_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Subscribtion_Feature_OneArgs = {
+  object: Subscribtion_Feature_Insert_Input;
+  on_conflict?: InputMaybe<Subscribtion_Feature_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Subscribtion_PlanArgs = {
+  objects: Array<Subscribtion_Plan_Insert_Input>;
+  on_conflict?: InputMaybe<Subscribtion_Plan_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Subscribtion_Plan_OneArgs = {
+  object: Subscribtion_Plan_Insert_Input;
+  on_conflict?: InputMaybe<Subscribtion_Plan_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Subscribtion_Plan_Subscribtion_Feature_AssocArgs = {
+  objects: Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Insert_Input>;
+  on_conflict?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Subscribtion_Plan_Subscribtion_Feature_Assoc_OneArgs = {
+  object: Subscribtion_Plan_Subscribtion_Feature_Assoc_Insert_Input;
+  on_conflict?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Text_ContentArgs = {
+  objects: Array<Text_Content_Insert_Input>;
+  on_conflict?: InputMaybe<Text_Content_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Text_Content_OneArgs = {
+  object: Text_Content_Insert_Input;
+  on_conflict?: InputMaybe<Text_Content_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_TranslationArgs = {
+  objects: Array<Translation_Insert_Input>;
+  on_conflict?: InputMaybe<Translation_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Translation_OneArgs = {
+  object: Translation_Insert_Input;
+  on_conflict?: InputMaybe<Translation_On_Conflict>;
 };
 
 
@@ -2001,37 +2423,122 @@ export type Mutation_RootUpdate_Auth_User_ManyArgs = {
 
 
 /** mutation root */
-export type Mutation_RootUpdate_Subscibtion_PlanArgs = {
-  _inc?: InputMaybe<Subscibtion_Plan_Inc_Input>;
-  _set?: InputMaybe<Subscibtion_Plan_Set_Input>;
-  where: Subscibtion_Plan_Bool_Exp;
+export type Mutation_RootUpdate_LanguageArgs = {
+  _set?: InputMaybe<Language_Set_Input>;
+  where: Language_Bool_Exp;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_Subscibtion_Plan_By_PkArgs = {
-  _inc?: InputMaybe<Subscibtion_Plan_Inc_Input>;
-  _set?: InputMaybe<Subscibtion_Plan_Set_Input>;
-  pk_columns: Subscibtion_Plan_Pk_Columns_Input;
+export type Mutation_RootUpdate_Language_By_PkArgs = {
+  _set?: InputMaybe<Language_Set_Input>;
+  pk_columns: Language_Pk_Columns_Input;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_Subscibtion_Plan_ManyArgs = {
-  updates: Array<Subscibtion_Plan_Updates>;
+export type Mutation_RootUpdate_Language_ManyArgs = {
+  updates: Array<Language_Updates>;
 };
 
-/** Boolean expression to compare columns of type "numeric". All fields are combined with logical 'AND'. */
-export type Numeric_Comparison_Exp = {
-  _eq?: InputMaybe<Scalars['numeric']['input']>;
-  _gt?: InputMaybe<Scalars['numeric']['input']>;
-  _gte?: InputMaybe<Scalars['numeric']['input']>;
-  _in?: InputMaybe<Array<Scalars['numeric']['input']>>;
-  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
-  _lt?: InputMaybe<Scalars['numeric']['input']>;
-  _lte?: InputMaybe<Scalars['numeric']['input']>;
-  _neq?: InputMaybe<Scalars['numeric']['input']>;
-  _nin?: InputMaybe<Array<Scalars['numeric']['input']>>;
+
+/** mutation root */
+export type Mutation_RootUpdate_Subscribtion_FeatureArgs = {
+  _set?: InputMaybe<Subscribtion_Feature_Set_Input>;
+  where: Subscribtion_Feature_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Subscribtion_Feature_By_PkArgs = {
+  _set?: InputMaybe<Subscribtion_Feature_Set_Input>;
+  pk_columns: Subscribtion_Feature_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Subscribtion_Feature_ManyArgs = {
+  updates: Array<Subscribtion_Feature_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Subscribtion_PlanArgs = {
+  _set?: InputMaybe<Subscribtion_Plan_Set_Input>;
+  where: Subscribtion_Plan_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Subscribtion_Plan_By_PkArgs = {
+  _set?: InputMaybe<Subscribtion_Plan_Set_Input>;
+  pk_columns: Subscribtion_Plan_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Subscribtion_Plan_ManyArgs = {
+  updates: Array<Subscribtion_Plan_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Subscribtion_Plan_Subscribtion_Feature_AssocArgs = {
+  _set?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Set_Input>;
+  where: Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Subscribtion_Plan_Subscribtion_Feature_Assoc_By_PkArgs = {
+  _set?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Set_Input>;
+  pk_columns: Subscribtion_Plan_Subscribtion_Feature_Assoc_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Subscribtion_Plan_Subscribtion_Feature_Assoc_ManyArgs = {
+  updates: Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Text_ContentArgs = {
+  _set?: InputMaybe<Text_Content_Set_Input>;
+  where: Text_Content_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Text_Content_By_PkArgs = {
+  _set?: InputMaybe<Text_Content_Set_Input>;
+  pk_columns: Text_Content_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Text_Content_ManyArgs = {
+  updates: Array<Text_Content_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_TranslationArgs = {
+  _set?: InputMaybe<Translation_Set_Input>;
+  where: Translation_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Translation_By_PkArgs = {
+  _set?: InputMaybe<Translation_Set_Input>;
+  pk_columns: Translation_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Translation_ManyArgs = {
+  updates: Array<Translation_Updates>;
 };
 
 /** column ordering options */
@@ -2082,12 +2589,42 @@ export type Query_Root = {
   auth_user_aggregate: Auth_User_Aggregate;
   /** fetch data from the table: "auth.user" using primary key columns */
   auth_user_by_pk?: Maybe<Auth_User>;
-  /** fetch data from the table: "subscibtion_plan" */
-  subscibtion_plan: Array<Subscibtion_Plan>;
-  /** fetch aggregated fields from the table: "subscibtion_plan" */
-  subscibtion_plan_aggregate: Subscibtion_Plan_Aggregate;
-  /** fetch data from the table: "subscibtion_plan" using primary key columns */
-  subscibtion_plan_by_pk?: Maybe<Subscibtion_Plan>;
+  /** fetch data from the table: "language" */
+  language: Array<Language>;
+  /** fetch aggregated fields from the table: "language" */
+  language_aggregate: Language_Aggregate;
+  /** fetch data from the table: "language" using primary key columns */
+  language_by_pk?: Maybe<Language>;
+  /** fetch data from the table: "subscribtion_feature" */
+  subscribtion_feature: Array<Subscribtion_Feature>;
+  /** fetch aggregated fields from the table: "subscribtion_feature" */
+  subscribtion_feature_aggregate: Subscribtion_Feature_Aggregate;
+  /** fetch data from the table: "subscribtion_feature" using primary key columns */
+  subscribtion_feature_by_pk?: Maybe<Subscribtion_Feature>;
+  /** fetch data from the table: "subscribtion_plan" */
+  subscribtion_plan: Array<Subscribtion_Plan>;
+  /** fetch aggregated fields from the table: "subscribtion_plan" */
+  subscribtion_plan_aggregate: Subscribtion_Plan_Aggregate;
+  /** fetch data from the table: "subscribtion_plan" using primary key columns */
+  subscribtion_plan_by_pk?: Maybe<Subscribtion_Plan>;
+  /** fetch data from the table: "subscribtion_plan_subscribtion_feature_assoc" */
+  subscribtion_plan_subscribtion_feature_assoc: Array<Subscribtion_Plan_Subscribtion_Feature_Assoc>;
+  /** fetch aggregated fields from the table: "subscribtion_plan_subscribtion_feature_assoc" */
+  subscribtion_plan_subscribtion_feature_assoc_aggregate: Subscribtion_Plan_Subscribtion_Feature_Assoc_Aggregate;
+  /** fetch data from the table: "subscribtion_plan_subscribtion_feature_assoc" using primary key columns */
+  subscribtion_plan_subscribtion_feature_assoc_by_pk?: Maybe<Subscribtion_Plan_Subscribtion_Feature_Assoc>;
+  /** fetch data from the table: "text_content" */
+  text_content: Array<Text_Content>;
+  /** fetch aggregated fields from the table: "text_content" */
+  text_content_aggregate: Text_Content_Aggregate;
+  /** fetch data from the table: "text_content" using primary key columns */
+  text_content_by_pk?: Maybe<Text_Content>;
+  /** fetch data from the table: "translation" */
+  translation: Array<Translation>;
+  /** fetch aggregated fields from the table: "translation" */
+  translation_aggregate: Translation_Aggregate;
+  /** fetch data from the table: "translation" using primary key columns */
+  translation_by_pk?: Maybe<Translation>;
 };
 
 
@@ -2206,35 +2743,395 @@ export type Query_RootAuth_User_By_PkArgs = {
 };
 
 
-export type Query_RootSubscibtion_PlanArgs = {
-  distinct_on?: InputMaybe<Array<Subscibtion_Plan_Select_Column>>;
+export type Query_RootLanguageArgs = {
+  distinct_on?: InputMaybe<Array<Language_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Subscibtion_Plan_Order_By>>;
-  where?: InputMaybe<Subscibtion_Plan_Bool_Exp>;
+  order_by?: InputMaybe<Array<Language_Order_By>>;
+  where?: InputMaybe<Language_Bool_Exp>;
 };
 
 
-export type Query_RootSubscibtion_Plan_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Subscibtion_Plan_Select_Column>>;
+export type Query_RootLanguage_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Language_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Subscibtion_Plan_Order_By>>;
-  where?: InputMaybe<Subscibtion_Plan_Bool_Exp>;
+  order_by?: InputMaybe<Array<Language_Order_By>>;
+  where?: InputMaybe<Language_Bool_Exp>;
 };
 
 
-export type Query_RootSubscibtion_Plan_By_PkArgs = {
-  id: Scalars['String']['input'];
+export type Query_RootLanguage_By_PkArgs = {
+  code: Scalars['String']['input'];
 };
 
-/** columns and relationships of "subscibtion_plan" */
-export type Subscibtion_Plan = {
-  __typename?: 'subscibtion_plan';
+
+export type Query_RootSubscribtion_FeatureArgs = {
+  distinct_on?: InputMaybe<Array<Subscribtion_Feature_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Subscribtion_Feature_Order_By>>;
+  where?: InputMaybe<Subscribtion_Feature_Bool_Exp>;
+};
+
+
+export type Query_RootSubscribtion_Feature_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Subscribtion_Feature_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Subscribtion_Feature_Order_By>>;
+  where?: InputMaybe<Subscribtion_Feature_Bool_Exp>;
+};
+
+
+export type Query_RootSubscribtion_Feature_By_PkArgs = {
+  name: Scalars['String']['input'];
+};
+
+
+export type Query_RootSubscribtion_PlanArgs = {
+  distinct_on?: InputMaybe<Array<Subscribtion_Plan_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Subscribtion_Plan_Order_By>>;
+  where?: InputMaybe<Subscribtion_Plan_Bool_Exp>;
+};
+
+
+export type Query_RootSubscribtion_Plan_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Subscribtion_Plan_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Subscribtion_Plan_Order_By>>;
+  where?: InputMaybe<Subscribtion_Plan_Bool_Exp>;
+};
+
+
+export type Query_RootSubscribtion_Plan_By_PkArgs = {
+  name: Scalars['String']['input'];
+};
+
+
+export type Query_RootSubscribtion_Plan_Subscribtion_Feature_AssocArgs = {
+  distinct_on?: InputMaybe<Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Order_By>>;
+  where?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp>;
+};
+
+
+export type Query_RootSubscribtion_Plan_Subscribtion_Feature_Assoc_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Order_By>>;
+  where?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp>;
+};
+
+
+export type Query_RootSubscribtion_Plan_Subscribtion_Feature_Assoc_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+export type Query_RootText_ContentArgs = {
+  distinct_on?: InputMaybe<Array<Text_Content_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Text_Content_Order_By>>;
+  where?: InputMaybe<Text_Content_Bool_Exp>;
+};
+
+
+export type Query_RootText_Content_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Text_Content_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Text_Content_Order_By>>;
+  where?: InputMaybe<Text_Content_Bool_Exp>;
+};
+
+
+export type Query_RootText_Content_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+export type Query_RootTranslationArgs = {
+  distinct_on?: InputMaybe<Array<Translation_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Translation_Order_By>>;
+  where?: InputMaybe<Translation_Bool_Exp>;
+};
+
+
+export type Query_RootTranslation_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Translation_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Translation_Order_By>>;
+  where?: InputMaybe<Translation_Bool_Exp>;
+};
+
+
+export type Query_RootTranslation_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+/** columns and relationships of "subscribtion_feature" */
+export type Subscribtion_Feature = {
+  __typename?: 'subscribtion_feature';
+  created_at: Scalars['timestamp']['output'];
+  name: Scalars['String']['output'];
+  /** An array relationship */
+  subscribtion_plan_subscribtion_feature_assocs: Array<Subscribtion_Plan_Subscribtion_Feature_Assoc>;
+  /** An aggregate relationship */
+  subscribtion_plan_subscribtion_feature_assocs_aggregate: Subscribtion_Plan_Subscribtion_Feature_Assoc_Aggregate;
+  /** An object relationship */
+  text_content: Text_Content;
+  text_content_id: Scalars['uuid']['output'];
+  updated_at: Scalars['timestamp']['output'];
+};
+
+
+/** columns and relationships of "subscribtion_feature" */
+export type Subscribtion_FeatureSubscribtion_Plan_Subscribtion_Feature_AssocsArgs = {
+  distinct_on?: InputMaybe<Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Order_By>>;
+  where?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp>;
+};
+
+
+/** columns and relationships of "subscribtion_feature" */
+export type Subscribtion_FeatureSubscribtion_Plan_Subscribtion_Feature_Assocs_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Order_By>>;
+  where?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp>;
+};
+
+/** aggregated selection of "subscribtion_feature" */
+export type Subscribtion_Feature_Aggregate = {
+  __typename?: 'subscribtion_feature_aggregate';
+  aggregate?: Maybe<Subscribtion_Feature_Aggregate_Fields>;
+  nodes: Array<Subscribtion_Feature>;
+};
+
+export type Subscribtion_Feature_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Subscribtion_Feature_Aggregate_Bool_Exp_Count>;
+};
+
+export type Subscribtion_Feature_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Subscribtion_Feature_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Subscribtion_Feature_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
+/** aggregate fields of "subscribtion_feature" */
+export type Subscribtion_Feature_Aggregate_Fields = {
+  __typename?: 'subscribtion_feature_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<Subscribtion_Feature_Max_Fields>;
+  min?: Maybe<Subscribtion_Feature_Min_Fields>;
+};
+
+
+/** aggregate fields of "subscribtion_feature" */
+export type Subscribtion_Feature_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Subscribtion_Feature_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** order by aggregate values of table "subscribtion_feature" */
+export type Subscribtion_Feature_Aggregate_Order_By = {
+  count?: InputMaybe<Order_By>;
+  max?: InputMaybe<Subscribtion_Feature_Max_Order_By>;
+  min?: InputMaybe<Subscribtion_Feature_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "subscribtion_feature" */
+export type Subscribtion_Feature_Arr_Rel_Insert_Input = {
+  data: Array<Subscribtion_Feature_Insert_Input>;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Subscribtion_Feature_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "subscribtion_feature". All fields are combined with a logical 'AND'. */
+export type Subscribtion_Feature_Bool_Exp = {
+  _and?: InputMaybe<Array<Subscribtion_Feature_Bool_Exp>>;
+  _not?: InputMaybe<Subscribtion_Feature_Bool_Exp>;
+  _or?: InputMaybe<Array<Subscribtion_Feature_Bool_Exp>>;
+  created_at?: InputMaybe<Timestamp_Comparison_Exp>;
+  name?: InputMaybe<String_Comparison_Exp>;
+  subscribtion_plan_subscribtion_feature_assocs?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp>;
+  subscribtion_plan_subscribtion_feature_assocs_aggregate?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Aggregate_Bool_Exp>;
+  text_content?: InputMaybe<Text_Content_Bool_Exp>;
+  text_content_id?: InputMaybe<Uuid_Comparison_Exp>;
+  updated_at?: InputMaybe<Timestamp_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "subscribtion_feature" */
+export enum Subscribtion_Feature_Constraint {
+  /** unique or primary key constraint on columns "name" */
+  SubscribtionFeaturePkey = 'subscribtion_feature_pkey'
+}
+
+/** input type for inserting data into table "subscribtion_feature" */
+export type Subscribtion_Feature_Insert_Input = {
+  created_at?: InputMaybe<Scalars['timestamp']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  subscribtion_plan_subscribtion_feature_assocs?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Arr_Rel_Insert_Input>;
+  text_content?: InputMaybe<Text_Content_Obj_Rel_Insert_Input>;
+  text_content_id?: InputMaybe<Scalars['uuid']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamp']['input']>;
+};
+
+/** aggregate max on columns */
+export type Subscribtion_Feature_Max_Fields = {
+  __typename?: 'subscribtion_feature_max_fields';
+  created_at?: Maybe<Scalars['timestamp']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  text_content_id?: Maybe<Scalars['uuid']['output']>;
+  updated_at?: Maybe<Scalars['timestamp']['output']>;
+};
+
+/** order by max() on columns of table "subscribtion_feature" */
+export type Subscribtion_Feature_Max_Order_By = {
+  created_at?: InputMaybe<Order_By>;
+  name?: InputMaybe<Order_By>;
+  text_content_id?: InputMaybe<Order_By>;
+  updated_at?: InputMaybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Subscribtion_Feature_Min_Fields = {
+  __typename?: 'subscribtion_feature_min_fields';
+  created_at?: Maybe<Scalars['timestamp']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  text_content_id?: Maybe<Scalars['uuid']['output']>;
+  updated_at?: Maybe<Scalars['timestamp']['output']>;
+};
+
+/** order by min() on columns of table "subscribtion_feature" */
+export type Subscribtion_Feature_Min_Order_By = {
+  created_at?: InputMaybe<Order_By>;
+  name?: InputMaybe<Order_By>;
+  text_content_id?: InputMaybe<Order_By>;
+  updated_at?: InputMaybe<Order_By>;
+};
+
+/** response of any mutation on the table "subscribtion_feature" */
+export type Subscribtion_Feature_Mutation_Response = {
+  __typename?: 'subscribtion_feature_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Subscribtion_Feature>;
+};
+
+/** input type for inserting object relation for remote table "subscribtion_feature" */
+export type Subscribtion_Feature_Obj_Rel_Insert_Input = {
+  data: Subscribtion_Feature_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Subscribtion_Feature_On_Conflict>;
+};
+
+/** on_conflict condition type for table "subscribtion_feature" */
+export type Subscribtion_Feature_On_Conflict = {
+  constraint: Subscribtion_Feature_Constraint;
+  update_columns?: Array<Subscribtion_Feature_Update_Column>;
+  where?: InputMaybe<Subscribtion_Feature_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "subscribtion_feature". */
+export type Subscribtion_Feature_Order_By = {
+  created_at?: InputMaybe<Order_By>;
+  name?: InputMaybe<Order_By>;
+  subscribtion_plan_subscribtion_feature_assocs_aggregate?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Aggregate_Order_By>;
+  text_content?: InputMaybe<Text_Content_Order_By>;
+  text_content_id?: InputMaybe<Order_By>;
+  updated_at?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: subscribtion_feature */
+export type Subscribtion_Feature_Pk_Columns_Input = {
+  name: Scalars['String']['input'];
+};
+
+/** select columns of table "subscribtion_feature" */
+export enum Subscribtion_Feature_Select_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  TextContentId = 'text_content_id',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** input type for updating data in table "subscribtion_feature" */
+export type Subscribtion_Feature_Set_Input = {
+  created_at?: InputMaybe<Scalars['timestamp']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  text_content_id?: InputMaybe<Scalars['uuid']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamp']['input']>;
+};
+
+/** Streaming cursor of the table "subscribtion_feature" */
+export type Subscribtion_Feature_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Subscribtion_Feature_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Subscribtion_Feature_Stream_Cursor_Value_Input = {
+  created_at?: InputMaybe<Scalars['timestamp']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  text_content_id?: InputMaybe<Scalars['uuid']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamp']['input']>;
+};
+
+/** update columns of table "subscribtion_feature" */
+export enum Subscribtion_Feature_Update_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  TextContentId = 'text_content_id',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+export type Subscribtion_Feature_Updates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Subscribtion_Feature_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Subscribtion_Feature_Bool_Exp;
+};
+
+/** columns and relationships of "subscribtion_plan" */
+export type Subscribtion_Plan = {
+  __typename?: 'subscribtion_plan';
   created_at: Scalars['timestamp']['output'];
   id: Scalars['String']['output'];
-  name?: Maybe<Scalars['uuid']['output']>;
-  price?: Maybe<Scalars['numeric']['output']>;
+  name: Scalars['String']['output'];
+  /** An array relationship */
+  subscribtion_plan_subscribtion_feature_assocs: Array<Subscribtion_Plan_Subscribtion_Feature_Assoc>;
+  /** An aggregate relationship */
+  subscribtion_plan_subscribtion_feature_assocs_aggregate: Subscribtion_Plan_Subscribtion_Feature_Assoc_Aggregate;
+  /** An object relationship */
+  text_content: Text_Content;
+  text_content_id: Scalars['uuid']['output'];
   updated_at: Scalars['timestamp']['output'];
   /** An array relationship */
   users: Array<Auth_User>;
@@ -2243,8 +3140,28 @@ export type Subscibtion_Plan = {
 };
 
 
-/** columns and relationships of "subscibtion_plan" */
-export type Subscibtion_PlanUsersArgs = {
+/** columns and relationships of "subscribtion_plan" */
+export type Subscribtion_PlanSubscribtion_Plan_Subscribtion_Feature_AssocsArgs = {
+  distinct_on?: InputMaybe<Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Order_By>>;
+  where?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp>;
+};
+
+
+/** columns and relationships of "subscribtion_plan" */
+export type Subscribtion_PlanSubscribtion_Plan_Subscribtion_Feature_Assocs_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Order_By>>;
+  where?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp>;
+};
+
+
+/** columns and relationships of "subscribtion_plan" */
+export type Subscribtion_PlanUsersArgs = {
   distinct_on?: InputMaybe<Array<Auth_User_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
@@ -2253,8 +3170,8 @@ export type Subscibtion_PlanUsersArgs = {
 };
 
 
-/** columns and relationships of "subscibtion_plan" */
-export type Subscibtion_PlanUsers_AggregateArgs = {
+/** columns and relationships of "subscribtion_plan" */
+export type Subscribtion_PlanUsers_AggregateArgs = {
   distinct_on?: InputMaybe<Array<Auth_User_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
@@ -2262,137 +3179,170 @@ export type Subscibtion_PlanUsers_AggregateArgs = {
   where?: InputMaybe<Auth_User_Bool_Exp>;
 };
 
-/** aggregated selection of "subscibtion_plan" */
-export type Subscibtion_Plan_Aggregate = {
-  __typename?: 'subscibtion_plan_aggregate';
-  aggregate?: Maybe<Subscibtion_Plan_Aggregate_Fields>;
-  nodes: Array<Subscibtion_Plan>;
+/** aggregated selection of "subscribtion_plan" */
+export type Subscribtion_Plan_Aggregate = {
+  __typename?: 'subscribtion_plan_aggregate';
+  aggregate?: Maybe<Subscribtion_Plan_Aggregate_Fields>;
+  nodes: Array<Subscribtion_Plan>;
 };
 
-/** aggregate fields of "subscibtion_plan" */
-export type Subscibtion_Plan_Aggregate_Fields = {
-  __typename?: 'subscibtion_plan_aggregate_fields';
-  avg?: Maybe<Subscibtion_Plan_Avg_Fields>;
+export type Subscribtion_Plan_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Subscribtion_Plan_Aggregate_Bool_Exp_Count>;
+};
+
+export type Subscribtion_Plan_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Subscribtion_Plan_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Subscribtion_Plan_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
+/** aggregate fields of "subscribtion_plan" */
+export type Subscribtion_Plan_Aggregate_Fields = {
+  __typename?: 'subscribtion_plan_aggregate_fields';
   count: Scalars['Int']['output'];
-  max?: Maybe<Subscibtion_Plan_Max_Fields>;
-  min?: Maybe<Subscibtion_Plan_Min_Fields>;
-  stddev?: Maybe<Subscibtion_Plan_Stddev_Fields>;
-  stddev_pop?: Maybe<Subscibtion_Plan_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<Subscibtion_Plan_Stddev_Samp_Fields>;
-  sum?: Maybe<Subscibtion_Plan_Sum_Fields>;
-  var_pop?: Maybe<Subscibtion_Plan_Var_Pop_Fields>;
-  var_samp?: Maybe<Subscibtion_Plan_Var_Samp_Fields>;
-  variance?: Maybe<Subscibtion_Plan_Variance_Fields>;
+  max?: Maybe<Subscribtion_Plan_Max_Fields>;
+  min?: Maybe<Subscribtion_Plan_Min_Fields>;
 };
 
 
-/** aggregate fields of "subscibtion_plan" */
-export type Subscibtion_Plan_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Subscibtion_Plan_Select_Column>>;
+/** aggregate fields of "subscribtion_plan" */
+export type Subscribtion_Plan_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Subscribtion_Plan_Select_Column>>;
   distinct?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-/** aggregate avg on columns */
-export type Subscibtion_Plan_Avg_Fields = {
-  __typename?: 'subscibtion_plan_avg_fields';
-  price?: Maybe<Scalars['Float']['output']>;
+/** order by aggregate values of table "subscribtion_plan" */
+export type Subscribtion_Plan_Aggregate_Order_By = {
+  count?: InputMaybe<Order_By>;
+  max?: InputMaybe<Subscribtion_Plan_Max_Order_By>;
+  min?: InputMaybe<Subscribtion_Plan_Min_Order_By>;
 };
 
-/** Boolean expression to filter rows from the table "subscibtion_plan". All fields are combined with a logical 'AND'. */
-export type Subscibtion_Plan_Bool_Exp = {
-  _and?: InputMaybe<Array<Subscibtion_Plan_Bool_Exp>>;
-  _not?: InputMaybe<Subscibtion_Plan_Bool_Exp>;
-  _or?: InputMaybe<Array<Subscibtion_Plan_Bool_Exp>>;
+/** input type for inserting array relation for remote table "subscribtion_plan" */
+export type Subscribtion_Plan_Arr_Rel_Insert_Input = {
+  data: Array<Subscribtion_Plan_Insert_Input>;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Subscribtion_Plan_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "subscribtion_plan". All fields are combined with a logical 'AND'. */
+export type Subscribtion_Plan_Bool_Exp = {
+  _and?: InputMaybe<Array<Subscribtion_Plan_Bool_Exp>>;
+  _not?: InputMaybe<Subscribtion_Plan_Bool_Exp>;
+  _or?: InputMaybe<Array<Subscribtion_Plan_Bool_Exp>>;
   created_at?: InputMaybe<Timestamp_Comparison_Exp>;
   id?: InputMaybe<String_Comparison_Exp>;
-  name?: InputMaybe<Uuid_Comparison_Exp>;
-  price?: InputMaybe<Numeric_Comparison_Exp>;
+  name?: InputMaybe<String_Comparison_Exp>;
+  subscribtion_plan_subscribtion_feature_assocs?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp>;
+  subscribtion_plan_subscribtion_feature_assocs_aggregate?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Aggregate_Bool_Exp>;
+  text_content?: InputMaybe<Text_Content_Bool_Exp>;
+  text_content_id?: InputMaybe<Uuid_Comparison_Exp>;
   updated_at?: InputMaybe<Timestamp_Comparison_Exp>;
   users?: InputMaybe<Auth_User_Bool_Exp>;
   users_aggregate?: InputMaybe<Auth_User_Aggregate_Bool_Exp>;
 };
 
-/** unique or primary key constraints on table "subscibtion_plan" */
-export enum Subscibtion_Plan_Constraint {
+/** unique or primary key constraints on table "subscribtion_plan" */
+export enum Subscribtion_Plan_Constraint {
   /** unique or primary key constraint on columns "id" */
-  SubscibtionPlanPkey = 'subscibtion_plan_pkey'
+  SubscribtionPlanIdKey = 'subscribtion_plan_id_key',
+  /** unique or primary key constraint on columns "name" */
+  SubscribtionPlanPkey = 'subscribtion_plan_pkey'
 }
 
-/** input type for incrementing numeric columns in table "subscibtion_plan" */
-export type Subscibtion_Plan_Inc_Input = {
-  price?: InputMaybe<Scalars['numeric']['input']>;
-};
-
-/** input type for inserting data into table "subscibtion_plan" */
-export type Subscibtion_Plan_Insert_Input = {
+/** input type for inserting data into table "subscribtion_plan" */
+export type Subscribtion_Plan_Insert_Input = {
   created_at?: InputMaybe<Scalars['timestamp']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
-  name?: InputMaybe<Scalars['uuid']['input']>;
-  price?: InputMaybe<Scalars['numeric']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  subscribtion_plan_subscribtion_feature_assocs?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Arr_Rel_Insert_Input>;
+  text_content?: InputMaybe<Text_Content_Obj_Rel_Insert_Input>;
+  text_content_id?: InputMaybe<Scalars['uuid']['input']>;
   updated_at?: InputMaybe<Scalars['timestamp']['input']>;
   users?: InputMaybe<Auth_User_Arr_Rel_Insert_Input>;
 };
 
 /** aggregate max on columns */
-export type Subscibtion_Plan_Max_Fields = {
-  __typename?: 'subscibtion_plan_max_fields';
+export type Subscribtion_Plan_Max_Fields = {
+  __typename?: 'subscribtion_plan_max_fields';
   created_at?: Maybe<Scalars['timestamp']['output']>;
   id?: Maybe<Scalars['String']['output']>;
-  name?: Maybe<Scalars['uuid']['output']>;
-  price?: Maybe<Scalars['numeric']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  text_content_id?: Maybe<Scalars['uuid']['output']>;
   updated_at?: Maybe<Scalars['timestamp']['output']>;
 };
 
-/** aggregate min on columns */
-export type Subscibtion_Plan_Min_Fields = {
-  __typename?: 'subscibtion_plan_min_fields';
-  created_at?: Maybe<Scalars['timestamp']['output']>;
-  id?: Maybe<Scalars['String']['output']>;
-  name?: Maybe<Scalars['uuid']['output']>;
-  price?: Maybe<Scalars['numeric']['output']>;
-  updated_at?: Maybe<Scalars['timestamp']['output']>;
-};
-
-/** response of any mutation on the table "subscibtion_plan" */
-export type Subscibtion_Plan_Mutation_Response = {
-  __typename?: 'subscibtion_plan_mutation_response';
-  /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int']['output'];
-  /** data from the rows affected by the mutation */
-  returning: Array<Subscibtion_Plan>;
-};
-
-/** input type for inserting object relation for remote table "subscibtion_plan" */
-export type Subscibtion_Plan_Obj_Rel_Insert_Input = {
-  data: Subscibtion_Plan_Insert_Input;
-  /** upsert condition */
-  on_conflict?: InputMaybe<Subscibtion_Plan_On_Conflict>;
-};
-
-/** on_conflict condition type for table "subscibtion_plan" */
-export type Subscibtion_Plan_On_Conflict = {
-  constraint: Subscibtion_Plan_Constraint;
-  update_columns?: Array<Subscibtion_Plan_Update_Column>;
-  where?: InputMaybe<Subscibtion_Plan_Bool_Exp>;
-};
-
-/** Ordering options when selecting data from "subscibtion_plan". */
-export type Subscibtion_Plan_Order_By = {
+/** order by max() on columns of table "subscribtion_plan" */
+export type Subscribtion_Plan_Max_Order_By = {
   created_at?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   name?: InputMaybe<Order_By>;
-  price?: InputMaybe<Order_By>;
+  text_content_id?: InputMaybe<Order_By>;
+  updated_at?: InputMaybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Subscribtion_Plan_Min_Fields = {
+  __typename?: 'subscribtion_plan_min_fields';
+  created_at?: Maybe<Scalars['timestamp']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  text_content_id?: Maybe<Scalars['uuid']['output']>;
+  updated_at?: Maybe<Scalars['timestamp']['output']>;
+};
+
+/** order by min() on columns of table "subscribtion_plan" */
+export type Subscribtion_Plan_Min_Order_By = {
+  created_at?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  name?: InputMaybe<Order_By>;
+  text_content_id?: InputMaybe<Order_By>;
+  updated_at?: InputMaybe<Order_By>;
+};
+
+/** response of any mutation on the table "subscribtion_plan" */
+export type Subscribtion_Plan_Mutation_Response = {
+  __typename?: 'subscribtion_plan_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Subscribtion_Plan>;
+};
+
+/** input type for inserting object relation for remote table "subscribtion_plan" */
+export type Subscribtion_Plan_Obj_Rel_Insert_Input = {
+  data: Subscribtion_Plan_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Subscribtion_Plan_On_Conflict>;
+};
+
+/** on_conflict condition type for table "subscribtion_plan" */
+export type Subscribtion_Plan_On_Conflict = {
+  constraint: Subscribtion_Plan_Constraint;
+  update_columns?: Array<Subscribtion_Plan_Update_Column>;
+  where?: InputMaybe<Subscribtion_Plan_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "subscribtion_plan". */
+export type Subscribtion_Plan_Order_By = {
+  created_at?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  name?: InputMaybe<Order_By>;
+  subscribtion_plan_subscribtion_feature_assocs_aggregate?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Aggregate_Order_By>;
+  text_content?: InputMaybe<Text_Content_Order_By>;
+  text_content_id?: InputMaybe<Order_By>;
   updated_at?: InputMaybe<Order_By>;
   users_aggregate?: InputMaybe<Auth_User_Aggregate_Order_By>;
 };
 
-/** primary key columns input for table: subscibtion_plan */
-export type Subscibtion_Plan_Pk_Columns_Input = {
-  id: Scalars['String']['input'];
+/** primary key columns input for table: subscribtion_plan */
+export type Subscribtion_Plan_Pk_Columns_Input = {
+  name: Scalars['String']['input'];
 };
 
-/** select columns of table "subscibtion_plan" */
-export enum Subscibtion_Plan_Select_Column {
+/** select columns of table "subscribtion_plan" */
+export enum Subscribtion_Plan_Select_Column {
   /** column name */
   CreatedAt = 'created_at',
   /** column name */
@@ -2400,63 +3350,262 @@ export enum Subscibtion_Plan_Select_Column {
   /** column name */
   Name = 'name',
   /** column name */
-  Price = 'price',
+  TextContentId = 'text_content_id',
   /** column name */
   UpdatedAt = 'updated_at'
 }
 
-/** input type for updating data in table "subscibtion_plan" */
-export type Subscibtion_Plan_Set_Input = {
+/** input type for updating data in table "subscribtion_plan" */
+export type Subscribtion_Plan_Set_Input = {
   created_at?: InputMaybe<Scalars['timestamp']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
-  name?: InputMaybe<Scalars['uuid']['input']>;
-  price?: InputMaybe<Scalars['numeric']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  text_content_id?: InputMaybe<Scalars['uuid']['input']>;
   updated_at?: InputMaybe<Scalars['timestamp']['input']>;
 };
 
-/** aggregate stddev on columns */
-export type Subscibtion_Plan_Stddev_Fields = {
-  __typename?: 'subscibtion_plan_stddev_fields';
-  price?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate stddev_pop on columns */
-export type Subscibtion_Plan_Stddev_Pop_Fields = {
-  __typename?: 'subscibtion_plan_stddev_pop_fields';
-  price?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate stddev_samp on columns */
-export type Subscibtion_Plan_Stddev_Samp_Fields = {
-  __typename?: 'subscibtion_plan_stddev_samp_fields';
-  price?: Maybe<Scalars['Float']['output']>;
-};
-
-/** Streaming cursor of the table "subscibtion_plan" */
-export type Subscibtion_Plan_Stream_Cursor_Input = {
+/** Streaming cursor of the table "subscribtion_plan" */
+export type Subscribtion_Plan_Stream_Cursor_Input = {
   /** Stream column input with initial value */
-  initial_value: Subscibtion_Plan_Stream_Cursor_Value_Input;
+  initial_value: Subscribtion_Plan_Stream_Cursor_Value_Input;
   /** cursor ordering */
   ordering?: InputMaybe<Cursor_Ordering>;
 };
 
 /** Initial value of the column from where the streaming should start */
-export type Subscibtion_Plan_Stream_Cursor_Value_Input = {
+export type Subscribtion_Plan_Stream_Cursor_Value_Input = {
   created_at?: InputMaybe<Scalars['timestamp']['input']>;
   id?: InputMaybe<Scalars['String']['input']>;
-  name?: InputMaybe<Scalars['uuid']['input']>;
-  price?: InputMaybe<Scalars['numeric']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  text_content_id?: InputMaybe<Scalars['uuid']['input']>;
   updated_at?: InputMaybe<Scalars['timestamp']['input']>;
 };
 
-/** aggregate sum on columns */
-export type Subscibtion_Plan_Sum_Fields = {
-  __typename?: 'subscibtion_plan_sum_fields';
-  price?: Maybe<Scalars['numeric']['output']>;
+/** columns and relationships of "subscribtion_plan_subscribtion_feature_assoc" */
+export type Subscribtion_Plan_Subscribtion_Feature_Assoc = {
+  __typename?: 'subscribtion_plan_subscribtion_feature_assoc';
+  created_at: Scalars['timestamp']['output'];
+  id: Scalars['uuid']['output'];
+  /** An object relationship */
+  subscribtionFeatureBySubscribtionFeature: Subscribtion_Feature;
+  /** An object relationship */
+  subscribtionPlanBySubscribtionPlan: Subscribtion_Plan;
+  subscribtion_feature: Scalars['String']['output'];
+  subscribtion_plan: Scalars['String']['output'];
+  updated_at: Scalars['timestamp']['output'];
 };
 
-/** update columns of table "subscibtion_plan" */
-export enum Subscibtion_Plan_Update_Column {
+/** aggregated selection of "subscribtion_plan_subscribtion_feature_assoc" */
+export type Subscribtion_Plan_Subscribtion_Feature_Assoc_Aggregate = {
+  __typename?: 'subscribtion_plan_subscribtion_feature_assoc_aggregate';
+  aggregate?: Maybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Aggregate_Fields>;
+  nodes: Array<Subscribtion_Plan_Subscribtion_Feature_Assoc>;
+};
+
+export type Subscribtion_Plan_Subscribtion_Feature_Assoc_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Aggregate_Bool_Exp_Count>;
+};
+
+export type Subscribtion_Plan_Subscribtion_Feature_Assoc_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
+/** aggregate fields of "subscribtion_plan_subscribtion_feature_assoc" */
+export type Subscribtion_Plan_Subscribtion_Feature_Assoc_Aggregate_Fields = {
+  __typename?: 'subscribtion_plan_subscribtion_feature_assoc_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Max_Fields>;
+  min?: Maybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Min_Fields>;
+};
+
+
+/** aggregate fields of "subscribtion_plan_subscribtion_feature_assoc" */
+export type Subscribtion_Plan_Subscribtion_Feature_Assoc_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** order by aggregate values of table "subscribtion_plan_subscribtion_feature_assoc" */
+export type Subscribtion_Plan_Subscribtion_Feature_Assoc_Aggregate_Order_By = {
+  count?: InputMaybe<Order_By>;
+  max?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Max_Order_By>;
+  min?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "subscribtion_plan_subscribtion_feature_assoc" */
+export type Subscribtion_Plan_Subscribtion_Feature_Assoc_Arr_Rel_Insert_Input = {
+  data: Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Insert_Input>;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "subscribtion_plan_subscribtion_feature_assoc". All fields are combined with a logical 'AND'. */
+export type Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp = {
+  _and?: InputMaybe<Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp>>;
+  _not?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp>;
+  _or?: InputMaybe<Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp>>;
+  created_at?: InputMaybe<Timestamp_Comparison_Exp>;
+  id?: InputMaybe<Uuid_Comparison_Exp>;
+  subscribtionFeatureBySubscribtionFeature?: InputMaybe<Subscribtion_Feature_Bool_Exp>;
+  subscribtionPlanBySubscribtionPlan?: InputMaybe<Subscribtion_Plan_Bool_Exp>;
+  subscribtion_feature?: InputMaybe<String_Comparison_Exp>;
+  subscribtion_plan?: InputMaybe<String_Comparison_Exp>;
+  updated_at?: InputMaybe<Timestamp_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "subscribtion_plan_subscribtion_feature_assoc" */
+export enum Subscribtion_Plan_Subscribtion_Feature_Assoc_Constraint {
+  /** unique or primary key constraint on columns "id" */
+  SubscribtionPlanSubscribtionFeatureAssocPkey = 'subscribtion_plan_subscribtion_feature_assoc_pkey'
+}
+
+/** input type for inserting data into table "subscribtion_plan_subscribtion_feature_assoc" */
+export type Subscribtion_Plan_Subscribtion_Feature_Assoc_Insert_Input = {
+  created_at?: InputMaybe<Scalars['timestamp']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  subscribtionFeatureBySubscribtionFeature?: InputMaybe<Subscribtion_Feature_Obj_Rel_Insert_Input>;
+  subscribtionPlanBySubscribtionPlan?: InputMaybe<Subscribtion_Plan_Obj_Rel_Insert_Input>;
+  subscribtion_feature?: InputMaybe<Scalars['String']['input']>;
+  subscribtion_plan?: InputMaybe<Scalars['String']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamp']['input']>;
+};
+
+/** aggregate max on columns */
+export type Subscribtion_Plan_Subscribtion_Feature_Assoc_Max_Fields = {
+  __typename?: 'subscribtion_plan_subscribtion_feature_assoc_max_fields';
+  created_at?: Maybe<Scalars['timestamp']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  subscribtion_feature?: Maybe<Scalars['String']['output']>;
+  subscribtion_plan?: Maybe<Scalars['String']['output']>;
+  updated_at?: Maybe<Scalars['timestamp']['output']>;
+};
+
+/** order by max() on columns of table "subscribtion_plan_subscribtion_feature_assoc" */
+export type Subscribtion_Plan_Subscribtion_Feature_Assoc_Max_Order_By = {
+  created_at?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  subscribtion_feature?: InputMaybe<Order_By>;
+  subscribtion_plan?: InputMaybe<Order_By>;
+  updated_at?: InputMaybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Subscribtion_Plan_Subscribtion_Feature_Assoc_Min_Fields = {
+  __typename?: 'subscribtion_plan_subscribtion_feature_assoc_min_fields';
+  created_at?: Maybe<Scalars['timestamp']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  subscribtion_feature?: Maybe<Scalars['String']['output']>;
+  subscribtion_plan?: Maybe<Scalars['String']['output']>;
+  updated_at?: Maybe<Scalars['timestamp']['output']>;
+};
+
+/** order by min() on columns of table "subscribtion_plan_subscribtion_feature_assoc" */
+export type Subscribtion_Plan_Subscribtion_Feature_Assoc_Min_Order_By = {
+  created_at?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  subscribtion_feature?: InputMaybe<Order_By>;
+  subscribtion_plan?: InputMaybe<Order_By>;
+  updated_at?: InputMaybe<Order_By>;
+};
+
+/** response of any mutation on the table "subscribtion_plan_subscribtion_feature_assoc" */
+export type Subscribtion_Plan_Subscribtion_Feature_Assoc_Mutation_Response = {
+  __typename?: 'subscribtion_plan_subscribtion_feature_assoc_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Subscribtion_Plan_Subscribtion_Feature_Assoc>;
+};
+
+/** on_conflict condition type for table "subscribtion_plan_subscribtion_feature_assoc" */
+export type Subscribtion_Plan_Subscribtion_Feature_Assoc_On_Conflict = {
+  constraint: Subscribtion_Plan_Subscribtion_Feature_Assoc_Constraint;
+  update_columns?: Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Update_Column>;
+  where?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "subscribtion_plan_subscribtion_feature_assoc". */
+export type Subscribtion_Plan_Subscribtion_Feature_Assoc_Order_By = {
+  created_at?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  subscribtionFeatureBySubscribtionFeature?: InputMaybe<Subscribtion_Feature_Order_By>;
+  subscribtionPlanBySubscribtionPlan?: InputMaybe<Subscribtion_Plan_Order_By>;
+  subscribtion_feature?: InputMaybe<Order_By>;
+  subscribtion_plan?: InputMaybe<Order_By>;
+  updated_at?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: subscribtion_plan_subscribtion_feature_assoc */
+export type Subscribtion_Plan_Subscribtion_Feature_Assoc_Pk_Columns_Input = {
+  id: Scalars['uuid']['input'];
+};
+
+/** select columns of table "subscribtion_plan_subscribtion_feature_assoc" */
+export enum Subscribtion_Plan_Subscribtion_Feature_Assoc_Select_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  SubscribtionFeature = 'subscribtion_feature',
+  /** column name */
+  SubscribtionPlan = 'subscribtion_plan',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** input type for updating data in table "subscribtion_plan_subscribtion_feature_assoc" */
+export type Subscribtion_Plan_Subscribtion_Feature_Assoc_Set_Input = {
+  created_at?: InputMaybe<Scalars['timestamp']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  subscribtion_feature?: InputMaybe<Scalars['String']['input']>;
+  subscribtion_plan?: InputMaybe<Scalars['String']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamp']['input']>;
+};
+
+/** Streaming cursor of the table "subscribtion_plan_subscribtion_feature_assoc" */
+export type Subscribtion_Plan_Subscribtion_Feature_Assoc_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Subscribtion_Plan_Subscribtion_Feature_Assoc_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Subscribtion_Plan_Subscribtion_Feature_Assoc_Stream_Cursor_Value_Input = {
+  created_at?: InputMaybe<Scalars['timestamp']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  subscribtion_feature?: InputMaybe<Scalars['String']['input']>;
+  subscribtion_plan?: InputMaybe<Scalars['String']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamp']['input']>;
+};
+
+/** update columns of table "subscribtion_plan_subscribtion_feature_assoc" */
+export enum Subscribtion_Plan_Subscribtion_Feature_Assoc_Update_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  SubscribtionFeature = 'subscribtion_feature',
+  /** column name */
+  SubscribtionPlan = 'subscribtion_plan',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+export type Subscribtion_Plan_Subscribtion_Feature_Assoc_Updates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp;
+};
+
+/** update columns of table "subscribtion_plan" */
+export enum Subscribtion_Plan_Update_Column {
   /** column name */
   CreatedAt = 'created_at',
   /** column name */
@@ -2464,36 +3613,16 @@ export enum Subscibtion_Plan_Update_Column {
   /** column name */
   Name = 'name',
   /** column name */
-  Price = 'price',
+  TextContentId = 'text_content_id',
   /** column name */
   UpdatedAt = 'updated_at'
 }
 
-export type Subscibtion_Plan_Updates = {
-  /** increments the numeric columns with given value of the filtered values */
-  _inc?: InputMaybe<Subscibtion_Plan_Inc_Input>;
+export type Subscribtion_Plan_Updates = {
   /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<Subscibtion_Plan_Set_Input>;
+  _set?: InputMaybe<Subscribtion_Plan_Set_Input>;
   /** filter the rows which have to be updated */
-  where: Subscibtion_Plan_Bool_Exp;
-};
-
-/** aggregate var_pop on columns */
-export type Subscibtion_Plan_Var_Pop_Fields = {
-  __typename?: 'subscibtion_plan_var_pop_fields';
-  price?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate var_samp on columns */
-export type Subscibtion_Plan_Var_Samp_Fields = {
-  __typename?: 'subscibtion_plan_var_samp_fields';
-  price?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate variance on columns */
-export type Subscibtion_Plan_Variance_Fields = {
-  __typename?: 'subscibtion_plan_variance_fields';
-  price?: Maybe<Scalars['Float']['output']>;
+  where: Subscribtion_Plan_Bool_Exp;
 };
 
 export type Subscription_Root = {
@@ -2538,14 +3667,54 @@ export type Subscription_Root = {
   auth_user_by_pk?: Maybe<Auth_User>;
   /** fetch data from the table in a streaming manner: "auth.user" */
   auth_user_stream: Array<Auth_User>;
-  /** fetch data from the table: "subscibtion_plan" */
-  subscibtion_plan: Array<Subscibtion_Plan>;
-  /** fetch aggregated fields from the table: "subscibtion_plan" */
-  subscibtion_plan_aggregate: Subscibtion_Plan_Aggregate;
-  /** fetch data from the table: "subscibtion_plan" using primary key columns */
-  subscibtion_plan_by_pk?: Maybe<Subscibtion_Plan>;
-  /** fetch data from the table in a streaming manner: "subscibtion_plan" */
-  subscibtion_plan_stream: Array<Subscibtion_Plan>;
+  /** fetch data from the table: "language" */
+  language: Array<Language>;
+  /** fetch aggregated fields from the table: "language" */
+  language_aggregate: Language_Aggregate;
+  /** fetch data from the table: "language" using primary key columns */
+  language_by_pk?: Maybe<Language>;
+  /** fetch data from the table in a streaming manner: "language" */
+  language_stream: Array<Language>;
+  /** fetch data from the table: "subscribtion_feature" */
+  subscribtion_feature: Array<Subscribtion_Feature>;
+  /** fetch aggregated fields from the table: "subscribtion_feature" */
+  subscribtion_feature_aggregate: Subscribtion_Feature_Aggregate;
+  /** fetch data from the table: "subscribtion_feature" using primary key columns */
+  subscribtion_feature_by_pk?: Maybe<Subscribtion_Feature>;
+  /** fetch data from the table in a streaming manner: "subscribtion_feature" */
+  subscribtion_feature_stream: Array<Subscribtion_Feature>;
+  /** fetch data from the table: "subscribtion_plan" */
+  subscribtion_plan: Array<Subscribtion_Plan>;
+  /** fetch aggregated fields from the table: "subscribtion_plan" */
+  subscribtion_plan_aggregate: Subscribtion_Plan_Aggregate;
+  /** fetch data from the table: "subscribtion_plan" using primary key columns */
+  subscribtion_plan_by_pk?: Maybe<Subscribtion_Plan>;
+  /** fetch data from the table in a streaming manner: "subscribtion_plan" */
+  subscribtion_plan_stream: Array<Subscribtion_Plan>;
+  /** fetch data from the table: "subscribtion_plan_subscribtion_feature_assoc" */
+  subscribtion_plan_subscribtion_feature_assoc: Array<Subscribtion_Plan_Subscribtion_Feature_Assoc>;
+  /** fetch aggregated fields from the table: "subscribtion_plan_subscribtion_feature_assoc" */
+  subscribtion_plan_subscribtion_feature_assoc_aggregate: Subscribtion_Plan_Subscribtion_Feature_Assoc_Aggregate;
+  /** fetch data from the table: "subscribtion_plan_subscribtion_feature_assoc" using primary key columns */
+  subscribtion_plan_subscribtion_feature_assoc_by_pk?: Maybe<Subscribtion_Plan_Subscribtion_Feature_Assoc>;
+  /** fetch data from the table in a streaming manner: "subscribtion_plan_subscribtion_feature_assoc" */
+  subscribtion_plan_subscribtion_feature_assoc_stream: Array<Subscribtion_Plan_Subscribtion_Feature_Assoc>;
+  /** fetch data from the table: "text_content" */
+  text_content: Array<Text_Content>;
+  /** fetch aggregated fields from the table: "text_content" */
+  text_content_aggregate: Text_Content_Aggregate;
+  /** fetch data from the table: "text_content" using primary key columns */
+  text_content_by_pk?: Maybe<Text_Content>;
+  /** fetch data from the table in a streaming manner: "text_content" */
+  text_content_stream: Array<Text_Content>;
+  /** fetch data from the table: "translation" */
+  translation: Array<Translation>;
+  /** fetch aggregated fields from the table: "translation" */
+  translation_aggregate: Translation_Aggregate;
+  /** fetch data from the table: "translation" using primary key columns */
+  translation_by_pk?: Maybe<Translation>;
+  /** fetch data from the table in a streaming manner: "translation" */
+  translation_stream: Array<Translation>;
 };
 
 
@@ -2699,33 +3868,492 @@ export type Subscription_RootAuth_User_StreamArgs = {
 };
 
 
-export type Subscription_RootSubscibtion_PlanArgs = {
-  distinct_on?: InputMaybe<Array<Subscibtion_Plan_Select_Column>>;
+export type Subscription_RootLanguageArgs = {
+  distinct_on?: InputMaybe<Array<Language_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Subscibtion_Plan_Order_By>>;
-  where?: InputMaybe<Subscibtion_Plan_Bool_Exp>;
+  order_by?: InputMaybe<Array<Language_Order_By>>;
+  where?: InputMaybe<Language_Bool_Exp>;
 };
 
 
-export type Subscription_RootSubscibtion_Plan_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Subscibtion_Plan_Select_Column>>;
+export type Subscription_RootLanguage_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Language_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Subscibtion_Plan_Order_By>>;
-  where?: InputMaybe<Subscibtion_Plan_Bool_Exp>;
+  order_by?: InputMaybe<Array<Language_Order_By>>;
+  where?: InputMaybe<Language_Bool_Exp>;
 };
 
 
-export type Subscription_RootSubscibtion_Plan_By_PkArgs = {
-  id: Scalars['String']['input'];
+export type Subscription_RootLanguage_By_PkArgs = {
+  code: Scalars['String']['input'];
 };
 
 
-export type Subscription_RootSubscibtion_Plan_StreamArgs = {
+export type Subscription_RootLanguage_StreamArgs = {
   batch_size: Scalars['Int']['input'];
-  cursor: Array<InputMaybe<Subscibtion_Plan_Stream_Cursor_Input>>;
-  where?: InputMaybe<Subscibtion_Plan_Bool_Exp>;
+  cursor: Array<InputMaybe<Language_Stream_Cursor_Input>>;
+  where?: InputMaybe<Language_Bool_Exp>;
+};
+
+
+export type Subscription_RootSubscribtion_FeatureArgs = {
+  distinct_on?: InputMaybe<Array<Subscribtion_Feature_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Subscribtion_Feature_Order_By>>;
+  where?: InputMaybe<Subscribtion_Feature_Bool_Exp>;
+};
+
+
+export type Subscription_RootSubscribtion_Feature_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Subscribtion_Feature_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Subscribtion_Feature_Order_By>>;
+  where?: InputMaybe<Subscribtion_Feature_Bool_Exp>;
+};
+
+
+export type Subscription_RootSubscribtion_Feature_By_PkArgs = {
+  name: Scalars['String']['input'];
+};
+
+
+export type Subscription_RootSubscribtion_Feature_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Subscribtion_Feature_Stream_Cursor_Input>>;
+  where?: InputMaybe<Subscribtion_Feature_Bool_Exp>;
+};
+
+
+export type Subscription_RootSubscribtion_PlanArgs = {
+  distinct_on?: InputMaybe<Array<Subscribtion_Plan_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Subscribtion_Plan_Order_By>>;
+  where?: InputMaybe<Subscribtion_Plan_Bool_Exp>;
+};
+
+
+export type Subscription_RootSubscribtion_Plan_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Subscribtion_Plan_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Subscribtion_Plan_Order_By>>;
+  where?: InputMaybe<Subscribtion_Plan_Bool_Exp>;
+};
+
+
+export type Subscription_RootSubscribtion_Plan_By_PkArgs = {
+  name: Scalars['String']['input'];
+};
+
+
+export type Subscription_RootSubscribtion_Plan_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Subscribtion_Plan_Stream_Cursor_Input>>;
+  where?: InputMaybe<Subscribtion_Plan_Bool_Exp>;
+};
+
+
+export type Subscription_RootSubscribtion_Plan_Subscribtion_Feature_AssocArgs = {
+  distinct_on?: InputMaybe<Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Order_By>>;
+  where?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp>;
+};
+
+
+export type Subscription_RootSubscribtion_Plan_Subscribtion_Feature_Assoc_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Order_By>>;
+  where?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp>;
+};
+
+
+export type Subscription_RootSubscribtion_Plan_Subscribtion_Feature_Assoc_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+export type Subscription_RootSubscribtion_Plan_Subscribtion_Feature_Assoc_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Stream_Cursor_Input>>;
+  where?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp>;
+};
+
+
+export type Subscription_RootText_ContentArgs = {
+  distinct_on?: InputMaybe<Array<Text_Content_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Text_Content_Order_By>>;
+  where?: InputMaybe<Text_Content_Bool_Exp>;
+};
+
+
+export type Subscription_RootText_Content_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Text_Content_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Text_Content_Order_By>>;
+  where?: InputMaybe<Text_Content_Bool_Exp>;
+};
+
+
+export type Subscription_RootText_Content_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+export type Subscription_RootText_Content_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Text_Content_Stream_Cursor_Input>>;
+  where?: InputMaybe<Text_Content_Bool_Exp>;
+};
+
+
+export type Subscription_RootTranslationArgs = {
+  distinct_on?: InputMaybe<Array<Translation_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Translation_Order_By>>;
+  where?: InputMaybe<Translation_Bool_Exp>;
+};
+
+
+export type Subscription_RootTranslation_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Translation_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Translation_Order_By>>;
+  where?: InputMaybe<Translation_Bool_Exp>;
+};
+
+
+export type Subscription_RootTranslation_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+export type Subscription_RootTranslation_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Translation_Stream_Cursor_Input>>;
+  where?: InputMaybe<Translation_Bool_Exp>;
+};
+
+/** columns and relationships of "text_content" */
+export type Text_Content = {
+  __typename?: 'text_content';
+  created_at: Scalars['timestamp']['output'];
+  id: Scalars['uuid']['output'];
+  /** An object relationship */
+  language: Language;
+  original_language_code: Scalars['String']['output'];
+  original_text: Scalars['String']['output'];
+  /** An array relationship */
+  subscribtion_features: Array<Subscribtion_Feature>;
+  /** An aggregate relationship */
+  subscribtion_features_aggregate: Subscribtion_Feature_Aggregate;
+  /** An array relationship */
+  subscribtion_plans: Array<Subscribtion_Plan>;
+  /** An aggregate relationship */
+  subscribtion_plans_aggregate: Subscribtion_Plan_Aggregate;
+  /** An array relationship */
+  translations: Array<Translation>;
+  /** An aggregate relationship */
+  translations_aggregate: Translation_Aggregate;
+  updated_at: Scalars['timestamp']['output'];
+};
+
+
+/** columns and relationships of "text_content" */
+export type Text_ContentSubscribtion_FeaturesArgs = {
+  distinct_on?: InputMaybe<Array<Subscribtion_Feature_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Subscribtion_Feature_Order_By>>;
+  where?: InputMaybe<Subscribtion_Feature_Bool_Exp>;
+};
+
+
+/** columns and relationships of "text_content" */
+export type Text_ContentSubscribtion_Features_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Subscribtion_Feature_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Subscribtion_Feature_Order_By>>;
+  where?: InputMaybe<Subscribtion_Feature_Bool_Exp>;
+};
+
+
+/** columns and relationships of "text_content" */
+export type Text_ContentSubscribtion_PlansArgs = {
+  distinct_on?: InputMaybe<Array<Subscribtion_Plan_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Subscribtion_Plan_Order_By>>;
+  where?: InputMaybe<Subscribtion_Plan_Bool_Exp>;
+};
+
+
+/** columns and relationships of "text_content" */
+export type Text_ContentSubscribtion_Plans_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Subscribtion_Plan_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Subscribtion_Plan_Order_By>>;
+  where?: InputMaybe<Subscribtion_Plan_Bool_Exp>;
+};
+
+
+/** columns and relationships of "text_content" */
+export type Text_ContentTranslationsArgs = {
+  distinct_on?: InputMaybe<Array<Translation_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Translation_Order_By>>;
+  where?: InputMaybe<Translation_Bool_Exp>;
+};
+
+
+/** columns and relationships of "text_content" */
+export type Text_ContentTranslations_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Translation_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Translation_Order_By>>;
+  where?: InputMaybe<Translation_Bool_Exp>;
+};
+
+/** aggregated selection of "text_content" */
+export type Text_Content_Aggregate = {
+  __typename?: 'text_content_aggregate';
+  aggregate?: Maybe<Text_Content_Aggregate_Fields>;
+  nodes: Array<Text_Content>;
+};
+
+export type Text_Content_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Text_Content_Aggregate_Bool_Exp_Count>;
+};
+
+export type Text_Content_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Text_Content_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Text_Content_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
+/** aggregate fields of "text_content" */
+export type Text_Content_Aggregate_Fields = {
+  __typename?: 'text_content_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<Text_Content_Max_Fields>;
+  min?: Maybe<Text_Content_Min_Fields>;
+};
+
+
+/** aggregate fields of "text_content" */
+export type Text_Content_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Text_Content_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** order by aggregate values of table "text_content" */
+export type Text_Content_Aggregate_Order_By = {
+  count?: InputMaybe<Order_By>;
+  max?: InputMaybe<Text_Content_Max_Order_By>;
+  min?: InputMaybe<Text_Content_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "text_content" */
+export type Text_Content_Arr_Rel_Insert_Input = {
+  data: Array<Text_Content_Insert_Input>;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Text_Content_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "text_content". All fields are combined with a logical 'AND'. */
+export type Text_Content_Bool_Exp = {
+  _and?: InputMaybe<Array<Text_Content_Bool_Exp>>;
+  _not?: InputMaybe<Text_Content_Bool_Exp>;
+  _or?: InputMaybe<Array<Text_Content_Bool_Exp>>;
+  created_at?: InputMaybe<Timestamp_Comparison_Exp>;
+  id?: InputMaybe<Uuid_Comparison_Exp>;
+  language?: InputMaybe<Language_Bool_Exp>;
+  original_language_code?: InputMaybe<String_Comparison_Exp>;
+  original_text?: InputMaybe<String_Comparison_Exp>;
+  subscribtion_features?: InputMaybe<Subscribtion_Feature_Bool_Exp>;
+  subscribtion_features_aggregate?: InputMaybe<Subscribtion_Feature_Aggregate_Bool_Exp>;
+  subscribtion_plans?: InputMaybe<Subscribtion_Plan_Bool_Exp>;
+  subscribtion_plans_aggregate?: InputMaybe<Subscribtion_Plan_Aggregate_Bool_Exp>;
+  translations?: InputMaybe<Translation_Bool_Exp>;
+  translations_aggregate?: InputMaybe<Translation_Aggregate_Bool_Exp>;
+  updated_at?: InputMaybe<Timestamp_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "text_content" */
+export enum Text_Content_Constraint {
+  /** unique or primary key constraint on columns "id" */
+  TextContentPkey = 'text_content_pkey'
+}
+
+/** input type for inserting data into table "text_content" */
+export type Text_Content_Insert_Input = {
+  created_at?: InputMaybe<Scalars['timestamp']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  language?: InputMaybe<Language_Obj_Rel_Insert_Input>;
+  original_language_code?: InputMaybe<Scalars['String']['input']>;
+  original_text?: InputMaybe<Scalars['String']['input']>;
+  subscribtion_features?: InputMaybe<Subscribtion_Feature_Arr_Rel_Insert_Input>;
+  subscribtion_plans?: InputMaybe<Subscribtion_Plan_Arr_Rel_Insert_Input>;
+  translations?: InputMaybe<Translation_Arr_Rel_Insert_Input>;
+  updated_at?: InputMaybe<Scalars['timestamp']['input']>;
+};
+
+/** aggregate max on columns */
+export type Text_Content_Max_Fields = {
+  __typename?: 'text_content_max_fields';
+  created_at?: Maybe<Scalars['timestamp']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  original_language_code?: Maybe<Scalars['String']['output']>;
+  original_text?: Maybe<Scalars['String']['output']>;
+  updated_at?: Maybe<Scalars['timestamp']['output']>;
+};
+
+/** order by max() on columns of table "text_content" */
+export type Text_Content_Max_Order_By = {
+  created_at?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  original_language_code?: InputMaybe<Order_By>;
+  original_text?: InputMaybe<Order_By>;
+  updated_at?: InputMaybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Text_Content_Min_Fields = {
+  __typename?: 'text_content_min_fields';
+  created_at?: Maybe<Scalars['timestamp']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  original_language_code?: Maybe<Scalars['String']['output']>;
+  original_text?: Maybe<Scalars['String']['output']>;
+  updated_at?: Maybe<Scalars['timestamp']['output']>;
+};
+
+/** order by min() on columns of table "text_content" */
+export type Text_Content_Min_Order_By = {
+  created_at?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  original_language_code?: InputMaybe<Order_By>;
+  original_text?: InputMaybe<Order_By>;
+  updated_at?: InputMaybe<Order_By>;
+};
+
+/** response of any mutation on the table "text_content" */
+export type Text_Content_Mutation_Response = {
+  __typename?: 'text_content_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Text_Content>;
+};
+
+/** input type for inserting object relation for remote table "text_content" */
+export type Text_Content_Obj_Rel_Insert_Input = {
+  data: Text_Content_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Text_Content_On_Conflict>;
+};
+
+/** on_conflict condition type for table "text_content" */
+export type Text_Content_On_Conflict = {
+  constraint: Text_Content_Constraint;
+  update_columns?: Array<Text_Content_Update_Column>;
+  where?: InputMaybe<Text_Content_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "text_content". */
+export type Text_Content_Order_By = {
+  created_at?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  language?: InputMaybe<Language_Order_By>;
+  original_language_code?: InputMaybe<Order_By>;
+  original_text?: InputMaybe<Order_By>;
+  subscribtion_features_aggregate?: InputMaybe<Subscribtion_Feature_Aggregate_Order_By>;
+  subscribtion_plans_aggregate?: InputMaybe<Subscribtion_Plan_Aggregate_Order_By>;
+  translations_aggregate?: InputMaybe<Translation_Aggregate_Order_By>;
+  updated_at?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: text_content */
+export type Text_Content_Pk_Columns_Input = {
+  id: Scalars['uuid']['input'];
+};
+
+/** select columns of table "text_content" */
+export enum Text_Content_Select_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  OriginalLanguageCode = 'original_language_code',
+  /** column name */
+  OriginalText = 'original_text',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** input type for updating data in table "text_content" */
+export type Text_Content_Set_Input = {
+  created_at?: InputMaybe<Scalars['timestamp']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  original_language_code?: InputMaybe<Scalars['String']['input']>;
+  original_text?: InputMaybe<Scalars['String']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamp']['input']>;
+};
+
+/** Streaming cursor of the table "text_content" */
+export type Text_Content_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Text_Content_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Text_Content_Stream_Cursor_Value_Input = {
+  created_at?: InputMaybe<Scalars['timestamp']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  original_language_code?: InputMaybe<Scalars['String']['input']>;
+  original_text?: InputMaybe<Scalars['String']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamp']['input']>;
+};
+
+/** update columns of table "text_content" */
+export enum Text_Content_Update_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  OriginalLanguageCode = 'original_language_code',
+  /** column name */
+  OriginalText = 'original_text',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+export type Text_Content_Updates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Text_Content_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Text_Content_Bool_Exp;
 };
 
 /** Boolean expression to compare columns of type "timestamp". All fields are combined with logical 'AND'. */
@@ -2739,6 +4367,243 @@ export type Timestamp_Comparison_Exp = {
   _lte?: InputMaybe<Scalars['timestamp']['input']>;
   _neq?: InputMaybe<Scalars['timestamp']['input']>;
   _nin?: InputMaybe<Array<Scalars['timestamp']['input']>>;
+};
+
+/** columns and relationships of "translation" */
+export type Translation = {
+  __typename?: 'translation';
+  created_at: Scalars['timestamp']['output'];
+  id: Scalars['uuid']['output'];
+  language: Scalars['String']['output'];
+  /** An object relationship */
+  languageByLanguage: Language;
+  /** An object relationship */
+  text_content: Text_Content;
+  text_content_id: Scalars['uuid']['output'];
+  translation: Scalars['String']['output'];
+  updated_at: Scalars['timestamp']['output'];
+};
+
+/** aggregated selection of "translation" */
+export type Translation_Aggregate = {
+  __typename?: 'translation_aggregate';
+  aggregate?: Maybe<Translation_Aggregate_Fields>;
+  nodes: Array<Translation>;
+};
+
+export type Translation_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Translation_Aggregate_Bool_Exp_Count>;
+};
+
+export type Translation_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Translation_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Translation_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
+/** aggregate fields of "translation" */
+export type Translation_Aggregate_Fields = {
+  __typename?: 'translation_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<Translation_Max_Fields>;
+  min?: Maybe<Translation_Min_Fields>;
+};
+
+
+/** aggregate fields of "translation" */
+export type Translation_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Translation_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** order by aggregate values of table "translation" */
+export type Translation_Aggregate_Order_By = {
+  count?: InputMaybe<Order_By>;
+  max?: InputMaybe<Translation_Max_Order_By>;
+  min?: InputMaybe<Translation_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "translation" */
+export type Translation_Arr_Rel_Insert_Input = {
+  data: Array<Translation_Insert_Input>;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Translation_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "translation". All fields are combined with a logical 'AND'. */
+export type Translation_Bool_Exp = {
+  _and?: InputMaybe<Array<Translation_Bool_Exp>>;
+  _not?: InputMaybe<Translation_Bool_Exp>;
+  _or?: InputMaybe<Array<Translation_Bool_Exp>>;
+  created_at?: InputMaybe<Timestamp_Comparison_Exp>;
+  id?: InputMaybe<Uuid_Comparison_Exp>;
+  language?: InputMaybe<String_Comparison_Exp>;
+  languageByLanguage?: InputMaybe<Language_Bool_Exp>;
+  text_content?: InputMaybe<Text_Content_Bool_Exp>;
+  text_content_id?: InputMaybe<Uuid_Comparison_Exp>;
+  translation?: InputMaybe<String_Comparison_Exp>;
+  updated_at?: InputMaybe<Timestamp_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "translation" */
+export enum Translation_Constraint {
+  /** unique or primary key constraint on columns "id" */
+  TranslationPkey = 'translation_pkey'
+}
+
+/** input type for inserting data into table "translation" */
+export type Translation_Insert_Input = {
+  created_at?: InputMaybe<Scalars['timestamp']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  language?: InputMaybe<Scalars['String']['input']>;
+  languageByLanguage?: InputMaybe<Language_Obj_Rel_Insert_Input>;
+  text_content?: InputMaybe<Text_Content_Obj_Rel_Insert_Input>;
+  text_content_id?: InputMaybe<Scalars['uuid']['input']>;
+  translation?: InputMaybe<Scalars['String']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamp']['input']>;
+};
+
+/** aggregate max on columns */
+export type Translation_Max_Fields = {
+  __typename?: 'translation_max_fields';
+  created_at?: Maybe<Scalars['timestamp']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  language?: Maybe<Scalars['String']['output']>;
+  text_content_id?: Maybe<Scalars['uuid']['output']>;
+  translation?: Maybe<Scalars['String']['output']>;
+  updated_at?: Maybe<Scalars['timestamp']['output']>;
+};
+
+/** order by max() on columns of table "translation" */
+export type Translation_Max_Order_By = {
+  created_at?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  language?: InputMaybe<Order_By>;
+  text_content_id?: InputMaybe<Order_By>;
+  translation?: InputMaybe<Order_By>;
+  updated_at?: InputMaybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Translation_Min_Fields = {
+  __typename?: 'translation_min_fields';
+  created_at?: Maybe<Scalars['timestamp']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+  language?: Maybe<Scalars['String']['output']>;
+  text_content_id?: Maybe<Scalars['uuid']['output']>;
+  translation?: Maybe<Scalars['String']['output']>;
+  updated_at?: Maybe<Scalars['timestamp']['output']>;
+};
+
+/** order by min() on columns of table "translation" */
+export type Translation_Min_Order_By = {
+  created_at?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  language?: InputMaybe<Order_By>;
+  text_content_id?: InputMaybe<Order_By>;
+  translation?: InputMaybe<Order_By>;
+  updated_at?: InputMaybe<Order_By>;
+};
+
+/** response of any mutation on the table "translation" */
+export type Translation_Mutation_Response = {
+  __typename?: 'translation_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Translation>;
+};
+
+/** on_conflict condition type for table "translation" */
+export type Translation_On_Conflict = {
+  constraint: Translation_Constraint;
+  update_columns?: Array<Translation_Update_Column>;
+  where?: InputMaybe<Translation_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "translation". */
+export type Translation_Order_By = {
+  created_at?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  language?: InputMaybe<Order_By>;
+  languageByLanguage?: InputMaybe<Language_Order_By>;
+  text_content?: InputMaybe<Text_Content_Order_By>;
+  text_content_id?: InputMaybe<Order_By>;
+  translation?: InputMaybe<Order_By>;
+  updated_at?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: translation */
+export type Translation_Pk_Columns_Input = {
+  id: Scalars['uuid']['input'];
+};
+
+/** select columns of table "translation" */
+export enum Translation_Select_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Language = 'language',
+  /** column name */
+  TextContentId = 'text_content_id',
+  /** column name */
+  Translation = 'translation',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** input type for updating data in table "translation" */
+export type Translation_Set_Input = {
+  created_at?: InputMaybe<Scalars['timestamp']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  language?: InputMaybe<Scalars['String']['input']>;
+  text_content_id?: InputMaybe<Scalars['uuid']['input']>;
+  translation?: InputMaybe<Scalars['String']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamp']['input']>;
+};
+
+/** Streaming cursor of the table "translation" */
+export type Translation_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Translation_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Translation_Stream_Cursor_Value_Input = {
+  created_at?: InputMaybe<Scalars['timestamp']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  language?: InputMaybe<Scalars['String']['input']>;
+  text_content_id?: InputMaybe<Scalars['uuid']['input']>;
+  translation?: InputMaybe<Scalars['String']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamp']['input']>;
+};
+
+/** update columns of table "translation" */
+export enum Translation_Update_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Language = 'language',
+  /** column name */
+  TextContentId = 'text_content_id',
+  /** column name */
+  Translation = 'translation',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+export type Translation_Updates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Translation_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Translation_Bool_Exp;
 };
 
 /** Boolean expression to compare columns of type "uuid". All fields are combined with logical 'AND'. */
@@ -2790,9 +4655,17 @@ export type UpdateUpdatedEmailMutationVariables = Exact<{
 
 export type UpdateUpdatedEmailMutation = { __typename?: 'mutation_root', update_auth_user_by_pk?: { __typename?: 'auth_user', updated_email?: string | null } | null };
 
+export type GetSubscribtionPlansQueryVariables = Exact<{
+  languageCode: Scalars['String']['input'];
+}>;
+
+
+export type GetSubscribtionPlansQuery = { __typename?: 'query_root', subscribtion_plan: Array<{ __typename?: 'subscribtion_plan', id: string, text_content: { __typename?: 'text_content', translations: Array<{ __typename?: 'translation', translation: string }> }, subscribtion_plan_subscribtion_feature_assocs: Array<{ __typename?: 'subscribtion_plan_subscribtion_feature_assoc', subscribtionFeatureBySubscribtionFeature: { __typename?: 'subscribtion_feature', text_content: { __typename?: 'text_content', translations: Array<{ __typename?: 'translation', translation: string }> } } }> }> };
+
 
 export const GetUsersDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetUsers"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"auth_user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<GetUsersQuery, GetUsersQueryVariables>;
 export const GetUserEmailDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetUserEmail"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"auth_user_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"email"}}]}}]}}]} as unknown as DocumentNode<GetUserEmailQuery, GetUserEmailQueryVariables>;
 export const UpdateUsernameDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateUsername"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"username"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"update_auth_user_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"pk_columns"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"_set"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"username"},"value":{"kind":"Variable","name":{"kind":"Name","value":"username"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"username"}}]}}]}}]} as unknown as DocumentNode<UpdateUsernameMutation, UpdateUsernameMutationVariables>;
 export const UpdateEmailDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateEmail"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"email"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"update_auth_user_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"pk_columns"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"_set"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"email"},"value":{"kind":"Variable","name":{"kind":"Name","value":"email"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"email"}}]}}]}}]} as unknown as DocumentNode<UpdateEmailMutation, UpdateEmailMutationVariables>;
 export const UpdateUpdatedEmailDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateUpdatedEmail"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"updated_email"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"update_auth_user_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"pk_columns"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"_set"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"updated_email"},"value":{"kind":"Variable","name":{"kind":"Name","value":"updated_email"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updated_email"}}]}}]}}]} as unknown as DocumentNode<UpdateUpdatedEmailMutation, UpdateUpdatedEmailMutationVariables>;
+export const GetSubscribtionPlansDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetSubscribtionPlans"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"languageCode"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"subscribtion_plan"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"text_content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"translations"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"language"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"languageCode"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"translation"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"subscribtion_plan_subscribtion_feature_assocs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"subscribtionFeatureBySubscribtionFeature"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"text_content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"translations"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"language"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"languageCode"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"translation"}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetSubscribtionPlansQuery, GetSubscribtionPlansQueryVariables>;

@@ -1,47 +1,38 @@
 import React from 'react'
 import Skeleton from './skeleton'
+import Stripe from 'stripe';
+import { cookies } from 'next/headers'
 
+import { authOptions } from "@/auth/[...nextauth]";
+import { setupGraphQLClient } from "@/lib/gqlclient";
+import { GetSubscribtionPlansDocument } from "@/src/gql/graphql";
+import { getServerSession } from "next-auth"
 
 
 export default async function page() {
+  const cookieStore = cookies();
+  const languageCode = cookieStore.get('i18next')?.value as string;
 
-  type Plan = {
-    name: string;
-    price: number;
-    features: string[];
-    price_id: string;
+  const session = await getServerSession(authOptions)
+  const gqlClient = await setupGraphQLClient();
+  if(!session){
+      return {
+          error: 'Not Authenticated',
+      };
   };
-
-  const plans:Plan[] = [
-    {
-      name: 'Hobby',
-      price: 15,
-      features: ['5 products', 'Up to 1,000 subscribers', 'Basic analytics'],
-      price_id: 'price_1OVx69BeHVeQHE2CtarYVQK6',
-    },
-    {
-      name: 'Freelancer',
-      price: 30,
-      features: ['5 products', 'Up to 1,000 subscribers', 'Basic analytics', '48-hour support response time'],
-      price_id: 'price_1OVx69BeHVeQHE2CtarYVQK6',
-    },
-    {
-      name: 'Startup',
-      price: 60,
-      features: ['25 products', 'Up to 10,000 subscribers', 'Advanced analytics', '24-hour support response time', 'Marketing automations'],
-      price_id: 'price_1OVx69BeHVeQHE2CtarYVQK6',
-    },
-    {
-      name: 'Enterprise',
-      price: 90,
-      features: ['Unlimited products', 'Unlimited subscribers', 'Advanced analytics', '1-hour, dedicated support response time', 'Marketing automations', 'Custom reporting tools'],
-      price_id: 'price_1OVx69BeHVeQHE2CtarYVQK6',
-    },
-  ];
+  
+  const subscribtion_plans = await gqlClient!.request( GetSubscribtionPlansDocument, { languageCode: languageCode } );
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, { apiVersion: '2023-10-16' });
+  const prices = await stripe.prices.list({ active: true });
+  
+  const priceMap = {};
+  prices.data.forEach(price => {
+    priceMap[price.id] = price.unit_amount;
+  });
 
   return (
     <>
-      <Skeleton plans={plans}/>
+      <Skeleton subscribtion_plans={subscribtion_plans} priceMap={priceMap}/>
     </>
   )
 };

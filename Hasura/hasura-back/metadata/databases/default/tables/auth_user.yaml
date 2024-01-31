@@ -2,9 +2,9 @@ table:
   name: user
   schema: auth
 object_relationships:
-  - name: subscibtion_plan
+  - name: subscribtionPlanBySubscribtionPlan
     using:
-      foreign_key_constraint_on: subsciption_plan_id
+      foreign_key_constraint_on: subscribtion_plan
 array_relationships:
   - name: accounts
     using:

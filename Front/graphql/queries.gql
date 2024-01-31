@@ -29,3 +29,23 @@ mutation UpdateUpdatedEmail($id: uuid!, $updated_email: String!) {
     updated_email
   }
 }
+
+query GetSubscribtionPlans($languageCode: String!) {
+  subscribtion_plan {
+    id
+    text_content {
+      translations(where: {language: {_eq: $languageCode}}) {
+        translation
+      }
+    }
+    subscribtion_plan_subscribtion_feature_assocs {
+      subscribtionFeatureBySubscribtionFeature {
+        text_content {
+          translations(where: {language: {_eq: $languageCode}}) {
+            translation
+          }
+        }
+      }
+    }
+  }
+}
