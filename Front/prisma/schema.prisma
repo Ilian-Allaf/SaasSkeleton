@@ -43,7 +43,7 @@ model Session {
 model User {
   id                    String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   active                Boolean   @default(false)
-  subscibtionPlan       String?   @map("subsciption_plan")
+  subscibtionPlan       String?   @map("subscribtion_plan")
   username              String
   password              String?
   email                 String    @unique

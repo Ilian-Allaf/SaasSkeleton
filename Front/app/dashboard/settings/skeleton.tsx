@@ -1,6 +1,6 @@
 
 'use client'
-import React from 'react';
+import React, { useState } from 'react';
 import { useSession} from 'next-auth/react'
 import SideBar from './SideBar';
 import General from './General';
@@ -9,16 +9,20 @@ import { useSearchParams } from 'next/navigation'
 import Billing from './Billing';
 import Notifications from './Notifications';
 
+export interface SwitchLanguageProps {
+  switchLanguage: boolean;
+  setSwitchLanguage: (value: boolean) => void;
+}
 
 export default function Skeleton() {
-  const { data: session } = useSession();
   const searchParams = useSearchParams()
   const param = searchParams?.get('tab')
+  const [switchLanguage, setSwitchLanguage] = useState(false)
 
   if (param === 'security') {
     return (
       <div className="grid grid-flow-col gap-7">
-          <div className="col-span-1"><SideBar /></div>
+          <div className="col-span-1"><SideBar switchLanguage={switchLanguage} setSwitchLanguage={setSwitchLanguage}/></div>
           <div className="col-span-4"><Security /></div>
       </div>
     );
@@ -26,7 +30,7 @@ export default function Skeleton() {
   else if (param === 'notifications') {
     return (
       <div className="grid grid-flow-col gap-7">
-          <div className="col-span-1"><SideBar /></div>
+          <div className="col-span-1"><SideBar switchLanguage={switchLanguage} setSwitchLanguage={setSwitchLanguage}/></div>
           <div className="col-span-4"><Notifications /></div>
       </div>
     );
@@ -34,7 +38,7 @@ export default function Skeleton() {
   else if (param === 'billing') {
     return (
       <div className="grid grid-flow-col gap-7">
-          <div className="col-span-1"><SideBar /></div>
+          <div className="col-span-1"><SideBar switchLanguage={switchLanguage} setSwitchLanguage={setSwitchLanguage}/></div>
           <div className="col-span-4"><Billing/></div>
       </div>
     );
@@ -42,8 +46,8 @@ export default function Skeleton() {
   else {
     return (
       <div className="grid grid-flow-col gap-7">
-          <div className="col-span-1"><SideBar /></div>
-          <div className="col-span-4"><General /></div>
+          <div className="col-span-1"><SideBar switchLanguage={switchLanguage} setSwitchLanguage={setSwitchLanguage}/></div>
+          <div className="col-span-4"><General switchLanguage={switchLanguage} setSwitchLanguage={setSwitchLanguage}/></div>
       </div>
     );
   }

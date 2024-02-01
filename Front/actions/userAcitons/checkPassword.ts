@@ -3,10 +3,14 @@
 import { getServerSession } from "next-auth"
 import { authOptions } from 'pages/api/auth/[...nextauth]'
 import { prisma } from "@/lib/prismaclient";
+import { useTranslation } from '@/i18n/index'
+
 
 import bcrypt from "bcrypt";
 
 export async function CheckPassword(password: string) {
+    const { t } = await useTranslation('settings')
+
     try {
         const session = await getServerSession(authOptions)
         if(!session){
@@ -23,7 +27,7 @@ export async function CheckPassword(password: string) {
 
         if (!user?.password || !(await bcrypt.compare(password, user.password!))){
             return {
-                error: 'Incorrect Password',
+                error: t('security.incorrect-password'),
             };
         }
         return {

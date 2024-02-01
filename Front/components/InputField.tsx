@@ -52,17 +52,17 @@ const InputField: React.FC<InputFieldProps> = ({
             {
               passwordVisible ? 
               (
-              <EyeOffIcon className="h-5 w-01 text-grey-500 self-center" onClick={onTogglePasswordVisibility}/>
+              <EyeOffIcon className="h-5 w-01 text-gray-500 dark:text-gray-300 self-center" onClick={onTogglePasswordVisibility}/>
               ) : 
               (
-              <EyeIcon className="h-5 w-5 text-grey-500 self-center" onClick={onTogglePasswordVisibility}/>
+              <EyeIcon className="h-5 w-5 text-gray-500 dark:text-gray-300 self-center" onClick={onTogglePasswordVisibility}/>
               )
             }
           </div>
         )}
       </div>
       {showErrorMessage && !disableText && (
-        <p className={`text-xs ${error ? 'text-red-500' : ''}`}>
+        <p className={`text-xs ${error ? 'text-red-500' : ''} dark:text-gray-300 mt-2`}>
           {t("password-requirements")}
         </p>
       )}

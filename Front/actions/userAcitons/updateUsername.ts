@@ -7,10 +7,12 @@ import { authOptions } from 'pages/api/auth/[...nextauth]'
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prismaclient";
 import validator from "validator";
-
+import { useTranslation } from '@/i18n/index'
 
 
 export async function UpdateUsername(newUsername: string) {
+    const { t } = await useTranslation('settings')
+
     try {
         const session = await getServerSession(authOptions)
         const gqlClient = await setupGraphQLClient();
@@ -36,7 +38,7 @@ export async function UpdateUsername(newUsername: string) {
 
         if (existingUser) {
             return {
-                error: 'Username already taken',
+                error: t('general.username-taken'),
             };
         }
 

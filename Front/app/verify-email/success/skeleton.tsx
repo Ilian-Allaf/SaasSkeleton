@@ -7,12 +7,13 @@ import "../../globals.css";
 import { CheckCircleIcon } from '@heroicons/react/solid';
 import { useSearchParams } from 'next/navigation'
 import { useSession} from 'next-auth/react'
-import { GetUpdatedEmail } from '@/actions/updateUserAcitons/getUpdatedEmail'
+import { GetUpdatedEmail } from '@/actions/userAcitons/getUpdatedEmail'
 import { useRouter } from 'next/navigation';
-
+import { useTranslation } from '@/i18n/client'
 
 // Define the EmailVerificationSuccess component
 function EmailVerificationSuccess() {
+  const { t } = useTranslation('verify-email-success')
   const { data: session, update  } = useSession();
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -33,21 +34,19 @@ function EmailVerificationSuccess() {
   }, [param, isSessionUpdated, update]);
   return (
     <>
-      <Head>
-        <title>Email Verification Success</title>
-      </Head>
       <div className="min-h-screen flex items-center justify-center">
         <div className="max-w-md w-full space-y-8">
           <div className="text-center">
             <CheckCircleIcon className="mx-auto h-20 w-20 text-green-500" />
-            <h2 className="mt-2 text-3xl font-extrabold text-gray-900">Congrats!</h2>
+            <h2 className="mt-2 text-3xl font-extrabold">{t("congrats")}</h2>
             {param === 'update' ? 
-            <p className="mt-2 text-sm text-gray-500">
-              You have successfully verified your email.
+            <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+              {t("successfully-verified-email-update")}
+              
             </p>
             :
-            <p className="mt-2 text-sm text-gray-500">
-              You have successfully verified your email. Your email address is now updated.
+            <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+              {t("successfully-verified-email")}
             </p>
             }
           </div>
@@ -56,16 +55,16 @@ function EmailVerificationSuccess() {
             {param === 'update' ? 
               <a
                 onClick={() => router.push('/dashboard/settings?tab=general')}
-                className="text-indigo-600 hover:underline"
+                className="text-indigo-600 hover:underline cursor-pointer"
               >
-                Go back to Settings
+                {t("back-to-settings")}
               </a>
               :
               <a
                 onClick={() => router.push('/login')}
-                className="text-indigo-600 hover:underline"
+                className="text-indigo-600 hover:underline cursor-pointer"
               >
-                Go back to Log in
+                {t("back-to-login")}
               </a>
             }
             </p>

@@ -10,6 +10,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   });
     const session = await stripe.checkout.sessions.retrieve(req.query.session_id as string);
     const customer = await stripe.customers.retrieve(session.customer as string);
+    console.log(session);
     console.log(customer);
     // const prisma = new PrismaClient();
     // const { userId, subscriptionPlanId } = req.body; 

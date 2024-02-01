@@ -3,9 +3,7 @@ export const languages = [fallbackLng, 'fr']
 export const defaultNS = 'translation'
 export const languageOptions = [
   { value: 'Français', label: 'fr' },
-  { value: 'English', label: 'en' },
-  { value: 'Español', label: 'es'},
-
+  { value: 'English', label: 'en' }
 ]
 
 export const languageDict = { 

@@ -5,34 +5,30 @@ import MultiSelector from "@/components/MultiSelector"
 import { PencilIcon } from '@heroicons/react/outline';
 import Modal from '@/components/Modal';
 import InputField from '@/components/InputField';
-import { UpdateUsername } from '@/actions/updateUserAcitons/updateUsername';
-import { SubmitEmailUpdateRequest } from '@/actions/updateUserAcitons/submitEmailUpdateRequest';
-import { ValidateEmail } from '@/actions/updateUserAcitons/validateEmail';
+import { UpdateUsername } from '@/actions/userAcitons/updateUsername';
+import { SubmitEmailUpdateRequest } from '@/actions/userAcitons/submitEmailUpdateRequest';
+import { ValidateEmail } from '@/actions/userAcitons/validateEmail';
 import InputError from '@/components/InputError';
 import { MailIcon } from '@heroicons/react/solid'
 import { languageDict, languageOptions } from '@/i18n/settings';
 import { useTranslation } from '@/i18n/client'
 import { getCookie } from 'cookies-next';
 import Button from '@/components/Button';
+import { SwitchLanguageProps } from './skeleton'
 
 
 
-function General() {
-  const [switchLanguage, setSwitchLanguage] = useState(false)
+function General({ switchLanguage, setSwitchLanguage }: SwitchLanguageProps) {
   return (
     <div className='space-y-20'>
       <div><ProfileFields switchLanguage={switchLanguage} setSwitchLanguage={setSwitchLanguage}/></div>
-      <div><OthersFields switchLanguage={switchLanguage} setSwitchLanguage={setSwitchLanguage} /></div>
+      <div><OthersFields setSwitchLanguage={setSwitchLanguage} /></div>
     </div>
   );
 }
 
-interface Props {
-  switchLanguage: boolean;
-  setSwitchLanguage: (value: boolean) => void;
-}
 
-function ProfileFields({ switchLanguage, setSwitchLanguage }: Props){
+function ProfileFields({ switchLanguage, setSwitchLanguage }: SwitchLanguageProps){
   const { t } = useTranslation('settings')
   const { data: session, update  } = useSession();
   const [error, setError] = useState({ message: '', field: '' });
@@ -48,18 +44,15 @@ function ProfileFields({ switchLanguage, setSwitchLanguage }: Props){
   const [password, setPassword] = useState('');
 
 
+  const items = [
+    { label: t("general.username"), value: session?.user.username, updateSetting: () => { setModalTitle(t("general.update-username")); setModalSubTitle(""); setIsUsernameModalOpen(true); } },
+    { label: t("general.email"), value: session?.user.email, updateSetting: () => { setModalTitle(t("general.update-email")); setModalSubTitle(""); setIsEmailModalOpen(true); } },
+  ]
 
-
-  const [profileItems, setProfileItems] = useState([
-    { label: t("general.username"), value: session?.user.username, updateSetting: () => { setModalTitle("Update Username"); setModalSubTitle(""); setIsUsernameModalOpen(true); } },
-    { label: t("general.email"), value: session?.user.email, updateSetting: () => { setModalTitle("Update Email"); setModalSubTitle(""); setIsEmailModalOpen(true); } },
-  ]);
+  const [profileItems, setProfileItems] = useState(items);
 
   useEffect(() => {
-    setProfileItems([
-      { label: t("general.username"), value: session?.user.username, updateSetting: () => {setModalTitle("Update Username"); setModalSubTitle(""); setIsUsernameModalOpen(true);} },
-      { label: t("general.email"), value: session?.user.email, updateSetting: () => {setModalTitle("Update Email"); setModalSubTitle(""); setIsEmailModalOpen(true);} },
-    ]);
+    setProfileItems(items);
     setSwitchLanguage(false)
   }, [switchLanguage]);
 
@@ -116,8 +109,6 @@ function ProfileFields({ switchLanguage, setSwitchLanguage }: Props){
 
   //#region Update Email functions
 
-//add possibility to go back to tab0 and tab1
-
 const handleEmailSubmission = async () => {
   const isValidEmail = await ValidateEmail(email);
   
@@ -126,7 +117,7 @@ const handleEmailSubmission = async () => {
     setError({message: isValidEmail.error, field: 'email'});
     return;
   }
-  setModalSubTitle("Enter your password to comfirm your identity");
+  setModalSubTitle(t("general.enter-password"));
   setUpdateTab(1);
 }
 
@@ -168,15 +159,15 @@ const handleTogglePasswordVisibility = () => {
   return (
     <>
       {/* Username Modal*/}
-      <Modal isOpen={isUsernameModalOpen} setIsOpen={setIsUsernameModalOpen} title='Update Username'>
+      <Modal isOpen={isUsernameModalOpen} setIsOpen={setIsUsernameModalOpen} title={t("general.update-username")}>
         <div className="mt-6">
-          <InputField value={username} height={0} label='Username' onChange={(event) => handleUsernameChange(event) }/>
+          <InputField value={username} error={error.field === "username"}  height={1} label={t("general.username")} onChange={(event) => handleUsernameChange(event) }/>
           {error.message && error.field === 'username' && (
             <InputError error={error.message}/>
           )}
           <div className="flex justify-center space-x-4 mt-6">
-            <Button label='Apply' onClick={() => handleUsernameSubmission()}/>
-            <Button label='Cancel' onClick={() => {setIsUsernameModalOpen(false); setUsername('')}}/>
+            <Button label={t("general.update")} onClick={() => handleUsernameSubmission()}/>
+            <Button label={t("general.cancel")} onClick={() => {setIsUsernameModalOpen(false); setUsername('')}}/>
           </div>
         </div>
       </Modal>
@@ -186,28 +177,28 @@ const handleTogglePasswordVisibility = () => {
         {updateTab === 0 && 
           <div className="mt-6">
             
-            <InputField value={email} height={0} label='Email' error={error.field === 'email'} onChange={(event) => handleEmailChange(event) }/>
+            <InputField value={email} height={1} label={t("general.email")} error={error.field === 'email'} onChange={(event) => handleEmailChange(event) }/>
             {error.message && error.field === 'email' && (
               <InputError error={error.message}/>
             )}
           
             <div className="flex justify-center space-x-4 mt-6">
-              <Button label='Next' onClick={() => handleEmailSubmission()}/>
-              <Button label='Cancel' onClick={() => setIsEmailModalOpen(false)}/>
+              <Button label={t("general.confirm")} onClick={() => handleEmailSubmission()}/>
+              <Button label={t("general.cancel")} onClick={() => setIsEmailModalOpen(false)}/>
             </div>
           </div>
         } 
 
         {updateTab === 1 && 
           <div className="mt-6">
-              <InputField value={password} height={0} isPassword={true} error={error.field === "password"} disableText={true} onTogglePasswordVisibility={handleTogglePasswordVisibility} passwordVisible={showPassword} label='Password' onChange={(event) => handlePasswordChange(event) }/>
+              <InputField value={password} height={1} isPassword={true} error={error.field === "password"} disableText={true} onTogglePasswordVisibility={handleTogglePasswordVisibility} passwordVisible={showPassword} label={t("general.password")} onChange={(event) => handlePasswordChange(event) }/>
               {error.message && error.field === 'password' && (
                 <InputError error={error.message}/>
               )}
             
             <div className="flex justify-center space-x-4 mt-6">
-              <Button label='Cancel' onClick={() => setIsEmailModalOpen(false)}/>
-              <Button label='Comfirm' onClick={() => handlePasswordSubmission()}/>
+              <Button label={t("general.confirm")} onClick={() => handlePasswordSubmission()}/>
+              <Button label={t("general.cancel")} onClick={() => setIsEmailModalOpen(false)}/>
             </div>
           </div>
         }
@@ -216,8 +207,8 @@ const handleTogglePasswordVisibility = () => {
           <div className="mt-6">
             <div className="flex flex-col items-center justify-center">
               <MailIcon className="h-10 w-10"/>
-              <p className="text-center">Please check this email address to apply changes</p>
-              <p className="text-center">{email}</p>
+              <p className="text-center">{t("general.check-email")}</p>
+              <p className="text-center font-bold mt-3">{email}</p>
             </div>
             <div className="flex justify-center space-x-4 mt-6">
               <Button label='Close' onClick={() => setIsEmailModalOpen(false)}/>
@@ -248,7 +239,7 @@ const handleTogglePasswordVisibility = () => {
   );
 }
 
-function OthersFields({ switchLanguage, setSwitchLanguage }: Props) {
+function OthersFields({ setSwitchLanguage }: { setSwitchLanguage: (value: boolean) => void }) {
   const { i18n } = useTranslation();
   const { t } = useTranslation('settings');
   const i18nCookie = getCookie(process.env.NEXT_PUBLIC_I18N_COOKIE_NAME as string) as  string
@@ -316,7 +307,7 @@ useEffect(() => {
   return (
     <>
     {/* Language Modal*/}
-    <Modal isOpen={isLanguageModalOpen} setIsOpen={setIsLanguageModalOpen} title='Update Language'>
+    <Modal isOpen={isLanguageModalOpen} setIsOpen={setIsLanguageModalOpen} title={t("general.update-language")}>
         <div className="mt-6">
           <div className="flex justify-center items-center">
             <MultiSelector 
@@ -325,14 +316,14 @@ useEffect(() => {
             defaultValue={selectedLanguage}/>
           </div>          
           <div className="flex justify-center space-x-4 mt-6">
-            <Button label='Apply' onClick={() => handleLanguageSubmission()}/>
-            <Button label='Cancel' onClick={() => setIsLanguageModalOpen(false)}/>
+            <Button label={t("general.update")} onClick={() => handleLanguageSubmission()}/>
+            <Button label={t("general.cancel")} onClick={() => setIsLanguageModalOpen(false)}/>
           </div>
         </div>
       </Modal>
 
       {/* Currency Modal*/}
-      <Modal isOpen={isCurrencyModalOpen} setIsOpen={setIsCurrencyModalOpen} title='Update Currency'>
+      <Modal isOpen={isCurrencyModalOpen} setIsOpen={setIsCurrencyModalOpen} title={t("general.update-currency")}>
           <div className="mt-6">
             <div className="flex justify-center items-center">
               <MultiSelector 
@@ -341,12 +332,12 @@ useEffect(() => {
               defaultValue={selectedCurrency}/>
             </div>          
             <div className="flex justify-center space-x-4 mt-6">
-            <Button label='Apply' onClick={() => handleCurrencySubmission()}/>
-            <Button label='Cancel' onClick={() => setIsCurrencyModalOpen(false)}/>
+            <Button label={t("general.update")} onClick={() => handleCurrencySubmission()}/>
+            <Button label={t("general.cancel")} onClick={() => setIsCurrencyModalOpen(false)}/>
             </div>
           </div>
         </Modal>
-      <h1 className="text-m font-medium mb-4">{t("general.others-title")}</h1>
+      <h1 className="text-m font-medium mb-4">{t("general.others")}</h1>
       <div className="border-t border-gray-300" />
       <div className="grid grid-rows gap-6 mt-6">
         {OthersItems.map((item, index) => (

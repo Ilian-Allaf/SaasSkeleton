@@ -6,8 +6,8 @@ import InputField from '@/components/InputField';
 import InputError from '@/components/InputError';
 import { calculatePasswordProgress } from '@/utils/passwordCheck';
 import ProgressBar from '@/components/ProgressBar';
-import { CheckPassword } from '@/actions/updateUserAcitons/checkPassword';
-import { SubmitPasswordUpdateRequest } from '@/actions/updateUserAcitons/submitPasswordUpdateRequest';
+import { CheckPassword } from '@/actions/userAcitons/checkPassword';
+import { SubmitPasswordUpdateRequest } from '@/actions/userAcitons/submitPasswordUpdateRequest';
 import { useTranslation } from '@/i18n/client'
 import Button from '@/components/Button';
 
@@ -41,7 +41,7 @@ function SecurityFields() {
 
   const mfa = false;
   const [securityItems, setSecurityItems] = useState([
-    { label: t("security.password"), value: '*********', updateSetting: () => { setPasswordModalTitle("Update password");setIsPasswordModalOpen(true); } },
+    { label: t("security.password"), value: '*********', updateSetting: () => { setPasswordModalTitle(t("security.update-password"));setIsPasswordModalOpen(true); } },
     { label: t("security.phone"), value: '06.22.23.46.15', updateSetting: () => {} },
     { label: t("security.2fa"), value: mfa ? <CheckCircleIcon className="h-5 w-5" />: <XCircleIcon className="h-5 w-5" />, buttonText: mfa ? 'disable': 'enable', updateSetting: () => {} },
   ]);
@@ -86,7 +86,10 @@ function SecurityFields() {
       setCurrentPassword('');
       setNewPassword('');
       setConfirmationPassword('');
-      setUpdateTab(0);
+      //wait for modal to close before resetting the tab
+      setTimeout(() => {
+        setUpdateTab(0);
+      }, 50);
     }
   }, [isPasswordModalOpen]);
   //#endregion
@@ -96,7 +99,7 @@ function SecurityFields() {
     if (isPasswordMatching?.error) {
       setError({ field: "currentPassword", message: isPasswordMatching.error });
       return{
-          error: 'Incorrect password',
+          error: t("security.incorrect-password"),
           field: "password",
       };
     }
@@ -105,7 +108,7 @@ function SecurityFields() {
 
   const handleNewPasswordSubmission = async() => {
     if(newPassword !== confirmationPassword) {
-      setError({ field: "newPassword", message: "Passwords don't match" });
+      setError({ field: "newPassword", message: t("security.password-dont-match") });
       return;
     }
     const res = await SubmitPasswordUpdateRequest(currentPassword, newPassword);
@@ -131,14 +134,14 @@ function SecurityFields() {
           disableText={true} 
           onTogglePasswordVisibility={handleToggleCurrentPasswordVisibility} 
           passwordVisible={showCurrentPassword} 
-          label='Current password' 
+          label={t("security.current-password")} 
           onChange={(event) => handleCurrentPasswordChange(event) }/>
           {error.message && error.field === 'currentPassword' && (
             <InputError error={error.message}/>
           )}
           <div className="flex justify-center space-x-4 mt-6">
-            <Button label='Apply' onClick={() => handleCurrentPasswordSubmission()}/>
-            <Button label='Cancel' onClick={() => setIsPasswordModalOpen(false)}/>
+            <Button label={t("security.continue")} onClick={() => handleCurrentPasswordSubmission()}/>
+            <Button label={t("security.cancel")} onClick={() => setIsPasswordModalOpen(false)}/>
           </div>
         </div>
       }
@@ -147,33 +150,33 @@ function SecurityFields() {
         <div className="mt-6">
           <InputField 
           value={newPassword} 
-          height={0} 
+          height={1} 
           isPassword={true} 
           error={error.field === "newPassword"} 
           // disableText={true} 
           onTogglePasswordVisibility={handleToggleNewPasswordVisibility} 
           passwordVisible={showNewPassword} 
-          label='New password' 
+          label={t("security.new-password")}
           onChange={(event) => handleNewPasswordChange(event) }/>
 
           {newPassword && <ProgressBar progress={calculatePasswordProgress(newPassword)} />}
           
           <InputField 
           value={confirmationPassword} 
-          height={0} 
+          height={1} 
           isPassword={true} 
           error={error.field === "newPassword"} 
           disableText={true} 
           onTogglePasswordVisibility={handleToggleConfirmationPasswordVisibility} 
           passwordVisible={showConfirmationPassword} 
-          label='Confirm password' 
+          label={t("security.confirm-password")}
           onChange={(event) => handleConfirmationPasswordChange(event) }/>
           {error.message && error.field === 'newPassword' && (
             <InputError error={error.message}/>
           )}
           <div className="flex justify-center space-x-4 mt-6">
-            <Button label='Apply' onClick={() => handleNewPasswordSubmission()}/>
-            <Button label='Cancel' onClick={() => setIsPasswordModalOpen(false)}/>
+            <Button label={t("security.update")} onClick={() => handleNewPasswordSubmission()}/>
+            <Button label={t("security.cancel")} onClick={() => setIsPasswordModalOpen(false)}/>
           </div>
         </div>
       }
@@ -182,15 +185,15 @@ function SecurityFields() {
         <div className="mt-6">
           <div className="flex flex-col items-center justify-center">
             <CheckCircleIcon className="mx-auto h-10 w-10 text-green-500" />
-            <p className="text-center">You have successfully changed your password.</p>
+            <p className="text-center">{t("security.success")}</p>
           </div>
           <div className="flex justify-center space-x-4 mt-6">
-            <Button label='Close' onClick={() =>  setIsPasswordModalOpen(false)}/>
+            <Button label={t("security.close")} onClick={() =>  setIsPasswordModalOpen(false)}/>
           </div>
         </div>
         }
       </Modal>
-      <h1 className="text-m font-medium mb-4">Security</h1>
+      <h1 className="text-m font-medium mb-4">{t("security.security")}</h1>
       <div className="border-t border-gray-300" />
       <div className="grid grid-rows gap-6 mt-6">
         {securityItems.map((item, index) => (
@@ -208,7 +211,7 @@ function SecurityFields() {
       </div>
     </>
   );
-}
+};
 
 
 

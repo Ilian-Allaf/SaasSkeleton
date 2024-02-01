@@ -6,8 +6,12 @@ import { prisma } from "@/lib/prismaclient";
 import { authOptions } from "@/auth/[...nextauth]";
 import { getServerSession } from "next-auth"
 import bcrypt from 'bcrypt';
+import { useTranslation } from '@/i18n/index'
+
 
 export async function SubmitPasswordUpdateRequest(currentPassword: string, newPassword: string) {
+    const { t } = await useTranslation('settings')
+
     try {
         const session = await getServerSession(authOptions)
         if(!session){
@@ -18,25 +22,25 @@ export async function SubmitPasswordUpdateRequest(currentPassword: string, newPa
         const isPasswordMatching = await CheckPassword(currentPassword);
         if (isPasswordMatching?.error) {
             return{
-                error: 'Incorrect password',
+                error:  t('security.incorrect-password'),
                 field: "currentPassword",
             };
         }
         if(!isPasswordValid(newPassword)) {
             return{
-                error: 'Invalid password',
+                error:  t('security.invalid-password'),
                 field: "newPassword",
             };
         }
         const hashedPassword = await bcrypt.hash(newPassword, 10);
         const updatedUser = await prisma.user.update({
             where: {
-                id: session.user.id
+              id: session.user.id
             },
             data: {
-                password: hashedPassword
+              password: hashedPassword
             }
-        });
+          });
 
         if(!updatedUser){
             return {
