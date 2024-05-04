@@ -2,13 +2,6 @@ table:
   name: language
   schema: public
 array_relationships:
-  - name: text_contents
-    using:
-      foreign_key_constraint_on:
-        column: original_language_code
-        table:
-          name: text_content
-          schema: public
   - name: translations
     using:
       foreign_key_constraint_on:

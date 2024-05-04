@@ -5,10 +5,10 @@ import "../../globals.css";
 import Button from '@/components/Button';
 import SelectableCard from '@/components/SelectableCard';
 import { CheckIcon } from '@heroicons/react/outline';
-import { GetSubscribtionPlansQuery } from "@/src/gql/graphql";
+import { GetSubscribtionPlansQuery, GetUserQuery } from "@/src/gql/graphql";
 import { useTranslation } from '@/i18n/client'
 
-export default function Skeleton({ subscribtion_plans, priceMap }: { subscribtion_plans: GetSubscribtionPlansQuery, priceMap: { [key: string]: number } }) {
+export default function Skeleton({ subscribtionPlans, priceMap, userPlan }: { subscribtionPlans: GetSubscribtionPlansQuery, priceMap: { [key: string]: number }, userPlan: GetUserQuery }) {
   const { t } = useTranslation('pricing')
 
   const Subscribe = async (price_id: string) => {
@@ -27,7 +27,6 @@ export default function Skeleton({ subscribtion_plans, priceMap }: { subscribtio
       console.error('An error occurred', error);
     }
   };
-
   return (
     <div className="py-12">
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -42,7 +41,7 @@ export default function Skeleton({ subscribtion_plans, priceMap }: { subscribtio
 
         <div className="mt-10">
           <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {subscribtion_plans.subscribtion_plan.map(plan => {
+            {subscribtionPlans.subscribtion_plan.map(plan => {
               const price_id = plan.id;
               const price = priceMap[price_id];
 
@@ -51,13 +50,13 @@ export default function Skeleton({ subscribtion_plans, priceMap }: { subscribtio
 
               return (
                 <li key={price_id} className="flex flex-col">
-                  <SelectableCard>
+                  <SelectableCard clickable={userPlan.auth_user_by_pk?.subscribtion_plan !== plan.name}>
                     <h3 className="text-lg leading-6 font-medium">{plan.text_content.translations[0].translation}</h3>
                     <p className="mt-4">
                       <span className="text-4xl font-extrabold">${price/100}</span>
                       {t("permonth")}
                     </p>
-                    <Button label={t("button")} onClick={() => Subscribe(price_id)} other="mt-6" />
+                    <Button label={userPlan.auth_user_by_pk?.subscribtion_plan === plan.name ? <CheckIcon className="h-6 w-6 text-white" /> : t("button")} onClick={() => Subscribe(price_id)} other="mt-6" />
                     <ul className="mt-6 space-y-4 flex-1">
                       {features.map((feature, index) => (
                         <li key={index} className="flex items-start">

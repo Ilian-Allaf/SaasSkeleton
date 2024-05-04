@@ -5,7 +5,6 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 -- CreateTable
 CREATE TABLE "auth"."user" (
     "id" UUID DEFAULT gen_random_uuid() NOT NULL,
-    "subscribtion_plan" TEXT,
     "username" TEXT NOT NULL,
     "password" TEXT,
     "email" TEXT NOT NULL,
@@ -13,6 +12,10 @@ CREATE TABLE "auth"."user" (
     "active" BOOLEAN DEFAULT false,
     "role" TEXT NOT NULL DEFAULT 'user',
     "image" TEXT,
+    "subscribtion_plan" TEXT,
+    "stripe_customer_id" TEXT UNIQUE,
+    "stripe_subscribtion_id" TEXT UNIQUE,
+
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 

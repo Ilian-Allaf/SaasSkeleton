@@ -47,7 +47,8 @@
     },
     "billing": {
         "title": "Payment methods",
-        "subtitle": "Manage your payment methods"
+        "subtitle": "Manage your payment methods",
+        "not-subscribed": "You are not subscribed to any plan"
     },
     "sidebar": {
         "general": "General",

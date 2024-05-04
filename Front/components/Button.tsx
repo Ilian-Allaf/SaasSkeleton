@@ -1,5 +1,7 @@
+import React, { ReactNode } from 'react';
+
 interface ButtonProps {
-  label: string;
+  label: ReactNode;
   onClick?: (e?: React.FormEvent) => void;
   width?: string;
   center?: boolean;

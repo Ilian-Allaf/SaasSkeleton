@@ -42,6 +42,9 @@ select_permissions:
         - id
         - image
         - role
+        - stripe_customer_id
+        - stripe_subscribtion_id
+        - subscribtion_plan
         - updated_email
         - username
       filter:
@@ -53,6 +56,9 @@ update_permissions:
     permission:
       columns:
         - email
+        - stripe_customer_id
+        - stripe_subscribtion_id
+        - subscribtion_plan
         - updated_email
         - username
       filter:

@@ -1,10 +1,6 @@
 table:
   name: text_content
   schema: public
-object_relationships:
-  - name: language
-    using:
-      foreign_key_constraint_on: original_language_code
 array_relationships:
   - name: subscribtion_features
     using:
@@ -31,8 +27,6 @@ select_permissions:
   - role: user
     permission:
       columns:
-        - original_language_code
-        - original_text
         - created_at
         - updated_at
         - id

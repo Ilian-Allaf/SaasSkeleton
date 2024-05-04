@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import { useTranslation } from '@/i18n/client'
 import { PencilIcon } from '@heroicons/react/outline';
+import Button from '@/components/Button';
+import { CancelSubscribtion } from '@/actions/subscribtionActions/cancelSubscribtion';
 
 
 function Billing() {
@@ -23,6 +25,7 @@ function PaymentMethodeFields() {
 
   return (
     <>
+      <Button label="Stop Sub" onClick={() => CancelSubscribtion()}/>
       <h1 className="text-m font-medium">{t("billing.title")}</h1>
       <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">{t("billing.subtitle")}</p>
       <div className="border-t border-gray-300" />
