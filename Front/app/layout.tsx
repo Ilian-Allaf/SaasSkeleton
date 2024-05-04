@@ -11,11 +11,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   const lng = detectLanguage()
-
   return (
     <html lang={lng} dir={dir(lng)}>
 
-      <body className={`${inter.className} bg-slate-50 dark:bg-[#101826]`}>
+      <body className={`${inter.className} bg-background`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
         </ThemeProvider>

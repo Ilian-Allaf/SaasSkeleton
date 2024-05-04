@@ -43,7 +43,7 @@ export default function Modal({isOpen, setIsOpen, title, subtitle, children}: Mo
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden bg-white dark:bg-bright-background-darkmode rounded-2xl p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden bg-bright-background rounded-2xl p-6 text-left align-middle shadow-xl transition-all">
                 <div className="flex justify-between items-center">
                   <Dialog.Title
                     as="h3"
