@@ -5,9 +5,9 @@ import MultiSelector from "@/components/MultiSelector"
 import { PencilIcon } from '@heroicons/react/outline';
 import Modal from '@/components/Modal';
 import InputField from '@/components/InputField';
-import { UpdateUsername } from '@/actions/userAcitons/updateUsername';
-import { SubmitEmailUpdateRequest } from '@/actions/userAcitons/submitEmailUpdateRequest';
-import { ValidateEmail } from '@/actions/userAcitons/validateEmail';
+import { UpdateUsername } from '@/actions/userActions/updateUsername';
+import { SubmitEmailUpdateRequest } from '@/actions/userActions/submitEmailUpdateRequest';
+import { ValidateEmail } from '@/actions/userActions/validateEmail';
 import InputError from '@/components/InputError';
 import { MailIcon } from '@heroicons/react/solid'
 import { languageDict, languageOptions } from '@/i18n/settings';

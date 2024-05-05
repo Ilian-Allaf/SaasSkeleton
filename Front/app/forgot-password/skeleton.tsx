@@ -6,7 +6,7 @@ import InputField from '@/components/InputField';
 import InputError from '@/components/InputError';
 import SendEmailSuccess from '@/components/SendEmailSuccess';
 import { useTranslation } from '@/i18n/client'
-import { ForgotPassword } from '@/actions/userAcitons/forgotPassword';
+import { ForgotPassword } from '@/actions/userActions/forgotPassword';
 
 
 function ResetPassword() {

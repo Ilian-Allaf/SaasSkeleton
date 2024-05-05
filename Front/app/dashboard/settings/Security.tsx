@@ -6,8 +6,8 @@ import InputField from '@/components/InputField';
 import InputError from '@/components/InputError';
 import { calculatePasswordProgress } from '@/utils/passwordCheck';
 import ProgressBar from '@/components/ProgressBar';
-import { CheckPassword } from '@/actions/userAcitons/checkPassword';
-import { SubmitPasswordUpdateRequest } from '@/actions/userAcitons/submitPasswordUpdateRequest';
+import { CheckPassword } from '@/actions/userActions/checkPassword';
+import { SubmitPasswordUpdateRequest } from '@/actions/userActions/submitPasswordUpdateRequest';
 import { useTranslation } from '@/i18n/client'
 import Button from '@/components/Button';
 

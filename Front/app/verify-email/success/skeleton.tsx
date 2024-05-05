@@ -7,7 +7,7 @@ import "../../globals.css";
 import { CheckCircleIcon } from '@heroicons/react/solid';
 import { useSearchParams } from 'next/navigation'
 import { useSession} from 'next-auth/react'
-import { GetUpdatedEmail } from '@/actions/userAcitons/getUpdatedEmail'
+import { GetUpdatedEmail } from '@/actions/userActions/getUpdatedEmail'
 import { useRouter } from 'next/navigation';
 import { useTranslation } from '@/i18n/client'
 
