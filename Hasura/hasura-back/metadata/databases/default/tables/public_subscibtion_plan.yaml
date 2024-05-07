@@ -1,0 +1,11 @@
+table:
+  name: subscibtion_plan
+  schema: public
+array_relationships:
+  - name: users
+    using:
+      foreign_key_constraint_on:
+        column: subsciption_plan
+        table:
+          name: user
+          schema: auth

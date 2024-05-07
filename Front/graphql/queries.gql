@@ -1,6 +1,66 @@
-query GetUsers {
-  auth_user {
+query GetUser($id: uuid!) {
+  auth_user_by_pk(id: $id) {
+    id
+    stripe_customer_id
+    subscribtion_plan
+    stripe_subscribtion_id
+  }
+}
+
+
+query GetUserEmail($id: uuid!) {
+  auth_user_by_pk(id: $id) {
     email
+  }
+}
+
+mutation UpdateUsername($id: uuid!, $username: String!) {
+  update_auth_user_by_pk(pk_columns: {id: $id}, _set: {username: $username}) {
+    username
+  }
+}
+
+mutation UpdateEmail($id: uuid!, $email: String!) {
+  update_auth_user_by_pk(pk_columns: {id: $id}, _set: {email: $email}) {
+    email
+  }
+}
+
+mutation UpdateUpdatedEmail($id: uuid!, $updated_email: String!) {
+  update_auth_user_by_pk(pk_columns: {id: $id}, _set: {updated_email: $updated_email}) {
+    updated_email
+  }
+}
+
+query GetSubscribtionPlans($languageCode: String!) {
+  subscribtion_plan {
+    id
+    name
+    text_content {
+      translations(where: {language: {_eq: $languageCode}}) {
+        translation
+      }
+    }
+    subscribtion_plan_subscribtion_feature_assocs {
+      subscribtionFeatureBySubscribtionFeature {
+        text_content {
+          translations(where: {language: {_eq: $languageCode}}) {
+            translation
+          }
+        }
+      }
+    }
+  }
+}
+
+query GetSubscriptionPlan($id: String!) {
+  subscribtion_plan_by_pk(id: $id) {
+    name
+  }
+}
+
+mutation UpdateUserSubscriptionPlan($id: uuid!, $stripe_customer_id: String!, $subscribtion_plan: String!, $subscribtion_id: String!) {
+  update_auth_user_by_pk(pk_columns: {id: $id}, _set: {stripe_customer_id: $stripe_customer_id, subscribtion_plan: $subscribtion_plan, stripe_subscribtion_id: $subscribtion_id}) {
     id
   }
 }

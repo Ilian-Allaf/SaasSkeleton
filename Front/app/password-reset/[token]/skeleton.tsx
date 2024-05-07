@@ -5,10 +5,12 @@ import "../../globals.css";
 import InputField from '@/components/InputField';
 import ProgressBar from '@/components/ProgressBar';
 import { calculatePasswordProgress, isPasswordValid } from '@/utils/passwordCheck';
-import BellowInputError from '@/components/BellowInputError';
+import InputError from '@/components/InputError';
+import { useTranslation } from '@/i18n/client'
 
 
 function ResetPassword({token}: {token:string}) {
+  const { t } = useTranslation('reset-password')
   const router = useRouter();
   const [error, setError] = useState('');
   //Password
@@ -48,7 +50,7 @@ function ResetPassword({token}: {token:string}) {
 
     if (password !== confirmPassword) {
       setConfirmPasswordError(true)
-      setError('Passwords do not match');
+      setError(t("passwords-dont-match"));
       return;
     }
     
@@ -81,12 +83,12 @@ function ResetPassword({token}: {token:string}) {
     <div className="min-h-screen flex items-center justify-center">
       <div className="max-w-md w-full space-y-8">
         <div>
-          <h2 className="text-center text-3xl font-extrabold text-gray-900">Choose a new password</h2>
+          <h2 className="text-center text-3xl font-extrabold">{t('choose-new-password')}</h2>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <InputField
-              type="password"
-              label="Password"
+              isPassword={true}
+              label={t('password')}
               value={password}
               onChange={handlePasswordChange}
               error={passwordError}
@@ -96,8 +98,8 @@ function ResetPassword({token}: {token:string}) {
           {password && <ProgressBar progress={calculatePasswordProgress(password)} />}
           <div>
             <InputField
-                type="password"
-                label="Confirm password"
+                isPassword={true}
+                label={t('confirm-password')}
                 value={confirmPassword}
                 onChange={handleConfirmPasswordChange}
                 error={confirmPasswordError}
@@ -105,20 +107,20 @@ function ResetPassword({token}: {token:string}) {
                 onTogglePasswordVisibility={handleToggleConfirmPasswordVisibility}
                 disableText={true}
             />
-            {error && (<BellowInputError error={error}/>)}
+            {error && (<InputError error={error}/>)}
           </div>
           <div>
             <button
               type="submit"
               className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
-              Continue
+              {t('continue')}
             </button>
           </div>
           <div className="mt-2 text-center">  
             <p>
               <a href="/login" className="text-indigo-600 hover:underline">
-              Go back to Log in
+              {t('back-to-login')}
               </a>
             </p>
           </div>

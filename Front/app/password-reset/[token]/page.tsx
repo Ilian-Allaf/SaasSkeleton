@@ -1,9 +1,11 @@
 import React from 'react'
-import Skeleton from './skeleton'
+import dynamic from 'next/dynamic'
+const NoSSRSkeleton = dynamic(() => import('./skeleton'), { ssr: false })
+
 
 export default function page({params}: {params: { token: string }}) {
   const token = params.token
   return (
-    <Skeleton token={token}/>
+    <NoSSRSkeleton token={token}/>
   )
 }

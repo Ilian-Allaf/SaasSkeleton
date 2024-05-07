@@ -1,0 +1,58 @@
+{
+    "general": {
+      "profile-title": "Profil",
+      "profile-subtitle": "Ces informations seront affichées publiquement, alors faites attention à ce que vous partagez.",
+      "username": "Nom d'utilisateur",
+      "email": "E-mail",
+      "password": "Mot de passe",
+      "others": "Autres",
+      "language": "Langue",
+      "currency": "Devise",
+      "update-username": "Mettre à jour le nom d'utilisateur",
+      "update-email": "Mettre à jour l'e-mail",
+      "update": "Mettre à jour",
+      "cancel": "Annuler",
+      "username-taken": "Nom d'utilisateur déjà pris",
+      "confirm": "Confirmer",
+      "enter-password": "Entrez votre mot de passe pour confirmer votre identité",
+      "incorrect-password": "Mot de passe incorrect",
+      "invalid-email": "E-mail invalide",
+      "email-taken": "E-mail déjà pris",
+      "check-email": "Vérifiez cette adresse e-mail pour appliquer les modifications",
+      "update-language": "Mettre à jour la langue",
+      "update-currency": "Mettre à jour la devise"
+    },
+    "security": {
+      "security": "Sécurité",
+      "password": "Mot de passe",
+      "phone": "Numéro de téléphone",
+      "2fa": "Vérification en 2 étapes",
+      "update-password": "Mettre à jour le mot de passe",
+      "current-password": "Mot de passe actuel",
+      "new-password": "Nouveau mot de passe",
+      "confirm-password": "Confirmer le mot de passe",
+      "update": "Mettre à jour",
+      "cancel": "Annuler",
+      "continue": "Continuer",
+      "success": "Vous avez changé votre mot de passe avec succès.",
+      "close": "Fermer",
+      "incorrect-password": "Mot de passe incorrect",
+      "invalid-password": "Mot de passe invalide",
+      "password-dont-match": "Les mots de passe ne correspondent pas"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "new-offers": "Nouvelles offres",
+      "news-letter": "Lettre d'information"
+    },
+    "billing": {
+      "title": "Méthodes de payement",
+      "subtitle": "Gérez vos moyens de paiement"
+    },
+    "sidebar": {
+      "general": "Général",
+      "security": "Sécurité",
+      "notifications": "Notifications",
+      "billing": "Facturation"
+    }
+  }

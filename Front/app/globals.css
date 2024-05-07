@@ -1,3 +1,21 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+@layer base {
+    :root[class="dark"] {
+        --primary: #47509E;
+        --bright-primary: #6d28d9;
+        --background: #101826;
+        --bright-background: #162030;
+        --nav-bar: #162030;
+    }
+
+    :root[class="light"] {
+        --primary: #47509E;
+        --bright-primary: #6d28d9;
+        --background: #FFFFFF;
+        --bright-background: #f7f8f8;
+        --nav-bar: #162030;
+    }
+}

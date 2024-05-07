@@ -39,7 +39,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
     }
 
-    if (!validator.isEmail(email) || domains.includes(domain) || email.includes('+') || email.lenght > 100){
+    if (!validator.isEmail(email) || domains.includes(domain) || email.includes('+') || email.length > 100){
       return res.status(422).json({ message: 'Invalid Email', field: 'email' });
     }
   
@@ -61,7 +61,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         },
       });
     
-    await sendVerificationEmail({email: createdUser.email, userId: createdUser.id, prisma: prisma})
+    await sendVerificationEmail({email: createdUser.email, userId: createdUser.id})
 
     await prisma.$disconnect()
     

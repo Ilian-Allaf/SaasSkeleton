@@ -1,0 +1,33 @@
+table:
+  name: subscribtion_plan
+  schema: public
+object_relationships:
+  - name: text_content
+    using:
+      foreign_key_constraint_on: text_content_id
+array_relationships:
+  - name: subscribtion_plan_subscribtion_feature_assocs
+    using:
+      foreign_key_constraint_on:
+        column: subscribtion_plan
+        table:
+          name: subscribtion_plan_subscribtion_feature_assoc
+          schema: public
+  - name: users
+    using:
+      foreign_key_constraint_on:
+        column: subscribtion_plan
+        table:
+          name: user
+          schema: auth
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - id
+        - name
+        - created_at
+        - updated_at
+        - text_content_id
+      filter: {}
+    comment: ""

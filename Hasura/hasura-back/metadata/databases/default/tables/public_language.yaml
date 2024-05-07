@@ -1,0 +1,21 @@
+table:
+  name: language
+  schema: public
+array_relationships:
+  - name: translations
+    using:
+      foreign_key_constraint_on:
+        column: language
+        table:
+          name: translation
+          schema: public
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - code
+        - name
+        - created_at
+        - updated_at
+      filter: {}
+    comment: ""

@@ -1,0 +1,21 @@
+table:
+  name: subscribtion_plan_subscribtion_feature_assoc
+  schema: public
+object_relationships:
+  - name: subscribtionFeatureBySubscribtionFeature
+    using:
+      foreign_key_constraint_on: subscribtion_feature
+  - name: subscribtionPlanBySubscribtionPlan
+    using:
+      foreign_key_constraint_on: subscribtion_plan
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - subscribtion_feature
+        - subscribtion_plan
+        - created_at
+        - updated_at
+        - id
+      filter: {}
+    comment: ""

@@ -1,8 +1,12 @@
 import React from 'react'
-import Skeleton from './skeleton'
+import dynamic from 'next/dynamic'
+const NoSSRSkeleton = dynamic(() => import('./skeleton'), { ssr: false })
 
 export default function page() {
+  
   return (
-    <Skeleton />
+    <>
+        <NoSSRSkeleton />
+    </>
   )
 }

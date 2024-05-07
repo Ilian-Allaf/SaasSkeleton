@@ -1,3 +1,5 @@
+CREATE SCHEMA auth;
+
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 -- CreateTable
@@ -6,15 +8,21 @@ CREATE TABLE "auth"."user" (
     "username" TEXT NOT NULL,
     "password" TEXT,
     "email" TEXT NOT NULL,
+    "updated_email" TEXT,
     "active" BOOLEAN DEFAULT false,
     "role" TEXT NOT NULL DEFAULT 'user',
     "image" TEXT,
+    "subscribtion_plan" TEXT,
+    "stripe_customer_id" TEXT UNIQUE,
+    "stripe_subscribtion_id" TEXT UNIQUE,
+
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "user_pkey" PRIMARY KEY ("id")
 );
 CREATE UNIQUE INDEX "user_email_key" ON "auth"."user"("email");
+ALTER TABLE "auth"."user" ADD CONSTRAINT "user_subscribtion_plan_fkey" FOREIGN KEY ("subscribtion_plan") REFERENCES "public"."subscribtion_plan"("name") ON DELETE CASCADE ON UPDATE CASCADE;
 
 CREATE TABLE "auth"."account" (
     "id" UUID DEFAULT gen_random_uuid() NOT NULL,

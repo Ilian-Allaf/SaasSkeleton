@@ -1,1 +1,0 @@
-INSERT INTO "auth"."user"("email", "active","password", "role", "username") VALUES (E'ilian.allaf@outlook.fr', true, E'$2b$10$jWUNOcBlIz8sKJgiZrAJBOas.VW7STaHbqRYyyLrnMJmW8ej2WaSW', E'user', E'ilian');

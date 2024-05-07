@@ -1,0 +1,34 @@
+table:
+  name: text_content
+  schema: public
+array_relationships:
+  - name: subscribtion_features
+    using:
+      foreign_key_constraint_on:
+        column: text_content_id
+        table:
+          name: subscribtion_feature
+          schema: public
+  - name: subscribtion_plans
+    using:
+      foreign_key_constraint_on:
+        column: text_content_id
+        table:
+          name: subscribtion_plan
+          schema: public
+  - name: translations
+    using:
+      foreign_key_constraint_on:
+        column: text_content_id
+        table:
+          name: translation
+          schema: public
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - created_at
+        - updated_at
+        - id
+      filter: {}
+    comment: ""

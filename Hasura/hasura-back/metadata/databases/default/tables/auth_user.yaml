@@ -1,6 +1,10 @@
 table:
   name: user
   schema: auth
+object_relationships:
+  - name: subscribtionPlanBySubscribtionPlan
+    using:
+      foreign_key_constraint_on: subscribtion_plan
 array_relationships:
   - name: accounts
     using:
@@ -30,3 +34,35 @@ array_relationships:
         table:
           name: session
           schema: auth
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - email
+        - id
+        - image
+        - role
+        - stripe_customer_id
+        - stripe_subscribtion_id
+        - subscribtion_plan
+        - updated_email
+        - username
+      filter:
+        id:
+          _eq: x-hasura-user-id
+    comment: ""
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - email
+        - stripe_customer_id
+        - stripe_subscribtion_id
+        - subscribtion_plan
+        - updated_email
+        - username
+      filter:
+        id:
+          _eq: x-hasura-user-id
+      check: null
+    comment: ""

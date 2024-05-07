@@ -7,7 +7,7 @@ const config: CodegenConfig = {
       [process.env.HASURA_URL || '']: {
       "headers": {
         "x-hasura-role": "admin",
-        "x-hasura-admin-secret": "myadminsecretkey"
+        "x-hasura-admin-secret": `${process.env.HASURA_ADMIN_SECRET}`
       }
     }
   }],
@@ -15,12 +15,27 @@ const config: CodegenConfig = {
   generates: {
     "src/gql/": {
       preset: "client",
-      plugins: ['typescript']
+      plugins: []
     },
     // "./graphql.schema.json": {
     //   plugins: []
     // }
   }
+    // generates: {
+  //   "src/gql/graphql.tsx": {
+  //     // preset: "client",
+  //     plugins: ['typescript', 'typescript-operations'],
+  //     // config: {
+  //     //   enumsAsTypes: true,
+  //     //   futureProofUnions: true,
+  //     // },
+  //   },
+  //   "./graphql.schema.json": {
+  //     plugins: ['introspection']
+  //   }
+  // }
 };
+
+
 
 export default config;
