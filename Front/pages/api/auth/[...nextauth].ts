@@ -41,6 +41,8 @@ export const authOptions: NextAuthOptions = {
           }
         });
 
+        console.log("HELLO", user)
+
         await prisma.$disconnect()
 
         if(!user){
