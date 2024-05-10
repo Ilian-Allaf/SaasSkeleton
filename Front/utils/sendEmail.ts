@@ -1,31 +1,46 @@
-import nodemailer from 'nodemailer';
+// import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
+
 import { baseTemplate } from 'emailTemplates';
 import { randomUUID } from 'crypto';
 import { prisma } from '@/lib/prismaclient';
 
+const resend = new Resend(process.env.RESEND_API_KEY);
+
 export async function sendEmail({ to, subject, html }: { to: string; subject: string; html: string }) {
-    const transporter = nodemailer.createTransport({
-      host: process.env.MAIL_SERVER_HOST as string,
-      port: process.env.MAIL_SERVER_PORT,
-      ignoreTLS: true,
-    });
+    // const transporter = nodemailer.createTransport({
+    //   host: process.env.MAIL_SERVER_HOST as string,
+    //   port: process.env.MAIL_SERVER_PORT,
+    //   ignoreTLS: true,
+    // });
   
-    const mailOptions = {
-      from: process.env.MAIL_FROM,
+    // const mailOptions = {
+    //   from: process.env.MAIL_FROM,
+    //   to: to,
+    //   subject: subject,
+    //   html: html,
+    // };
+
+    // try {
+    //     const info = await transporter.sendMail(mailOptions);
+    //     return info;
+    // } 
+    // catch (error) {
+    //     console.error('Erreur lors de l\'envoi de l\'e-mail: ', error);
+    //     throw error;
+    // }
+
+    const { data, error } = await resend.emails.send({
+      from: process.env.MAIL_FROM as string,
       to: to,
       subject: subject,
       html: html,
-    };
-
-    try {
-        const info = await transporter.sendMail(mailOptions);
-        return info;
-    } 
-    catch (error) {
-        console.error('Erreur lors de l\'envoi de l\'e-mail: ', error);
-        throw error;
+    });
+  
+    if (error) {
+      console.error('Erreur lors de l\'envoi de l\'e-mail: ', error);
+      throw error;
     }
-    
 }
 
 export async function sendVerificationEmail({email, userId, update}:{email: string, userId: string, update?: boolean}){
