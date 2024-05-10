@@ -41,19 +41,14 @@ export const authOptions: NextAuthOptions = {
           }
         });
 
-        console.log("user: ", user)
-
         await prisma.$disconnect()
 
         if(!user){
-          console.log("No user found")
           return null
         }
         if (!credentials?.password || !await bcrypt.compare(credentials?.password, user.password!)) {
-          console.log("Password is wrong")
           return null;
         }
-        console.log("Function is returning")
         return user;
       }
     })
