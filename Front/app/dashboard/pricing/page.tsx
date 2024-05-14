@@ -33,7 +33,8 @@ export default async function page() {
 
   return (
     <>
-      <Skeleton subscribtionPlans={subscribtionPlans} priceMap={priceMap} userPlan={userPlan}/>
+      this is the pricing page
+      {/* <Skeleton subscribtionPlans={subscribtionPlans} priceMap={priceMap} userPlan={userPlan}/> */}
     </>
   )
 };
