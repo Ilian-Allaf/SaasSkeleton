@@ -28,11 +28,18 @@ export default async function page() {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, { apiVersion: '2023-10-16' });
 
   const priceMap = {};
+
+  if (!subscribtionPlans || !subscribtionPlans.subscribtion_plan) {
+    // Handle the case where subscribtionPlans is null or subscribtion_plan is not available
+    console.error('Subscription plans not available');
+}
+else {
   for (const subscribtionPlan of subscribtionPlans.subscribtion_plan) {
     const price = await stripe.prices.retrieve(subscribtionPlan.id);
     console.log("price" + price)
     priceMap[subscribtionPlan.id] = price.unit_amount;
   }
+}
 
 
   console.log("priceMap" + priceMap)
