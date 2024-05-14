@@ -12,13 +12,13 @@ export default async function page() {
   const cookieStore = cookies();
   const languageCode = cookieStore.get('i18next')?.value as string;
 
-  // const session = await getServerSession(authOptions)
-  // const gqlClient = await setupGraphQLClient();
-  // if(!session){
-  //     return {
-  //         error: 'Not Authenticated',
-  //     };
-  // };
+  const session = await getServerSession(authOptions)
+  const gqlClient = await setupGraphQLClient();
+  if(!session){
+      return {
+          error: 'Not Authenticated',
+      };
+  };
   // const userPlan = await gqlClient!.request( GetUserDocument, { id: session.user.id } );
   // const subscribtionPlans = await gqlClient!.request( GetSubscribtionPlansDocument, { languageCode: 'en' } );
   // const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, { apiVersion: '2023-10-16' });
