@@ -7,7 +7,7 @@ import { cookies } from 'next/headers'
 import { authOptions } from "@/auth/[...nextauth]";
 import { setupGraphQLClient } from "@/lib/gqlclient";
 import { GetSubscribtionPlansDocument, GetUserDocument } from "@/src/gql/graphql";
-import { getServerSession } from "next-auth"
+import { getServerSession } from "next-auth/next"
 
 
 export default async function page() {
