@@ -1,16 +1,16 @@
-// import Skeleton from './skeleton'
-// import Stripe from 'stripe';
-// import { cookies } from 'next/headers'
+import Skeleton from './skeleton'
+import Stripe from 'stripe';
+import { cookies } from 'next/headers'
 
-// import { authOptions } from "@/auth/[...nextauth]";
-// import { setupGraphQLClient } from "@/lib/gqlclient";
-// import { GetSubscribtionPlansDocument, GetUserDocument } from "@/src/gql/graphql";
-// import { getServerSession } from "next-auth"
+import { authOptions } from "@/auth/[...nextauth]";
+import { setupGraphQLClient } from "@/lib/gqlclient";
+import { GetSubscribtionPlansDocument, GetUserDocument } from "@/src/gql/graphql";
+import { getServerSession } from "next-auth"
 
 
 export default async function page() {
-  // const cookieStore = cookies();
-  // const languageCode = cookieStore.get('i18next')?.value as string;
+  const cookieStore = cookies();
+  const languageCode = cookieStore.get('i18next')?.value as string;
 
   // const session = await getServerSession(authOptions)
   // const gqlClient = await setupGraphQLClient();
