@@ -41,7 +41,7 @@ export async function UpdateUsername(newUsername: string) {
                 error: t('general.username-taken'),
             };
         }
-
+        console.error(session)
         const result = await gqlClient!.request( UpdateUsernameDocument, { id: session?.user.id, username: newUsername} );
         if (result.update_auth_user_by_pk?.username === null) {
             return {
