@@ -12,12 +12,12 @@ export const setupGraphQLClient = async (req?: NextApiRequest, res?: NextApiResp
   let session:any;
   if (req && res) {
     session = await getServerSession(req, res, authOptions);
-    encodedSessionToken =  getCookie('next-auth.session-token', { req, res})
+    encodedSessionToken =  getCookie(process.env.NEXTAUTH_SESSION_COOKIE_NAME as string, { req, res})
   } 
   else {
     session = await getServerSession(authOptions);
     const cookieStore = cookies();
-    encodedSessionToken = cookieStore.get('next-auth.session-token')?.value as string;
+    encodedSessionToken = cookieStore.get(process.env.NEXTAUTH_SESSION_COOKIE_NAME as string)?.value as string;
   }
   if (!session) {
    return null;
