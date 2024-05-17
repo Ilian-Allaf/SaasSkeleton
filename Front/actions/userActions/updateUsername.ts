@@ -44,6 +44,7 @@ export async function UpdateUsername(newUsername: string) {
         console.error(session)
         const result = await gqlClient!.request( UpdateUsernameDocument, { id: session?.user.id, username: newUsername} );
         if (result.update_auth_user_by_pk?.username === null) {
+            console.error('Error updating username with gql');
             return {
                 error: 'Internal Server Error',
             };
