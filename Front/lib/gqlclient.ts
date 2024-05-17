@@ -20,6 +20,7 @@ export const setupGraphQLClient = async (req?: NextApiRequest, res?: NextApiResp
     encodedSessionToken = cookieStore.get(process.env.NEXTAUTH_SESSION_COOKIE_NAME as string)?.value as string;
   }
   if (!session) {
+    console.error('No session found');
    return null;
   }
   const decodedSessionToken = await decode({
@@ -27,6 +28,9 @@ export const setupGraphQLClient = async (req?: NextApiRequest, res?: NextApiResp
     secret: process.env.NEXTAUTH_SECRET as string,
   }) as JWT;
 
+  console.warn('decodedSessionToken', decodedSessionToken)
+  console.warn('session', session)
+  
   const gqlClient = new GraphQLClient(process.env.HASURA_URL as string, {
     headers: {
       'x-hasura-admin-secret': `${process.env.HASURA_ADMIN_SECRET}`,
