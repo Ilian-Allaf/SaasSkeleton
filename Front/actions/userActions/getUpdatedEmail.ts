@@ -21,6 +21,7 @@ export async function GetUpdatedEmail() {
 
         const result = await gqlClient!.request( GetUserEmailDocument, { id: session?.user.id} );
         if (result.auth_user_by_pk?.email === null) {
+            console.error('No email found');
             return {
                 error: 'Internal Server Error',
             };

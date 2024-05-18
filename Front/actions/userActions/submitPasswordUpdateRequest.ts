@@ -15,6 +15,7 @@ export async function SubmitPasswordUpdateRequest(currentPassword: string, newPa
     try {
         const session = await getServerSession(authOptions)
         if(!session){
+            console.error('No session found');
             return {
                 error: 'Not Authenticated',
             };
@@ -43,6 +44,7 @@ export async function SubmitPasswordUpdateRequest(currentPassword: string, newPa
           });
 
         if(!updatedUser){
+            console.error('No user found');
             return {
                 error: 'Internal Server Error',
             };
@@ -51,6 +53,7 @@ export async function SubmitPasswordUpdateRequest(currentPassword: string, newPa
     
 
     catch (error) {
+        console.error('An error occurred', error);
         return {
             error: 'Internal Server Error',
         };

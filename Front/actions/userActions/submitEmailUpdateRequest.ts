@@ -34,6 +34,7 @@ export async function SubmitEmailUpdateRequest(email: string, password: string) 
     }
 
     catch (error) {
+        console.error('An error occurred', error);
         return {
             error: 'Internal Server Error',
         };

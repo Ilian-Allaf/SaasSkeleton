@@ -14,6 +14,7 @@ export async function CheckPassword(password: string) {
     try {
         const session = await getServerSession(authOptions)
         if(!session){
+            console.error('No session found');
             return {
                 error: 'Not Authenticated',
             };
@@ -35,6 +36,7 @@ export async function CheckPassword(password: string) {
         };
     }
     catch (error) {
+        console.error('An error occurred', error);
         return {
             error: 'Internal Server Error',
         };
