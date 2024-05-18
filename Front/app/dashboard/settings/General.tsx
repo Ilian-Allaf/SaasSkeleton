@@ -90,8 +90,8 @@ function ProfileFields({ switchLanguage, setSwitchLanguage }: SwitchLanguageProp
         update({ username: username })
         setUsername('')
       }
-      catch (e) {
-        console.log(e);
+      catch (error) {
+        console.error(error);
       }
     }
 
