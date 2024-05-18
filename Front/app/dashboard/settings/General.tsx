@@ -113,7 +113,7 @@ const handleEmailSubmission = async () => {
   const isValidEmail = await ValidateEmail(email);
   
   if (isValidEmail?.error) {
-    console.log(isValidEmail)
+    console.error(isValidEmail.error)
     setError({message: isValidEmail.error, field: 'email'});
     return;
   }

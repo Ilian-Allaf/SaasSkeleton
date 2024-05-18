@@ -18,6 +18,5 @@ export function generateHasuraJwt(jwtNextAuthPayload: JWT): string {
   };
 
   const token = jwt.sign(jwtHasuraClaims, secret, { algorithm: 'RS512' });
-  console.warn('token', token)
   return token;
 }

@@ -27,7 +27,7 @@ async function webhookHandler(req: NextApiRequest, res: NextApiResponse) {
     try {
       event = stripe.webhooks.constructEvent(buf.toString(), sig, webhookSecret);
     } catch (err) {
-      console.log(err);
+      console.error(err);
       return res.status(400).send(`Webhook Error: ${err.message}`);
     }
     if (event.type === 'customer.subscription.updated') {

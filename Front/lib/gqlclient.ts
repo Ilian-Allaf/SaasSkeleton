@@ -28,16 +28,13 @@ export const setupGraphQLClient = async (req?: NextApiRequest, res?: NextApiResp
     secret: process.env.NEXTAUTH_SECRET as string,
   }) as JWT;
 
-  console.warn('decodedSessionToken', decodedSessionToken)
-  console.warn('session', session)
-  
   const gqlClient = new GraphQLClient(process.env.HASURA_URL as string, {
     headers: {
       'x-hasura-admin-secret': `${process.env.HASURA_ADMIN_SECRET}`,
       'Authorization': `${generateHasuraJwt(decodedSessionToken)}`,
     },
   });
-
+  
   return gqlClient;
 };
 
