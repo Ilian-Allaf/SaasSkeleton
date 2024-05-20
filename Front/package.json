@@ -20,6 +20,7 @@
     "bcrypt": "^5.1.1",
     "cookies-next": "^4.1.0",
     "disposable-email-domains": "^1.0.62",
+    "generate-password": "^1.7.1",
     "graphql-request": "^6.1.0",
     "i18next": "^23.7.18",
     "i18next-browser-languagedetector": "^7.2.0",

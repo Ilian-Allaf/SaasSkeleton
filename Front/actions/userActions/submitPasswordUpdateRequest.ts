@@ -2,7 +2,7 @@
 
 import { CheckPassword } from "./checkPassword";
 import { isPasswordValid } from '@/utils/passwordCheck';
-import { prisma } from "@/lib/prismaclient";
+import { prisma } from "@/lib/prismaClient";
 import { authOptions } from "@/auth/[...nextauth]";
 import { getServerSession } from "next-auth"
 import bcrypt from 'bcrypt';

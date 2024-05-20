@@ -9,6 +9,14 @@ object_relationships:
     using:
       foreign_key_constraint_on: subscribtion_plan
 select_permissions:
+  - role: service
+    permission:
+      columns:
+        - id
+        - subscribtion_feature
+        - subscribtion_plan
+      filter: {}
+    comment: ""
   - role: user
     permission:
       columns:

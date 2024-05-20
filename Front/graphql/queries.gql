@@ -32,26 +32,26 @@ mutation UpdateUpdatedEmail($id: uuid!, $updated_email: String!) {
   }
 }
 
-query GetSubscribtionPlans($languageCode: String!) {
-  subscribtion_plan {
-    id
-    name
-    text_content {
-      translations(where: {language: {_eq: $languageCode}}) {
-        translation
+  query GetSubscriptionPlans($languageCode: String!) {
+    subscribtion_plan {
+      id
+      name
+      text_content {
+        translations(where: {language: {_eq: $languageCode}}) {
+          translation
+        }
       }
-    }
-    subscribtion_plan_subscribtion_feature_assocs {
-      subscribtionFeatureBySubscribtionFeature {
-        text_content {
-          translations(where: {language: {_eq: $languageCode}}) {
-            translation
+      subscribtion_plan_subscribtion_feature_assocs {
+        subscribtionFeatureBySubscribtionFeature {
+          text_content {
+            translations(where: {language: {_eq: $languageCode}}) {
+              translation
+            }
           }
         }
       }
     }
   }
-}
 
 query GetSubscriptionPlan($id: String!) {
   subscribtion_plan_by_pk(id: $id) {

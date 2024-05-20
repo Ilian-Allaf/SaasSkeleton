@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import { prisma } from '@/lib/prismaclient';
+import { prisma } from '@/lib/prismaClient';
 import { NextApiRequest, NextApiResponse } from 'next';
 import validator from 'validator';
 import { isPasswordValid } from '@/utils/passwordCheck'

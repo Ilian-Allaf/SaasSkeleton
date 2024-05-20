@@ -52,6 +52,15 @@ select_permissions:
           _eq: x-hasura-user-id
     comment: ""
 update_permissions:
+  - role: service
+    permission:
+      columns:
+        - stripe_customer_id
+        - stripe_subscribtion_id
+        - subscribtion_plan
+      filter: {}
+      check: {}
+    comment: ""
   - role: user
     permission:
       columns:

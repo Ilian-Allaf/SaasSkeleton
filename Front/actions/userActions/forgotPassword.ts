@@ -1,6 +1,6 @@
 'use server'
 
-import { prisma } from '@/lib/prismaclient'
+import { prisma } from '@/lib/prismaClient'
 import { sendResetPasswordEmail } from '@/utils/sendEmail'
 import validator from 'validator'
 import { useTranslation } from '@/i18n/index'

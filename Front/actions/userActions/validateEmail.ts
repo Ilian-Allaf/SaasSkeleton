@@ -1,6 +1,6 @@
 "use server"
 
-import { prisma } from "@/lib/prismaclient";
+import { prisma } from "@/lib/prismaClient";
 import validator from "validator";
 import domains from 'disposable-email-domains';
 import { useTranslation } from '@/i18n/index'

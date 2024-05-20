@@ -3,7 +3,7 @@ import { Resend } from 'resend';
 
 import { baseTemplate } from 'emailTemplates';
 import { randomUUID } from 'crypto';
-import { prisma } from '@/lib/prismaclient';
+import { prisma } from '@/lib/prismaClient';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -62,10 +62,10 @@ export async function sendVerificationEmail({email, userId, update}:{email: stri
   });
 
   await sendEmail({
-      to: email,
-      subject: "Verify your email address",
-      html: emailContent,
-    });
+    to: email,
+    subject: "Verify your email address",
+    html: emailContent,
+  });
 
   await prisma.$disconnect()
 }

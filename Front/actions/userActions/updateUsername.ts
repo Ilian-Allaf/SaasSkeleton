@@ -1,11 +1,11 @@
 "use server"
 
-import { setupGraphQLClient } from "@/lib/gqlclient";
+import { setupGraphQLClient } from "@/lib/gqlClient";
 import { UpdateUsernameDocument } from "@/src/gql/graphql";
 import { getServerSession } from "next-auth"
 import { authOptions } from 'pages/api/auth/[...nextauth]'
 import { revalidatePath } from "next/cache";
-import { prisma } from "@/lib/prismaclient";
+import { prisma } from "@/lib/prismaClient";
 import validator from "validator";
 import { useTranslation } from '@/i18n/index'
 

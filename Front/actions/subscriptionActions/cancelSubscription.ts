@@ -1,15 +1,15 @@
 'use server'
 
-import { prisma } from "@/lib/prismaclient";
+import { prisma } from "@/lib/prismaClient";
 import { getServerSession } from "next-auth"
 import { authOptions } from 'pages/api/auth/[...nextauth]'
 import { useTranslation } from '@/i18n/index'
 import Stripe from "stripe";
-import { setupGraphQLClient } from "@/lib/gqlclient";
+import { setupGraphQLClient } from "@/lib/gqlClient";
 import { GetUserDocument } from "@/src/gql/graphql";
 
 
-export async function CancelSubscribtion() {
+export async function CancelSubscription() {
     const { t } = await useTranslation('settings')
     const gqlClient = await setupGraphQLClient();
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, { apiVersion: '2023-10-16'});

@@ -1,11 +1,11 @@
 "use server"
 
-import { setupGraphQLClient } from "@/lib/gqlclient";
+import { setupGraphQLClient } from "@/lib/gqlClient";
 import { GetUserEmailDocument } from "@/src/gql/graphql";
 import { getServerSession } from "next-auth"
 import { authOptions } from 'pages/api/auth/[...nextauth]'
 import { revalidatePath } from "next/cache";
-import { prisma } from "@/lib/prismaclient";
+import { prisma } from "@/lib/prismaClient";
 
 
 export async function GetUpdatedEmail() {

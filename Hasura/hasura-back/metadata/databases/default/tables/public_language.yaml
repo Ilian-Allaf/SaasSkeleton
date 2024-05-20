@@ -10,6 +10,13 @@ array_relationships:
           name: translation
           schema: public
 select_permissions:
+  - role: service
+    permission:
+      columns:
+        - code
+        - name
+      filter: {}
+    comment: ""
   - role: user
     permission:
       columns:

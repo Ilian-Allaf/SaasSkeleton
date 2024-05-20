@@ -2,7 +2,7 @@
 
 import { getServerSession } from "next-auth"
 import { authOptions } from 'pages/api/auth/[...nextauth]'
-import { prisma } from "@/lib/prismaclient";
+import { prisma } from "@/lib/prismaClient";
 import { useTranslation } from '@/i18n/index'
 
 

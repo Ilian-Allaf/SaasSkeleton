@@ -16,7 +16,7 @@ export default function NavigationBar() {
   const { t } = useTranslation('navbar')
   const navigation = [
     { name: t("dashboard"), href: '/dashboard', current: false },
-    { name: t("pricing"), href: '/dashboard/pricing', current: false },
+    { name: t("pricing"), href: '/pricing', current: false },
   ]
   
   const pathname = usePathname() 

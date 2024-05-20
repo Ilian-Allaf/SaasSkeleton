@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/prismaclient'
+import { prisma } from '@/lib/prismaClient'
 import { NextApiRequest, NextApiResponse } from 'next'
 import bcrypt from 'bcrypt';
 import { isPasswordValid } from '@/utils/passwordCheck'

@@ -1,4 +1,4 @@
-import { prisma } from "@/lib/prismaclient";
+import { prisma } from "@/lib/prismaClient";
 import { sendVerificationEmail } from "@/utils/sendEmail";
 import { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth/next"

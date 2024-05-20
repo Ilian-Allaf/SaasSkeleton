@@ -14,6 +14,13 @@ array_relationships:
           name: subscribtion_plan_subscribtion_feature_assoc
           schema: public
 select_permissions:
+  - role: service
+    permission:
+      columns:
+        - name
+        - text_content_id
+      filter: {}
+    comment: ""
   - role: user
     permission:
       columns:

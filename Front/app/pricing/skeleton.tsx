@@ -1,19 +1,19 @@
 
 'use client'
 import React from 'react';
-import "../../globals.css";
+import "../globals.css";
 import Button from '@/components/Button';
 import SelectableCard from '@/components/SelectableCard';
 import { CheckIcon } from '@heroicons/react/outline';
-import { GetSubscribtionPlansQuery, GetUserQuery } from "@/src/gql/graphql";
+import { GetSubscriptionPlansQuery, GetUserQuery } from "@/src/gql/graphql";
 import { useTranslation } from '@/i18n/client'
 
-export default function Skeleton({ subscribtionPlans, priceMap, userPlan }: { subscribtionPlans: GetSubscribtionPlansQuery, priceMap: { [key: string]: number }, userPlan: GetUserQuery }) {
+export default function Skeleton({ subscribtionPlans, priceMap, userPlan }: { subscribtionPlans: GetSubscriptionPlansQuery, priceMap: { [key: string]: number }, userPlan: GetUserQuery }) {
   const { t } = useTranslation('pricing')
 
   const Subscribe = async (price_id: string) => {
     try {
-      const response = await fetch('/api/subscribtion/create-checkout-session', {
+      const response = await fetch('/api/subscription/create-checkout-session', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -50,13 +50,13 @@ export default function Skeleton({ subscribtionPlans, priceMap, userPlan }: { su
 
               return (
                 <li key={price_id} className="flex flex-col">
-                  <SelectableCard clickable={userPlan.auth_user_by_pk?.subscribtion_plan !== plan.name}>
+                  <SelectableCard clickable={userPlan?.auth_user_by_pk?.subscribtion_plan !== plan.name}>
                     <h3 className="text-lg leading-6 font-medium">{plan.text_content.translations[0].translation}</h3>
                     <p className="mt-4">
                       <span className="text-4xl font-extrabold">${price/100}</span>
                       {t("permonth")}
                     </p>
-                    <Button label={userPlan.auth_user_by_pk?.subscribtion_plan === plan.name ? <CheckIcon className="h-6 w-6 text-white" /> : t("button")} onClick={() => Subscribe(price_id)} other="mt-6" />
+                    <Button label={userPlan?.auth_user_by_pk?.subscribtion_plan === plan.name ? <CheckIcon className="h-6 w-6 text-white" /> : t("button")} onClick={() => Subscribe(price_id)} other="mt-6" />
                     <ul className="mt-6 space-y-4 flex-1">
                       {features.map((feature, index) => (
                         <li key={index} className="flex items-start">

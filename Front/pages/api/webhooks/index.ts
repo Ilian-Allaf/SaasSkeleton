@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import Stripe from 'stripe';
 import Cors from 'micro-cors';
-import { prisma } from '@/lib/prismaclient';
+import { prisma } from '@/lib/prismaClient';
 import { text } from 'micro';
 
 const cors = Cors({

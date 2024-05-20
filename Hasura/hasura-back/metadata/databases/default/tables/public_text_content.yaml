@@ -24,6 +24,12 @@ array_relationships:
           name: translation
           schema: public
 select_permissions:
+  - role: service
+    permission:
+      columns:
+        - id
+      filter: {}
+    comment: ""
   - role: user
     permission:
       columns:

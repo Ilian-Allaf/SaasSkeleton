@@ -1,7 +1,7 @@
 "use server"
 
 import { authOptions } from "@/auth/[...nextauth]";
-import { setupGraphQLClient } from "@/lib/gqlclient";
+import { setupGraphQLClient } from "@/lib/gqlClient";
 import { UpdateUpdatedEmailDocument } from "@/src/gql/graphql";
 import { getServerSession } from "next-auth"
 

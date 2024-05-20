@@ -21,6 +21,14 @@ array_relationships:
           name: user
           schema: auth
 select_permissions:
+  - role: service
+    permission:
+      columns:
+        - id
+        - name
+        - text_content_id
+      filter: {}
+    comment: ""
   - role: user
     permission:
       columns:
