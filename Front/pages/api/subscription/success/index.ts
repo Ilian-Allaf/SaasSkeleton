@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import {sendEmail, sendInvoiceEmail} from '@/utils/sendEmail';
+import {generateVerificationEmailToken, sendEmail, sendInvoiceEmail} from '@/utils/sendEmail';
 import { getServerSession } from "next-auth"
 import { authOptions } from 'pages/api/auth/[...nextauth]'
 import { Stripe } from 'stripe';
@@ -41,7 +41,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if(!appSession && !user){
       console.log('Creating new user');
       const generatedPassword = generator.generate({length: 10, numbers: true, uppercase: true, symbols: true, strict: true});
-      await prisma.user.create({
+      const user = await prisma.user.create({
         data: {
           email: customerEmail,
           username: '',
@@ -51,14 +51,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           stripeSubscribtionId: subscription_id
         }
       });
+      const token = await generateVerificationEmailToken(user.id);
 
-      //send email with temporary password and link to change password
+      //Send email with generated password and link to verify email and receipt
       emailContent = baseTemplate({
-        title: 'Welcome to our platform',
-        subtitle: 'Thank you for your trust in our service. Click the button below to set your password and start using our platform.',
-        buttonLink: `${process.env.NEXT_URL}/api/`,
-        buttonText: 'Verify email address',
-        additionalText: 'This link will expire in 5 days. if you did not make this request, please disregard this email.'
+        title: 'Thank you for your subscription !',
+        subtitle: `Thank you for your trust in our service. Here is you generated password: <b>${generatedPassword}</b>.<br>Please click the button below to activate your account.`,
+        buttonLink: `${process.env.NEXT_URL}/api/verify-email/${token}`,
+        buttonText: 'Activate account',
+        additionalText: 'This link will expire in 5 days.'
       });
     } 
     else {
@@ -69,10 +70,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(500).json({ statusCode: 500, message: "Internal Server Error" });
       }
 
-      //send confirmation email with invoice and link to dashboard
+      //Send email with invoice and link to dashboard and receipt
       emailContent = baseTemplate({
-        title: 'Thank you for your subscription',
-        subtitle: 'Here is the invoice for your subscription. Click the button below to access your dashboard.',
+        title: 'Thank you for your subscription !',
+        subtitle: 'Thank you for your trust in our service.<br>Click the button below to access your dashboard.',
         buttonLink: `${process.env.NEXT_URL}/dashboard/`,
         buttonText: 'Go to dashboard',
         additionalText: ''
