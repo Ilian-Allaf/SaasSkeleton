@@ -8,6 +8,7 @@ declare module "next-auth" {
       email: string,
       username: string,
       active: string,
+      subscriptionPlan: string,
     };
   }
   interface Profile {

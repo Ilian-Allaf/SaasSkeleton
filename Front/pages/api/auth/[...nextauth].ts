@@ -120,7 +120,8 @@ export const authOptions: NextAuthOptions = {
           email: (user as User).email,
           username: (user as User).username,
           role: (user as User).role,
-          active: (user as User).active
+          active: (user as User).active,
+          subscriptionPlan: (user as User).subscribtionPlan
         };
       }
       return token;
@@ -135,6 +136,7 @@ export const authOptions: NextAuthOptions = {
           username: token.username,
           id: token.id,
           active: token.active,
+          subscriptionPlan: token.subscriptionPlan
         }
       };
     },
