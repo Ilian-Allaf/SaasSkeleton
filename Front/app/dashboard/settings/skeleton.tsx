@@ -1,8 +1,6 @@
 
 'use client'
 import React, { useState } from 'react';
-import { useSession} from 'next-auth/react'
-import SideBar from './SideBar';
 import General from './General';
 import Security from './Security';
 import { useSearchParams } from 'next/navigation'
@@ -22,32 +20,28 @@ export default function Skeleton() {
   if (param === 'security') {
     return (
       <div className="grid grid-flow-col gap-7">
-          <div className="col-span-1"><SideBar switchLanguage={switchLanguage} setSwitchLanguage={setSwitchLanguage}/></div>
-          <div className="col-span-4"><Security /></div>
+        <div className="col-span-4"><Security /></div>
       </div>
     );
   }
   else if (param === 'notifications') {
     return (
       <div className="grid grid-flow-col gap-7">
-          <div className="col-span-1"><SideBar switchLanguage={switchLanguage} setSwitchLanguage={setSwitchLanguage}/></div>
-          <div className="col-span-4"><Notifications /></div>
+        <div className="col-span-4"><Notifications /></div>
       </div>
     );
   }
   else if (param === 'billing') {
     return (
       <div className="grid grid-flow-col gap-7">
-          <div className="col-span-1"><SideBar switchLanguage={switchLanguage} setSwitchLanguage={setSwitchLanguage}/></div>
-          <div className="col-span-4"><Billing/></div>
+        <div className="col-span-4"><Billing/></div>
       </div>
     );
   }
   else {
     return (
       <div className="grid grid-flow-col gap-7">
-          <div className="col-span-1"><SideBar switchLanguage={switchLanguage} setSwitchLanguage={setSwitchLanguage}/></div>
-          <div className="col-span-4"><General switchLanguage={switchLanguage} setSwitchLanguage={setSwitchLanguage}/></div>
+        <div className="col-span-4"><General switchLanguage={switchLanguage} setSwitchLanguage={setSwitchLanguage}/></div>
       </div>
     );
   }
