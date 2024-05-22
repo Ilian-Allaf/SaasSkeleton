@@ -1,5 +1,3 @@
-"use server"
-
 import Skeleton from './skeleton'
 import Stripe from 'stripe';
 import { useTranslation } from '@/i18n/index'
@@ -10,7 +8,7 @@ import { GetSubscriptionPlansDocument, GetUserDocument, GetUserQuery } from "@/s
 import { getServerSession } from "next-auth"
 
 export default async function page() {
-  const { i18n } = await useTranslation('settings')
+  const { i18n } = await useTranslation('pricing')
   const session = await getServerSession(authOptions)
   const gqlClient = session ? await setupGraphQLClient(): await setupUnauthenticatedGraphQLClient();
   let userPlan: GetUserQuery = {};
