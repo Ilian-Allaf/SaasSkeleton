@@ -37,7 +37,7 @@ function Sidebar({ items }: SideBarProps) {
             {item.selected ? 
             <li
               key={index}
-              className={`flex items-center p-3 hover:bg-gray-100 cursor-pointer dark:hover:bg-gray-800 hover:text-indigo-700 bg-gray-200 dark:bg-gray-800 text-indigo-700 dark:hover:text-gray-300 dark:text-gray-300 ${switchThemeDuration}`}
+              className={`flex items-center rounded-md p-3 hover:rounded hover:bg-gray-100 cursor-pointer dark:hover:bg-gray-800 hover:text-indigo-700 bg-gray-200 dark:bg-gray-800 text-indigo-700 dark:hover:text-gray-300 dark:text-gray-300 ${switchThemeDuration}`}
               onClick={() => handleItemClick(index)}
               >
               <span className="mr-2">{item.icon}</span> {item.name}
@@ -45,7 +45,7 @@ function Sidebar({ items }: SideBarProps) {
             :
             <li
               key={index}
-              className={`flex items-center p-3 hover:bg-gray-100 cursor-pointer dark:hover:bg-gray-800 hover:text-indigo-700 dark:hover:text-gray-300`}
+              className={`flex items-center rounded-md p-3 hover:rounded hover:bg-gray-100 cursor-pointer dark:hover:bg-gray-800 hover:text-indigo-700 dark:hover:text-gray-300`}
               onClick={() => handleItemClick(index)}
               >
               <span className="mr-2">{item.icon}</span> {item.name}
