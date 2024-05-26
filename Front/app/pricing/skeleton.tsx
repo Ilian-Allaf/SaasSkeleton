@@ -56,7 +56,7 @@ export default function Skeleton({ subscribtionPlans, priceMap, userPlan }: { su
                       <span className="text-4xl font-extrabold">${price/100}</span>
                       {t("permonth")}
                     </p>
-                    <Button label={userPlan?.auth_user_by_pk?.subscribtion_plan === plan.name ? <CheckIcon className="h-6 w-6 text-white" /> : t("button")} onClick={() => Subscribe(price_id)} other="mt-6" />
+                    <Button label={userPlan?.auth_user_by_pk?.subscribtion_plan === plan.name ? <CheckIcon className="h-6 w-6 text-white" /> : Object.keys(userPlan).length !== 0 ? t("upgrade-button"): t("subscribe-button")} onClick={() => Subscribe(price_id)} other="mt-6" />
                     <ul className="mt-6 space-y-4 flex-1">
                       {features.map((feature, index) => (
                         <li key={index} className="flex items-start">

@@ -9,11 +9,16 @@ interface SendEmailSuccessProps {
   subtitle: string;
   resendSubtitle?: string;
   handleResend?: (e: React.FormEvent) => Promise<void>;
+  redirectionLink?: string;
+  redirectionText?: string;
 }
 
-const SendEmailSuccess: React.FC<SendEmailSuccessProps> = ({ title, subtitle, resendSubtitle, handleResend }) => {
+
+const SendEmailSuccess: React.FC<SendEmailSuccessProps> = ({ title, subtitle, resendSubtitle, handleResend, redirectionLink='/login', redirectionText}) => {
   const [resendClicked, setResendClicked] = useState(false);
-  const { t } = useTranslation('forgotpassword')
+  const { t } = useTranslation('forgot-password')
+  const resolvedRedirectionText = redirectionText || t("back-to-login");
+
   const handleResendClick = (e: React.FormEvent) => {
     setResendClicked(true);
     if (handleResend) {
@@ -44,8 +49,8 @@ const SendEmailSuccess: React.FC<SendEmailSuccessProps> = ({ title, subtitle, re
 
           <div className="mt-2 text-center">
             <p>
-              <a href="/login" className="text-indigo-600 hover:underline">
-              {t("back-to-login")}
+              <a href= {redirectionLink} className="text-indigo-600 hover:underline">
+                {resolvedRedirectionText}
               </a>
             </p>
           </div>

@@ -42,7 +42,7 @@ function SecurityFields() {
   const mfa = false;
   const [securityItems, setSecurityItems] = useState([
     { label: t("security.password"), value: '*********', updateSetting: () => { setPasswordModalTitle(t("security.update-password"));setIsPasswordModalOpen(true); } },
-    { label: t("security.phone"), value: '06.22.23.46.15', updateSetting: () => {} },
+    { label: t("security.phone"), value: '-', updateSetting: () => {} },
     { label: t("security.2fa"), value: mfa ? <CheckCircleIcon className="h-5 w-5" />: <XCircleIcon className="h-5 w-5" />, buttonText: mfa ? 'disable': 'enable', updateSetting: () => {} },
   ]);
   
