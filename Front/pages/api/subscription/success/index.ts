@@ -26,7 +26,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     });
 
     const appSession = await getServerSession(req, res, authOptions)
-    const user = await prisma.user.findUnique({
+    const existingUser = await prisma.user.findUnique({
       where: {
         email: customerEmail
       }
@@ -36,12 +36,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const subscription_id = subscriptions['data'][0]['items']['data'][0]['subscription']
     const subscriptionPlan = await UnauthenticatedGqlClient!.request( GetSubscriptionPlanDocument, { id: plan_id} );
     let emailContent: any;
+    let redirectUrl: string;
 
-    // If the user is not logged in and the checkout email is not used,  we create a new user in the database
-    if(!appSession && !user){
-      console.log('Creating new user');
+    // If the user is not logged in and the checkout email is not used, we create a new user in the database
+    if(!appSession && !existingUser){
       const generatedPassword = generator.generate({length: 10, numbers: true, uppercase: true, symbols: true, strict: true});
-      const user = await prisma.user.create({
+      const createdUser = await prisma.user.create({
         data: {
           email: customerEmail,
           username: '',
@@ -51,26 +51,28 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           stripeSubscribtionId: subscription_id
         }
       });
-      const token = await generateVerificationEmailToken(user.id);
+      redirectUrl = `/email-sent/${createdUser.id}`;
+      const token = await generateVerificationEmailToken(createdUser.id);
 
-      //Send email with generated password and link to verify email and receipt
+      // Send email with generated password and link to verify email and receipt
       emailContent = baseTemplate({
         title: 'Thank you for your subscription !',
-        subtitle: `Thank you for your trust in our service. Here is you generated password: <b>${generatedPassword}</b>.<br>Please click the button below to activate your account.`,
+        subtitle: `Thank you for your trust in our service. Here is your generated password: <b>${generatedPassword}</b><br>Please click the button below to activate your account.`,
         buttonLink: `${process.env.NEXT_URL}/api/verify-email/${token}`,
         buttonText: 'Activate account',
         additionalText: 'This link will expire in 5 days.'
       });
-    } 
+    }
     else {
-      const userId = appSession ? appSession.user.id : user?.id;
+      redirectUrl = `/email-sent/${appSession?.user.id || existingUser?.id}`;
+      const userId = appSession ? appSession.user.id : existingUser?.id;
       const gqlClient = await setupUnauthenticatedGraphQLClient(req, res);
       const updatedUser = await gqlClient!.request( UpdateUserSubscriptionPlanDocument, { id: userId, stripe_customer_id: customer.id, subscribtion_plan: subscriptionPlan.subscribtion_plan_by_pk?.name!, subscribtion_id: subscription_id } );
       if(!updatedUser.update_auth_user_by_pk?.id){
         return res.status(500).json({ statusCode: 500, message: "Internal Server Error" });
       }
 
-      //Send email with invoice and link to dashboard and receipt
+      // Send email with invoice and link to dashboard and receipt
       emailContent = baseTemplate({
         title: 'Thank you for your subscription !',
         subtitle: 'Thank you for your trust in our service.<br>Click the button below to access your dashboard.',
@@ -85,9 +87,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       html: emailContent,
     });
     
-    //TODO: Add toasts to the front-end to inform the user about the email sent
+    // TODO: Add toasts to the front-end to inform the user about the email sent
+    // TODO: Need to reaload the user session to update the user subscribtion plan
     res.writeHead(302, {
-      Location: '/dashboard',
+      Location: redirectUrl,
     });
     res.end();
   } catch (err) {

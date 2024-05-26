@@ -28,9 +28,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       cancel_url: `${process.env.NEXT_URL}/pricing`,
       customer_email: appSession?.user.email,
     });
-    if (!session) {
-      return res.status(500).json({ message: 'Unable to create checkout session.' });
-    }
     return res.status(303).json({ url: session.url! });
 
   }catch (err) {
