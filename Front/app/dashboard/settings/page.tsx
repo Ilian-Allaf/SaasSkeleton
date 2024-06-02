@@ -26,32 +26,43 @@ export default async function Page() {
         error: 'Not Authenticated',
     };
   };
+  let subscriptionPlan: string = '-';
+  let priceString: string = '-';
+  let cardLast4digits: string = '-';
+  let cardBrand: string = '-';
+  let nextBillingDate: string = '-';
+  let canceledAtPeriodEnd: boolean = false;
+
 
   const user = await gqlClient!.request( GetUserDocument, { id: session.user.id } );
-  if (!user?.auth_user_by_pk?.id || !user?.auth_user_by_pk?.subscribtion_plan || !user?.auth_user_by_pk?.stripe_customer_id || !user?.auth_user_by_pk?.stripe_subscribtion_id) {
-    console.log(user)
-      console.error('Not subscribed');
+  if (user?.auth_user_by_pk?.id && user?.auth_user_by_pk?.subscribtion_plan && user?.auth_user_by_pk?.stripe_customer_id && user?.auth_user_by_pk?.stripe_subscribtion_id) {
+    const subscriptionPlanId = await gqlClient!.request( GetSubscriptionPlanIdByNameDocument, { name: user.auth_user_by_pk.subscribtion_plan  } );
+    const price = await stripe.prices.retrieve(subscriptionPlanId.subscribtion_plan[0].id);
+    priceString = `${price.unit_amount! / 100}$/${price.recurring?.interval}`
+  
+    const subscription = await stripe.subscriptions.retrieve(user.auth_user_by_pk.stripe_subscribtion_id);
+    nextBillingDate = new Date(subscription.current_period_end * 1000).toLocaleDateString();
+    canceledAtPeriodEnd = subscription.cancel_at_period_end;
+  
+    const paymentMethods = await stripe.paymentMethods.list({
+      customer: user.auth_user_by_pk.stripe_customer_id,
+      type: 'card',
+    });  
+    const card = paymentMethods.data[0].card;
+  
+    if(!card){
+      return {
+          error: 'No card',
+      };
+    };
+    cardLast4digits = card.last4;
+    cardBrand = card.brand;
+  }
+  else {
+    console.error('Not subscribed');
   }
 
-  const subscriptionPlanId = await gqlClient!.request( GetSubscriptionPlanIdByNameDocument, { name: user.auth_user_by_pk.subscribtion_plan  } );
-  const price = await stripe.prices.retrieve(subscriptionPlanId.subscribtion_plan[0].id);
-  const priceString = `${price.unit_amount! / 100}$/${price.recurring?.interval}`
 
-  const subscription = await stripe.subscriptions.retrieve(user.auth_user_by_pk.stripe_subscribtion_id);
-  const nextBillingDate = new Date(subscription.current_period_end * 1000).toLocaleDateString();
-  const canceledAtPeriodEnd = subscription.cancel_at_period_end;
-
-  const paymentMethods = await stripe.paymentMethods.list({
-    customer: user.auth_user_by_pk.stripe_customer_id,
-    type: 'card',
-  });  
-  const card = paymentMethods.data[0].card;
-
-  if(!card){
-    return {
-        error: 'No card',
-    };
-  };
 
   const items = [
     { icon: <UserCircleIcon className="h-5 w-5" />, label: 'general'},
@@ -76,7 +87,7 @@ export default async function Page() {
           <SideBar items={items} />
         </aside>
         <div className="flex-1 lg:max-w-6xl">
-          <Skeleton subscriptionPlan={capitalizeFirstLetter(session.user.subscriptionPlan)} price={priceString} cardLast4digits={card?.last4} cardBrand={capitalizeFirstLetter(card.brand)} nextBillingDate={nextBillingDate} canceledAtPeriodEnd={canceledAtPeriodEnd}/>
+          <Skeleton subscriptionPlan={capitalizeFirstLetter(session.user.subscriptionPlan)} price={priceString} cardLast4digits={cardLast4digits} cardBrand={capitalizeFirstLetter(cardBrand)} nextBillingDate={nextBillingDate} canceledAtPeriodEnd={canceledAtPeriodEnd}/>
         </div>
       </div>
     </div>
