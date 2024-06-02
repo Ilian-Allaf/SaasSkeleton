@@ -31,7 +31,6 @@ export default async function Page() {
   if (!user?.auth_user_by_pk?.id || !user?.auth_user_by_pk?.subscribtion_plan || !user?.auth_user_by_pk?.stripe_customer_id || !user?.auth_user_by_pk?.stripe_subscribtion_id) {
     console.log(user)
       console.error('Not subscribed');
-      throw Error(t("billing.not-subscribed"));
   }
 
   const subscriptionPlanId = await gqlClient!.request( GetSubscriptionPlanIdByNameDocument, { name: user.auth_user_by_pk.subscribtion_plan  } );
