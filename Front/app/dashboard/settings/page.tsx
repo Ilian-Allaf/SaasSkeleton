@@ -15,7 +15,7 @@ function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-export default async function page() {
+export default async function Page() {
   const session = await getServerSession(authOptions)
   const { t } = await useTranslation('settings')
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, { apiVersion: '2023-10-16'});
