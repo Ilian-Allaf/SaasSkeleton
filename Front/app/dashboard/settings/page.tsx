@@ -71,6 +71,7 @@ export default async function Page() {
   ]
   if (session.user.subscriptionPlan) {
     items.push({ icon: <CreditCardIcon className="h-5 w-5" />, label: 'billing' })
+    subscriptionPlan = capitalizeFirstLetter(session.user.subscriptionPlan);
   }
 
   return (
@@ -87,7 +88,7 @@ export default async function Page() {
           <SideBar items={items} />
         </aside>
         <div className="flex-1 lg:max-w-6xl">
-          <Skeleton subscriptionPlan={capitalizeFirstLetter(session.user.subscriptionPlan)} price={priceString} cardLast4digits={cardLast4digits} cardBrand={capitalizeFirstLetter(cardBrand)} nextBillingDate={nextBillingDate} canceledAtPeriodEnd={canceledAtPeriodEnd}/>
+          <Skeleton subscriptionPlan={subscriptionPlan} price={priceString} cardLast4digits={cardLast4digits} cardBrand={capitalizeFirstLetter(cardBrand)} nextBillingDate={nextBillingDate} canceledAtPeriodEnd={canceledAtPeriodEnd}/>
         </div>
       </div>
     </div>
