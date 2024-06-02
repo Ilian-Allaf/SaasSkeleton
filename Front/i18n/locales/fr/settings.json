@@ -1,4 +1,6 @@
 {
+    "title": "Paramètres",
+    "subtitle": "Gérez vos informations personnelles et parametrez vos préférences.",
     "general": {
       "profile-title": "Profil",
       "profile-subtitle": "Ces informations seront affichées publiquement, alors faites attention à ce que vous partagez.",
@@ -10,6 +12,9 @@
       "currency": "Devise",
       "update-username": "Mettre à jour le nom d'utilisateur",
       "update-email": "Mettre à jour l'e-mail",
+      "update-username-dialog-subtitle": "Votre nom d'utilisateur sera mis à jour après confirmation de votre mot de passe.",
+      "successfully-updated-username": "Nom d'utilisateur mis à jour avec succès",
+      "update-email-dialog-subtitle": "Votre e-mail sera mis à jour après confirmation de votre mot de passe.",
       "update": "Mettre à jour",
       "cancel": "Annuler",
       "username-taken": "Nom d'utilisateur déjà pris",
@@ -20,7 +25,10 @@
       "email-taken": "E-mail déjà pris",
       "check-email": "Vérifiez cette adresse e-mail pour appliquer les modifications",
       "update-language": "Mettre à jour la langue",
-      "update-currency": "Mettre à jour la devise"
+      "successfully-updated-language": "Langue mise à jour avec succès",
+      "update-currency": "Mettre à jour la devise",
+      "successfully-updated-currency": "Devise mise à jour avec succès",
+      "close": "Close"
     },
     "security": {
       "security": "Sécurité",
@@ -28,6 +36,8 @@
       "phone": "Numéro de téléphone",
       "2fa": "Vérification en 2 étapes",
       "update-password": "Mettre à jour le mot de passe",
+      "update-password-dialog-subtitle": "Votre mot de passe sera mis à jour après confirmation de votre mot de passe actuel.",
+      "successfully-updated-password": "Mot de passe mis à jour avec succès",
       "current-password": "Mot de passe actuel",
       "new-password": "Nouveau mot de passe",
       "confirm-password": "Confirmer le mot de passe",
@@ -46,8 +56,25 @@
       "news-letter": "Lettre d'information"
     },
     "billing": {
-      "title": "Méthodes de payement",
-      "subtitle": "Gérez vos moyens de paiement"
+      "payment-title": "Méthodes de payement",
+      "payment-subtitle": "Gérez vos moyens de paiement",
+      "not-subscribed": "Vous n'êtes abonné à aucun plan",
+      "subscription-title": "Abonnement",
+      "subscription-subtitle": "Gérer votre abonnement",
+      "cancel-subscription": "Annuler l'abonnement",
+      "confirm": "Confirmer",
+      "stop-end": "Arrêter à la fin de la période de facturation",
+      "stop-immediately": "Arrêter immédiatement",
+      "next-billing": "Prochaine facturation",
+      "why-cancel": "Pouvez-vous nous dire pourquoi vous annulez? Cela nous aidera à améliorer nos services.",
+      "successfully-canceled": "Abonnement annulé avec succès",
+      "successfully-reactivated": "Abonnement réactivé avec succès",
+      "error-cancelling": "Une erreur s'est produite lors de l'annulation de votre abonnement. Veuillez réessayer plus tard.",
+      "error-reactivating": "Une erreur s'est produite lors de la réactivation de votre abonnement. Veuillez réessayer plus tard.",
+      "reactivate-subscription": "Réactiver l'abonnement",
+      "warning-subscription-end": "Votre abonnement se termine le",
+      "warning-suggestion-subscription-end": "Veuillez renouveler votre abonnement pour continuer à utiliser nos services.",
+      "no-billing-planned": "Aucun plan de facturation prévu"
     },
     "sidebar": {
       "general": "Général",

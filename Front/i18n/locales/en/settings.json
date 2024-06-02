@@ -1,4 +1,6 @@
 {
+    "title": "Settings",
+    "subtitle": " Manage your account settings and set your preferences.",
     "general": {
         "profile-title": "Profile",
         "profile-subtitle": "This information will be displayed publicly so be careful what you share.",
@@ -10,6 +12,9 @@
         "currency": "Currency",
         "update-username": "Update username",
         "update-email": "Update email",
+        "update-username-dialog-subtitle": "Your username will be updated after you confirm your password.",
+        "update-email-dialog-subtitle": "Your email will be updated after you confirm your password.",
+        "successfully-updated-username": "Username updated successfully",
         "update": "Update",
         "cancel": "Cancel",
         "username-taken": "Username already taken",
@@ -20,7 +25,10 @@
         "email-taken": "Email already taken",
         "check-email": "Please check this email address to apply changes",
         "update-language": "Update language",
-        "update-currency": "Update currency"
+        "successfully-updated-language": "Language updated successfully",
+        "update-currency": "Update currency",
+        "successfully-updated-currency": "Currency updated successfully",
+        "close": "Close"
     },
     "security": {
         "security": "Security",
@@ -28,6 +36,8 @@
         "phone": "Phone number",
         "2fa": "2-step verification",
         "update-password": "Update password",
+        "update-password-dialog-subtitle": "Your password will be updated after you confirm your current password.",
+        "successfully-updated-password": "Password updated successfully",
         "current-password": "Current password",
         "new-password": "New password",
         "confirm-password": "Confirm password",
@@ -46,9 +56,23 @@
         "newsletter": "Newsletter"
     },
     "billing": {
-        "title": "Payment methods",
-        "subtitle": "Manage your payment methods",
-        "not-subscribed": "You are not subscribed to any plan"
+        "payment-title": "Payment methods",
+        "payment-subtitle": "Manage your payment methods",
+        "not-subscribed": "You are not subscribed to any plan",
+        "subscription-title": "Subscription",
+        "subscription-subtitle": "Manage your subscription",
+        "cancel-subscription": "Cancel subscription",
+        "confirm": "Confirm",
+        "next-billing": "Next billing",
+        "why-cancel": "Could you tell us why you want to cancel? We're always looking to improve our service.",
+        "successfully-canceled": "Subscription canceled successfully",
+        "successfully-reactivated": "Subscription reactivated successfully",
+        "error-cancelling": "An error occurred while canceling your subscription. Please try again later.",
+        "error-reactivating": "An error occurred while reactivating your subscription. Please try again later.",
+        "reactivate-subscription": "Reactivate subscription",
+        "warning-subscription-end": "Your subscription will end on",
+        "warning-suggestion-subscription-end": "Please renew your subscription to continue using our services.",
+        "no-billing-planned": "No billing planned"
     },
     "sidebar": {
         "general": "General",

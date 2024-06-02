@@ -1,8 +1,16 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
-import Button from '@/components/Button';
+// import Button from '@/components/Button';
+import { Button } from '@/components/ui/button'
 import { useTranslation } from '@/i18n/client'
+import * as LabelPrimitive from "@radix-ui/react-label"
+import { cva, type VariantProps } from "class-variance-authority"
+import { cn } from "@/lib/utils"
+
+const labelVariants = cva(
+  "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+)
 
 interface SendEmailSuccessProps {
   title: string;
@@ -11,10 +19,11 @@ interface SendEmailSuccessProps {
   handleResend?: (e: React.FormEvent) => Promise<void>;
   redirectionLink?: string;
   redirectionText?: string;
+  isSending?: boolean;
 }
 
 
-const SendEmailSuccess: React.FC<SendEmailSuccessProps> = ({ title, subtitle, resendSubtitle, handleResend, redirectionLink='/login', redirectionText}) => {
+const SendEmailSuccess: React.FC<SendEmailSuccessProps> = ({ title, subtitle, resendSubtitle, handleResend, redirectionLink='/login', redirectionText, isSending=false}) => {
   const [resendClicked, setResendClicked] = useState(false);
   const { t } = useTranslation('forgot-password')
   const resolvedRedirectionText = redirectionText || t("back-to-login");
@@ -40,16 +49,16 @@ const SendEmailSuccess: React.FC<SendEmailSuccessProps> = ({ title, subtitle, re
             </svg>
             <h2 className="mt-2 text-3xl font-extrabold">{title}</h2>
             <p className="mt-2 text-sm text-gray-400">
-              {resendClicked ? resendSubtitle : subtitle}
+              {resendClicked && !isSending ? resendSubtitle : subtitle}
             </p>
           </div>
           {handleResend && (
-            <Button width="w-1/7" label={t("resend-email")} center={true} onClick={handleResendClick} />
+            <Button className='group relative flex mx-auto' onClick={handleResendClick} loading={isSending}>{t("resend-email")}</Button>
           )}
 
           <div className="mt-2 text-center">
             <p>
-              <a href= {redirectionLink} className="text-indigo-600 hover:underline">
+              <a href= {redirectionLink} className={cn(labelVariants())}>
                 {resolvedRedirectionText}
               </a>
             </p>

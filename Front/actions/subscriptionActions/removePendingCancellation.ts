@@ -9,12 +9,11 @@ import { GetUserDocument, GetUserQuery } from "@/src/gql/graphql";
 
 
 
-export async function CancelSubscription({ feedback }: {feedback?: string}) : Promise<void>{
+export async function RemovePendingCancellation() : Promise<void> {
     const { t } = await useTranslation('settings')
     const gqlClient = await setupGraphQLClient();
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, { apiVersion: '2023-10-16'});
 
-    // TODO: Validate feedback
     let user: GetUserQuery;
     try {
         const session = await getServerSession(authOptions)
@@ -28,15 +27,10 @@ export async function CancelSubscription({ feedback }: {feedback?: string}) : Pr
         else if (!user?.auth_user_by_pk?.subscribtion_plan) {
             throw Error(t("billing.not-subscribed"));
         } 
-    } catch (error: any) {
-        console.error(error);
-        throw Error(error.message);
-    }
-    try {
+
         await stripe.subscriptions.update(user.auth_user_by_pk.stripe_subscribtion_id!, {
-            cancel_at_period_end: true,
-        });
-        // TODO: Save feedback
+            cancel_at_period_end: false,
+        });        
     } catch (error) {
         console.error(error);
         throw Error('Internal Server Error');

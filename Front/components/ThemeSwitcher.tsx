@@ -24,7 +24,7 @@ export const ThemeSwitcher = () => {
     className={`rounded-md hover:scale-110 active:scale-100 duration-200`}
     onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
   >
-    {theme === "light" ? <MoonIcon className="h-5 w-5 text-white"/> : <SunIcon className="h-5 w-5 text-white"/>}
+    {theme === "light" ? <MoonIcon className="h-5 w-5"/> : <SunIcon className="h-5 w-5 text-white"/>}
   </button>
   );
 };

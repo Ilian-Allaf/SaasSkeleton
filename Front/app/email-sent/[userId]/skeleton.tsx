@@ -8,10 +8,8 @@ import { useTranslation } from '@/i18n/client'
 import { ResendSubscriptionEmail } from '@/actions/subscriptionActions/resendSubscriptionEmail';
 
 export default function Skeleton({email, userId}: {email: string | undefined, userId:string}) {
-  const { t, i18n } = useTranslation('email-sent')
-  console.log(i18n.language)
+  const { t } = useTranslation('email-sent')
   const {
-    data,
     mutate: server_resendSubscriptionEmail,
     isPending,
   } = useMutation({
@@ -28,6 +26,7 @@ export default function Skeleton({email, userId}: {email: string | undefined, us
         redirectionLink='/dashboard'
         redirectionText={t("back-to-dashboard")}
         handleResend={async () => server_resendSubscriptionEmail({userId: userId})}
+        isSending={isPending}
       />
   );
 }

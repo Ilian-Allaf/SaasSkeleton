@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import { useTranslation } from '@/i18n/client'
 import ToggleButton from '@/components/ToggleButton';
+import { Switch } from '@/components/ui/switch';
+import { Separator } from '@/components/ui/separator';
 
 
 function Notification() {
@@ -30,19 +32,19 @@ function NotificationFields() {
 
   return (
     <>
-      <h1 className="text-m font-medium">Notifications</h1>
+      <h3 className="text-lg font-medium">Notifications</h3>
       <p className="text-sm text-gray-600 mb-4"></p>
-      <div className="border-t border-gray-300" />
+      <Separator orientation='horizontal' className="col-start-1 col-end-4 mt-5 " />
       <div className="grid grid-rows gap-6 mt-6">
         {notificationItems.map((item, index) => (
           <div key={index} className="grid grid-cols-2 items-center ">
             <span className="col-span-1 text-sm font-medium">{item.label}</span>
 
             <div className="col-span-1 flex justify-end cursor-pointer">
-              <ToggleButton checked={item.checked} onClick={item.action}/>
+              <Switch checked={item.checked} onCheckedChange={item.action}/>
             </div>
             {index !== notificationItems.length - 1 && (
-              <div className="col-start-1 col-end-4 border-t border-gray-200 mt-5" />
+              <Separator orientation='horizontal' className="col-start-1 col-end-4 mt-5 " />
             )}
           </div>
         ))}

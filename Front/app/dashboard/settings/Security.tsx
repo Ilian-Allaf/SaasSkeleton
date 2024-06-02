@@ -1,15 +1,17 @@
 // components/ProfileForm.js
 import React, { useEffect, useState } from 'react';
-import { CheckCircleIcon, PencilIcon, XCircleIcon } from '@heroicons/react/outline';
-import Modal from '@/components/Modal';
-import InputField from '@/components/InputField';
+import { CheckCircleIcon, XCircleIcon, PencilIcon } from '@heroicons/react/outline';
 import InputError from '@/components/InputError';
 import { calculatePasswordProgress } from '@/utils/passwordCheck';
 import ProgressBar from '@/components/ProgressBar';
-import { CheckPassword } from '@/actions/userActions/checkPassword';
-import { SubmitPasswordUpdateRequest } from '@/actions/userActions/submitPasswordUpdateRequest';
+import { UpdatePassword } from '@/actions/userActions/updatePassword';
 import { useTranslation } from '@/i18n/client'
-import Button from '@/components/Button';
+import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { useMutation } from '@tanstack/react-query';
+import { toast } from 'sonner';
+import { Separator } from '@/components/ui/separator';
 
 
 function Security() {
@@ -25,17 +27,13 @@ function SecurityFields() {
   const { t } = useTranslation('settings')
 
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false)
-  const [updateTab, setUpdateTab] = useState(0);
   const [passwordModalTitle, setPasswordModalTitle] = useState("")
 
   const [currentPassword, setCurrentPassword] = useState("")
   const [showCurrentPassword, setShowCurrentPassword] = useState(false)
 
   const [newPassword, setNewPassword] = useState("")
-  const [showNewPassword, setShowNewPassword] = useState(false)
-
   const [confirmationPassword, setConfirmationPassword] = useState("")
-  const [showConfirmationPassword, setShowConfirmationPassword] = useState(false)
 
   const [error, setError] = useState({ field: "", message: "" })
 
@@ -48,7 +46,7 @@ function SecurityFields() {
   
   //#region Current password functions
   const handleCurrentPasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setError({ field: "", message: "" });
+    setError({ field: '', message: '' });
     setCurrentPassword(event.target.value);
   }
   
@@ -60,24 +58,18 @@ function SecurityFields() {
 
   //#region New password functions
   const handleNewPasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setError({ field: "", message: "" });
+    setError({ field: '', message: '' });
     setNewPassword(event.target.value);
   }
   
-  const handleToggleNewPasswordVisibility = () => {
-    setShowNewPassword(!showNewPassword);
-  }
   //#endregion
 
   //#region Confirmation password functions
   const handleConfirmationPasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setError({ field: "", message: "" });
+    setError({ field: '', message: '' });
     setConfirmationPassword(event.target.value);
   }
   
-  const handleToggleConfirmationPasswordVisibility = () => {
-    setShowConfirmationPassword(!showConfirmationPassword);
-  }
   //#endregion
   
   //#region hooks
@@ -86,129 +78,72 @@ function SecurityFields() {
       setCurrentPassword('');
       setNewPassword('');
       setConfirmationPassword('');
-      //wait for modal to close before resetting the tab
-      setTimeout(() => {
-        setUpdateTab(0);
-      }, 50);
     }
   }, [isPasswordModalOpen]);
   //#endregion
 
-  const handleCurrentPasswordSubmission = async () => {
-    const isPasswordMatching = await CheckPassword(currentPassword);
-    if (isPasswordMatching?.error) {
-      setError({ field: "currentPassword", message: isPasswordMatching.error });
-      return{
-          error: t("security.incorrect-password"),
-          field: "password",
-      };
+  const {
+    mutate: server_updatePassword,
+    isPending: isUpdatingPassword,
+  } = useMutation({
+    mutationFn: async ({currentPassword, newPassword, confirmationPassword}: {currentPassword: string, newPassword: string, confirmationPassword: string}) => {await UpdatePassword({currentPassword, newPassword, confirmationPassword})},
+    onSuccess: () => {
+      setIsPasswordModalOpen(false);
+      toast.success(t('security.successfully-updated-password'));
+    },
+    onError: (error: any) => {
+      const errorObj = JSON.parse(error.message);
+      if (errorObj.field === "currentPassword" || errorObj.field === "newPassword") {
+        setError({message: errorObj.message, field: errorObj.field});
+      }
+      console.error(error);
     }
-    setUpdateTab(1);
-  }
-
-  const handleNewPasswordSubmission = async() => {
-    if(newPassword !== confirmationPassword) {
-      setError({ field: "newPassword", message: t("security.password-dont-match") });
-      return;
-    }
-    const res = await SubmitPasswordUpdateRequest(currentPassword, newPassword);
-    if (res?.error) {
-      if (res.field == "newPassword" || res.field === "currentPassword") { setError({message: res.error, field: res.field}); }
-      return;
-    }
-    setPasswordModalTitle("")
-    setUpdateTab(2);
-  }
+  });
 
   return (
     <>
-      {/* Password Modal*/}
-      <Modal isOpen={isPasswordModalOpen} setIsOpen={setIsPasswordModalOpen} title={passwordModalTitle}>
-      {updateTab === 0 && 
-        <div className="mt-6">
-          <InputField 
-          value={currentPassword} 
-          height={1} 
-          isPassword={true} 
-          error={error.field === "currentPassword"} 
-          disableText={true} 
-          onTogglePasswordVisibility={handleToggleCurrentPasswordVisibility} 
-          passwordVisible={showCurrentPassword} 
-          label={t("security.current-password")} 
-          onChange={(event) => handleCurrentPasswordChange(event) }/>
-          {error.message && error.field === 'currentPassword' && (
-            <InputError error={error.message}/>
-          )}
-          <div className="flex justify-center space-x-4 mt-6">
-            <Button label={t("security.continue")} onClick={() => handleCurrentPasswordSubmission()}/>
-            <Button label={t("security.cancel")} onClick={() => setIsPasswordModalOpen(false)}/>
-          </div>
-        </div>
-      }
-
-      {updateTab === 1 && 
-        <div className="mt-6">
-          <InputField 
-          value={newPassword} 
-          height={1} 
-          isPassword={true} 
-          error={error.field === "newPassword"} 
-          // disableText={true} 
-          onTogglePasswordVisibility={handleToggleNewPasswordVisibility} 
-          passwordVisible={showNewPassword} 
-          label={t("security.new-password")}
-          onChange={(event) => handleNewPasswordChange(event) }/>
-
-          {newPassword && <ProgressBar progress={calculatePasswordProgress(newPassword)} />}
-          
-          <InputField 
-          value={confirmationPassword} 
-          height={1} 
-          isPassword={true} 
-          error={error.field === "newPassword"} 
-          disableText={true} 
-          onTogglePasswordVisibility={handleToggleConfirmationPasswordVisibility} 
-          passwordVisible={showConfirmationPassword} 
-          label={t("security.confirm-password")}
-          onChange={(event) => handleConfirmationPasswordChange(event) }/>
-          {error.message && error.field === 'newPassword' && (
-            <InputError error={error.message}/>
-          )}
-          <div className="flex justify-center space-x-4 mt-6">
-            <Button label={t("security.update")} onClick={() => handleNewPasswordSubmission()}/>
-            <Button label={t("security.cancel")} onClick={() => setIsPasswordModalOpen(false)}/>
-          </div>
-        </div>
-      }
-
-      {updateTab === 2 && 
-        <div className="mt-6">
-          <div className="flex flex-col items-center justify-center">
-            <CheckCircleIcon className="mx-auto h-10 w-10 text-green-500" />
-            <p className="text-center">{t("security.success")}</p>
-          </div>
-          <div className="flex justify-center space-x-4 mt-6">
-            <Button label={t("security.close")} onClick={() =>  setIsPasswordModalOpen(false)}/>
-          </div>
-        </div>
-        }
-      </Modal>
-      <h1 className="text-m font-medium mb-4">{t("security.security")}</h1>
-      <div className="border-t border-gray-300" />
-      <div className="grid grid-rows gap-6 mt-6">
-        {securityItems.map((item, index) => (
-          <div key={index} className="grid grid-cols-3 items-center ">
-            <span className="col-span-1 text-sm font-medium">{item.label}</span>
-            <div className="col-span-1 text-left text-sm">{item.value}</div>
-            <span className="col-span-1 flex justify-end cursor-pointer" onClick={() => item.updateSetting()}>
-              <PencilIcon className="h-5 w-5 hover:text-indigo-700" />
-            </span>
-            {index !== securityItems.length - 1 && (
-              <div className="col-start-1 col-end-4 border-t border-gray-200 mt-5" />
+      <Dialog open={isPasswordModalOpen} onOpenChange={() => {setIsPasswordModalOpen(false); setError({ message: '', field: '' });}}>
+        <DialogContent className="sm:max-w-[425px]">
+          <DialogHeader>
+            <DialogTitle>{passwordModalTitle}</DialogTitle>
+            <DialogDescription>{t('security.update-password-dialog-subtitle')}</DialogDescription>
+          </DialogHeader>
+          <div>
+            <Input value={currentPassword} type='password' label={t("security.current-password")} error={error.field === 'currentPassword'} onChange={(event) => handleCurrentPasswordChange(event)} />
+            {error.message && error.field === 'currentPassword' && (
+              <InputError error={error.message} />
             )}
           </div>
-        ))}
-      </div>
+          <Input value={newPassword} type='password' error={error.field === "newPassword"} label={t("security.new-password")} onChange={(event) => handleNewPasswordChange(event)} />
+          {newPassword && <ProgressBar progress={calculatePasswordProgress(newPassword)} />}
+          <div>
+            <Input value={confirmationPassword} type='password' error={error.field === "newPassword"} label={t("security.confirm-password")} onChange={(event) => handleConfirmationPasswordChange(event)} />
+            {error.message && error.field === 'newPassword' && (
+              <InputError error={error.message} />
+            )}
+          </div>
+          <DialogFooter>
+            <Button onClick={() => {server_updatePassword({currentPassword, newPassword, confirmationPassword})}} loading={isUpdatingPassword}>{t("general.confirm")}</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+      <h3 className="text-lg font-medium">{t("security.security")}</h3>
+      <Separator orientation='horizontal' className="col-start-1 col-end-4 mt-5 " />
+        <div className="grid grid-rows gap-6 mt-6">
+          {securityItems.map((item, index) => (
+            <div key={index} className="grid grid-cols-3 items-center ">
+              <span className="col-span-1 text-sm font-medium">{item.label}</span>
+              <div className="col-span-1 text-left text-sm">{item.value}</div>
+              <span className="col-span-1 flex justify-end cursor-pointer" onClick={() => item.updateSetting()}>
+                <PencilIcon className="h-5 w-5 hover:text-indigo-700" />
+              </span>
+              {index !== securityItems.length - 1 && (
+                <Separator orientation='horizontal' className="col-start-1 col-end-4 mt-5" />
+                // <Separator orientation='horizontal' className="col-start-1 col-end-4 mt-5 " />
+              )}
+            </div>
+          ))}
+        </div>
     </>
   );
 };

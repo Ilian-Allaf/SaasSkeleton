@@ -7,42 +7,29 @@ import { useSearchParams } from 'next/navigation'
 import Billing from './Billing';
 import Notifications from './Notifications';
 
-export interface SwitchLanguageProps {
-  switchLanguage: boolean;
-  setSwitchLanguage: (value: boolean) => void;
-}
 
-export default function Skeleton() {
+export default function Skeleton({ subscriptionPlan, price, cardLast4digits, cardBrand, nextBillingDate, canceledAtPeriodEnd }: { subscriptionPlan: string, price: string, cardLast4digits: string, cardBrand: string, nextBillingDate: string, canceledAtPeriodEnd: boolean }) {
   const searchParams = useSearchParams()
   const param = searchParams?.get('tab')
-  const [switchLanguage, setSwitchLanguage] = useState(false)
 
   if (param === 'security') {
     return (
-      <div className="grid grid-flow-col gap-7">
-        <div className="col-span-4"><Security /></div>
-      </div>
+      <Security />
     );
   }
   else if (param === 'notifications') {
     return (
-      <div className="grid grid-flow-col gap-7">
-        <div className="col-span-4"><Notifications /></div>
-      </div>
+      <Notifications />
     );
   }
   else if (param === 'billing') {
     return (
-      <div className="grid grid-flow-col gap-7">
-        <div className="col-span-4"><Billing/></div>
-      </div>
+      <Billing subscriptionPlan={subscriptionPlan} price={price} nextBillingDate={nextBillingDate} cardLast4digits={cardLast4digits} cardBrand={cardBrand} canceledAtPeriodEnd={canceledAtPeriodEnd}/>
     );
   }
   else {
     return (
-      <div className="grid grid-flow-col gap-7">
-        <div className="col-span-4"><General switchLanguage={switchLanguage} setSwitchLanguage={setSwitchLanguage}/></div>
-      </div>
+        <General/>
     );
   }
 }

@@ -1,18 +1,19 @@
 "use client"
 
 import React, { useState } from 'react';
-import { usePathname, useSearchParams  } from 'next/navigation'
+import { useSearchParams  } from 'next/navigation'
 import { useRouter } from 'next/navigation';
 import { useTranslation } from '@/i18n/client'
+import { cn } from '@/lib/utils';
+import Link from 'next/link';
+import { buttonVariants } from '@/components/ui/button';
 
-export interface SideBarProps {
+interface SideBarProps extends React.HTMLAttributes<HTMLElement> {
   items: { icon: JSX.Element, label: string }[];
 }
 
-function Sidebar({ items }: SideBarProps) {
+function Sidebar({ className, items, ...props }: SideBarProps) {
   const { t } = useTranslation('settings')
-  const switchThemeDuration = process.env.SWITCH_THEME_DURATION;
-  const pathname = usePathname()
   const router = useRouter()
   const searchParams = useSearchParams()
   const search = searchParams!.get('tab')
@@ -26,35 +27,31 @@ function Sidebar({ items }: SideBarProps) {
       return { ...item, selected: i === index };
     });
     setMenuItems(updatedMenuItems);
-    router.push(`${pathname}?tab=${menuItems[index].label}`);
   };
 
   return (
-    <div className="">
-      <ul className="text-sm font-medium">
+    <nav className={cn(
+      "overflow-x-scroll scrollbar-hide flex space-x-2 lg:flex-col lg:space-x-0 lg:space-y-1",
+      className,
+      {...props}
+    )}>
         {settingsItems.map((item, index) => (
-          <>
-            {item.selected ? 
-            <li
+          <Link 
               key={index}
-              className={`flex items-center rounded-md p-3 hover:rounded hover:bg-gray-100 cursor-pointer dark:hover:bg-gray-800 hover:text-indigo-700 bg-gray-200 dark:bg-gray-800 text-indigo-700 dark:hover:text-gray-300 dark:text-gray-300 ${switchThemeDuration}`}
+              href={`/dashboard/settings?tab=${item.label}`}
               onClick={() => handleItemClick(index)}
-              >
+              className={cn(
+                buttonVariants({ variant: "ghost" }),
+                item.selected
+                  ? "bg-muted hover:bg-muted"
+                  : "hover:bg-secondary/90 hover:underline",
+                "justify-start"
+              )}
+            >
               <span className="mr-2">{item.icon}</span> {item.name}
-            </li>
-            :
-            <li
-              key={index}
-              className={`flex items-center rounded-md p-3 hover:rounded hover:bg-gray-100 cursor-pointer dark:hover:bg-gray-800 hover:text-indigo-700 dark:hover:text-gray-300`}
-              onClick={() => handleItemClick(index)}
-              >
-              <span className="mr-2">{item.icon}</span> {item.name}
-              </li>
-              }
-          </>
+            </Link>
         ))}
-      </ul>
-    </div>
+    </nav>
   );
 }
 

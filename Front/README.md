@@ -39,7 +39,7 @@ openssl rsa -pubout -in private_key.pem -out public_key.pem
 ## Step 2: Format
 
 Formate both keys by CTRL F
-```
+```mp
 Find: \n
 Replace: \\n
 ```
@@ -47,3 +47,9 @@ There should be `\n` at the end of the line
 
 Then you can replace environement variable value.
 
+
+## Stripe CLI:
+
+```sh
+stripe listen --forward-to localhost:3000/webhooks
+```

@@ -12,22 +12,24 @@ import { useTranslation } from '@/i18n/index'
 
 export async function UpdateUsername(newUsername: string) {
     const { t } = await useTranslation('settings')
-
-    try {
         const session = await getServerSession(authOptions)
         const gqlClient = await setupGraphQLClient();
 
         if(!session){
-            return {
-                error: 'Not Authenticated',
+            console.error('Not Authenticated');
+            const obj = {
+                message: 'Not Authenticated',
             };
+            throw Error(JSON.stringify(obj));
         };
 
         //Validate newUsername
         if(!validator.isAlphanumeric(newUsername) || newUsername.length > 20) {
-            return {
-                error: 'Special characters are not allowed in username',
+            const obj = {
+                message: 'Special characters are not allowed in username',
+                field: 'username'
             };
+            throw Error(JSON.stringify(obj));
         }
         
         const existingUser = await prisma.user.findFirst({
@@ -37,26 +39,19 @@ export async function UpdateUsername(newUsername: string) {
           });
 
         if (existingUser) {
-            return {
-                error: t('general.username-taken'),
+            const obj = {
+                message: t('general.username-taken'),
+                field: 'username'
             };
+            throw Error(JSON.stringify(obj));
         }
-        console.error(session)
         const result = await gqlClient!.request( UpdateUsernameDocument, { id: session?.user.id, username: newUsername} );
-        console.error('result', result);
-
         if (result.update_auth_user_by_pk?.username === null) {
             console.error('Error updating username with gql');
-            return {
-                error: 'Internal Server Error',
+            const obj = {
+                message: 'Internal Server Error',
             };
+            throw Error(JSON.stringify(obj));
         }
         revalidatePath('/dashboard/settings');
-    }
-
-    catch (error) {
-        return {
-            error: 'Internal Server Error',
-        };
-    };
 }

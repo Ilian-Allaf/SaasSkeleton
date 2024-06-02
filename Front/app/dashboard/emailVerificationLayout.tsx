@@ -2,6 +2,7 @@
 import { useSession } from 'next-auth/react';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { Loader2 } from "lucide-react"
 
 const EmailVerificationLayout = ({ children }) => {
   const { data: session, status } = useSession();
@@ -16,7 +17,7 @@ const EmailVerificationLayout = ({ children }) => {
   if (status === 'loading') {
     return (
       <div className="flex items-center justify-center h-screen">
-        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500 border-solid"></div>
+        <Loader2 className="h-10 w-10 animate-spin" />
       </div>
     );
   }

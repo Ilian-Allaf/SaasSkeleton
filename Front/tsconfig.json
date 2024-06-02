@@ -11,6 +11,7 @@
       "@/actions/*":["actions/*"],
       "@/i18n/*":["i18n/*"],
       "@/middlewares/*":["middlewares/*"],
+      "@/store/*":["store/*"],
     },
     "lib": [
       "dom",
