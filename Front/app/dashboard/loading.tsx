@@ -1,14 +1,15 @@
-import { Skeleton } from "@/components/ui/skeleton"
+import { Skeleton } from '@/components/ui/skeleton';
 
 export default function Loading() {
-    // You can add any UI inside Loading, including a Skeleton.
-    return (
-        <div className="flex items-center space-x-4">
-          <Skeleton className="h-12 w-12 rounded-full" />
-          <div className="space-y-2">
-            <Skeleton className="h-4 w-[250px]" />
-            <Skeleton className="h-4 w-[200px]" />
-          </div>
-        </div>
-    );
+  return (
+    <div className="space-y-5">
+      <div className="space-y-2">
+        <Skeleton className="h-5 col-start-1 col-end-4" />
+        <Skeleton className="h-4 col-start-1 col-end-4" />
+      </div>
+      <div>
+        <Skeleton className="h-20 col-start-1 col-end-4" />
+      </div>
+    </div>
+  );
 }
