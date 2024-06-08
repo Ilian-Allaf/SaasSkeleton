@@ -1,12 +1,11 @@
-import NextAuth from "next-auth";
-import { NextAuthOptions } from 'next-auth';
-import CredentialsProvider from "next-auth/providers/credentials"
-import { prisma } from "@/lib/prismaClient"
-import bcrypt from "bcrypt";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { User } from 'prisma/prisma-client'
-import validator from "validator";
-import GoogleProvider from "next-auth/providers/google";
+import { prisma } from '@/lib/prismaClient';
+import { PrismaAdapter } from '@next-auth/prisma-adapter';
+import bcrypt from 'bcrypt';
+import NextAuth, { NextAuthOptions } from 'next-auth';
+import CredentialsProvider from 'next-auth/providers/credentials';
+import GoogleProvider from 'next-auth/providers/google';
+import { User } from 'prisma/prisma-client';
+import validator from 'validator';
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
@@ -17,41 +16,43 @@ export const authOptions: NextAuthOptions = {
       allowDangerousEmailAccountLinking: true,
       authorization: {
         params: {
-          prompt: "consent",
-          access_type: "offline",
-          response_type: "code"
-        }
-      }
+          prompt: 'consent',
+          access_type: 'offline',
+          response_type: 'code',
+        },
+      },
     }),
-    
+
     CredentialsProvider({
-      name: "Credentials",
+      name: 'Credentials',
       credentials: {
-        email: { label: "Email", type: "text"},
-        password: { label: "Password", type: "password" }
+        email: { label: 'Email', type: 'text' },
+        password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
-
-        if(credentials?.email && !validator.isEmail(credentials?.email)){
-          return null
+        if (credentials?.email && !validator.isEmail(credentials?.email)) {
+          return null;
         }
         const user = await prisma.user.findUnique({
           where: {
-            email: credentials?.email
-          }
+            email: credentials?.email,
+          },
         });
 
-        await prisma.$disconnect()
+        await prisma.$disconnect();
 
-        if(!user){
-          return null
+        if (!user) {
+          return null;
         }
-        if (!credentials?.password || !await bcrypt.compare(credentials?.password, user.password!)) {
+        if (
+          !credentials?.password ||
+          !(await bcrypt.compare(credentials?.password, user.password!))
+        ) {
           return null;
         }
         return user;
-      }
-    })
+      },
+    }),
   ],
 
   pages: {
@@ -84,32 +85,30 @@ export const authOptions: NextAuthOptions = {
           active: profile?.email_verified,
           image: profile?.image,
         },
-        update:{},
+        update: {},
       });
-      if(user){
+      if (user) {
         await prisma.user.update({
           where: { email: user.email! },
           data: {
-            active: true
+            active: true,
           },
-      });
+        });
       }
-      await prisma.$disconnect()
+      await prisma.$disconnect();
       return true;
     },
     async redirect({ url, baseUrl }) {
-      return baseUrl
+      return baseUrl;
     },
-    async jwt({ token, trigger, user, session  }) {
-      if (trigger === 'update' ) {
-        if(session?.username){
-          token.username = session.username
-        }
-        else if(session?.email){
-          token.email = session.email
-        }
-        else if(session?.name){
-          token.name = session.name
+    async jwt({ token, trigger, user, session }) {
+      if (trigger === 'update') {
+        if (session?.username) {
+          token.username = session.username;
+        } else if (session?.email) {
+          token.email = session.email;
+        } else if (session?.name) {
+          token.name = session.name;
         }
       }
 
@@ -121,14 +120,14 @@ export const authOptions: NextAuthOptions = {
           username: (user as User).username,
           role: (user as User).role,
           active: (user as User).active,
-          subscriptionPlan: (user as User).subscribtionPlan
+          subscriptionPlan: (user as User).subscribtionPlan,
         };
       }
       return token;
     },
 
     async session({ session, token }) {
-      return{
+      return {
         ...session,
         user: {
           ...session.user,
@@ -136,13 +135,11 @@ export const authOptions: NextAuthOptions = {
           username: token.username,
           id: token.id,
           active: token.active,
-          subscriptionPlan: token.subscriptionPlan
-        }
+          subscriptionPlan: token.subscriptionPlan,
+        },
       };
     },
   },
 };
 
-
-
-export default NextAuth(authOptions)
+export default NextAuth(authOptions);

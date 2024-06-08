@@ -1,10 +1,11 @@
 {
-    "welcome": "Welcome",
-    "email": "Email",
-    "password": "Password",
-    "continue": "Continue",
-    "forgot-password": "Forgot password?",
-    "no-account": "Don't have an account?",
-    "sign-up": "Sign up",
-    "continue-with-google": "Continue with Google"
-  }
+  "welcome": "Welcome",
+  "email": "Email",
+  "password": "Password",
+  "continue": "Continue",
+  "forgot-password": "Forgot password?",
+  "no-account": "Don't have an account?",
+  "sign-up": "Sign up",
+  "continue-with-google": "Continue with Google",
+  "or-continue-with": "Or continue with"
+}

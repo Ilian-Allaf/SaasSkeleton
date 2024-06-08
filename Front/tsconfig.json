@@ -11,7 +11,8 @@
       "@/actions/*": ["actions/*"],
       "@/i18n/*": ["i18n/*"],
       "@/middlewares/*": ["middlewares/*"],
-      "@/store/*": ["store/*"]
+      "@/store/*": ["store/*"],
+      "@/*": ["./*"]
     },
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
