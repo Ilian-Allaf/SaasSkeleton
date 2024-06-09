@@ -9,9 +9,7 @@ interface SettingsLayoutProps {
   children: React.ReactNode;
 }
 
-export default async function SettingsLayout({
-  children,
-}: SettingsLayoutProps) {
+export default function SettingsLayout({ children }: SettingsLayoutProps) {
   const { t } = useTranslation('settings');
   const { data: session } = useSession();
 
