@@ -5,13 +5,13 @@ import { cn } from '@/lib/utils';
 
 import { buttonVariants } from '@/components/ui/button';
 import { useTranslation } from '@/i18n/index';
-import { LogingForm } from './loginForm';
+import { LoginForm } from './loginForm';
 export const metadata: Metadata = {
-  title: 'Authentication',
-  description: 'Authentication forms built using the components.',
+  title: 'Login',
+  description: 'Login page',
 };
 
-export default async function AuthenticationPage() {
+export default async function Page() {
   const { t } = await useTranslation('login');
   const texts = {
     email: t('email'),
@@ -24,7 +24,7 @@ export default async function AuthenticationPage() {
     <>
       <div className="container relative flex flex-col items-center justify-center h-screen md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
         <Link
-          href="/signup"
+          href="/signup2"
           className={cn(
             buttonVariants({ variant: 'ghost' }),
             'absolute right-4 top-4 md:right-8 md:top-8'
@@ -57,7 +57,7 @@ export default async function AuthenticationPage() {
                 {t('welcome')}
               </h1>
             </div>
-            <LogingForm texts={texts} />
+            <LoginForm texts={texts} />
             {/* <p className="px-8 text-center text-sm text-muted-foreground">
               By clicking continue, you agree to our{' '}
               <Link

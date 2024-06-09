@@ -4,7 +4,6 @@ import InputError from '@/components/InputError';
 import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { useTranslation } from '@/i18n/client';
 import { cn } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
@@ -22,10 +21,8 @@ interface LoginFormProps extends React.HTMLAttributes<HTMLDivElement> {
   texts: any;
 }
 
-export function LogingForm({ className, texts, ...props }: LoginFormProps) {
+export function LoginForm({ className, texts, ...props }: LoginFormProps) {
   const [isGoogleButtonLoading, setIsGoogleButtonLoading] = useState(false);
-  const [error, setError] = useState('');
-  const { t } = useTranslation('login');
   const router = useRouter();
 
   const handleGoogleSignIn = async () => {
@@ -66,7 +63,10 @@ export function LogingForm({ className, texts, ...props }: LoginFormProps) {
       router.push('/dashboard');
     },
     onError: () => {
-      setError('Wrong email or password');
+      form.setError('root', {
+        type: 'custom',
+        message: 'Wrong email or password',
+      });
     },
   });
 
@@ -84,6 +84,10 @@ export function LogingForm({ className, texts, ...props }: LoginFormProps) {
     mode: 'onChange',
   });
 
+  React.useEffect(() => {
+    form.setError('root', {});
+  }, [form.watch('email'), form.watch('password')]);
+
   return (
     <div className={cn('grid gap-6', className)} {...props}>
       <Form {...form}>
@@ -100,7 +104,7 @@ export function LogingForm({ className, texts, ...props }: LoginFormProps) {
               <FormItem>
                 <FormControl>
                   <Input
-                    error={error ? true : false}
+                    error={!!form.formState.errors.root?.message}
                     label="Email"
                     id="email"
                     placeholder=""
@@ -122,7 +126,7 @@ export function LogingForm({ className, texts, ...props }: LoginFormProps) {
               <FormItem>
                 <FormControl>
                   <Input
-                    error={error ? true : false}
+                    error={!!form.formState.errors.root?.message}
                     label="Password"
                     id="password"
                     type="password"
@@ -136,7 +140,9 @@ export function LogingForm({ className, texts, ...props }: LoginFormProps) {
               </FormItem>
             )}
           />
-          {error && <InputError error={error} />}
+          {form.formState.errors.root?.message && (
+            <InputError error={form.formState.errors.root?.message} />
+          )}
           <Link
             key="forgot-password"
             href="/forgot-password"
