@@ -46,7 +46,7 @@ model User {
   subscribtionPlan      String?     @map("subscribtion_plan")
   stripeCustomerId      String?     @unique @map("stripe_customer_id")
   stripeSubscribtionId  String?     @unique @map("stripe_subscribtion_id")
-  username              String
+  username              String?     @unique
   password              String?
   email                 String      @unique
   updatedEmail          String?     @map("updated_email")

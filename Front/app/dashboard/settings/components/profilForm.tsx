@@ -42,7 +42,7 @@ export default function ProfileFields() {
   const items = [
     {
       label: t('general.username'),
-      value: session?.user.username,
+      value: session?.user.username || '-',
       updateSetting: () => {
         setModalTitle(t('general.update-username'));
         setModalSubTitle(t('general.update-username-dialog-subtitle'));

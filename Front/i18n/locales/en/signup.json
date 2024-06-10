@@ -1,10 +1,17 @@
 {
-    "title": "Create your account",
-    "email": "Email",
-    "username": "Username",
-    "password": "Password",
-    "password-requirements": "The password must have at least 8 characters, 1 number, 1 uppercase letter and 1 special character.",
-    "continue": "Continue",
-    "already-an-account": "Already have an account?",
-    "login": "Log in"
+  "title": "Create your account",
+  "email": "Email",
+  "username": "Username",
+  "password": "Password",
+  "confirm-password": "Confirm password",
+  "password-requirements": "The password must have at least 8 characters, 1 number, 1 uppercase letter and 1 special character.",
+  "permissive-password-requirements": "The password must have at least 8 characters.",
+  "continue": "Continue",
+  "already-an-account": "Already have an account?",
+  "login": "Log in",
+  "orContinueWith": "Or continue with",
+  "email-taken": "This email is already taken",
+  "invalid-email": "Invalid email",
+  "weak-password": "Password is too weak",
+  "passwords-dont-match": "Passwords don't match"
 }

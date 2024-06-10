@@ -1,16 +1,18 @@
-"use client"
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import "../../globals.css";
+'use client';
+import InputError from '@/components/InputError';
 import InputField from '@/components/InputField';
 import ProgressBar from '@/components/ProgressBar';
-import { calculatePasswordProgress, isPasswordValid } from '@/utils/passwordCheck';
-import InputError from '@/components/InputError';
-import { useTranslation } from '@/i18n/client'
+import { useTranslation } from '@/i18n/client';
+import {
+  calculatePasswordProgress,
+  isPasswordValid,
+} from '@/utils/passwordCheck';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import '../../globals.css';
 
-
-function ResetPassword({token}: {token:string}) {
-  const { t } = useTranslation('reset-password')
+function ResetPassword({ token }: { token: string }) {
+  const { t } = useTranslation('reset-password');
   const router = useRouter();
   const [error, setError] = useState('');
   //Password
@@ -21,7 +23,7 @@ function ResetPassword({token}: {token:string}) {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [confirmPasswordError, setConfirmPasswordError] = useState(false);
-  
+
   //Password
   const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newPassword = event.target.value.slice(0, 50);
@@ -34,11 +36,13 @@ function ResetPassword({token}: {token:string}) {
   };
 
   //Confirm Password
-  const handleConfirmPasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleConfirmPasswordChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const newPassword = event.target.value.slice(0, 50);
     setConfirmPassword(newPassword);
     setConfirmPasswordError(false);
-    setError('')
+    setError('');
   };
 
   const handleToggleConfirmPasswordVisibility = () => {
@@ -49,12 +53,12 @@ function ResetPassword({token}: {token:string}) {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      setConfirmPasswordError(true)
-      setError(t("passwords-dont-match"));
+      setConfirmPasswordError(true);
+      setError(t('passwords-dont-match'));
       return;
     }
-    
-    if (!isPasswordValid(password)) {
+
+    if (!isPasswordValid({ password: password })) {
       setPasswordError(true);
       return;
     }
@@ -77,37 +81,43 @@ function ResetPassword({token}: {token:string}) {
     } catch (error) {
       console.error('An error occurred reset password', error);
     }
-  };  
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="max-w-md w-full space-y-8">
         <div>
-          <h2 className="text-center text-3xl font-extrabold">{t('choose-new-password')}</h2>
+          <h2 className="text-center text-3xl font-extrabold">
+            {t('choose-new-password')}
+          </h2>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <InputField
-              isPassword={true}
-              label={t('password')}
-              value={password}
-              onChange={handlePasswordChange}
-              error={passwordError}
-              passwordVisible={showPassword}
-              onTogglePasswordVisibility={handleTogglePasswordVisibility}
+            isPassword={true}
+            label={t('password')}
+            value={password}
+            onChange={handlePasswordChange}
+            error={passwordError}
+            passwordVisible={showPassword}
+            onTogglePasswordVisibility={handleTogglePasswordVisibility}
           />
-          {password && <ProgressBar progress={calculatePasswordProgress(password)} />}
+          {password && (
+            <ProgressBar
+              progress={calculatePasswordProgress({ password: password })}
+            />
+          )}
           <div>
             <InputField
-                isPassword={true}
-                label={t('confirm-password')}
-                value={confirmPassword}
-                onChange={handleConfirmPasswordChange}
-                error={confirmPasswordError}
-                passwordVisible={showConfirmPassword}
-                onTogglePasswordVisibility={handleToggleConfirmPasswordVisibility}
-                disableText={true}
+              isPassword={true}
+              label={t('confirm-password')}
+              value={confirmPassword}
+              onChange={handleConfirmPasswordChange}
+              error={confirmPasswordError}
+              passwordVisible={showConfirmPassword}
+              onTogglePasswordVisibility={handleToggleConfirmPasswordVisibility}
+              disableText={true}
             />
-            {error && (<InputError error={error}/>)}
+            {error && <InputError error={error} />}
           </div>
           <div>
             <button
@@ -117,10 +127,10 @@ function ResetPassword({token}: {token:string}) {
               {t('continue')}
             </button>
           </div>
-          <div className="mt-2 text-center">  
+          <div className="mt-2 text-center">
             <p>
               <a href="/login" className="text-indigo-600 hover:underline">
-              {t('back-to-login')}
+                {t('back-to-login')}
               </a>
             </p>
           </div>
@@ -131,6 +141,6 @@ function ResetPassword({token}: {token:string}) {
 }
 
 // Export the wrapped component
-export default function Skeleton({token}: {token: string}) {
-    return <ResetPassword token={token}/>;
+export default function Skeleton({ token }: { token: string }) {
+  return <ResetPassword token={token} />;
 }

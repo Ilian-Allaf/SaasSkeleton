@@ -163,7 +163,9 @@ export default function SecurityForm() {
             onChange={(event) => handleNewPasswordChange(event)}
           />
           {newPassword && (
-            <ProgressBar progress={calculatePasswordProgress(newPassword)} />
+            <ProgressBar
+              progress={calculatePasswordProgress({ password: newPassword })}
+            />
           )}
           <div>
             <Input

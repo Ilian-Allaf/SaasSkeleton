@@ -5,7 +5,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 -- CreateTable
 CREATE TABLE "auth"."user" (
     "id" UUID DEFAULT gen_random_uuid() NOT NULL,
-    "username" TEXT NOT NULL,
+    "username" TEXT UNIQUE,
     "password" TEXT,
     "email" TEXT NOT NULL,
     "updated_email" TEXT,
