@@ -77,7 +77,7 @@ export async function ResetPassword({
   try {
     await prisma.$transaction([updateUser, updateToken]);
     await prisma.$disconnect();
-    await sendSuccessResetPasswordEmail({ email: user.email, userId: user.id });
+    await sendSuccessResetPasswordEmail({ email: user.email });
   } catch (err) {
     console.error(err);
     throw new Error('Internal server error');

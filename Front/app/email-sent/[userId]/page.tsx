@@ -2,7 +2,7 @@ import { useTranslation } from '@/i18n/index';
 import { prisma } from '@/lib/prismaClient';
 import Skeleton from './skeleton';
 
-export default async function page({ params }) {
+export default async function Page({ params }) {
   const { t } = await useTranslation('email-sent');
 
   const userId = params.userId;
