@@ -1,18 +1,31 @@
-import Skeleton from './skeleton'
+import { useTranslation } from '@/i18n/index';
 import { prisma } from '@/lib/prismaClient';
+import Skeleton from './skeleton';
 
-export default async function page({params}) {
+export default async function page({ params }) {
+  const { t } = await useTranslation('email-sent');
+
   const userId = params.userId;
   const user = await prisma.user.findUnique({
     where: {
-      id: userId
-    }
+      id: userId,
+    },
   });
 
- // TODO: Fixe hydration issue
+  const texts = {
+    checkEmail: t('check-email'),
+    resendEmail: t('resend-email'),
+    sentEmailMessage1: t('sent-email-message-1'),
+    sentEmailMessage2: t('sent-email-message-2'),
+    resentEmailMessage1: t('resent-email-message-1'),
+    resentEmailMessage2: t('resent-email-message-2'),
+    backToDashboard: t('back-to-dashboard'),
+    errorResendingEmail: t('error-resending-email'),
+  };
+  // TODO: Fixe hydration issue
   return (
     <>
-      <Skeleton email={user?.email} userId={userId}/>
-    </> 
-  )
+      <Skeleton email={user?.email} userId={userId} texts={texts} />
+    </>
+  );
 }

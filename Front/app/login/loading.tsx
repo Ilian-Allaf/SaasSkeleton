@@ -1,32 +1,12 @@
 import { buttonVariants } from '@/components/ui/button';
+import { Skeleton } from '@/components/ui/skeleton';
 import { useTranslation } from '@/i18n/index';
-import { prisma } from '@/lib/prismaClient';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
-import Skeleton from './skeleton';
 
-export default async function Page({ params }: { params: { token: string } }) {
-  const token = params.token;
-  const { t } = await useTranslation('reset-password');
-  const texts = {
-    password: t('password'),
-    confirmPassword: t('confirm-password'),
-    continue: t('continue'),
-    passwordsDontMatch: t('passwords-dont-match'),
-    passwordRequirements: t('permissive-password-requirements'),
-    passwordResetSuccess: t('password-reset-success'),
-  };
+export default async function Loading() {
+  const { t } = await useTranslation('signup');
 
-  const passwordResetToken = await prisma.passwordResetToken.findUnique({
-    where: {
-      token,
-      createdAt: { gt: new Date(Date.now() - 1000 * 60 * 60 * 4) }, // 4h
-      resetAt: null,
-    },
-  });
-  // if (!passwordResetToken) {
-  //   return <>This link is not valid, please try to reset your password again</>;
-  // }
   return (
     <>
       <div className="container relative flex flex-col items-center justify-center h-screen md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
@@ -61,27 +41,15 @@ export default async function Page({ params }: { params: { token: string } }) {
           <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
             <div className="flex flex-col space-y-2 text-center">
               <h1 className="text-2xl font-semibold tracking-tight">
-                {t('choose-new-password')}
+                <Skeleton className="h-8 col-start-2 col-end-2" />
               </h1>
             </div>
-            <Skeleton texts={texts} token={token} />
-            {/* <p className="px-8 text-center text-sm text-muted-foreground">
-              By clicking continue, you agree to our{' '}
-              <Link
-                href="/terms"
-                className="underline underline-offset-4 hover:text-primary"
-              >
-                Terms of Service
-              </Link>{' '}
-              and{' '}
-              <Link
-                href="/privacy"
-                className="underline underline-offset-4 hover:text-primary"
-              >
-                Privacy Policy
-              </Link>
-              .
-            </p> */}
+            <div className="space-y-3">
+              <Skeleton className="h-5 col-start-1 col-end-4" />
+              <Skeleton className="h-10 col-start-1 col-end-4" />
+              <Skeleton className="h-8 col-start-1 col-end-4" />
+              <Skeleton className="h-10 col-start-1 col-end-4" />
+            </div>
           </div>
         </div>
       </div>

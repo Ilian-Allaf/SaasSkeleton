@@ -1,45 +1,42 @@
-'use client'
+'use client';
 
 // Import the necessary modules
-import React from 'react';
-import "../globals.css";
+import { ResendVerificationEmail } from '@/actions/resendVerificationEmail';
 import SendEmailSuccess from '@/components/SendEmailSuccess';
-import { useSession} from 'next-auth/react'
+import { useMutation } from '@tanstack/react-query';
+import { toast } from 'sonner';
+import '../globals.css';
 
 // Define the EmailVerificationSuccess component
-function EmailSentSuccess() {
-  const { data: session } = useSession();
+export default function Skeleton({
+  texts,
+  email,
+}: {
+  texts: any;
+  email: string;
+}) {
+  const { mutate: server_resendVerificationEmail, isPending: isResending } =
+    useMutation({
+      mutationFn: async () => {
+        await ResendVerificationEmail();
+      },
+      onSuccess: () => {},
+      onError: () => {
+        toast.error(texts.errorResendingEmail);
+      },
+    });
 
-  const handleResend = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      const response = await fetch('/api/resend-verification-email', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-
-      if (response.ok) {
-      }
-    } catch (error) {
-      console.error('An error occurred when signed up', error);
-    }
-  };
   return (
     <>
       <SendEmailSuccess
-        title={'Check your emails !'}
-        subtitle={`Please check the email address ${ session?.user.email } for instructions to verify your email.`}
-        resendSubtitle={`We've resent the email to ${session?.user.email} with further instructions to verify your email.`}
-        handleResend={(e: React.FormEvent) => handleResend(e)}
-        />
+        title={texts.checkEmail}
+        subtitle={`${texts.sentEmailMessage1} ${email} ${texts.sentEmailMessage2}`}
+        resendSubtitle={`${texts.resentEmailMessage1} ${email} ${texts.resentEmailMessage2}`}
+        resendButtonText={texts.resendEmail}
+        isSending={isResending}
+        handleResend={async () => server_resendVerificationEmail()}
+        redirectionText={texts.backToDashboard}
+      />
     </>
   );
-}
-
-
-// Export the component
-export default function Skeleton() {
-  return <EmailSentSuccess />;
 }

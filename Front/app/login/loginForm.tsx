@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
 import { Loader2 } from 'lucide-react';
 import { signIn } from 'next-auth/react';
@@ -14,7 +13,6 @@ import { useRouter } from 'next/navigation';
 import * as React from 'react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { z } from 'zod';
 import '../globals.css';
 
 interface LoginFormProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -70,13 +68,7 @@ export function LoginForm({ className, texts, ...props }: LoginFormProps) {
     },
   });
 
-  const formSchema = z.object({
-    email: z.string().min(0).max(100),
-    password: z.string().min(0).max(50),
-  });
-
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm({
     defaultValues: {
       email: '',
       password: '',

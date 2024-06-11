@@ -1,146 +1,156 @@
 'use client';
 import InputError from '@/components/InputError';
-import InputField from '@/components/InputField';
-import ProgressBar from '@/components/ProgressBar';
-import { useTranslation } from '@/i18n/client';
-import {
-  calculatePasswordProgress,
-  isPasswordValid,
-} from '@/utils/passwordCheck';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
 import '../../globals.css';
 
-function ResetPassword({ token }: { token: string }) {
-  const { t } = useTranslation('reset-password');
-  const router = useRouter();
-  const [error, setError] = useState('');
-  //Password
-  const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
-  const [passwordError, setPasswordError] = useState(false);
-  //Confirm Password
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [confirmPasswordError, setConfirmPasswordError] = useState(false);
+import { ResetPassword } from '@/actions/resetPassword';
+import { Button } from '@/components/ui/button';
+import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { cn } from '@/lib/utils';
+import { useMutation } from '@tanstack/react-query';
+import * as React from 'react';
+import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 
-  //Password
-  const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newPassword = event.target.value.slice(0, 50);
-    setPassword(newPassword);
-    setPasswordError(false);
-  };
-
-  const handleTogglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
-
-  //Confirm Password
-  const handleConfirmPasswordChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const newPassword = event.target.value.slice(0, 50);
-    setConfirmPassword(newPassword);
-    setConfirmPasswordError(false);
-    setError('');
-  };
-
-  const handleToggleConfirmPasswordVisibility = () => {
-    setShowConfirmPassword(!showConfirmPassword);
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (password !== confirmPassword) {
-      setConfirmPasswordError(true);
-      setError(t('passwords-dont-match'));
-      return;
-    }
-
-    if (!isPasswordValid({ password: password })) {
-      setPasswordError(true);
-      return;
-    }
-
-    try {
-      const response = await fetch('/api/password-reset', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ token: token, password: password }),
-      });
-
-      if (response.ok) {
-        router.push('/login');
-      } else {
-        const data = await response.json();
-        setError(data.message);
-      }
-    } catch (error) {
-      console.error('An error occurred reset password', error);
-    }
-  };
-
-  return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="max-w-md w-full space-y-8">
-        <div>
-          <h2 className="text-center text-3xl font-extrabold">
-            {t('choose-new-password')}
-          </h2>
-        </div>
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-          <InputField
-            isPassword={true}
-            label={t('password')}
-            value={password}
-            onChange={handlePasswordChange}
-            error={passwordError}
-            passwordVisible={showPassword}
-            onTogglePasswordVisibility={handleTogglePasswordVisibility}
-          />
-          {password && (
-            <ProgressBar
-              progress={calculatePasswordProgress({ password: password })}
-            />
-          )}
-          <div>
-            <InputField
-              isPassword={true}
-              label={t('confirm-password')}
-              value={confirmPassword}
-              onChange={handleConfirmPasswordChange}
-              error={confirmPasswordError}
-              passwordVisible={showConfirmPassword}
-              onTogglePasswordVisibility={handleToggleConfirmPasswordVisibility}
-              disableText={true}
-            />
-            {error && <InputError error={error} />}
-          </div>
-          <div>
-            <button
-              type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            >
-              {t('continue')}
-            </button>
-          </div>
-          <div className="mt-2 text-center">
-            <p>
-              <a href="/login" className="text-indigo-600 hover:underline">
-                {t('back-to-login')}
-              </a>
-            </p>
-          </div>
-        </form>
-      </div>
-    </div>
-  );
+interface SkeletonProps extends React.HTMLAttributes<HTMLDivElement> {
+  texts: any;
+  token: string;
 }
 
-// Export the wrapped component
-export default function Skeleton({ token }: { token: string }) {
-  return <ResetPassword token={token} />;
+export default function Skeleton({
+  className,
+  texts,
+  token,
+  ...props
+}: SkeletonProps) {
+  const router = useRouter();
+
+  const handleSubmit = async ({
+    password,
+    confirmPassword,
+  }: {
+    password: string;
+    confirmPassword: string;
+  }) => {
+    if (password !== confirmPassword) {
+      form.setError('confirmPassword', {
+        type: 'custom',
+        message: texts.passwordsDontMatch,
+      });
+      return;
+    }
+    return server_resetPassword({
+      password: password,
+    });
+  };
+
+  const { mutate: server_resetPassword, isPending: isResetingPassword } =
+    useMutation({
+      mutationFn: async ({ password }: { password: string }) => {
+        await ResetPassword({
+          token: token,
+          password: password,
+        });
+      },
+      onSuccess: () => {
+        router.push('/login');
+        toast.success(texts.passwordResetSuccess);
+      },
+      onError: (error: any) => {
+        const errorObj = JSON.parse(error.message);
+        form.setError(errorObj.field, {
+          type: 'custom',
+          message: errorObj.message,
+        });
+      },
+    });
+
+  const form = useForm({
+    defaultValues: {
+      email: '',
+      password: '',
+      confirmPassword: '',
+    },
+    mode: 'onChange',
+  });
+
+  React.useEffect(() => {
+    form.setError('password', {});
+    form.setError('confirmPassword', {});
+  }, [form.watch('password'), form.watch('confirmPassword')]);
+
+  return (
+    <div className={cn('grid gap-6', className)} {...props}>
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit((data) => handleSubmit(data))}
+          className="space-y-4"
+        >
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input
+                    required={true}
+                    error={
+                      !!form.formState.errors.password?.message ||
+                      !!form.formState.errors.confirmPassword?.message
+                    }
+                    label={texts.password}
+                    id="password"
+                    type="password"
+                    autoCapitalize="none"
+                    autoComplete="password"
+                    autoCorrect="off"
+                    disabled={isResetingPassword}
+                    {...field}
+                  />
+                </FormControl>
+              </FormItem>
+            )}
+          />
+          {form.formState.errors.password?.message && (
+            <InputError error={form.formState.errors.password?.message} />
+          )}
+          <FormField
+            control={form.control}
+            name="confirmPassword"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input
+                    required={true}
+                    error={!!form.formState.errors.confirmPassword?.message}
+                    label={texts.confirmPassword}
+                    id="confirmPassword"
+                    type="password"
+                    autoCapitalize="none"
+                    autoComplete="password"
+                    autoCorrect="off"
+                    disabled={isResetingPassword}
+                    {...field}
+                  />
+                </FormControl>
+              </FormItem>
+            )}
+          />
+          {form.formState.errors.confirmPassword?.message && (
+            <InputError
+              error={form.formState.errors.confirmPassword?.message}
+            />
+          )}
+          <Label className="text-xs text-primary-foreground">
+            {texts.passwordRequirements}
+          </Label>
+          <Button type="submit" className="w-full" loading={isResetingPassword}>
+            {texts.continue}
+          </Button>
+        </form>
+      </Form>
+    </div>
+  );
 }
