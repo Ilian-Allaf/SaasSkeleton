@@ -195,6 +195,11 @@ export default function SecurityForm() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+      <h3 className="text-lg font-medium">{t('security.title')}</h3>
+      <Separator
+        orientation="horizontal"
+        className="col-start-1 col-end-4 mt-5 "
+      />
       <div className="grid grid-rows gap-6 mt-6">
         {securityItems.map((item, index) => (
           <div key={index} className="grid grid-cols-3 items-center ">
