@@ -8,6 +8,7 @@ import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { useTranslation } from '@/i18n/client';
 import { useMutation } from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -17,6 +18,7 @@ export default function Skeleton({ texts }: { texts: any }) {
   const { t } = useTranslation('forgot-password');
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState('');
+  const router = useRouter();
 
   const { mutate: server_forgotPassword, isPending } = useMutation({
     mutationFn: async ({ email }: { email: string }) =>
@@ -32,6 +34,7 @@ export default function Skeleton({ texts }: { texts: any }) {
           type: 'custom',
           message: errorObj.message,
         });
+        console.log(form.formState.errors.email?.message);
       } else {
         toast.error(texts.errorResendingEmail);
       }
@@ -45,9 +48,11 @@ export default function Skeleton({ texts }: { texts: any }) {
     mode: 'onChange',
   });
 
+  const emailWatch = form.watch('email');
+
   React.useEffect(() => {
     form.setError('email', {});
-  }, [form.watch('email')]);
+  }, [emailWatch]);
 
   return (
     <>
@@ -108,6 +113,16 @@ export default function Skeleton({ texts }: { texts: any }) {
                   </Button>
                 </form>
               </Form>
+              <div className="mt-2 text-center">
+                <p>
+                  <a
+                    onClick={() => router.push('/login')}
+                    className="hover:underline cursor-pointer"
+                  >
+                    {texts.backToLogin}
+                  </a>
+                </p>
+              </div>
               {/* <form
                 className="mt-8 space-y-6"
                 onSubmit={() => server_forgotPassword({ email: email })}
