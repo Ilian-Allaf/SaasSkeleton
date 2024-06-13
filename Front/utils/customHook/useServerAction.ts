@@ -31,15 +31,18 @@ function useServerAction<TArgs extends any[], TResult>({
     setLoading(true);
     try {
       const result = await action(...args);
-      if (result.error && onError) {
-        onError(result.error);
-      } else if (onSuccess) {
+      if (result.error) {
+        console.error(result.error.message);
+        if (onError) {
+          onError(result.error);
+        }
+      } else if (!result.error && onSuccess) {
         onSuccess(result);
       }
     } catch (err: any) {
       console.error(err);
       if (onError) {
-        onError({ message: 'Internal Server Error' });
+        onError({ message: 'Internal Server Error', field: null });
       }
     } finally {
       setLoading(false);
