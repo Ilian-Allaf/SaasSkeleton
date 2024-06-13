@@ -20,8 +20,8 @@ import {
 import { Textarea } from '@/components/ui/textarea';
 import { useTranslation } from '@/i18n/client';
 import { useSubscriptionStore } from '@/store/store';
+import useServerAction from '@/utils/customHook/useServerAction';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useMutation } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -35,13 +35,12 @@ export default function CancelSubscriptionButton() {
     useState(false);
 
   const {
-    mutate: server_cancelSubscription,
+    callableName: server_cancelSubscription,
     isPending: isCancellingSubscription,
-  } = useMutation({
-    mutationFn: async ({ feedback }: { feedback?: string }) => {
-      await CancelSubscription({ feedback });
-    },
-    onSuccess: () => {
+  } = useServerAction({
+    action: async ({ feedback }: { feedback?: string }) =>
+      CancelSubscription({ feedback }),
+    onSuccess: (data) => {
       setIsCancelSubscriptionDialogOpen(false);
       setWillSubscriptionEnd(true);
       toast.success(t('billing.successfully-canceled'));
@@ -52,10 +51,10 @@ export default function CancelSubscriptionButton() {
   });
 
   const {
-    mutate: server_removePendingCancellation,
+    callableName: server_removePendingCancellation,
     isPending: isRemovingPendingCancellation,
-  } = useMutation({
-    mutationFn: async () => {
+  } = useServerAction({
+    action: async () => {
       await RemovePendingCancellation();
     },
     onSuccess: () => {

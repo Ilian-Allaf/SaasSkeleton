@@ -15,9 +15,9 @@ import {
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { useTranslation } from '@/i18n/client';
+import useServerAction from '@/utils/customHook/useServerAction';
 import { calculatePasswordProgress } from '@/utils/passwordCheck';
 import { PencilIcon } from '@heroicons/react/outline';
-import { useMutation } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
@@ -94,9 +94,9 @@ export default function SecurityForm() {
   }, [isPasswordModalOpen]);
   //#endregion
 
-  const { mutate: server_updatePassword, isPending: isUpdatingPassword } =
-    useMutation({
-      mutationFn: async ({
+  const { callableName: server_updatePassword, isPending: isUpdatingPassword } =
+    useServerAction({
+      action: async ({
         currentPassword,
         newPassword,
         confirmationPassword,
@@ -116,12 +116,11 @@ export default function SecurityForm() {
         toast.success(t('security.successfully-updated-password'));
       },
       onError: (error: any) => {
-        const errorObj = JSON.parse(error.message);
         if (
-          errorObj.field === 'currentPassword' ||
-          errorObj.field === 'newPassword'
+          error.field === 'currentPassword' ||
+          error.field === 'newPassword'
         ) {
-          setError({ message: errorObj.message, field: errorObj.field });
+          setError({ message: error.message, field: error.field });
         }
         console.error(error);
       },

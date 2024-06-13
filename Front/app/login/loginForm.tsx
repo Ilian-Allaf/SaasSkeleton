@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
-import { useMutation } from '@tanstack/react-query';
+import useServerAction from '@/utils/customHook/useServerAction';
 import { Loader2 } from 'lucide-react';
 import { signIn } from 'next-auth/react';
 import Link from 'next/link';
@@ -44,29 +44,30 @@ export function LoginForm({ className, texts, ...props }: LoginFormProps) {
     return result;
   };
 
-  const { mutate: server_signin, isPending: isSigningIn } = useMutation({
-    mutationFn: async ({
-      email,
-      password,
-    }: {
-      email: string;
-      password: string;
-    }) => {
-      await signInMutationFn({
+  const { callableName: server_signin, isPending: isSigningIn } =
+    useServerAction({
+      action: async ({
         email,
         password,
-      });
-    },
-    onSuccess: () => {
-      router.push('/dashboard');
-    },
-    onError: () => {
-      form.setError('root', {
-        type: 'custom',
-        message: 'Wrong email or password',
-      });
-    },
-  });
+      }: {
+        email: string;
+        password: string;
+      }) => {
+        await signInMutationFn({
+          email,
+          password,
+        });
+      },
+      onSuccess: () => {
+        router.push('/dashboard');
+      },
+      onError: () => {
+        form.setError('root', {
+          type: 'custom',
+          message: 'Wrong email or password',
+        });
+      },
+    });
 
   const form = useForm({
     defaultValues: {

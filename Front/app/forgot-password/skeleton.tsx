@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { useTranslation } from '@/i18n/client';
-import { useMutation } from '@tanstack/react-query';
+import useServerAction from '@/utils/customHook/useServerAction';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -20,21 +20,19 @@ export default function Skeleton({ texts }: { texts: any }) {
   const [status, setStatus] = useState('');
   const router = useRouter();
 
-  const { mutate: server_forgotPassword, isPending } = useMutation({
-    mutationFn: async ({ email }: { email: string }) =>
+  const { callableName: server_forgotPassword, isPending } = useServerAction({
+    action: async ({ email }: { email: string }) =>
       await ForgotPassword({ email: email }),
     onSuccess: ({ email }: { email: string }) => {
       setEmail(email);
       setStatus('200');
     },
-    onError: (error) => {
-      const errorObj = JSON.parse(error.message);
-      if (errorObj.field === 'email') {
+    onError: (error: any) => {
+      if (error.field === 'email') {
         form.setError('email', {
           type: 'custom',
-          message: errorObj.message,
+          message: error.message,
         });
-        console.log(form.formState.errors.email?.message);
       } else {
         toast.error(texts.errorResendingEmail);
       }

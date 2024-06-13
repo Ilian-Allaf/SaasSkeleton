@@ -15,9 +15,9 @@ import {
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { useTranslation } from '@/i18n/client';
+import useServerAction from '@/utils/customHook/useServerAction';
 import { PencilIcon } from '@heroicons/react/outline';
 import { MailIcon } from '@heroicons/react/solid';
-import { useMutation } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
 import React, { useEffect, useState } from 'react';
 import { toast } from 'sonner';
@@ -78,9 +78,9 @@ export default function ProfileFields() {
   //#endregion
 
   //#region Username functions
-  const { mutate: server_updateUsername, isPending: isUpdatingUsername } =
-    useMutation({
-      mutationFn: async (username: string) => {
+  const { callableName: server_updateUsername, isPending: isUpdatingUsername } =
+    useServerAction({
+      action: async (username: string) => {
         await UpdateUsername(username);
       },
       onSuccess: () => {
@@ -90,11 +90,9 @@ export default function ProfileFields() {
         toast.success(t('general.successfully-updated-username'));
       },
       onError: (error: any) => {
-        const errorObj = JSON.parse(error.message);
-        if (errorObj.field === 'username') {
-          setError({ message: errorObj.message, field: 'username' });
+        if (error.field === 'username') {
+          setError({ message: error.message, field: 'username' });
         }
-        console.error(error);
       },
     });
 
@@ -112,10 +110,10 @@ export default function ProfileFields() {
 
   //#region Update Email functions
   const {
-    mutate: server_updateEmailRequest,
+    callableName: server_updateEmailRequest,
     isPending: isSubmitingEmailUpdateRequest,
-  } = useMutation({
-    mutationFn: async ({
+  } = useServerAction({
+    action: async ({
       email,
       password,
     }: {
@@ -131,12 +129,9 @@ export default function ProfileFields() {
     },
     onError: (error: any) => {
       setSuccessSubmittingEmailUpdateRequest(false);
-      const errorObj = JSON.parse(error.message);
-      if (errorObj.field === 'email' || errorObj.field === 'password') {
-        console.error(errorObj);
-        setError({ message: errorObj.message, field: errorObj.field });
+      if (error.field === 'email' || error.field === 'password') {
+        setError({ message: error.message, field: error.field });
       }
-      console.error(error);
     },
   });
 

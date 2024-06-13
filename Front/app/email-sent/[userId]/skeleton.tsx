@@ -3,7 +3,7 @@
 import { ResendSubscriptionEmail } from '@/actions/subscriptionActions/resendSubscriptionEmail';
 import SendEmailSuccess from '@/components/SendEmailSuccess';
 import { useTranslation } from '@/i18n/client';
-import { useMutation } from '@tanstack/react-query';
+import useServerAction from '@/utils/customHook/useServerAction';
 import '../../globals.css';
 
 export default function Skeleton({
@@ -16,11 +16,12 @@ export default function Skeleton({
   texts: any;
 }) {
   const { t } = useTranslation('email-sent');
-  const { mutate: server_resendSubscriptionEmail, isPending } = useMutation({
-    mutationFn: ResendSubscriptionEmail,
-    // onSuccess: () => {},
-    // onError: (error) => {}
-  });
+  const { callableName: server_resendSubscriptionEmail, isPending } =
+    useServerAction({
+      action: ResendSubscriptionEmail,
+      // onSuccess: () => {},
+      // onError: (error) => {}
+    });
 
   return (
     <SendEmailSuccess

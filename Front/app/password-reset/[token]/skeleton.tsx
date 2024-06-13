@@ -9,7 +9,7 @@ import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
-import { useMutation } from '@tanstack/react-query';
+import useServerAction from '@/utils/customHook/useServerAction';
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -46,9 +46,9 @@ export default function Skeleton({
     });
   };
 
-  const { mutate: server_resetPassword, isPending: isResetingPassword } =
-    useMutation({
-      mutationFn: async ({ password }: { password: string }) => {
+  const { callableName: server_resetPassword, isPending: isResetingPassword } =
+    useServerAction({
+      action: async ({ password }: { password: string }) => {
         await ResetPassword({
           token: token,
           password: password,
@@ -59,10 +59,9 @@ export default function Skeleton({
         toast.success(texts.passwordResetSuccess);
       },
       onError: (error: any) => {
-        const errorObj = JSON.parse(error.message);
-        form.setError(errorObj.field, {
+        form.setError(error.field, {
           type: 'custom',
-          message: errorObj.message,
+          message: error.message,
         });
       },
     });

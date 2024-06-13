@@ -7,7 +7,7 @@ import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
-import { useMutation } from '@tanstack/react-query';
+import useServerAction from '@/utils/customHook/useServerAction';
 import { Loader2 } from 'lucide-react';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
@@ -54,9 +54,9 @@ export function SignupForm({ className, texts, ...props }: SignupFormProps) {
     });
   };
 
-  const { mutate: server_registerUser, isPending: isRegisteringUser } =
-    useMutation({
-      mutationFn: async ({
+  const { callableName: server_registerUser, isPending: isRegisteringUser } =
+    useServerAction({
+      action: async ({
         email,
         password,
       }: {
@@ -80,10 +80,9 @@ export function SignupForm({ className, texts, ...props }: SignupFormProps) {
         router.push('/verify-email');
       },
       onError: (error: any) => {
-        const errorObj = JSON.parse(error.message);
-        form.setError(errorObj.field, {
+        form.setError(error.field, {
           type: 'custom',
-          message: errorObj.message,
+          message: error.message,
         });
       },
     });

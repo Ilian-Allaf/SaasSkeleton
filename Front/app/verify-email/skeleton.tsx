@@ -3,7 +3,7 @@
 // Import the necessary modules
 import { ResendVerificationEmail } from '@/actions/resendVerificationEmail';
 import SendEmailSuccess from '@/components/SendEmailSuccess';
-import { useMutation } from '@tanstack/react-query';
+import useServerAction from '@/utils/customHook/useServerAction';
 import { toast } from 'sonner';
 import '../globals.css';
 
@@ -15,16 +15,18 @@ export default function Skeleton({
   texts: any;
   email: string;
 }) {
-  const { mutate: server_resendVerificationEmail, isPending: isResending } =
-    useMutation({
-      mutationFn: async () => {
-        await ResendVerificationEmail();
-      },
-      onSuccess: () => {},
-      onError: () => {
-        toast.error(texts.errorResendingEmail);
-      },
-    });
+  const {
+    callableName: server_resendVerificationEmail,
+    isPending: isResending,
+  } = useServerAction({
+    action: async () => {
+      await ResendVerificationEmail();
+    },
+    onSuccess: () => {},
+    onError: () => {
+      toast.error(texts.errorResendingEmail);
+    },
+  });
 
   return (
     <>
