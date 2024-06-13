@@ -15,15 +15,15 @@ export async function RegisterUser({
   email: string;
   password: string;
 }) {
-  console.log('email', email);
   const { t } = await useTranslation('signup');
   const domain = email.split('@')[1];
 
   if (!password || !email) {
     return {
-      success: false,
-      message: 'You need to fill every field',
-      field: 'all',
+      error: {
+        message: 'You need to fill every field',
+        field: null,
+      },
     };
   }
 
@@ -34,11 +34,12 @@ export async function RegisterUser({
   });
 
   if (existingUser && existingUser.email === email) {
-    const obj = {
-      message: t('email-taken'),
-      field: 'email',
+    return {
+      error: {
+        message: t('email-taken'),
+        field: 'email',
+      },
     };
-    throw Error(JSON.stringify(obj));
   }
 
   if (
@@ -47,19 +48,21 @@ export async function RegisterUser({
     email.includes('+') ||
     email.length > 100
   ) {
-    const obj = {
-      message: t('invalid-email'),
-      field: 'email',
+    return {
+      error: {
+        message: t('invalid-email'),
+        field: 'email',
+      },
     };
-    throw Error(JSON.stringify(obj));
   }
 
   if (!isPasswordValid({ password: password })) {
-    const obj = {
-      message: t('weak-password'),
-      field: 'password',
+    return {
+      error: {
+        message: t('weak-password'),
+        field: 'password',
+      },
     };
-    throw Error(JSON.stringify(obj));
   }
 
   const hashedPassword = await bcrypt.hash(password, 10);
@@ -71,20 +74,19 @@ export async function RegisterUser({
     },
   });
 
-  try {
-    await sendVerificationEmail({
-      email: createdUser.email,
-      userId: createdUser.id,
-    });
-  } catch (error) {
-    console.log('Error sending verification email', error);
-    console.error('Error sending verification email', error);
-    throw Error('Internal Server Error');
-  }
+  await sendVerificationEmail({
+    email: createdUser.email,
+    userId: createdUser.id,
+  });
 
   if (!createdUser.id) {
-    console.log('Error creating user');
-    throw Error('Internal Server Error');
+    console.error('User not created');
+    return {
+      error: {
+        message: 'Internal Server Error',
+        field: null,
+      },
+    };
   }
 
   await prisma.$disconnect();

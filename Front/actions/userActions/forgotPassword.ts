@@ -5,15 +5,20 @@ import { prisma } from '@/lib/prismaClient';
 import { sendResetPasswordEmail } from '@/utils/sendEmail';
 import validator from 'validator';
 
-export async function ForgotPassword({ email }: { email: string }) {
+export async function ForgotPassword({
+  email,
+}: {
+  email: string;
+}): Promise<any> {
   const { t } = await useTranslation('forgot-password');
 
   if (!validator.isEmail(email)) {
-    const obj = {
-      message: t('invalid-email'),
-      field: 'email',
+    return {
+      error: {
+        message: t('invalid-email'),
+        field: 'email',
+      },
     };
-    throw new Error(JSON.stringify(obj));
   }
 
   const user = await prisma.user.findUnique({
@@ -21,19 +26,15 @@ export async function ForgotPassword({ email }: { email: string }) {
   });
 
   if (!user) {
-    const obj = {
-      message: t('email-not-registered'),
-      field: 'email',
+    return {
+      error: {
+        message: t('email-not-registered'),
+        field: 'email',
+      },
     };
-    throw new Error(JSON.stringify(obj));
   }
-  try {
-    await sendResetPasswordEmail({ email: email, userId: user.id });
-  } catch (error) {
-    console.error(error);
-    throw new Error('Internal Server Error');
-  }
-  return { email };
-
+  await sendResetPasswordEmail({ email: email, userId: user.id });
   await prisma.$disconnect();
+
+  return { email };
 }

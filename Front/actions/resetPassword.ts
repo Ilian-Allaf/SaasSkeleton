@@ -25,17 +25,22 @@ export async function ResetPassword({
   });
 
   if (!passwordResetToken) {
-    throw new Error(
-      'Invalid token reset request. Please try resetting your password again.'
-    );
+    return {
+      error: {
+        message:
+          'Invalid token reset request. Please try resetting your password again.',
+        field: null,
+      },
+    };
   }
 
   if (!isPasswordValid({ password })) {
-    const obj = {
-      field: 'confirmPassword',
-      message: t('permissive-password-requirements'),
+    return {
+      error: {
+        field: 'confirmPassword',
+        message: t('permissive-password-requirements'),
+      },
     };
-    throw new Error(JSON.stringify(obj));
   }
 
   // Find the user associated with the token
@@ -46,11 +51,12 @@ export async function ResetPassword({
   });
 
   if (!user || (await bcrypt.compare(password, user.password!))) {
-    const obj = {
-      field: 'password',
-      message: t('same-as-old-password'),
+    return {
+      error: {
+        field: 'password',
+        message: t('same-as-old-password'),
+      },
     };
-    throw new Error(JSON.stringify(obj));
   }
 
   // Hash the new password
@@ -74,12 +80,7 @@ export async function ResetPassword({
     },
   });
 
-  try {
-    await prisma.$transaction([updateUser, updateToken]);
-    await prisma.$disconnect();
-    await sendSuccessResetPasswordEmail({ email: user.email });
-  } catch (err) {
-    console.error(err);
-    throw new Error('Internal server error');
-  }
+  await prisma.$transaction([updateUser, updateToken]);
+  await prisma.$disconnect();
+  await sendSuccessResetPasswordEmail({ email: user.email });
 }

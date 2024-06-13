@@ -9,16 +9,18 @@ export async function ResendVerificationEmail() {
   const session = await getServerSession(authOptions);
 
   if (!session) {
-    throw new Error('Not authenticated');
+    return {
+      error: {
+        message: 'Not authenticated',
+        field: null,
+      },
+    };
   }
-  try {
-    await sendVerificationEmail({
-      email: session.user.email,
-      userId: session.user.id,
-    });
-  } catch (error) {
-    console.error(error);
-    throw new Error('Internal Server Error');
-  }
+
+  await sendVerificationEmail({
+    email: session.user.email,
+    userId: session.user.id,
+  });
+
   await prisma.$disconnect();
 }

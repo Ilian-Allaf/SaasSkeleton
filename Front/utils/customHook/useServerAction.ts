@@ -2,21 +2,21 @@ import { useState } from 'react';
 
 type Action<TArgs extends any[], TResult> = (
   ...args: TArgs
-) => Promise<TResult>;
+) => Promise<TResult | void>;
 
 interface CustomError {
   message: string;
   field?: string | null;
 }
 
-// Le type TResult doit inclure la structure pour contenir des données ou des erreurs
+// The type TResult must include the structure to contain data or errors
 type ResultWithError<TResult> = TResult & {
   error?: CustomError;
 };
 
 interface ServerActionOptions<TArgs extends any[], TResult> {
   action: Action<TArgs, ResultWithError<TResult>>;
-  onSuccess?: (result: ResultWithError<TResult>) => void;
+  onSuccess?: (result: ResultWithError<TResult> | void) => void;
   onError?: (error: CustomError) => void;
 }
 
@@ -24,26 +24,22 @@ function useServerAction<TArgs extends any[], TResult>({
   action,
   onSuccess,
   onError,
-}: ServerActionOptions<TArgs, ResultWithError<TResult>>) {
+}: ServerActionOptions<TArgs, TResult>) {
   const [loading, setLoading] = useState(false);
 
   const callableName = async (...args: TArgs) => {
     setLoading(true);
     try {
       const result = await action(...args);
-      if (result.error) {
+      if (result && 'error' in result && result.error) {
         console.error(result.error.message);
-        if (onError) {
-          onError(result.error);
-        }
-      } else if (!result.error && onSuccess) {
-        onSuccess(result);
+        onError?.(result.error); // Safe call only if error exists
+      } else {
+        onSuccess?.(result);
       }
     } catch (err: any) {
       console.error(err);
-      if (onError) {
-        onError({ message: 'Internal Server Error', field: null });
-      }
+      onError?.({ message: 'Internal Server Error', field: null });
     } finally {
       setLoading(false);
     }

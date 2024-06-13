@@ -16,50 +16,46 @@ export async function UpdatePassword({
   currentPassword: string;
   newPassword: string;
   confirmationPassword: string;
-}): Promise<void> {
+}): Promise<any> {
   const { t } = await useTranslation('settings');
 
   const session = await getServerSession(authOptions);
   if (!session) {
-    console.error('Not Authenticated');
-    const obj = {
-      message: 'Not Authenticated',
+    return {
+      error: {
+        message: 'Not Authenticated',
+        field: null,
+      },
     };
-    throw Error(JSON.stringify(obj));
   }
 
-  let isPasswordMatching: Boolean;
-  try {
-    isPasswordMatching = await CheckPassword(currentPassword);
-  } catch (error) {
-    const obj = {
-      message: 'Internal Server Error',
-    };
-    throw Error(JSON.stringify(obj));
-  }
+  const isPasswordMatching = await CheckPassword(currentPassword);
 
   if (!isPasswordMatching) {
-    const obj = {
-      message: t('security.incorrect-password'),
-      field: 'currentPassword',
+    return {
+      error: {
+        message: t('security.incorrect-password'),
+        field: 'currentPassword',
+      },
     };
-    throw Error(JSON.stringify(obj));
   }
 
   if (!isPasswordValid({ password: newPassword })) {
-    const obj = {
-      message: t('security.invalid-password'),
-      field: 'newPassword',
+    return {
+      error: {
+        message: t('security.invalid-password'),
+        field: 'newPassword',
+      },
     };
-    throw Error(JSON.stringify(obj));
   }
 
   if (confirmationPassword !== newPassword) {
-    const obj = {
-      message: t('security.password-dont-match'),
-      field: 'newPassword',
+    return {
+      error: {
+        message: t('security.password-dont-match'),
+        field: 'newPassword',
+      },
     };
-    throw Error(JSON.stringify(obj));
   }
   const hashedPassword = await bcrypt.hash(newPassword, 10);
   const updatedUser = await prisma.user.update({
@@ -73,9 +69,11 @@ export async function UpdatePassword({
 
   if (!updatedUser) {
     console.error('Error updating user password');
-    const obj = {
-      message: 'Internal Server Error',
+    return {
+      error: {
+        message: 'Internal Server Error',
+        field: null,
+      },
     };
-    throw Error(JSON.stringify(obj));
   }
 }
