@@ -96,7 +96,7 @@ export default function SecurityForm() {
 
   const { callableName: server_updatePassword, isPending: isUpdatingPassword } =
     useServerAction({
-      action: async ({
+      action: ({
         currentPassword,
         newPassword,
         confirmationPassword,
@@ -104,13 +104,12 @@ export default function SecurityForm() {
         currentPassword: string;
         newPassword: string;
         confirmationPassword: string;
-      }) => {
-        await UpdatePassword({
+      }) =>
+        UpdatePassword({
           currentPassword,
           newPassword,
           confirmationPassword,
-        });
-      },
+        }),
       onSuccess: () => {
         setIsPasswordModalOpen(false);
         toast.success(t('security.successfully-updated-password'));

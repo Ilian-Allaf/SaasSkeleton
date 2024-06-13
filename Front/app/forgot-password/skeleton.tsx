@@ -21,8 +21,7 @@ export default function Skeleton({ texts }: { texts: any }) {
   const router = useRouter();
 
   const { callableName: server_forgotPassword, isPending } = useServerAction({
-    action: async ({ email }: { email: string }) =>
-      await ForgotPassword({ email: email }),
+    action: ({ email }: { email: string }) => ForgotPassword({ email: email }),
     onSuccess: ({ email }: { email: string }) => {
       setEmail(email);
       setStatus('200');

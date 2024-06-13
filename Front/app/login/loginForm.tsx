@@ -31,7 +31,7 @@ export function LoginForm({ className, texts, ...props }: LoginFormProps) {
     }, 3000);
   };
 
-  const signInMutationFn = async ({ email, password }) => {
+  const signInMutationFn = async ({ email, password }): Promise<any> => {
     const result = await signIn('credentials', {
       redirect: false,
       email,
@@ -46,18 +46,11 @@ export function LoginForm({ className, texts, ...props }: LoginFormProps) {
 
   const { callableName: server_signin, isPending: isSigningIn } =
     useServerAction({
-      action: async ({
-        email,
-        password,
-      }: {
-        email: string;
-        password: string;
-      }) => {
-        await signInMutationFn({
+      action: ({ email, password }: { email: string; password: string }) =>
+        signInMutationFn({
           email,
           password,
-        });
-      },
+        }),
       onSuccess: () => {
         router.push('/dashboard');
       },

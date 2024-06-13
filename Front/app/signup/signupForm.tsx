@@ -48,7 +48,7 @@ export function SignupForm({ className, texts, ...props }: SignupFormProps) {
       });
       return;
     }
-    return server_registerUser({
+    server_registerUser({
       email: email,
       password: password,
     });
@@ -56,21 +56,12 @@ export function SignupForm({ className, texts, ...props }: SignupFormProps) {
 
   const { callableName: server_registerUser, isPending: isRegisteringUser } =
     useServerAction({
-      action: async ({
-        email,
-        password,
-      }: {
-        email: string;
-        password: string;
-      }): Promise<{ email: string; password: string }> => {
-        await RegisterUser({
+      action: ({ email, password }: { email: string; password: string }) =>
+        RegisterUser({
           email,
           password,
-        });
-        return { email, password };
-      },
+        }),
       onSuccess: ({ email, password }: { email: string; password: string }) => {
-        console.log('here');
         signIn('credentials', {
           redirect: false,
           email,

@@ -38,7 +38,7 @@ export default function CancelSubscriptionButton() {
     callableName: server_cancelSubscription,
     isPending: isCancellingSubscription,
   } = useServerAction({
-    action: async ({ feedback }: { feedback?: string }) =>
+    action: ({ feedback }: { feedback?: string }) =>
       CancelSubscription({ feedback }),
     onSuccess: (data) => {
       setIsCancelSubscriptionDialogOpen(false);
@@ -54,9 +54,7 @@ export default function CancelSubscriptionButton() {
     callableName: server_removePendingCancellation,
     isPending: isRemovingPendingCancellation,
   } = useServerAction({
-    action: async () => {
-      await RemovePendingCancellation();
-    },
+    action: () => RemovePendingCancellation(),
     onSuccess: () => {
       setIsCancelSubscriptionDialogOpen(false);
       setWillSubscriptionEnd(false);

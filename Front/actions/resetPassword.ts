@@ -13,7 +13,7 @@ export async function ResetPassword({
 }: {
   token: string;
   password: string;
-}) {
+}): Promise<any> {
   const { t } = await useTranslation('reset-password');
   // Find the password reset token
   const passwordResetToken = await prisma.passwordResetToken.findUnique({

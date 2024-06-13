@@ -48,12 +48,11 @@ export default function Skeleton({
 
   const { callableName: server_resetPassword, isPending: isResetingPassword } =
     useServerAction({
-      action: async ({ password }: { password: string }) => {
-        await ResetPassword({
+      action: ({ password }: { password: string }) =>
+        ResetPassword({
           token: token,
           password: password,
-        });
-      },
+        }),
       onSuccess: () => {
         router.push('/login');
         toast.success(texts.passwordResetSuccess);

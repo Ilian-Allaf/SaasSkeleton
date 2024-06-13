@@ -19,9 +19,7 @@ export default function Skeleton({
     callableName: server_resendVerificationEmail,
     isPending: isResending,
   } = useServerAction({
-    action: async () => {
-      await ResendVerificationEmail();
-    },
+    action: () => ResendVerificationEmail(),
     onSuccess: () => {},
     onError: () => {
       toast.error(texts.errorResendingEmail);

@@ -2,7 +2,6 @@
 
 import { ResendSubscriptionEmail } from '@/actions/subscriptionActions/resendSubscriptionEmail';
 import SendEmailSuccess from '@/components/SendEmailSuccess';
-import { useTranslation } from '@/i18n/client';
 import useServerAction from '@/utils/customHook/useServerAction';
 import '../../globals.css';
 
@@ -15,7 +14,6 @@ export default function Skeleton({
   userId: string;
   texts: any;
 }) {
-  const { t } = useTranslation('email-sent');
   const { callableName: server_resendSubscriptionEmail, isPending } =
     useServerAction({
       action: ResendSubscriptionEmail,

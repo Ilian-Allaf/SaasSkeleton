@@ -80,9 +80,7 @@ export default function ProfileFields() {
   //#region Username functions
   const { callableName: server_updateUsername, isPending: isUpdatingUsername } =
     useServerAction({
-      action: async (username: string) => {
-        await UpdateUsername(username);
-      },
+      action: (username: string) => UpdateUsername(username),
       onSuccess: () => {
         setIsUsernameModalOpen(false);
         update({ username: username });
@@ -113,15 +111,8 @@ export default function ProfileFields() {
     callableName: server_updateEmailRequest,
     isPending: isSubmitingEmailUpdateRequest,
   } = useServerAction({
-    action: async ({
-      email,
-      password,
-    }: {
-      email: string;
-      password: string;
-    }) => {
-      await UpdateEmailRequest(email, password);
-    },
+    action: ({ email, password }: { email: string; password: string }) =>
+      UpdateEmailRequest(email, password),
     onSuccess: () => {
       setModalTitle('');
       setModalSubTitle('');

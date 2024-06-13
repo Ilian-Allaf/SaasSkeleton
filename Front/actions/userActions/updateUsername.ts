@@ -9,7 +9,7 @@ import { revalidatePath } from 'next/cache';
 import { authOptions } from 'pages/api/auth/[...nextauth]';
 import validator from 'validator';
 
-export async function UpdateUsername(newUsername: string) {
+export async function UpdateUsername(newUsername: string): Promise<any> {
   const { t } = await useTranslation('settings');
   const session = await getServerSession(authOptions);
   const gqlClient = await setupGraphQLClient();

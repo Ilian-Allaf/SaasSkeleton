@@ -14,11 +14,12 @@ export async function RegisterUser({
 }: {
   email: string;
   password: string;
-}) {
+}): Promise<any> {
   const { t } = await useTranslation('signup');
   const domain = email.split('@')[1];
 
   if (!password || !email) {
+    console.log('here');
     return {
       error: {
         message: 'You need to fill every field',
@@ -34,6 +35,7 @@ export async function RegisterUser({
   });
 
   if (existingUser && existingUser.email === email) {
+    console.log('here');
     return {
       error: {
         message: t('email-taken'),
@@ -48,6 +50,7 @@ export async function RegisterUser({
     email.includes('+') ||
     email.length > 100
   ) {
+    console.log('here');
     return {
       error: {
         message: t('invalid-email'),
@@ -55,8 +58,9 @@ export async function RegisterUser({
       },
     };
   }
-
+  console.log('here');
   if (!isPasswordValid({ password: password })) {
+    console.log('here');
     return {
       error: {
         message: t('weak-password'),
@@ -91,6 +95,7 @@ export async function RegisterUser({
 
   await prisma.$disconnect();
 
+  console.log('herettttt');
   return {
     email: createdUser.email,
     password: password,
