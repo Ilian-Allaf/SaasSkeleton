@@ -34,7 +34,7 @@ export default function ProfileFields() {
   ] = useState(false);
   const [modalTitle, setModalTitle] = useState('');
   const [modalSubTitle, setModalSubTitle] = useState('');
-
+  console.log(session?.user.username);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

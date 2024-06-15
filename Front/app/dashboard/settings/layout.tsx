@@ -12,7 +12,6 @@ interface SettingsLayoutProps {
 export default function SettingsLayout({ children }: SettingsLayoutProps) {
   const { t } = useTranslation('settings');
   const { data: session } = useSession();
-
   if (!session) {
     return {
       error: 'Not Authenticated',

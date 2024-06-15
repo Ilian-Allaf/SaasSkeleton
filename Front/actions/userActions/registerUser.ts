@@ -50,7 +50,6 @@ export async function RegisterUser({
     email.includes('+') ||
     email.length > 100
   ) {
-    console.log('here');
     return {
       error: {
         message: t('invalid-email'),
@@ -58,9 +57,7 @@ export async function RegisterUser({
       },
     };
   }
-  console.log('here');
   if (!isPasswordValid({ password: password })) {
-    console.log('here');
     return {
       error: {
         message: t('weak-password'),
@@ -95,7 +92,6 @@ export async function RegisterUser({
 
   await prisma.$disconnect();
 
-  console.log('herettttt');
   return {
     email: createdUser.email,
     password: password,
