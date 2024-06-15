@@ -3,23 +3,39 @@
 import { ResendSubscriptionEmail } from '@/actions/subscriptionActions/resendSubscriptionEmail';
 import SendEmailSuccess from '@/components/SendEmailSuccess';
 import useServerAction from '@/utils/customHook/useServerAction';
+import { useSession } from 'next-auth/react';
+import { useEffect, useState } from 'react';
 import '../../globals.css';
 
 export default function Skeleton({
   email,
   userId,
+  subscriptionPlan,
   texts,
 }: {
   email: string | undefined;
   userId: string;
+  subscriptionPlan: string | null | undefined;
   texts: any;
 }) {
+  const { data: session, update } = useSession();
+  const [isSessionUpdated, setIsSessionUpdated] = useState(false);
   const { callableName: server_resendSubscriptionEmail, isPending } =
     useServerAction({
       action: ResendSubscriptionEmail,
       // onSuccess: () => {},
       // onError: (error) => {}
     });
+
+  useEffect(() => {
+    const fetchEmailAndUpdateSession = async () => {
+      if (session && !isSessionUpdated) {
+        setIsSessionUpdated(true);
+        update({ subscriptionPlan: subscriptionPlan });
+      }
+    };
+    fetchEmailAndUpdateSession();
+  }, [isSessionUpdated, update]);
 
   return (
     <SendEmailSuccess

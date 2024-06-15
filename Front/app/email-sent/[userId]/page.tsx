@@ -11,7 +11,6 @@ export default async function Page({ params }) {
       id: userId,
     },
   });
-
   const texts = {
     checkEmail: t('check-email'),
     resendEmail: t('resend-email'),
@@ -25,7 +24,12 @@ export default async function Page({ params }) {
   // TODO: Fixe hydration issue
   return (
     <>
-      <Skeleton email={user?.email} userId={userId} texts={texts} />
+      <Skeleton
+        email={user?.email}
+        userId={userId}
+        subscriptionPlan={user?.subscribtionPlan}
+        texts={texts}
+      />
     </>
   );
 }

@@ -109,6 +109,8 @@ export const authOptions: NextAuthOptions = {
           token.email = session.email;
         } else if (session?.name) {
           token.name = session.name;
+        } else if (session?.subscriptionPlan) {
+          token.subscriptionPlan = session.subscriptionPlan;
         }
       }
 
