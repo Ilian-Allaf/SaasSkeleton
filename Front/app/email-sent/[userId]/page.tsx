@@ -21,7 +21,7 @@ export default async function Page({ params }) {
     backToDashboard: t('back-to-dashboard'),
     errorResendingEmail: t('error-resending-email'),
   };
-  // TODO: Fixe hydration issue
+
   return (
     <>
       <Skeleton
