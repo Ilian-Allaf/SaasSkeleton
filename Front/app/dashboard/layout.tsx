@@ -11,10 +11,10 @@ const RootLayout = ({ children }) => {
       <EmailVerificationLayout>
         <div className="">
           <NavigationBar />
-          <Separator orientation="horizontal" className="mb-20" />
+          <Separator orientation="horizontal" className="" />
           <div
-            className="container flex max-w-screen-2xl items-center"
-            // style={{ marginTop: '4%', marginLeft: '2%', marginRight: '2%' }}
+            className=""
+            style={{ marginTop: '4%', marginLeft: '2%', marginRight: '2%' }}
           >
             {children}
           </div>
