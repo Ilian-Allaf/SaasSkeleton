@@ -75,8 +75,7 @@ export async function sendVerificationEmail({
   userId: string;
   update?: boolean;
 }) {
-  const token = generateVerificationEmailToken(userId);
-
+  const token = await generateVerificationEmailToken(userId);
   const routeName = update ? 'verify-updated-email' : 'verify-email';
   const subtitle = update
     ? 'To link the email address to your account, please verify that this is your email address.'
