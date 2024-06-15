@@ -31,13 +31,10 @@ function useServerAction<TArgs extends any[], TResult>({
     setLoading(true);
     try {
       const result = await action(...args);
-      console.log(result);
       if (result && result.error) {
         console.error(result.error.message);
         onError?.(result.error); // Safe call only if error exists
       } else {
-        console.log(result);
-        console.log('here');
         onSuccess?.(result);
       }
     } catch (err: any) {
