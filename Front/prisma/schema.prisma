@@ -68,6 +68,7 @@ model ActivateToken {
   createdAt   DateTime  @default(now()) @map("created_at")
   activatedAt DateTime? @map("activated_at")
   userId      String    @map("user_id")
+  isValid     Boolean   @map("is_valid") @default(true) 
 
   user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
   @@map("activate_token")
@@ -79,6 +80,7 @@ model PasswordResetToken {
   createdAt   DateTime  @default(now()) @map("created_at")
   resetAt     DateTime? @map("reset_at")
   userId      String    @map("user_id")
+  isValid     Boolean   @map("is_valid") @default(true) 
 
   user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
   @@map("password_reset_token")

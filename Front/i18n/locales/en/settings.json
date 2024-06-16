@@ -12,7 +12,7 @@
     "currency": "Currency",
     "update-username": "Update username",
     "update-email": "Update email",
-    "update-username-dialog-subtitle": "Your username will be updated after you confirm your password.",
+    "update-username-dialog-subtitle": "Your username will be updated after validation.",
     "update-email-dialog-subtitle": "Your email will be updated after you confirm your password.",
     "successfully-updated-username": "Username updated successfully",
     "update": "Update",
@@ -48,7 +48,9 @@
     "close": "Close",
     "incorrect-password": "Incorrect password",
     "invalid-password": "Invalid password",
-    "password-dont-match": "Passwords don't match"
+    "password-dont-match": "Passwords don't match",
+    "weak-password": "Password is too weak",
+    "same-as-old-password": "The new password must be different from the old password."
   },
   "notifications": {
     "title": "Notifications",

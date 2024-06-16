@@ -16,14 +16,15 @@ export async function ResetPassword({
 }): Promise<any> {
   const { t } = await useTranslation('reset-password');
   // Find the password reset token
+
   const passwordResetToken = await prisma.passwordResetToken.findUnique({
     where: {
       token,
       createdAt: { gt: new Date(Date.now() - 1000 * 60 * 60 * 4) }, // 4h
       resetAt: null,
+      isValid: true,
     },
   });
-
   if (!passwordResetToken) {
     return {
       error: {
@@ -77,6 +78,7 @@ export async function ResetPassword({
     },
     data: {
       resetAt: new Date(),
+      isValid: false,
     },
   });
 

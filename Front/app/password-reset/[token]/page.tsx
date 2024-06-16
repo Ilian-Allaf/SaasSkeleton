@@ -1,3 +1,4 @@
+import InvalidLink from '@/components/InvalidLink';
 import { buttonVariants } from '@/components/ui/button';
 import { useTranslation } from '@/i18n/index';
 import { prisma } from '@/lib/prismaClient';
@@ -8,6 +9,7 @@ import Skeleton from './skeleton';
 export default async function Page({ params }: { params: { token: string } }) {
   const token = params.token;
   const { t } = await useTranslation('reset-password');
+  const { t: tInvalidLink } = await useTranslation('invalid-link');
   const texts = {
     password: t('password'),
     confirmPassword: t('confirm-password'),
@@ -16,17 +18,40 @@ export default async function Page({ params }: { params: { token: string } }) {
     passwordRequirements: t('permissive-password-requirements'),
     passwordResetSuccess: t('password-reset-success'),
   };
-
+  //get userId Where token = token
+  // check resetAt is null
+  // check createdAt is less than 4 hours
+  // const passwordResetToken1 = await prisma.passwordResetToken.findUnique({
+  //   where: {
+  //     token,
+  //   },
+  // });
+  // const latestUserPasswordResetToken = await prisma.passwordResetToken.findFirst({
+  //   where: {
+  //     userId: passwordResetToken1.userId,
+  //   },
+  //   orderBy: {
+  //     createdAt: 'desc',
+  //   },
+  // });
+  //get latest token where userId = userId
+  // check token is equal to previously fectch token
   const passwordResetToken = await prisma.passwordResetToken.findUnique({
     where: {
       token,
       createdAt: { gt: new Date(Date.now() - 1000 * 60 * 60 * 4) }, // 4h
       resetAt: null,
+      isValid: true,
     },
   });
-  // if (!passwordResetToken) {
-  //   return <>This link is not valid, please try to reset your password again</>;
-  // }
+  if (!passwordResetToken) {
+    const texts = {
+      InvalidLinkTitle: tInvalidLink('invalid-link-title'),
+      invalidLinkMessage: tInvalidLink('invalid-link-message'),
+      backToLogin: tInvalidLink('back-to-login'),
+    };
+    return <InvalidLink texts={texts} />;
+  }
   return (
     <>
       <div className="container relative flex flex-col items-center justify-center h-screen md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">

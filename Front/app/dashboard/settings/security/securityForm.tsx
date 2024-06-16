@@ -2,7 +2,6 @@
 
 import { UpdatePassword } from '@/actions/userActions/updatePassword';
 import InputError from '@/components/InputError';
-import ProgressBar from '@/components/ProgressBar';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -16,7 +15,6 @@ import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { useTranslation } from '@/i18n/client';
 import useServerAction from '@/utils/customHook/useServerAction';
-import { calculatePasswordProgress } from '@/utils/passwordCheck';
 import { PencilIcon } from '@heroicons/react/outline';
 import React, { useEffect, useState } from 'react';
 import { toast } from 'sonner';
@@ -160,11 +158,6 @@ export default function SecurityForm() {
             label={t('security.new-password')}
             onChange={(event) => handleNewPasswordChange(event)}
           />
-          {newPassword && (
-            <ProgressBar
-              progress={calculatePasswordProgress({ password: newPassword })}
-            />
-          )}
           <div>
             <Input
               value={confirmationPassword}

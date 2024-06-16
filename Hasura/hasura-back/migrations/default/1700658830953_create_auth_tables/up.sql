@@ -68,6 +68,7 @@ CREATE TABLE "auth"."activate_token" (
     "user_id" UUID NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "activated_at" TIMESTAMP(3),
+    "is_valid" BOOLEAN NOT NULL DEFAULT TRUE,
 
     CONSTRAINT "activate_token_pkey" PRIMARY KEY ("id")
 );
@@ -81,9 +82,46 @@ CREATE TABLE "auth"."password_reset_token" (
     "user_id" UUID NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "reset_at" TIMESTAMP(3),    
-
+    "is_valid" BOOLEAN NOT NULL DEFAULT TRUE,
     CONSTRAINT "password_reset_token_pkey" PRIMARY KEY ("id")
 );
 CREATE UNIQUE INDEX "password_reset_token_token_key" ON "auth"."password_reset_token"("token");
 ALTER TABLE "auth"."password_reset_token" ADD CONSTRAINT "password_reset_token_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "auth"."user"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
+----------------------------------------------------------------    functions    ----------------------------------------------------------------
+CREATE OR REPLACE FUNCTION update_password_reset_token_validity()
+RETURNS TRIGGER AS $$
+BEGIN
+
+    UPDATE "auth"."password_reset_token"
+    SET "is_valid" = FALSE
+    WHERE "user_id" = NEW.user_id
+      AND "id" <> NEW.id;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION update_activate_token_validity()
+RETURNS TRIGGER AS $$
+BEGIN
+
+    UPDATE "auth"."activate_token"
+    SET "is_valid" = FALSE
+    WHERE "user_id" = NEW.user_id
+      AND "id" <> NEW.id;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+----------------------------------------------------------------    triggers    ----------------------------------------------------------------
+
+CREATE TRIGGER update_password_reset_token_validity_trigger
+AFTER INSERT ON "auth"."password_reset_token"
+FOR EACH ROW
+EXECUTE FUNCTION update_password_reset_token_validity();
+
+CREATE TRIGGER update_activate_token_validity_trigger
+AFTER INSERT ON "auth"."activate_token"
+FOR EACH ROW
+EXECUTE FUNCTION update_activate_token_validity();

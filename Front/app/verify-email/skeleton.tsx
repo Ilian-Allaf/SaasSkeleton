@@ -30,8 +30,8 @@ export default function Skeleton({
     <>
       <SendEmailSuccess
         title={texts.checkEmail}
-        subtitle={`${texts.sentEmailMessage1} ${email} ${texts.sentEmailMessage2}`}
-        resendSubtitle={`${texts.resentEmailMessage1} ${email} ${texts.resentEmailMessage2}`}
+        subtitle={`${texts.sentEmailMessage1} ${email}${texts.sentEmailMessage2}`}
+        resendSubtitle={`${texts.resentEmailMessage1} ${email}${texts.resentEmailMessage2}`}
         resendButtonText={texts.resendEmail}
         isSending={isResending}
         handleResend={async () => server_resendVerificationEmail()}

@@ -29,9 +29,9 @@ export async function UpdatePassword({
     };
   }
 
-  const isPasswordMatching = await CheckPassword(currentPassword);
+  const isPasswordCorrect = await CheckPassword(currentPassword);
 
-  if (!isPasswordMatching) {
+  if (!isPasswordCorrect) {
     return {
       error: {
         message: t('security.incorrect-password'),
@@ -43,8 +43,23 @@ export async function UpdatePassword({
   if (!isPasswordValid({ password: newPassword })) {
     return {
       error: {
-        message: t('security.invalid-password'),
+        message: t('security.weak-password'),
         field: 'newPassword',
+      },
+    };
+  }
+
+  const user = await prisma.user.findUnique({
+    where: {
+      id: session.user.id,
+    },
+  });
+
+  if (!user || (await bcrypt.compare(newPassword, user.password!))) {
+    return {
+      error: {
+        field: 'newPassword',
+        message: t('security.same-as-old-password'),
       },
     };
   }

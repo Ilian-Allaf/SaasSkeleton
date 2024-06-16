@@ -86,7 +86,7 @@ export async function sendVerificationEmail({
     buttonLink: `${process.env.NEXT_URL}/api/${routeName}/${token}`,
     buttonText: 'Verify email address',
     additionalText:
-      'This link will expire in 5 days. if you did not make this request, please disregard this email.',
+      'This link will expire in 24 hours. if you did not make this request, please disregard this email.',
   });
 
   await sendEmail({
@@ -118,7 +118,8 @@ export async function sendResetPasswordEmail({
       'A password change has been requested for your account. If this was you, please use the link below to reset your password',
     buttonLink: `${process.env.NEXT_URL}/password-reset/${token.token}`,
     buttonText: 'Reset password',
-    additionalText: '',
+    additionalText:
+      'This link will expire in 4 hours. if you did not make this request, please disregard this email.',
   });
 
   await sendEmail({
