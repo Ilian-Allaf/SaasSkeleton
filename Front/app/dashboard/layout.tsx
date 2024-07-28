@@ -11,13 +11,8 @@ const RootLayout = ({ children }) => {
       <EmailVerificationLayout>
         <div className="">
           <NavigationBar />
-          <Separator orientation="horizontal" className="" />
-          <div
-            className=""
-            style={{ marginTop: '4%', marginLeft: '2%', marginRight: '2%' }}
-          >
-            {children}
-          </div>
+          <Separator orientation="horizontal" className="mb-8" />
+          <div className="container">{children}</div>
         </div>
       </EmailVerificationLayout>
     </SessionProvider>
