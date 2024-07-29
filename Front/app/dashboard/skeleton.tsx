@@ -15,7 +15,7 @@ export default function Skeleton() {
   
 
   const createTeamRedirect = () => {
-    router.push('/team/create-team'); 
+    router.push('dashboard/create-team'); 
   }
 
   return (
