@@ -58,6 +58,7 @@ model User {
   session               Session[]
   activateTokens        ActivateToken[]
   passwordResetToken    PasswordResetToken[]
+  teamId                String?     @map("team_id")
 
   @@map("user")
 }
@@ -85,3 +86,4 @@ model PasswordResetToken {
   user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
   @@map("password_reset_token")
 }
+
