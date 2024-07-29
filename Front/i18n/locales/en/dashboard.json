@@ -1,5 +1,6 @@
 {
     "reception": {
-        "welcome": "Welcome"
+        "welcome": "Welcome",
+        "createTeam": "Create your team"
     }
 }

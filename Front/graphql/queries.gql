@@ -70,3 +70,17 @@ mutation UpdateUserSubscriptionPlan($id: uuid!, $stripe_customer_id: String!, $s
     id
   }
 }
+
+mutation CreateTeam($name: String!) {
+  insert_team_one(object: {name: $name}) {
+    id
+    name
+  }
+}
+
+mutation UpdateUserTeamId($id: uuid!, $teamid: uuid!) {
+  update_auth_user_by_pk(pk_columns: {id: $id}, _set: {team_id : $teamid} ) {
+    id
+  }
+}
+

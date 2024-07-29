@@ -15,7 +15,7 @@ CREATE TABLE "auth"."user" (
     "subscribtion_plan" TEXT,
     "stripe_customer_id" TEXT UNIQUE,
     "stripe_subscribtion_id" TEXT UNIQUE,
-
+    "team_id" UUID,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
@@ -23,6 +23,7 @@ CREATE TABLE "auth"."user" (
 );
 CREATE UNIQUE INDEX "user_email_key" ON "auth"."user"("email");
 ALTER TABLE "auth"."user" ADD CONSTRAINT "user_subscribtion_plan_fkey" FOREIGN KEY ("subscribtion_plan") REFERENCES "public"."subscribtion_plan"("name") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "auth"."user" ADD CONSTRAINT "user_team_id_fkey" FOREIGN KEY ("team_id") REFERENCES "public"."team"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 CREATE TABLE "auth"."account" (
     "id" UUID DEFAULT gen_random_uuid() NOT NULL,

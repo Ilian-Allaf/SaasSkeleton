@@ -512,6 +512,7 @@ export type Auth_Activate_Token = {
   activated_at?: Maybe<Scalars['timestamp']['output']>;
   created_at: Scalars['timestamp']['output'];
   id: Scalars['uuid']['output'];
+  is_valid: Scalars['Boolean']['output'];
   token: Scalars['String']['output'];
   /** An object relationship */
   user: Auth_User;
@@ -526,7 +527,23 @@ export type Auth_Activate_Token_Aggregate = {
 };
 
 export type Auth_Activate_Token_Aggregate_Bool_Exp = {
+  bool_and?: InputMaybe<Auth_Activate_Token_Aggregate_Bool_Exp_Bool_And>;
+  bool_or?: InputMaybe<Auth_Activate_Token_Aggregate_Bool_Exp_Bool_Or>;
   count?: InputMaybe<Auth_Activate_Token_Aggregate_Bool_Exp_Count>;
+};
+
+export type Auth_Activate_Token_Aggregate_Bool_Exp_Bool_And = {
+  arguments: Auth_Activate_Token_Select_Column_Auth_Activate_Token_Aggregate_Bool_Exp_Bool_And_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Auth_Activate_Token_Bool_Exp>;
+  predicate: Boolean_Comparison_Exp;
+};
+
+export type Auth_Activate_Token_Aggregate_Bool_Exp_Bool_Or = {
+  arguments: Auth_Activate_Token_Select_Column_Auth_Activate_Token_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Auth_Activate_Token_Bool_Exp>;
+  predicate: Boolean_Comparison_Exp;
 };
 
 export type Auth_Activate_Token_Aggregate_Bool_Exp_Count = {
@@ -573,6 +590,7 @@ export type Auth_Activate_Token_Bool_Exp = {
   activated_at?: InputMaybe<Timestamp_Comparison_Exp>;
   created_at?: InputMaybe<Timestamp_Comparison_Exp>;
   id?: InputMaybe<Uuid_Comparison_Exp>;
+  is_valid?: InputMaybe<Boolean_Comparison_Exp>;
   token?: InputMaybe<String_Comparison_Exp>;
   user?: InputMaybe<Auth_User_Bool_Exp>;
   user_id?: InputMaybe<Uuid_Comparison_Exp>;
@@ -591,6 +609,7 @@ export type Auth_Activate_Token_Insert_Input = {
   activated_at?: InputMaybe<Scalars['timestamp']['input']>;
   created_at?: InputMaybe<Scalars['timestamp']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
+  is_valid?: InputMaybe<Scalars['Boolean']['input']>;
   token?: InputMaybe<Scalars['String']['input']>;
   user?: InputMaybe<Auth_User_Obj_Rel_Insert_Input>;
   user_id?: InputMaybe<Scalars['uuid']['input']>;
@@ -655,6 +674,7 @@ export type Auth_Activate_Token_Order_By = {
   activated_at?: InputMaybe<Order_By>;
   created_at?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
+  is_valid?: InputMaybe<Order_By>;
   token?: InputMaybe<Order_By>;
   user?: InputMaybe<Auth_User_Order_By>;
   user_id?: InputMaybe<Order_By>;
@@ -674,9 +694,23 @@ export enum Auth_Activate_Token_Select_Column {
   /** column name */
   Id = 'id',
   /** column name */
+  IsValid = 'is_valid',
+  /** column name */
   Token = 'token',
   /** column name */
   UserId = 'user_id'
+}
+
+/** select "auth_activate_token_aggregate_bool_exp_bool_and_arguments_columns" columns of table "auth.activate_token" */
+export enum Auth_Activate_Token_Select_Column_Auth_Activate_Token_Aggregate_Bool_Exp_Bool_And_Arguments_Columns {
+  /** column name */
+  IsValid = 'is_valid'
+}
+
+/** select "auth_activate_token_aggregate_bool_exp_bool_or_arguments_columns" columns of table "auth.activate_token" */
+export enum Auth_Activate_Token_Select_Column_Auth_Activate_Token_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns {
+  /** column name */
+  IsValid = 'is_valid'
 }
 
 /** input type for updating data in table "auth.activate_token" */
@@ -684,6 +718,7 @@ export type Auth_Activate_Token_Set_Input = {
   activated_at?: InputMaybe<Scalars['timestamp']['input']>;
   created_at?: InputMaybe<Scalars['timestamp']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
+  is_valid?: InputMaybe<Scalars['Boolean']['input']>;
   token?: InputMaybe<Scalars['String']['input']>;
   user_id?: InputMaybe<Scalars['uuid']['input']>;
 };
@@ -701,6 +736,7 @@ export type Auth_Activate_Token_Stream_Cursor_Value_Input = {
   activated_at?: InputMaybe<Scalars['timestamp']['input']>;
   created_at?: InputMaybe<Scalars['timestamp']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
+  is_valid?: InputMaybe<Scalars['Boolean']['input']>;
   token?: InputMaybe<Scalars['String']['input']>;
   user_id?: InputMaybe<Scalars['uuid']['input']>;
 };
@@ -713,6 +749,8 @@ export enum Auth_Activate_Token_Update_Column {
   CreatedAt = 'created_at',
   /** column name */
   Id = 'id',
+  /** column name */
+  IsValid = 'is_valid',
   /** column name */
   Token = 'token',
   /** column name */
@@ -731,6 +769,7 @@ export type Auth_Password_Reset_Token = {
   __typename?: 'auth_password_reset_token';
   created_at: Scalars['timestamp']['output'];
   id: Scalars['uuid']['output'];
+  is_valid: Scalars['Boolean']['output'];
   reset_at?: Maybe<Scalars['timestamp']['output']>;
   token: Scalars['String']['output'];
   /** An object relationship */
@@ -746,7 +785,23 @@ export type Auth_Password_Reset_Token_Aggregate = {
 };
 
 export type Auth_Password_Reset_Token_Aggregate_Bool_Exp = {
+  bool_and?: InputMaybe<Auth_Password_Reset_Token_Aggregate_Bool_Exp_Bool_And>;
+  bool_or?: InputMaybe<Auth_Password_Reset_Token_Aggregate_Bool_Exp_Bool_Or>;
   count?: InputMaybe<Auth_Password_Reset_Token_Aggregate_Bool_Exp_Count>;
+};
+
+export type Auth_Password_Reset_Token_Aggregate_Bool_Exp_Bool_And = {
+  arguments: Auth_Password_Reset_Token_Select_Column_Auth_Password_Reset_Token_Aggregate_Bool_Exp_Bool_And_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Auth_Password_Reset_Token_Bool_Exp>;
+  predicate: Boolean_Comparison_Exp;
+};
+
+export type Auth_Password_Reset_Token_Aggregate_Bool_Exp_Bool_Or = {
+  arguments: Auth_Password_Reset_Token_Select_Column_Auth_Password_Reset_Token_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Auth_Password_Reset_Token_Bool_Exp>;
+  predicate: Boolean_Comparison_Exp;
 };
 
 export type Auth_Password_Reset_Token_Aggregate_Bool_Exp_Count = {
@@ -792,6 +847,7 @@ export type Auth_Password_Reset_Token_Bool_Exp = {
   _or?: InputMaybe<Array<Auth_Password_Reset_Token_Bool_Exp>>;
   created_at?: InputMaybe<Timestamp_Comparison_Exp>;
   id?: InputMaybe<Uuid_Comparison_Exp>;
+  is_valid?: InputMaybe<Boolean_Comparison_Exp>;
   reset_at?: InputMaybe<Timestamp_Comparison_Exp>;
   token?: InputMaybe<String_Comparison_Exp>;
   user?: InputMaybe<Auth_User_Bool_Exp>;
@@ -810,6 +866,7 @@ export enum Auth_Password_Reset_Token_Constraint {
 export type Auth_Password_Reset_Token_Insert_Input = {
   created_at?: InputMaybe<Scalars['timestamp']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
+  is_valid?: InputMaybe<Scalars['Boolean']['input']>;
   reset_at?: InputMaybe<Scalars['timestamp']['input']>;
   token?: InputMaybe<Scalars['String']['input']>;
   user?: InputMaybe<Auth_User_Obj_Rel_Insert_Input>;
@@ -874,6 +931,7 @@ export type Auth_Password_Reset_Token_On_Conflict = {
 export type Auth_Password_Reset_Token_Order_By = {
   created_at?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
+  is_valid?: InputMaybe<Order_By>;
   reset_at?: InputMaybe<Order_By>;
   token?: InputMaybe<Order_By>;
   user?: InputMaybe<Auth_User_Order_By>;
@@ -892,6 +950,8 @@ export enum Auth_Password_Reset_Token_Select_Column {
   /** column name */
   Id = 'id',
   /** column name */
+  IsValid = 'is_valid',
+  /** column name */
   ResetAt = 'reset_at',
   /** column name */
   Token = 'token',
@@ -899,10 +959,23 @@ export enum Auth_Password_Reset_Token_Select_Column {
   UserId = 'user_id'
 }
 
+/** select "auth_password_reset_token_aggregate_bool_exp_bool_and_arguments_columns" columns of table "auth.password_reset_token" */
+export enum Auth_Password_Reset_Token_Select_Column_Auth_Password_Reset_Token_Aggregate_Bool_Exp_Bool_And_Arguments_Columns {
+  /** column name */
+  IsValid = 'is_valid'
+}
+
+/** select "auth_password_reset_token_aggregate_bool_exp_bool_or_arguments_columns" columns of table "auth.password_reset_token" */
+export enum Auth_Password_Reset_Token_Select_Column_Auth_Password_Reset_Token_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns {
+  /** column name */
+  IsValid = 'is_valid'
+}
+
 /** input type for updating data in table "auth.password_reset_token" */
 export type Auth_Password_Reset_Token_Set_Input = {
   created_at?: InputMaybe<Scalars['timestamp']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
+  is_valid?: InputMaybe<Scalars['Boolean']['input']>;
   reset_at?: InputMaybe<Scalars['timestamp']['input']>;
   token?: InputMaybe<Scalars['String']['input']>;
   user_id?: InputMaybe<Scalars['uuid']['input']>;
@@ -920,6 +993,7 @@ export type Auth_Password_Reset_Token_Stream_Cursor_Input = {
 export type Auth_Password_Reset_Token_Stream_Cursor_Value_Input = {
   created_at?: InputMaybe<Scalars['timestamp']['input']>;
   id?: InputMaybe<Scalars['uuid']['input']>;
+  is_valid?: InputMaybe<Scalars['Boolean']['input']>;
   reset_at?: InputMaybe<Scalars['timestamp']['input']>;
   token?: InputMaybe<Scalars['String']['input']>;
   user_id?: InputMaybe<Scalars['uuid']['input']>;
@@ -931,6 +1005,8 @@ export enum Auth_Password_Reset_Token_Update_Column {
   CreatedAt = 'created_at',
   /** column name */
   Id = 'id',
+  /** column name */
+  IsValid = 'is_valid',
   /** column name */
   ResetAt = 'reset_at',
   /** column name */
@@ -1227,9 +1303,12 @@ export type Auth_User = {
   /** An object relationship */
   subscribtionPlanBySubscribtionPlan?: Maybe<Subscribtion_Plan>;
   subscribtion_plan?: Maybe<Scalars['String']['output']>;
+  /** An object relationship */
+  team?: Maybe<Team>;
+  team_id?: Maybe<Scalars['uuid']['output']>;
   updated_at: Scalars['timestamp']['output'];
   updated_email?: Maybe<Scalars['String']['output']>;
-  username: Scalars['String']['output'];
+  username?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -1399,6 +1478,8 @@ export type Auth_User_Bool_Exp = {
   stripe_subscribtion_id?: InputMaybe<String_Comparison_Exp>;
   subscribtionPlanBySubscribtionPlan?: InputMaybe<Subscribtion_Plan_Bool_Exp>;
   subscribtion_plan?: InputMaybe<String_Comparison_Exp>;
+  team?: InputMaybe<Team_Bool_Exp>;
+  team_id?: InputMaybe<Uuid_Comparison_Exp>;
   updated_at?: InputMaybe<Timestamp_Comparison_Exp>;
   updated_email?: InputMaybe<String_Comparison_Exp>;
   username?: InputMaybe<String_Comparison_Exp>;
@@ -1413,7 +1494,9 @@ export enum Auth_User_Constraint {
   /** unique or primary key constraint on columns "stripe_customer_id" */
   UserStripeCustomerIdKey = 'user_stripe_customer_id_key',
   /** unique or primary key constraint on columns "stripe_subscribtion_id" */
-  UserStripeSubscribtionIdKey = 'user_stripe_subscribtion_id_key'
+  UserStripeSubscribtionIdKey = 'user_stripe_subscribtion_id_key',
+  /** unique or primary key constraint on columns "username" */
+  UserUsernameKey = 'user_username_key'
 }
 
 /** input type for inserting data into table "auth.user" */
@@ -1433,6 +1516,8 @@ export type Auth_User_Insert_Input = {
   stripe_subscribtion_id?: InputMaybe<Scalars['String']['input']>;
   subscribtionPlanBySubscribtionPlan?: InputMaybe<Subscribtion_Plan_Obj_Rel_Insert_Input>;
   subscribtion_plan?: InputMaybe<Scalars['String']['input']>;
+  team?: InputMaybe<Team_Obj_Rel_Insert_Input>;
+  team_id?: InputMaybe<Scalars['uuid']['input']>;
   updated_at?: InputMaybe<Scalars['timestamp']['input']>;
   updated_email?: InputMaybe<Scalars['String']['input']>;
   username?: InputMaybe<Scalars['String']['input']>;
@@ -1450,6 +1535,7 @@ export type Auth_User_Max_Fields = {
   stripe_customer_id?: Maybe<Scalars['String']['output']>;
   stripe_subscribtion_id?: Maybe<Scalars['String']['output']>;
   subscribtion_plan?: Maybe<Scalars['String']['output']>;
+  team_id?: Maybe<Scalars['uuid']['output']>;
   updated_at?: Maybe<Scalars['timestamp']['output']>;
   updated_email?: Maybe<Scalars['String']['output']>;
   username?: Maybe<Scalars['String']['output']>;
@@ -1466,6 +1552,7 @@ export type Auth_User_Max_Order_By = {
   stripe_customer_id?: InputMaybe<Order_By>;
   stripe_subscribtion_id?: InputMaybe<Order_By>;
   subscribtion_plan?: InputMaybe<Order_By>;
+  team_id?: InputMaybe<Order_By>;
   updated_at?: InputMaybe<Order_By>;
   updated_email?: InputMaybe<Order_By>;
   username?: InputMaybe<Order_By>;
@@ -1483,6 +1570,7 @@ export type Auth_User_Min_Fields = {
   stripe_customer_id?: Maybe<Scalars['String']['output']>;
   stripe_subscribtion_id?: Maybe<Scalars['String']['output']>;
   subscribtion_plan?: Maybe<Scalars['String']['output']>;
+  team_id?: Maybe<Scalars['uuid']['output']>;
   updated_at?: Maybe<Scalars['timestamp']['output']>;
   updated_email?: Maybe<Scalars['String']['output']>;
   username?: Maybe<Scalars['String']['output']>;
@@ -1499,6 +1587,7 @@ export type Auth_User_Min_Order_By = {
   stripe_customer_id?: InputMaybe<Order_By>;
   stripe_subscribtion_id?: InputMaybe<Order_By>;
   subscribtion_plan?: InputMaybe<Order_By>;
+  team_id?: InputMaybe<Order_By>;
   updated_at?: InputMaybe<Order_By>;
   updated_email?: InputMaybe<Order_By>;
   username?: InputMaybe<Order_By>;
@@ -1544,6 +1633,8 @@ export type Auth_User_Order_By = {
   stripe_subscribtion_id?: InputMaybe<Order_By>;
   subscribtionPlanBySubscribtionPlan?: InputMaybe<Subscribtion_Plan_Order_By>;
   subscribtion_plan?: InputMaybe<Order_By>;
+  team?: InputMaybe<Team_Order_By>;
+  team_id?: InputMaybe<Order_By>;
   updated_at?: InputMaybe<Order_By>;
   updated_email?: InputMaybe<Order_By>;
   username?: InputMaybe<Order_By>;
@@ -1577,6 +1668,8 @@ export enum Auth_User_Select_Column {
   /** column name */
   SubscribtionPlan = 'subscribtion_plan',
   /** column name */
+  TeamId = 'team_id',
+  /** column name */
   UpdatedAt = 'updated_at',
   /** column name */
   UpdatedEmail = 'updated_email',
@@ -1608,6 +1701,7 @@ export type Auth_User_Set_Input = {
   stripe_customer_id?: InputMaybe<Scalars['String']['input']>;
   stripe_subscribtion_id?: InputMaybe<Scalars['String']['input']>;
   subscribtion_plan?: InputMaybe<Scalars['String']['input']>;
+  team_id?: InputMaybe<Scalars['uuid']['input']>;
   updated_at?: InputMaybe<Scalars['timestamp']['input']>;
   updated_email?: InputMaybe<Scalars['String']['input']>;
   username?: InputMaybe<Scalars['String']['input']>;
@@ -1633,6 +1727,7 @@ export type Auth_User_Stream_Cursor_Value_Input = {
   stripe_customer_id?: InputMaybe<Scalars['String']['input']>;
   stripe_subscribtion_id?: InputMaybe<Scalars['String']['input']>;
   subscribtion_plan?: InputMaybe<Scalars['String']['input']>;
+  team_id?: InputMaybe<Scalars['uuid']['input']>;
   updated_at?: InputMaybe<Scalars['timestamp']['input']>;
   updated_email?: InputMaybe<Scalars['String']['input']>;
   username?: InputMaybe<Scalars['String']['input']>;
@@ -1660,6 +1755,8 @@ export enum Auth_User_Update_Column {
   StripeSubscribtionId = 'stripe_subscribtion_id',
   /** column name */
   SubscribtionPlan = 'subscribtion_plan',
+  /** column name */
+  TeamId = 'team_id',
   /** column name */
   UpdatedAt = 'updated_at',
   /** column name */
@@ -1917,6 +2014,10 @@ export type Mutation_Root = {
   delete_subscribtion_plan_subscribtion_feature_assoc?: Maybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Mutation_Response>;
   /** delete single row from the table: "subscribtion_plan_subscribtion_feature_assoc" */
   delete_subscribtion_plan_subscribtion_feature_assoc_by_pk?: Maybe<Subscribtion_Plan_Subscribtion_Feature_Assoc>;
+  /** delete data from the table: "team" */
+  delete_team?: Maybe<Team_Mutation_Response>;
+  /** delete single row from the table: "team" */
+  delete_team_by_pk?: Maybe<Team>;
   /** delete data from the table: "text_content" */
   delete_text_content?: Maybe<Text_Content_Mutation_Response>;
   /** delete single row from the table: "text_content" */
@@ -1961,6 +2062,10 @@ export type Mutation_Root = {
   insert_subscribtion_plan_subscribtion_feature_assoc?: Maybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Mutation_Response>;
   /** insert a single row into the table: "subscribtion_plan_subscribtion_feature_assoc" */
   insert_subscribtion_plan_subscribtion_feature_assoc_one?: Maybe<Subscribtion_Plan_Subscribtion_Feature_Assoc>;
+  /** insert data into the table: "team" */
+  insert_team?: Maybe<Team_Mutation_Response>;
+  /** insert a single row into the table: "team" */
+  insert_team_one?: Maybe<Team>;
   /** insert data into the table: "text_content" */
   insert_text_content?: Maybe<Text_Content_Mutation_Response>;
   /** insert a single row into the table: "text_content" */
@@ -2023,6 +2128,12 @@ export type Mutation_Root = {
   update_subscribtion_plan_subscribtion_feature_assoc_by_pk?: Maybe<Subscribtion_Plan_Subscribtion_Feature_Assoc>;
   /** update multiples rows of table: "subscribtion_plan_subscribtion_feature_assoc" */
   update_subscribtion_plan_subscribtion_feature_assoc_many?: Maybe<Array<Maybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Mutation_Response>>>;
+  /** update data of the table: "team" */
+  update_team?: Maybe<Team_Mutation_Response>;
+  /** update single row of the table: "team" */
+  update_team_by_pk?: Maybe<Team>;
+  /** update multiples rows of table: "team" */
+  update_team_many?: Maybe<Array<Maybe<Team_Mutation_Response>>>;
   /** update data of the table: "text_content" */
   update_text_content?: Maybe<Text_Content_Mutation_Response>;
   /** update single row of the table: "text_content" */
@@ -2142,6 +2253,18 @@ export type Mutation_RootDelete_Subscribtion_Plan_Subscribtion_Feature_AssocArgs
 
 /** mutation root */
 export type Mutation_RootDelete_Subscribtion_Plan_Subscribtion_Feature_Assoc_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_TeamArgs = {
+  where: Team_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Team_By_PkArgs = {
   id: Scalars['uuid']['input'];
 };
 
@@ -2293,6 +2416,20 @@ export type Mutation_RootInsert_Subscribtion_Plan_Subscribtion_Feature_AssocArgs
 export type Mutation_RootInsert_Subscribtion_Plan_Subscribtion_Feature_Assoc_OneArgs = {
   object: Subscribtion_Plan_Subscribtion_Feature_Assoc_Insert_Input;
   on_conflict?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_TeamArgs = {
+  objects: Array<Team_Insert_Input>;
+  on_conflict?: InputMaybe<Team_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Team_OneArgs = {
+  object: Team_Insert_Input;
+  on_conflict?: InputMaybe<Team_On_Conflict>;
 };
 
 
@@ -2507,6 +2644,26 @@ export type Mutation_RootUpdate_Subscribtion_Plan_Subscribtion_Feature_Assoc_Man
 
 
 /** mutation root */
+export type Mutation_RootUpdate_TeamArgs = {
+  _set?: InputMaybe<Team_Set_Input>;
+  where: Team_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Team_By_PkArgs = {
+  _set?: InputMaybe<Team_Set_Input>;
+  pk_columns: Team_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Team_ManyArgs = {
+  updates: Array<Team_Updates>;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate_Text_ContentArgs = {
   _set?: InputMaybe<Text_Content_Set_Input>;
   where: Text_Content_Bool_Exp;
@@ -2617,6 +2774,12 @@ export type Query_Root = {
   subscribtion_plan_subscribtion_feature_assoc_aggregate: Subscribtion_Plan_Subscribtion_Feature_Assoc_Aggregate;
   /** fetch data from the table: "subscribtion_plan_subscribtion_feature_assoc" using primary key columns */
   subscribtion_plan_subscribtion_feature_assoc_by_pk?: Maybe<Subscribtion_Plan_Subscribtion_Feature_Assoc>;
+  /** fetch data from the table: "team" */
+  team: Array<Team>;
+  /** fetch aggregated fields from the table: "team" */
+  team_aggregate: Team_Aggregate;
+  /** fetch data from the table: "team" using primary key columns */
+  team_by_pk?: Maybe<Team>;
   /** fetch data from the table: "text_content" */
   text_content: Array<Text_Content>;
   /** fetch aggregated fields from the table: "text_content" */
@@ -2835,6 +2998,29 @@ export type Query_RootSubscribtion_Plan_Subscribtion_Feature_Assoc_AggregateArgs
 
 
 export type Query_RootSubscribtion_Plan_Subscribtion_Feature_Assoc_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+export type Query_RootTeamArgs = {
+  distinct_on?: InputMaybe<Array<Team_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Team_Order_By>>;
+  where?: InputMaybe<Team_Bool_Exp>;
+};
+
+
+export type Query_RootTeam_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Team_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Team_Order_By>>;
+  where?: InputMaybe<Team_Bool_Exp>;
+};
+
+
+export type Query_RootTeam_By_PkArgs = {
   id: Scalars['uuid']['input'];
 };
 
@@ -3703,6 +3889,14 @@ export type Subscription_Root = {
   subscribtion_plan_subscribtion_feature_assoc_by_pk?: Maybe<Subscribtion_Plan_Subscribtion_Feature_Assoc>;
   /** fetch data from the table in a streaming manner: "subscribtion_plan_subscribtion_feature_assoc" */
   subscribtion_plan_subscribtion_feature_assoc_stream: Array<Subscribtion_Plan_Subscribtion_Feature_Assoc>;
+  /** fetch data from the table: "team" */
+  team: Array<Team>;
+  /** fetch aggregated fields from the table: "team" */
+  team_aggregate: Team_Aggregate;
+  /** fetch data from the table: "team" using primary key columns */
+  team_by_pk?: Maybe<Team>;
+  /** fetch data from the table in a streaming manner: "team" */
+  team_stream: Array<Team>;
   /** fetch data from the table: "text_content" */
   text_content: Array<Text_Content>;
   /** fetch aggregated fields from the table: "text_content" */
@@ -3992,6 +4186,36 @@ export type Subscription_RootSubscribtion_Plan_Subscribtion_Feature_Assoc_Stream
 };
 
 
+export type Subscription_RootTeamArgs = {
+  distinct_on?: InputMaybe<Array<Team_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Team_Order_By>>;
+  where?: InputMaybe<Team_Bool_Exp>;
+};
+
+
+export type Subscription_RootTeam_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Team_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Team_Order_By>>;
+  where?: InputMaybe<Team_Bool_Exp>;
+};
+
+
+export type Subscription_RootTeam_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+export type Subscription_RootTeam_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Team_Stream_Cursor_Input>>;
+  where?: InputMaybe<Team_Bool_Exp>;
+};
+
+
 export type Subscription_RootText_ContentArgs = {
   distinct_on?: InputMaybe<Array<Text_Content_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -4049,6 +4273,175 @@ export type Subscription_RootTranslation_StreamArgs = {
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Translation_Stream_Cursor_Input>>;
   where?: InputMaybe<Translation_Bool_Exp>;
+};
+
+/** columns and relationships of "team" */
+export type Team = {
+  __typename?: 'team';
+  id: Scalars['uuid']['output'];
+  name: Scalars['String']['output'];
+  /** An array relationship */
+  users: Array<Auth_User>;
+  /** An aggregate relationship */
+  users_aggregate: Auth_User_Aggregate;
+};
+
+
+/** columns and relationships of "team" */
+export type TeamUsersArgs = {
+  distinct_on?: InputMaybe<Array<Auth_User_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Auth_User_Order_By>>;
+  where?: InputMaybe<Auth_User_Bool_Exp>;
+};
+
+
+/** columns and relationships of "team" */
+export type TeamUsers_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Auth_User_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Auth_User_Order_By>>;
+  where?: InputMaybe<Auth_User_Bool_Exp>;
+};
+
+/** aggregated selection of "team" */
+export type Team_Aggregate = {
+  __typename?: 'team_aggregate';
+  aggregate?: Maybe<Team_Aggregate_Fields>;
+  nodes: Array<Team>;
+};
+
+/** aggregate fields of "team" */
+export type Team_Aggregate_Fields = {
+  __typename?: 'team_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<Team_Max_Fields>;
+  min?: Maybe<Team_Min_Fields>;
+};
+
+
+/** aggregate fields of "team" */
+export type Team_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Team_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Boolean expression to filter rows from the table "team". All fields are combined with a logical 'AND'. */
+export type Team_Bool_Exp = {
+  _and?: InputMaybe<Array<Team_Bool_Exp>>;
+  _not?: InputMaybe<Team_Bool_Exp>;
+  _or?: InputMaybe<Array<Team_Bool_Exp>>;
+  id?: InputMaybe<Uuid_Comparison_Exp>;
+  name?: InputMaybe<String_Comparison_Exp>;
+  users?: InputMaybe<Auth_User_Bool_Exp>;
+  users_aggregate?: InputMaybe<Auth_User_Aggregate_Bool_Exp>;
+};
+
+/** unique or primary key constraints on table "team" */
+export enum Team_Constraint {
+  /** unique or primary key constraint on columns "id" */
+  TeamPkey = 'team_pkey'
+}
+
+/** input type for inserting data into table "team" */
+export type Team_Insert_Input = {
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  users?: InputMaybe<Auth_User_Arr_Rel_Insert_Input>;
+};
+
+/** aggregate max on columns */
+export type Team_Max_Fields = {
+  __typename?: 'team_max_fields';
+  id?: Maybe<Scalars['uuid']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+};
+
+/** aggregate min on columns */
+export type Team_Min_Fields = {
+  __typename?: 'team_min_fields';
+  id?: Maybe<Scalars['uuid']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+};
+
+/** response of any mutation on the table "team" */
+export type Team_Mutation_Response = {
+  __typename?: 'team_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Team>;
+};
+
+/** input type for inserting object relation for remote table "team" */
+export type Team_Obj_Rel_Insert_Input = {
+  data: Team_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Team_On_Conflict>;
+};
+
+/** on_conflict condition type for table "team" */
+export type Team_On_Conflict = {
+  constraint: Team_Constraint;
+  update_columns?: Array<Team_Update_Column>;
+  where?: InputMaybe<Team_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "team". */
+export type Team_Order_By = {
+  id?: InputMaybe<Order_By>;
+  name?: InputMaybe<Order_By>;
+  users_aggregate?: InputMaybe<Auth_User_Aggregate_Order_By>;
+};
+
+/** primary key columns input for table: team */
+export type Team_Pk_Columns_Input = {
+  id: Scalars['uuid']['input'];
+};
+
+/** select columns of table "team" */
+export enum Team_Select_Column {
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Name = 'name'
+}
+
+/** input type for updating data in table "team" */
+export type Team_Set_Input = {
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** Streaming cursor of the table "team" */
+export type Team_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Team_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Team_Stream_Cursor_Value_Input = {
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** update columns of table "team" */
+export enum Team_Update_Column {
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Name = 'name'
+}
+
+export type Team_Updates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Team_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Team_Bool_Exp;
 };
 
 /** columns and relationships of "text_content" */
@@ -4571,7 +4964,7 @@ export type UpdateUsernameMutationVariables = Exact<{
 }>;
 
 
-export type UpdateUsernameMutation = { __typename?: 'mutation_root', update_auth_user_by_pk?: { __typename?: 'auth_user', username: string } | null };
+export type UpdateUsernameMutation = { __typename?: 'mutation_root', update_auth_user_by_pk?: { __typename?: 'auth_user', username?: string | null } | null };
 
 export type UpdateEmailMutationVariables = Exact<{
   id: Scalars['uuid']['input'];
@@ -4620,6 +5013,21 @@ export type UpdateUserSubscriptionPlanMutationVariables = Exact<{
 
 export type UpdateUserSubscriptionPlanMutation = { __typename?: 'mutation_root', update_auth_user_by_pk?: { __typename?: 'auth_user', id: any } | null };
 
+export type CreateTeamMutationVariables = Exact<{
+  name: Scalars['String']['input'];
+}>;
+
+
+export type CreateTeamMutation = { __typename?: 'mutation_root', insert_team_one?: { __typename?: 'team', id: any, name: string } | null };
+
+export type UpdateUserTeamIdMutationVariables = Exact<{
+  id: Scalars['uuid']['input'];
+  teamid: Scalars['uuid']['input'];
+}>;
+
+
+export type UpdateUserTeamIdMutation = { __typename?: 'mutation_root', update_auth_user_by_pk?: { __typename?: 'auth_user', id: any } | null };
+
 
 export const GetUserDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetUser"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"auth_user_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"stripe_customer_id"}},{"kind":"Field","name":{"kind":"Name","value":"subscribtion_plan"}},{"kind":"Field","name":{"kind":"Name","value":"stripe_subscribtion_id"}}]}}]}}]} as unknown as DocumentNode<GetUserQuery, GetUserQueryVariables>;
 export const GetUserEmailDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetUserEmail"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"auth_user_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"email"}}]}}]}}]} as unknown as DocumentNode<GetUserEmailQuery, GetUserEmailQueryVariables>;
@@ -4630,3 +5038,5 @@ export const GetSubscriptionPlansDocument = {"kind":"Document","definitions":[{"
 export const GetSubscriptionPlanIdByNameDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetSubscriptionPlanIdByName"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"name"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"subscribtion_plan"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"name"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"name"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<GetSubscriptionPlanIdByNameQuery, GetSubscriptionPlanIdByNameQueryVariables>;
 export const GetSubscriptionPlanDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetSubscriptionPlan"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"subscribtion_plan_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<GetSubscriptionPlanQuery, GetSubscriptionPlanQueryVariables>;
 export const UpdateUserSubscriptionPlanDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateUserSubscriptionPlan"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"stripe_customer_id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"subscribtion_plan"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"subscribtion_id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"update_auth_user_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"pk_columns"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"_set"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"stripe_customer_id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"stripe_customer_id"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"subscribtion_plan"},"value":{"kind":"Variable","name":{"kind":"Name","value":"subscribtion_plan"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"stripe_subscribtion_id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"subscribtion_id"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<UpdateUserSubscriptionPlanMutation, UpdateUserSubscriptionPlanMutationVariables>;
+export const CreateTeamDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateTeam"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"name"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"insert_team_one"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"object"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"name"},"value":{"kind":"Variable","name":{"kind":"Name","value":"name"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<CreateTeamMutation, CreateTeamMutationVariables>;
+export const UpdateUserTeamIdDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateUserTeamId"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"teamid"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"update_auth_user_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"pk_columns"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"_set"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"team_id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"teamid"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<UpdateUserTeamIdMutation, UpdateUserTeamIdMutationVariables>;

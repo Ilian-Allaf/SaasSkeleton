@@ -7,5 +7,6 @@
 - "!include public_subscribtion_feature.yaml"
 - "!include public_subscribtion_plan.yaml"
 - "!include public_subscribtion_plan_subscribtion_feature_assoc.yaml"
+- "!include public_team.yaml"
 - "!include public_text_content.yaml"
 - "!include public_translation.yaml"

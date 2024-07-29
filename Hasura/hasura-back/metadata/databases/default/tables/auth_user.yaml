@@ -5,6 +5,9 @@ object_relationships:
   - name: subscribtionPlanBySubscribtionPlan
     using:
       foreign_key_constraint_on: subscribtion_plan
+  - name: team
+    using:
+      foreign_key_constraint_on: team_id
 array_relationships:
   - name: accounts
     using:
