@@ -1,0 +1,3 @@
+table:
+  name: unsubscription_feedback
+  schema: public
