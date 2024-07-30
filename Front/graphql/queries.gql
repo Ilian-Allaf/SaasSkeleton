@@ -94,6 +94,5 @@ query GetUserTeamName($teamid: uuid!) {
 mutation UpdateUnsubscriptionFeedback($feedback: String!) {
   insert_unsubscription_feedback_one(object: {feedback: $feedback}) {
     id
-    feedback
   }
 }
