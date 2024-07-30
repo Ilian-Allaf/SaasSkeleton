@@ -6,7 +6,6 @@ import { useTranslation } from '@/i18n/client'
 import { Button } from "@/components/ui/button"
 import { useRouter } from 'next/navigation';
 
-
 export default function Skeleton() {
   const { data: session } = useSession();
   const { t } = useTranslation('dashboard')
@@ -14,8 +13,13 @@ export default function Skeleton() {
 
   
 
-  const createTeamRedirect = () => {
-    router.push('dashboard/create-team'); 
+  const teamRedirect = () => {
+    if(session?.user?.teamId){
+      router.push('dashboard/manage-team')
+    }
+    else {
+      router.push('dashboard/create-team'); 
+    }
   }
 
   return (
@@ -23,7 +27,7 @@ export default function Skeleton() {
       {session ? (
         <>
           <p>{t("reception.welcome")}, {session.user?.username }</p>        
-          <Button variant="default" size="default" onClick={createTeamRedirect}>
+          <Button variant="default" size="default" onClick={teamRedirect}>
             {t("reception.createTeam")} 
           </Button>
         </>

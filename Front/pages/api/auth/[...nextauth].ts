@@ -111,6 +111,8 @@ export const authOptions: NextAuthOptions = {
           token.name = session.name;
         } else if (session?.subscriptionPlan) {
           token.subscriptionPlan = session.subscriptionPlan;
+        } else if (session?.teamId) {
+          token.teamId = session.teamId
         }
       }
 
@@ -123,6 +125,7 @@ export const authOptions: NextAuthOptions = {
           role: (user as User).role,
           active: (user as User).active,
           subscriptionPlan: (user as User).subscribtionPlan,
+          teamId : (user as User).teamId,
         };
       }
       return token;
@@ -138,6 +141,7 @@ export const authOptions: NextAuthOptions = {
           id: token.id,
           active: token.active,
           subscriptionPlan: token.subscriptionPlan,
+          teamId : token.teamId,
         },
       };
     },

@@ -5,9 +5,9 @@ import { redirect } from 'next/navigation'
 
 export default async function page() {
   const session = await getServerSession(authOptions);  
-  if(session?.user.teamId)
+  if(!session?.user.teamId)
   {
-    redirect('manage-team')
+    redirect('create-team')
   }
   return (
     <>
