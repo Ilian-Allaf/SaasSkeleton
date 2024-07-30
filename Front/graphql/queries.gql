@@ -4,6 +4,7 @@ query GetUser($id: uuid!) {
     stripe_customer_id
     subscribtion_plan
     stripe_subscribtion_id
+    team_id
   }
 }
 
@@ -81,6 +82,12 @@ mutation CreateTeam($name: String!) {
 mutation UpdateUserTeamId($id: uuid!, $teamid: uuid!) {
   update_auth_user_by_pk(pk_columns: {id: $id}, _set: {team_id : $teamid} ) {
     id
+  }
+}
+
+query GetUserTeamName($teamid: uuid!) {
+  team_by_pk(id : $teamid) {
+    name
   }
 }
 
