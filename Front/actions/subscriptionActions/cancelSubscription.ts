@@ -2,7 +2,7 @@
 
 import { useTranslation } from '@/i18n/index';
 import { setupGraphQLClient } from '@/lib/gqlClient';
-import { GetUserDocument, GetUserQuery } from '@/src/gql/graphql';
+import { GetUserDocument, GetUserQuery, UpdateUnsubscriptionFeedbackDocument } from '@/src/gql/graphql';
 import { getServerSession } from 'next-auth';
 import { authOptions } from 'pages/api/auth/[...nextauth]';
 import Stripe from 'stripe';
@@ -22,7 +22,6 @@ export async function CancelSubscription({
   let user: GetUserQuery;
   const session = await getServerSession(authOptions);
   if (!session) {
-    console.error('here');
     return {
       error: {
         message: 'Not authenticated',
@@ -30,10 +29,8 @@ export async function CancelSubscription({
       },
     };
   }
-  console.error('here');
   user = await gqlClient!.request(GetUserDocument, { id: session.user.id });
   if (!user?.auth_user_by_pk) {
-    console.error('here');
     return {
       error: {
         message: 'No user found',
@@ -41,7 +38,6 @@ export async function CancelSubscription({
       },
     };
   } else if (!user?.auth_user_by_pk?.subscribtion_plan) {
-    console.error('here');
     return {
       error: {
         message: t('billing.not-subscribed'),
@@ -55,7 +51,5 @@ export async function CancelSubscription({
       cancel_at_period_end: true,
     }
   );
-  console.error('hereaaa');
-  //   return {};
-  // TODO: Save feedback
+  await gqlClient!.request(UpdateUnsubscriptionFeedbackDocument, { feedback: feedback });
 }

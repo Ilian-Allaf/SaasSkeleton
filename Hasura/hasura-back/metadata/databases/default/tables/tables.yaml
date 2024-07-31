@@ -10,3 +10,4 @@
 - "!include public_team.yaml"
 - "!include public_text_content.yaml"
 - "!include public_translation.yaml"
+- "!include public_unsubscription_feedback.yaml"
