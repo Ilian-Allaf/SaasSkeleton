@@ -40,10 +40,13 @@ mutation UpdateUpdatedEmail($id: uuid!, $updated_email: String!) {
 
 query GetSubscriptionPlans($languageCode: String!) {
   subscribtion_plan {
-    id
     name
+    stripe_monthly_price_id
+    stripe_yearly_price_id
+    popular
     text_content {
       translations(where: { language: { _eq: $languageCode } }) {
+        text_label
         translation
       }
     }
