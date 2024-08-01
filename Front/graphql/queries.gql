@@ -65,8 +65,8 @@ query GetSubscriptionPlanIdByName($name: String!) {
   }
 }
 
-query GetSubscriptionPlan($id: String!) {
-  subscribtion_plan_by_pk(id: $id) {
+query GetSubscriptionPlanNameByMonthlyPriceId($id: String!) {
+  subscribtion_plan(where: { stripe_monthly_price_id: { _eq: $id } }) {
     name
   }
 }

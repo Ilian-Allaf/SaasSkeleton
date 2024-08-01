@@ -24,18 +24,20 @@ select_permissions:
   - role: service
     permission:
       columns:
-        - id
+        - stripe_monthly_price_id
+        - stripe_yearly_price_id
         - name
         - text_content_id
       filter: {}
-    comment: ""
+    comment: ''
   - role: user
     permission:
       columns:
-        - id
+        - stripe_monthly_price_id
+        - stripe_yearly_price_id
         - name
         - created_at
         - updated_at
         - text_content_id
       filter: {}
-    comment: ""
+    comment: ''

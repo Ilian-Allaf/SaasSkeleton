@@ -1,13 +1,15 @@
 
 -- CreateTable
 CREATE TABLE "public"."subscribtion_plan" (
-    "id" TEXT NOT NULL UNIQUE,
     "name" TEXT NOT NULL UNIQUE,
+    "stripe_monthly_price_id" TEXT NOT NULL UNIQUE,
+    "stripe_yearly_price_id" TEXT NOT NULL UNIQUE,
+    "description" TEXT,
+    "popular" BOOLEAN NOT NULL DEFAULT false,
     "text_content_id" UUID NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-
-    CONSTRAINT "subscribtion_plan_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "subscribtion_plan_pkey" PRIMARY KEY ("name")
 );
 ALTER TABLE "public"."subscribtion_plan" ADD CONSTRAINT "subscribtion_plan_text_content_fkey" FOREIGN KEY ("text_content_id") REFERENCES "public"."text_content"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 

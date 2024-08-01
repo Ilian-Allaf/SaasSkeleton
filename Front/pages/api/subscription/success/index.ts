@@ -1,7 +1,7 @@
 import { prisma } from '@/lib/prismaClient';
 import { setupUnauthenticatedGraphQLClient } from '@/lib/unauthenticatedGqlClient';
 import {
-  GetSubscriptionPlanDocument,
+  GetSubscriptionPlanNameByMonthlyPriceIdDocument,
   UpdateUserSubscriptionPlanDocument,
 } from '@/src/gql/graphql';
 import { generateVerificationEmailToken, sendEmail } from '@/utils/sendEmail';
@@ -49,7 +49,7 @@ export default async function handler(
     const subscription_id =
       subscriptions['data'][0]['items']['data'][0]['subscription'];
     const subscriptionPlan = await UnauthenticatedGqlClient!.request(
-      GetSubscriptionPlanDocument,
+      GetSubscriptionPlanNameByMonthlyPriceIdDocument,
       { id: plan_id }
     );
     let emailContent: any;
@@ -68,7 +68,7 @@ export default async function handler(
         data: {
           email: customerEmail,
           password: await bcrypt.hash(generatedPassword, 10),
-          subscribtionPlan: subscriptionPlan.subscribtion_plan_by_pk?.name!,
+          subscribtionPlan: subscriptionPlan.subscribtion_plan[0].name!,
           stripeCustomerId: customer.id,
           stripeSubscribtionId: subscription_id,
         },
@@ -93,7 +93,7 @@ export default async function handler(
         {
           id: userId,
           stripe_customer_id: customer.id,
-          subscribtion_plan: subscriptionPlan.subscribtion_plan_by_pk?.name!,
+          subscribtion_plan: subscriptionPlan.subscribtion_plan[0].name!,
           subscribtion_id: subscription_id,
         }
       );

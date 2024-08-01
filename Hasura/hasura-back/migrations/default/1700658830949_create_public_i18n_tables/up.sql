@@ -22,13 +22,14 @@ CREATE TABLE "public"."text_content" (
 CREATE TABLE "public"."translation" (
     "id" UUID DEFAULT gen_random_uuid() NOT NULL,
     "text_content_id" UUID NOT NULL,
+    "text_label" TEXT,
     "language" TEXT NOT NULL,
     "translation" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    CONSTRAINT "translation_pkey" PRIMARY KEY ("id")
-
+    CONSTRAINT "translation_pkey" PRIMARY KEY ("id"),
+    CONSTRAINT "translation_text_content_label_unique" UNIQUE ("text_content_id", "text_label", "language")
 );
 ALTER TABLE "public"."translation" ADD CONSTRAINT "translation_language_fkey" FOREIGN KEY ("language") REFERENCES "public"."language"("code") ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE "public"."translation" ADD CONSTRAINT "translation_text_content_fkey" FOREIGN KEY ("text_content_id") REFERENCES "public"."text_content"("id") ON DELETE CASCADE ON UPDATE CASCADE;

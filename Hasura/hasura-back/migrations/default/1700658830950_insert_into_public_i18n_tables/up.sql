@@ -7,16 +7,22 @@ INSERT INTO "public"."language"("code", "name") VALUES (E'en', E'English');
 
 -- Subscribtion plan
 INSERT INTO "public"."text_content"("id") VALUES (E'927db6a6-47df-4fa8-b35d-927a7641cd08');
-INSERT INTO "public"."translation"("text_content_id", "language", "translation") VALUES (E'927db6a6-47df-4fa8-b35d-927a7641cd08', E'en', E'Hobby');
-INSERT INTO "public"."translation"("text_content_id", "language", "translation") VALUES (E'927db6a6-47df-4fa8-b35d-927a7641cd08', E'fr', E'Essai');
+INSERT INTO "public"."translation"("text_content_id", "text_label", "language", "translation") VALUES (E'927db6a6-47df-4fa8-b35d-927a7641cd08', E'name', E'en', E'Hobby');
+INSERT INTO "public"."translation"("text_content_id", "text_label", "language", "translation") VALUES (E'927db6a6-47df-4fa8-b35d-927a7641cd08', E'name', E'fr', E'Essai');
+INSERT INTO "public"."translation"("text_content_id", "text_label", "language", "translation") VALUES (E'927db6a6-47df-4fa8-b35d-927a7641cd08',  E'description', E'en', E'Essential features you need to get started');
+INSERT INTO "public"."translation"("text_content_id", "text_label", "language", "translation") VALUES (E'927db6a6-47df-4fa8-b35d-927a7641cd08',  E'description', E'fr', E'Fonctionnalités essentielles dont vous avez besoin pour commencer');
 
 INSERT INTO "public"."text_content"("id") VALUES (E'0c393234-7dba-4188-9b62-b5bbfc53857d');
-INSERT INTO "public"."translation"("text_content_id", "language", "translation") VALUES (E'0c393234-7dba-4188-9b62-b5bbfc53857d', E'en', E'Pro');
-INSERT INTO "public"."translation"("text_content_id", "language", "translation") VALUES (E'0c393234-7dba-4188-9b62-b5bbfc53857d', E'fr', E'Pro');
+INSERT INTO "public"."translation"("text_content_id", "text_label", "language", "translation") VALUES (E'0c393234-7dba-4188-9b62-b5bbfc53857d', E'name', E'en', E'Pro');
+INSERT INTO "public"."translation"("text_content_id", "text_label", "language", "translation") VALUES (E'0c393234-7dba-4188-9b62-b5bbfc53857d', E'name', E'fr', E'Pro');
+INSERT INTO "public"."translation"("text_content_id", "text_label", "language", "translation") VALUES (E'0c393234-7dba-4188-9b62-b5bbfc53857d',  E'description', E'en', E'Perfect for owners of small & medium businessess');
+INSERT INTO "public"."translation"("text_content_id", "text_label", "language", "translation") VALUES (E'0c393234-7dba-4188-9b62-b5bbfc53857d',  E'description', E'fr', E'Parfait pour les petites et moyennes entreprises');
 
 INSERT INTO "public"."text_content"("id") VALUES (E'212d73e3-3df0-484f-9b0f-7b28c301fac8');
-INSERT INTO "public"."translation"("text_content_id", "language", "translation") VALUES (E'212d73e3-3df0-484f-9b0f-7b28c301fac8', E'en', E'Enterprise');
-INSERT INTO "public"."translation"("text_content_id", "language", "translation") VALUES (E'212d73e3-3df0-484f-9b0f-7b28c301fac8', E'fr', E'Entreprise');
+INSERT INTO "public"."translation"("text_content_id", "text_label", "language", "translation") VALUES (E'212d73e3-3df0-484f-9b0f-7b28c301fac8', E'name', E'en', E'Enterprise');
+INSERT INTO "public"."translation"("text_content_id", "text_label", "language", "translation") VALUES (E'212d73e3-3df0-484f-9b0f-7b28c301fac8', E'name', E'fr', E'Entreprise');
+INSERT INTO "public"."translation"("text_content_id", "text_label", "language", "translation") VALUES (E'212d73e3-3df0-484f-9b0f-7b28c301fac8', E'description', E'en', E'Dedicated support and infrastructure to fit your needs');
+INSERT INTO "public"."translation"("text_content_id", "text_label", "language", "translation") VALUES (E'212d73e3-3df0-484f-9b0f-7b28c301fac8', E'description', E'fr', E'Un support dédié et une infrastructure adaptée à vos besoins');
 
 -- Subscribtion plan features
 INSERT INTO "public"."text_content"("id") VALUES (E'79c7c2b4-12d6-4521-9cab-8e2f2c09419f');
