@@ -2023,6 +2023,10 @@ export type Mutation_Root = {
   delete_translation?: Maybe<Translation_Mutation_Response>;
   /** delete single row from the table: "translation" */
   delete_translation_by_pk?: Maybe<Translation>;
+  /** delete data from the table: "unsubscription_feedback" */
+  delete_unsubscription_feedback?: Maybe<Unsubscription_Feedback_Mutation_Response>;
+  /** delete single row from the table: "unsubscription_feedback" */
+  delete_unsubscription_feedback_by_pk?: Maybe<Unsubscription_Feedback>;
   /** insert data into the table: "auth.account" */
   insert_auth_account?: Maybe<Auth_Account_Mutation_Response>;
   /** insert a single row into the table: "auth.account" */
@@ -2071,6 +2075,10 @@ export type Mutation_Root = {
   insert_translation?: Maybe<Translation_Mutation_Response>;
   /** insert a single row into the table: "translation" */
   insert_translation_one?: Maybe<Translation>;
+  /** insert data into the table: "unsubscription_feedback" */
+  insert_unsubscription_feedback?: Maybe<Unsubscription_Feedback_Mutation_Response>;
+  /** insert a single row into the table: "unsubscription_feedback" */
+  insert_unsubscription_feedback_one?: Maybe<Unsubscription_Feedback>;
   /** update data of the table: "auth.account" */
   update_auth_account?: Maybe<Auth_Account_Mutation_Response>;
   /** update single row of the table: "auth.account" */
@@ -2159,6 +2167,14 @@ export type Mutation_Root = {
   update_translation_by_pk?: Maybe<Translation>;
   /** update multiples rows of table: "translation" */
   update_translation_many?: Maybe<Array<Maybe<Translation_Mutation_Response>>>;
+  /** update data of the table: "unsubscription_feedback" */
+  update_unsubscription_feedback?: Maybe<Unsubscription_Feedback_Mutation_Response>;
+  /** update single row of the table: "unsubscription_feedback" */
+  update_unsubscription_feedback_by_pk?: Maybe<Unsubscription_Feedback>;
+  /** update multiples rows of table: "unsubscription_feedback" */
+  update_unsubscription_feedback_many?: Maybe<
+    Array<Maybe<Unsubscription_Feedback_Mutation_Response>>
+  >;
 };
 
 /** mutation root */
@@ -2280,6 +2296,16 @@ export type Mutation_RootDelete_TranslationArgs = {
 
 /** mutation root */
 export type Mutation_RootDelete_Translation_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+/** mutation root */
+export type Mutation_RootDelete_Unsubscription_FeedbackArgs = {
+  where: Unsubscription_Feedback_Bool_Exp;
+};
+
+/** mutation root */
+export type Mutation_RootDelete_Unsubscription_Feedback_By_PkArgs = {
   id: Scalars['uuid']['input'];
 };
 
@@ -2427,6 +2453,18 @@ export type Mutation_RootInsert_TranslationArgs = {
 export type Mutation_RootInsert_Translation_OneArgs = {
   object: Translation_Insert_Input;
   on_conflict?: InputMaybe<Translation_On_Conflict>;
+};
+
+/** mutation root */
+export type Mutation_RootInsert_Unsubscription_FeedbackArgs = {
+  objects: Array<Unsubscription_Feedback_Insert_Input>;
+  on_conflict?: InputMaybe<Unsubscription_Feedback_On_Conflict>;
+};
+
+/** mutation root */
+export type Mutation_RootInsert_Unsubscription_Feedback_OneArgs = {
+  object: Unsubscription_Feedback_Insert_Input;
+  on_conflict?: InputMaybe<Unsubscription_Feedback_On_Conflict>;
 };
 
 /** mutation root */
@@ -2638,6 +2676,23 @@ export type Mutation_RootUpdate_Translation_ManyArgs = {
   updates: Array<Translation_Updates>;
 };
 
+/** mutation root */
+export type Mutation_RootUpdate_Unsubscription_FeedbackArgs = {
+  _set?: InputMaybe<Unsubscription_Feedback_Set_Input>;
+  where: Unsubscription_Feedback_Bool_Exp;
+};
+
+/** mutation root */
+export type Mutation_RootUpdate_Unsubscription_Feedback_By_PkArgs = {
+  _set?: InputMaybe<Unsubscription_Feedback_Set_Input>;
+  pk_columns: Unsubscription_Feedback_Pk_Columns_Input;
+};
+
+/** mutation root */
+export type Mutation_RootUpdate_Unsubscription_Feedback_ManyArgs = {
+  updates: Array<Unsubscription_Feedback_Updates>;
+};
+
 /** column ordering options */
 export enum Order_By {
   /** in ascending order, nulls last */
@@ -2728,6 +2783,12 @@ export type Query_Root = {
   translation_aggregate: Translation_Aggregate;
   /** fetch data from the table: "translation" using primary key columns */
   translation_by_pk?: Maybe<Translation>;
+  /** fetch data from the table: "unsubscription_feedback" */
+  unsubscription_feedback: Array<Unsubscription_Feedback>;
+  /** fetch aggregated fields from the table: "unsubscription_feedback" */
+  unsubscription_feedback_aggregate: Unsubscription_Feedback_Aggregate;
+  /** fetch data from the table: "unsubscription_feedback" using primary key columns */
+  unsubscription_feedback_by_pk?: Maybe<Unsubscription_Feedback>;
 };
 
 export type Query_RootAuth_AccountArgs = {
@@ -2976,6 +3037,26 @@ export type Query_RootTranslation_AggregateArgs = {
 };
 
 export type Query_RootTranslation_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+export type Query_RootUnsubscription_FeedbackArgs = {
+  distinct_on?: InputMaybe<Array<Unsubscription_Feedback_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Unsubscription_Feedback_Order_By>>;
+  where?: InputMaybe<Unsubscription_Feedback_Bool_Exp>;
+};
+
+export type Query_RootUnsubscription_Feedback_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Unsubscription_Feedback_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Unsubscription_Feedback_Order_By>>;
+  where?: InputMaybe<Unsubscription_Feedback_Bool_Exp>;
+};
+
+export type Query_RootUnsubscription_Feedback_By_PkArgs = {
   id: Scalars['uuid']['input'];
 };
 
@@ -3913,6 +3994,14 @@ export type Subscription_Root = {
   translation_by_pk?: Maybe<Translation>;
   /** fetch data from the table in a streaming manner: "translation" */
   translation_stream: Array<Translation>;
+  /** fetch data from the table: "unsubscription_feedback" */
+  unsubscription_feedback: Array<Unsubscription_Feedback>;
+  /** fetch aggregated fields from the table: "unsubscription_feedback" */
+  unsubscription_feedback_aggregate: Unsubscription_Feedback_Aggregate;
+  /** fetch data from the table: "unsubscription_feedback" using primary key columns */
+  unsubscription_feedback_by_pk?: Maybe<Unsubscription_Feedback>;
+  /** fetch data from the table in a streaming manner: "unsubscription_feedback" */
+  unsubscription_feedback_stream: Array<Unsubscription_Feedback>;
 };
 
 export type Subscription_RootAuth_AccountArgs = {
@@ -4239,6 +4328,32 @@ export type Subscription_RootTranslation_StreamArgs = {
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Translation_Stream_Cursor_Input>>;
   where?: InputMaybe<Translation_Bool_Exp>;
+};
+
+export type Subscription_RootUnsubscription_FeedbackArgs = {
+  distinct_on?: InputMaybe<Array<Unsubscription_Feedback_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Unsubscription_Feedback_Order_By>>;
+  where?: InputMaybe<Unsubscription_Feedback_Bool_Exp>;
+};
+
+export type Subscription_RootUnsubscription_Feedback_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Unsubscription_Feedback_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Unsubscription_Feedback_Order_By>>;
+  where?: InputMaybe<Unsubscription_Feedback_Bool_Exp>;
+};
+
+export type Subscription_RootUnsubscription_Feedback_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+export type Subscription_RootUnsubscription_Feedback_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Unsubscription_Feedback_Stream_Cursor_Input>>;
+  where?: InputMaybe<Unsubscription_Feedback_Bool_Exp>;
 };
 
 /** columns and relationships of "team" */
@@ -4900,6 +5015,139 @@ export type Translation_Updates = {
   _set?: InputMaybe<Translation_Set_Input>;
   /** filter the rows which have to be updated */
   where: Translation_Bool_Exp;
+};
+
+/** columns and relationships of "unsubscription_feedback" */
+export type Unsubscription_Feedback = {
+  __typename?: 'unsubscription_feedback';
+  feedback: Scalars['String']['output'];
+  id: Scalars['uuid']['output'];
+};
+
+/** aggregated selection of "unsubscription_feedback" */
+export type Unsubscription_Feedback_Aggregate = {
+  __typename?: 'unsubscription_feedback_aggregate';
+  aggregate?: Maybe<Unsubscription_Feedback_Aggregate_Fields>;
+  nodes: Array<Unsubscription_Feedback>;
+};
+
+/** aggregate fields of "unsubscription_feedback" */
+export type Unsubscription_Feedback_Aggregate_Fields = {
+  __typename?: 'unsubscription_feedback_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<Unsubscription_Feedback_Max_Fields>;
+  min?: Maybe<Unsubscription_Feedback_Min_Fields>;
+};
+
+/** aggregate fields of "unsubscription_feedback" */
+export type Unsubscription_Feedback_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Unsubscription_Feedback_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Boolean expression to filter rows from the table "unsubscription_feedback". All fields are combined with a logical 'AND'. */
+export type Unsubscription_Feedback_Bool_Exp = {
+  _and?: InputMaybe<Array<Unsubscription_Feedback_Bool_Exp>>;
+  _not?: InputMaybe<Unsubscription_Feedback_Bool_Exp>;
+  _or?: InputMaybe<Array<Unsubscription_Feedback_Bool_Exp>>;
+  feedback?: InputMaybe<String_Comparison_Exp>;
+  id?: InputMaybe<Uuid_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "unsubscription_feedback" */
+export enum Unsubscription_Feedback_Constraint {
+  /** unique or primary key constraint on columns "id" */
+  UnsubscriptionFeedbackPkey = 'unsubscription_feedback_pkey',
+}
+
+/** input type for inserting data into table "unsubscription_feedback" */
+export type Unsubscription_Feedback_Insert_Input = {
+  feedback?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+};
+
+/** aggregate max on columns */
+export type Unsubscription_Feedback_Max_Fields = {
+  __typename?: 'unsubscription_feedback_max_fields';
+  feedback?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+};
+
+/** aggregate min on columns */
+export type Unsubscription_Feedback_Min_Fields = {
+  __typename?: 'unsubscription_feedback_min_fields';
+  feedback?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['uuid']['output']>;
+};
+
+/** response of any mutation on the table "unsubscription_feedback" */
+export type Unsubscription_Feedback_Mutation_Response = {
+  __typename?: 'unsubscription_feedback_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Unsubscription_Feedback>;
+};
+
+/** on_conflict condition type for table "unsubscription_feedback" */
+export type Unsubscription_Feedback_On_Conflict = {
+  constraint: Unsubscription_Feedback_Constraint;
+  update_columns?: Array<Unsubscription_Feedback_Update_Column>;
+  where?: InputMaybe<Unsubscription_Feedback_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "unsubscription_feedback". */
+export type Unsubscription_Feedback_Order_By = {
+  feedback?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: unsubscription_feedback */
+export type Unsubscription_Feedback_Pk_Columns_Input = {
+  id: Scalars['uuid']['input'];
+};
+
+/** select columns of table "unsubscription_feedback" */
+export enum Unsubscription_Feedback_Select_Column {
+  /** column name */
+  Feedback = 'feedback',
+  /** column name */
+  Id = 'id',
+}
+
+/** input type for updating data in table "unsubscription_feedback" */
+export type Unsubscription_Feedback_Set_Input = {
+  feedback?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+};
+
+/** Streaming cursor of the table "unsubscription_feedback" */
+export type Unsubscription_Feedback_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Unsubscription_Feedback_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Unsubscription_Feedback_Stream_Cursor_Value_Input = {
+  feedback?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+};
+
+/** update columns of table "unsubscription_feedback" */
+export enum Unsubscription_Feedback_Update_Column {
+  /** column name */
+  Feedback = 'feedback',
+  /** column name */
+  Id = 'id',
+}
+
+export type Unsubscription_Feedback_Updates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Unsubscription_Feedback_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Unsubscription_Feedback_Bool_Exp;
 };
 
 /** Boolean expression to compare columns of type "uuid". All fields are combined with logical 'AND'. */
