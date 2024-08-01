@@ -5321,6 +5321,15 @@ export type GetUserTeamNameQuery = {
   team_by_pk?: { __typename?: 'team'; name: string } | null;
 };
 
+export type GetUserTeamNameQueryVariables = Exact<{
+  teamid: Scalars['uuid']['input'];
+}>;
+
+export type GetUserTeamNameQuery = {
+  __typename?: 'query_root';
+  team_by_pk?: { __typename?: 'team'; name: string } | null;
+};
+
 export type UpdateUnsubscriptionFeedbackMutationVariables = Exact<{
   feedback: Scalars['String']['input'];
 }>;
