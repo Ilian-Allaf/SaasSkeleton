@@ -24,6 +24,79 @@ export type Plans = {
 }[];
 
 export default async function Page() {
+  async function getPriceFromStripe({
+    priceId,
+  }: {
+    priceId: string;
+  }): Promise<number> {
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
+      apiVersion: '2023-10-16',
+    });
+
+    const price = await stripe.prices.retrieve(priceId);
+    if (!price.unit_amount) {
+      throw new Error(`Le prix avec l'ID ${priceId} n'a pas été trouvé.`);
+    }
+
+    return price.unit_amount / 100;
+  }
+
+  async function transformSubscriptionPlans({
+    subscribtionPlans,
+    userPlan,
+  }: {
+    subscribtionPlans: GetSubscriptionPlansQuery;
+    userPlan: GetUserQuery;
+  }): Promise<Plans> {
+    const { t } = await useTranslation('pricing');
+    const transformedSubscriptionPlans: Plans = [];
+    for (const plan of subscribtionPlans.subscribtion_plan) {
+      let name = '';
+      let description = '';
+
+      plan.text_content.translations.forEach((translation) => {
+        if (translation.text_label === 'name') {
+          name = translation.translation;
+        } else if (translation.text_label === 'description') {
+          description = translation.translation;
+        }
+      });
+
+      const monthlyPriceId = plan.stripe_monthly_price_id;
+      const yearlyPriceId = plan.stripe_yearly_price_id;
+
+      const monthlyPrice = await getPriceFromStripe({
+        priceId: monthlyPriceId,
+      });
+      const yearlyPrice = await getPriceFromStripe({ priceId: yearlyPriceId });
+
+      const features = plan.subscribtion_plan_subscribtion_feature_assocs.map(
+        (assoc) =>
+          assoc.subscribtionFeatureBySubscribtionFeature.text_content
+            .translations[0].translation
+      );
+
+      const planObject = {
+        title: name,
+        monthlyPrice: monthlyPrice,
+        yearlyPrice: yearlyPrice,
+        description: description,
+        features: features,
+        actionLabel:
+          userPlan.auth_user_by_pk?.subscribtion_plan === plan.name
+            ? t('upgrade-button')
+            : t('subscribe-button'),
+        popular: plan.popular,
+        yearly_stripe_id: yearlyPriceId,
+        monthly_stripe_id: monthlyPriceId,
+      };
+
+      transformedSubscriptionPlans.push(planObject);
+    }
+
+    return transformedSubscriptionPlans;
+  }
+
   const lng = await detectLanguage();
   const session = await getServerSession(authOptions);
   const gqlClient = session
@@ -50,75 +123,4 @@ export default async function Page() {
       <Skeleton subscribtionPlans={transformedSubscribtionPlans} />
     </>
   );
-}
-
-async function getPriceFromStripe({
-  priceId,
-}: {
-  priceId: string;
-}): Promise<number> {
-  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
-    apiVersion: '2023-10-16',
-  });
-
-  const price = await stripe.prices.retrieve(priceId);
-  if (!price.unit_amount) {
-    throw new Error(`Le prix avec l'ID ${priceId} n'a pas été trouvé.`);
-  }
-
-  return price.unit_amount / 100;
-}
-
-async function transformSubscriptionPlans({
-  subscribtionPlans,
-  userPlan,
-}: {
-  subscribtionPlans: GetSubscriptionPlansQuery;
-  userPlan: GetUserQuery;
-}): Promise<Plans> {
-  const { t } = await useTranslation('pricing');
-  const transformedSubscriptionPlans: Plans = [];
-  for (const plan of subscribtionPlans.subscribtion_plan) {
-    let name = '';
-    let description = '';
-
-    plan.text_content.translations.forEach((translation) => {
-      if (translation.text_label === 'name') {
-        name = translation.translation;
-      } else if (translation.text_label === 'description') {
-        description = translation.translation;
-      }
-    });
-
-    const monthlyPriceId = plan.stripe_monthly_price_id;
-    const yearlyPriceId = plan.stripe_yearly_price_id;
-
-    const monthlyPrice = await getPriceFromStripe({ priceId: monthlyPriceId });
-    const yearlyPrice = await getPriceFromStripe({ priceId: yearlyPriceId });
-
-    const features = plan.subscribtion_plan_subscribtion_feature_assocs.map(
-      (assoc) =>
-        assoc.subscribtionFeatureBySubscribtionFeature.text_content
-          .translations[0].translation
-    );
-
-    const planObject = {
-      title: name,
-      monthlyPrice: monthlyPrice,
-      yearlyPrice: yearlyPrice,
-      description: description,
-      features: features,
-      actionLabel:
-        userPlan.auth_user_by_pk?.subscribtion_plan === plan.name
-          ? t('upgrade-button')
-          : t('subscribe-button'),
-      popular: plan.popular,
-      yearly_stripe_id: yearlyPriceId,
-      monthly_stripe_id: monthlyPriceId,
-    };
-
-    transformedSubscriptionPlans.push(planObject);
-  }
-
-  return transformedSubscriptionPlans;
 }
