@@ -24,6 +24,8 @@ export type Plans = {
 }[];
 
 export default async function Page() {
+  const { t } = await useTranslation('pricing');
+
   async function getPriceFromStripe({
     priceId,
   }: {
@@ -48,7 +50,6 @@ export default async function Page() {
     subscribtionPlans: GetSubscriptionPlansQuery;
     userPlan: GetUserQuery;
   }): Promise<Plans> {
-    const { t } = await useTranslation('pricing');
     const transformedSubscriptionPlans: Plans = [];
     for (const plan of subscribtionPlans.subscribtion_plan) {
       let name = '';
