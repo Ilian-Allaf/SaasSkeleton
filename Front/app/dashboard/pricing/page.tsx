@@ -23,7 +23,7 @@ export type Plans = {
   monthly_stripe_id: string;
 }[];
 
-export default async function page() {
+export default async function Page() {
   const lng = await detectLanguage();
   const session = await getServerSession(authOptions);
   const gqlClient = session
