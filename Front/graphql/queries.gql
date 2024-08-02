@@ -8,7 +8,6 @@ query GetUser($id: uuid!) {
   }
 }
 
-
 query GetUserEmail($id: uuid!) {
   auth_user_by_pk(id: $id) {
     email
@@ -16,49 +15,55 @@ query GetUserEmail($id: uuid!) {
 }
 
 mutation UpdateUsername($id: uuid!, $username: String!) {
-  update_auth_user_by_pk(pk_columns: {id: $id}, _set: {username: $username}) {
+  update_auth_user_by_pk(
+    pk_columns: { id: $id }
+    _set: { username: $username }
+  ) {
     username
   }
 }
 
 mutation UpdateEmail($id: uuid!, $email: String!) {
-  update_auth_user_by_pk(pk_columns: {id: $id}, _set: {email: $email}) {
+  update_auth_user_by_pk(pk_columns: { id: $id }, _set: { email: $email }) {
     email
   }
 }
 
 mutation UpdateUpdatedEmail($id: uuid!, $updated_email: String!) {
-  update_auth_user_by_pk(pk_columns: {id: $id}, _set: {updated_email: $updated_email}) {
+  update_auth_user_by_pk(
+    pk_columns: { id: $id }
+    _set: { updated_email: $updated_email }
+  ) {
     updated_email
   }
 }
 
-  query GetSubscriptionPlans($languageCode: String!) {
-    subscribtion_plan {
-      id
-      name
-      text_content {
-        translations(where: {language: {_eq: $languageCode}}) {
-          translation
-        }
+query GetSubscriptionPlans($languageCode: String!) {
+  subscribtion_plan {
+    id
+    name
+    text_content {
+      translations(where: { language: { _eq: $languageCode } }) {
+        translation
       }
-      subscribtion_plan_subscribtion_feature_assocs {
-        subscribtionFeatureBySubscribtionFeature {
-          text_content {
-            translations(where: {language: {_eq: $languageCode}}) {
-              translation
-            }
+    }
+    subscribtion_plan_subscribtion_feature_assocs {
+      subscribtionFeatureBySubscribtionFeature {
+        text_content {
+          translations(where: { language: { _eq: $languageCode } }) {
+            translation
           }
         }
       }
     }
   }
+}
 
-  query GetSubscriptionPlanIdByName($name: String!) {
-    subscribtion_plan(where: {name: {_eq: $name}}) {
-      id
-    }
+query GetSubscriptionPlanIdByName($name: String!) {
+  subscribtion_plan(where: { name: { _eq: $name } }) {
+    id
   }
+}
 
 query GetSubscriptionPlan($id: String!) {
   subscribtion_plan_by_pk(id: $id) {
@@ -66,33 +71,45 @@ query GetSubscriptionPlan($id: String!) {
   }
 }
 
-mutation UpdateUserSubscriptionPlan($id: uuid!, $stripe_customer_id: String!, $subscribtion_plan: String!, $subscribtion_id: String!) {
-  update_auth_user_by_pk(pk_columns: {id: $id}, _set: {stripe_customer_id: $stripe_customer_id, subscribtion_plan: $subscribtion_plan, stripe_subscribtion_id: $subscribtion_id}) {
+mutation UpdateUserSubscriptionPlan(
+  $id: uuid!
+  $stripe_customer_id: String!
+  $subscribtion_plan: String!
+  $subscribtion_id: String!
+) {
+  update_auth_user_by_pk(
+    pk_columns: { id: $id }
+    _set: {
+      stripe_customer_id: $stripe_customer_id
+      subscribtion_plan: $subscribtion_plan
+      stripe_subscribtion_id: $subscribtion_id
+    }
+  ) {
     id
   }
 }
 
 mutation CreateTeam($name: String!) {
-  insert_team_one(object: {name: $name}) {
+  insert_team_one(object: { name: $name }) {
     id
     name
   }
 }
 
 mutation UpdateUserTeamId($id: uuid!, $teamid: uuid!) {
-  update_auth_user_by_pk(pk_columns: {id: $id}, _set: {team_id : $teamid} ) {
+  update_auth_user_by_pk(pk_columns: { id: $id }, _set: { team_id: $teamid }) {
     id
   }
 }
 
 query GetUserTeamName($teamid: uuid!) {
-  team_by_pk(id : $teamid) {
+  team_by_pk(id: $teamid) {
     name
   }
 }
 
 mutation UpdateUnsubscriptionFeedback($feedback: String!) {
-  insert_unsubscription_feedback_one(object: {feedback: $feedback}) {
+  insert_unsubscription_feedback_one(object: { feedback: $feedback }) {
     id
   }
 }
