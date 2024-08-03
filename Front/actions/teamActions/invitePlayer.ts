@@ -5,14 +5,17 @@ import { baseTemplate } from 'emailTemplates';
 import { getServerSession } from 'next-auth';
 import { authOptions } from 'pages/api/auth/[...nextauth]';
 
-export async function SendTeamInvitationEmail(): Promise<any> {
+export async function SendTeamInvitationEmail({
+  email,
+}: {
+  email: string;
+}): Promise<any> {
   const session = await getServerSession(authOptions);
   let user;
   if (session) {
     user = session.user;
   }
 
-  const email = user.email;
   let emailContent: any;
 
   emailContent = baseTemplate({

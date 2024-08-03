@@ -49,8 +49,7 @@ export default function Skeleton() {
   };
 
   const handleInvite = () => {
-    SendTeamInvitationEmail();
-    console.log(`Invite sent to ${email}`);
+    SendTeamInvitationEmail({ email });
     handleInviteClose();
   };
 
@@ -82,8 +81,8 @@ export default function Skeleton() {
               <Image
                 src="/sidepanel.png"
                 alt="TeamUp"
-                width={400} // adjust width
-                height={400} // adjust height
+                width={400}
+                height={400}
                 className="mt-4 w-full"
               />
             </div>
