@@ -74,7 +74,9 @@
     "reactivate-subscription": "Reactivate subscription",
     "warning-subscription-end": "Your subscription will end on",
     "warning-suggestion-subscription-end": "Please renew your subscription to continue using our services.",
-    "no-billing-planned": "No billing planned"
+    "no-billing-planned": "No billing planned",
+    "month": "month",
+    "year": "year"
   },
   "sidebar": {
     "general": "General",

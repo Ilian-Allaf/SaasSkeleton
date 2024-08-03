@@ -2,7 +2,7 @@ import { Separator } from '@/components/ui/separator';
 import { useTranslation } from '@/i18n/index';
 import { setupGraphQLClient } from '@/lib/gqlClient';
 import {
-  GetSubscriptionPlanIdByNameDocument,
+  GetSubsciptionPlanTranslationByNameAndLngDocument,
   GetUserDocument,
 } from '@/src/gql/graphql';
 import { getServerSession } from 'next-auth';
@@ -19,8 +19,9 @@ function capitalizeFirstLetter(string) {
 }
 
 export default async function Page() {
+  console.log('Page');
   const session = await getServerSession(authOptions);
-  const { t } = await useTranslation('settings');
+  const { t, i18n } = await useTranslation('settings');
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
     apiVersion: '2023-10-16',
   });
@@ -38,36 +39,45 @@ export default async function Page() {
     };
   }
 
-  let subscriptionPlan: string = capitalizeFirstLetter(
-    session.user.subscriptionPlan
-  );
   let priceString: string = '-';
   let cardLast4digits: string = '-';
   let cardBrand: string = '-';
   let nextBillingDate: string = '-';
   let canceledAtPeriodEnd: boolean = false;
+  let subscriptionPlanNameTranslation: string = '';
 
   const user = await gqlClient!.request(GetUserDocument, {
     id: session.user.id,
   });
+
   if (
     user?.auth_user_by_pk?.id &&
     user?.auth_user_by_pk?.subscribtion_plan &&
     user?.auth_user_by_pk?.stripe_customer_id &&
     user?.auth_user_by_pk?.stripe_subscribtion_id
   ) {
-    const subscriptionPlanId = await gqlClient!.request(
-      GetSubscriptionPlanIdByNameDocument,
-      { name: user.auth_user_by_pk.subscribtion_plan }
+    const lng = i18n.language;
+    const subscriptionPlan = await gqlClient!.request(
+      GetSubsciptionPlanTranslationByNameAndLngDocument,
+      {
+        name: user.auth_user_by_pk.subscribtion_plan,
+        language: lng,
+      }
     );
-    const price = await stripe.prices.retrieve(
-      subscriptionPlanId.subscribtion_plan[0].id
-    );
-    priceString = `${price.unit_amount! / 100}$/${price.recurring?.interval}`;
+    subscriptionPlanNameTranslation =
+      subscriptionPlan.subscribtion_plan[0].text_content.translations[0]
+        .translation;
 
     const subscription = await stripe.subscriptions.retrieve(
       user.auth_user_by_pk.stripe_subscribtion_id
     );
+
+    const price = await stripe.prices.retrieve(
+      subscription.items.data[0].price.id
+    );
+    const intervalTranslation = t(`billing.${price.recurring?.interval}`);
+    priceString = `${price.unit_amount! / 100}$/${intervalTranslation}`;
+
     nextBillingDate = new Date(
       subscription.current_period_end * 1000
     ).toLocaleDateString();
@@ -89,7 +99,6 @@ export default async function Page() {
   } else {
     console.error('Not subscribed');
   }
-
   return (
     <div className="space-y-20">
       <div className="space-y-10">
@@ -105,7 +114,7 @@ export default async function Page() {
           </div>
           <Separator />
           <SubscriptionForm
-            subscriptionPlan={subscriptionPlan}
+            subscriptionPlan={subscriptionPlanNameTranslation}
             price={priceString}
           />
         </div>

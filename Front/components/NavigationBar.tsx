@@ -43,7 +43,7 @@ export default function NavigationBar({
 
   const navigation = [
     { name: t('dashboard'), href: '/dashboard', current: false },
-    { name: t('pricing'), href: '/pricing', current: false },
+    { name: t('pricing'), href: '/dashboard/pricing', current: false },
     { name: t('settings'), href: '/dashboard/settings', current: false },
   ];
 

@@ -2255,7 +2255,7 @@ export type Mutation_RootDelete_Subscribtion_PlanArgs = {
 
 /** mutation root */
 export type Mutation_RootDelete_Subscribtion_Plan_By_PkArgs = {
-  id: Scalars['String']['input'];
+  name: Scalars['String']['input'];
 };
 
 
@@ -3041,7 +3041,7 @@ export type Query_RootSubscribtion_Plan_AggregateArgs = {
 
 
 export type Query_RootSubscribtion_Plan_By_PkArgs = {
-  id: Scalars['String']['input'];
+  name: Scalars['String']['input'];
 };
 
 
@@ -3402,8 +3402,11 @@ export type Subscribtion_Feature_Updates = {
 export type Subscribtion_Plan = {
   __typename?: 'subscribtion_plan';
   created_at: Scalars['timestamp']['output'];
-  id: Scalars['String']['output'];
+  description?: Maybe<Scalars['String']['output']>;
   name: Scalars['String']['output'];
+  popular: Scalars['Boolean']['output'];
+  stripe_monthly_price_id: Scalars['String']['output'];
+  stripe_yearly_price_id: Scalars['String']['output'];
   /** An array relationship */
   subscribtion_plan_subscribtion_feature_assocs: Array<Subscribtion_Plan_Subscribtion_Feature_Assoc>;
   /** An aggregate relationship */
@@ -3466,7 +3469,23 @@ export type Subscribtion_Plan_Aggregate = {
 };
 
 export type Subscribtion_Plan_Aggregate_Bool_Exp = {
+  bool_and?: InputMaybe<Subscribtion_Plan_Aggregate_Bool_Exp_Bool_And>;
+  bool_or?: InputMaybe<Subscribtion_Plan_Aggregate_Bool_Exp_Bool_Or>;
   count?: InputMaybe<Subscribtion_Plan_Aggregate_Bool_Exp_Count>;
+};
+
+export type Subscribtion_Plan_Aggregate_Bool_Exp_Bool_And = {
+  arguments: Subscribtion_Plan_Select_Column_Subscribtion_Plan_Aggregate_Bool_Exp_Bool_And_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Subscribtion_Plan_Bool_Exp>;
+  predicate: Boolean_Comparison_Exp;
+};
+
+export type Subscribtion_Plan_Aggregate_Bool_Exp_Bool_Or = {
+  arguments: Subscribtion_Plan_Select_Column_Subscribtion_Plan_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Subscribtion_Plan_Bool_Exp>;
+  predicate: Boolean_Comparison_Exp;
 };
 
 export type Subscribtion_Plan_Aggregate_Bool_Exp_Count = {
@@ -3511,8 +3530,11 @@ export type Subscribtion_Plan_Bool_Exp = {
   _not?: InputMaybe<Subscribtion_Plan_Bool_Exp>;
   _or?: InputMaybe<Array<Subscribtion_Plan_Bool_Exp>>;
   created_at?: InputMaybe<Timestamp_Comparison_Exp>;
-  id?: InputMaybe<String_Comparison_Exp>;
+  description?: InputMaybe<String_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
+  popular?: InputMaybe<Boolean_Comparison_Exp>;
+  stripe_monthly_price_id?: InputMaybe<String_Comparison_Exp>;
+  stripe_yearly_price_id?: InputMaybe<String_Comparison_Exp>;
   subscribtion_plan_subscribtion_feature_assocs?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp>;
   subscribtion_plan_subscribtion_feature_assocs_aggregate?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Aggregate_Bool_Exp>;
   text_content?: InputMaybe<Text_Content_Bool_Exp>;
@@ -3525,16 +3547,21 @@ export type Subscribtion_Plan_Bool_Exp = {
 /** unique or primary key constraints on table "subscribtion_plan" */
 export enum Subscribtion_Plan_Constraint {
   /** unique or primary key constraint on columns "name" */
-  SubscribtionPlanNameKey = 'subscribtion_plan_name_key',
-  /** unique or primary key constraint on columns "id" */
-  SubscribtionPlanPkey = 'subscribtion_plan_pkey'
+  SubscribtionPlanPkey = 'subscribtion_plan_pkey',
+  /** unique or primary key constraint on columns "stripe_monthly_price_id" */
+  SubscribtionPlanStripeMonthlyPriceIdKey = 'subscribtion_plan_stripe_monthly_price_id_key',
+  /** unique or primary key constraint on columns "stripe_yearly_price_id" */
+  SubscribtionPlanStripeYearlyPriceIdKey = 'subscribtion_plan_stripe_yearly_price_id_key'
 }
 
 /** input type for inserting data into table "subscribtion_plan" */
 export type Subscribtion_Plan_Insert_Input = {
   created_at?: InputMaybe<Scalars['timestamp']['input']>;
-  id?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
+  popular?: InputMaybe<Scalars['Boolean']['input']>;
+  stripe_monthly_price_id?: InputMaybe<Scalars['String']['input']>;
+  stripe_yearly_price_id?: InputMaybe<Scalars['String']['input']>;
   subscribtion_plan_subscribtion_feature_assocs?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Arr_Rel_Insert_Input>;
   text_content?: InputMaybe<Text_Content_Obj_Rel_Insert_Input>;
   text_content_id?: InputMaybe<Scalars['uuid']['input']>;
@@ -3546,8 +3573,10 @@ export type Subscribtion_Plan_Insert_Input = {
 export type Subscribtion_Plan_Max_Fields = {
   __typename?: 'subscribtion_plan_max_fields';
   created_at?: Maybe<Scalars['timestamp']['output']>;
-  id?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
+  stripe_monthly_price_id?: Maybe<Scalars['String']['output']>;
+  stripe_yearly_price_id?: Maybe<Scalars['String']['output']>;
   text_content_id?: Maybe<Scalars['uuid']['output']>;
   updated_at?: Maybe<Scalars['timestamp']['output']>;
 };
@@ -3555,8 +3584,10 @@ export type Subscribtion_Plan_Max_Fields = {
 /** order by max() on columns of table "subscribtion_plan" */
 export type Subscribtion_Plan_Max_Order_By = {
   created_at?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
+  description?: InputMaybe<Order_By>;
   name?: InputMaybe<Order_By>;
+  stripe_monthly_price_id?: InputMaybe<Order_By>;
+  stripe_yearly_price_id?: InputMaybe<Order_By>;
   text_content_id?: InputMaybe<Order_By>;
   updated_at?: InputMaybe<Order_By>;
 };
@@ -3565,8 +3596,10 @@ export type Subscribtion_Plan_Max_Order_By = {
 export type Subscribtion_Plan_Min_Fields = {
   __typename?: 'subscribtion_plan_min_fields';
   created_at?: Maybe<Scalars['timestamp']['output']>;
-  id?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
+  stripe_monthly_price_id?: Maybe<Scalars['String']['output']>;
+  stripe_yearly_price_id?: Maybe<Scalars['String']['output']>;
   text_content_id?: Maybe<Scalars['uuid']['output']>;
   updated_at?: Maybe<Scalars['timestamp']['output']>;
 };
@@ -3574,8 +3607,10 @@ export type Subscribtion_Plan_Min_Fields = {
 /** order by min() on columns of table "subscribtion_plan" */
 export type Subscribtion_Plan_Min_Order_By = {
   created_at?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
+  description?: InputMaybe<Order_By>;
   name?: InputMaybe<Order_By>;
+  stripe_monthly_price_id?: InputMaybe<Order_By>;
+  stripe_yearly_price_id?: InputMaybe<Order_By>;
   text_content_id?: InputMaybe<Order_By>;
   updated_at?: InputMaybe<Order_By>;
 };
@@ -3606,8 +3641,11 @@ export type Subscribtion_Plan_On_Conflict = {
 /** Ordering options when selecting data from "subscribtion_plan". */
 export type Subscribtion_Plan_Order_By = {
   created_at?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
+  description?: InputMaybe<Order_By>;
   name?: InputMaybe<Order_By>;
+  popular?: InputMaybe<Order_By>;
+  stripe_monthly_price_id?: InputMaybe<Order_By>;
+  stripe_yearly_price_id?: InputMaybe<Order_By>;
   subscribtion_plan_subscribtion_feature_assocs_aggregate?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Aggregate_Order_By>;
   text_content?: InputMaybe<Text_Content_Order_By>;
   text_content_id?: InputMaybe<Order_By>;
@@ -3617,7 +3655,7 @@ export type Subscribtion_Plan_Order_By = {
 
 /** primary key columns input for table: subscribtion_plan */
 export type Subscribtion_Plan_Pk_Columns_Input = {
-  id: Scalars['String']['input'];
+  name: Scalars['String']['input'];
 };
 
 /** select columns of table "subscribtion_plan" */
@@ -3625,20 +3663,41 @@ export enum Subscribtion_Plan_Select_Column {
   /** column name */
   CreatedAt = 'created_at',
   /** column name */
-  Id = 'id',
+  Description = 'description',
   /** column name */
   Name = 'name',
+  /** column name */
+  Popular = 'popular',
+  /** column name */
+  StripeMonthlyPriceId = 'stripe_monthly_price_id',
+  /** column name */
+  StripeYearlyPriceId = 'stripe_yearly_price_id',
   /** column name */
   TextContentId = 'text_content_id',
   /** column name */
   UpdatedAt = 'updated_at'
 }
 
+/** select "subscribtion_plan_aggregate_bool_exp_bool_and_arguments_columns" columns of table "subscribtion_plan" */
+export enum Subscribtion_Plan_Select_Column_Subscribtion_Plan_Aggregate_Bool_Exp_Bool_And_Arguments_Columns {
+  /** column name */
+  Popular = 'popular'
+}
+
+/** select "subscribtion_plan_aggregate_bool_exp_bool_or_arguments_columns" columns of table "subscribtion_plan" */
+export enum Subscribtion_Plan_Select_Column_Subscribtion_Plan_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns {
+  /** column name */
+  Popular = 'popular'
+}
+
 /** input type for updating data in table "subscribtion_plan" */
 export type Subscribtion_Plan_Set_Input = {
   created_at?: InputMaybe<Scalars['timestamp']['input']>;
-  id?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
+  popular?: InputMaybe<Scalars['Boolean']['input']>;
+  stripe_monthly_price_id?: InputMaybe<Scalars['String']['input']>;
+  stripe_yearly_price_id?: InputMaybe<Scalars['String']['input']>;
   text_content_id?: InputMaybe<Scalars['uuid']['input']>;
   updated_at?: InputMaybe<Scalars['timestamp']['input']>;
 };
@@ -3654,8 +3713,11 @@ export type Subscribtion_Plan_Stream_Cursor_Input = {
 /** Initial value of the column from where the streaming should start */
 export type Subscribtion_Plan_Stream_Cursor_Value_Input = {
   created_at?: InputMaybe<Scalars['timestamp']['input']>;
-  id?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
+  popular?: InputMaybe<Scalars['Boolean']['input']>;
+  stripe_monthly_price_id?: InputMaybe<Scalars['String']['input']>;
+  stripe_yearly_price_id?: InputMaybe<Scalars['String']['input']>;
   text_content_id?: InputMaybe<Scalars['uuid']['input']>;
   updated_at?: InputMaybe<Scalars['timestamp']['input']>;
 };
@@ -3888,9 +3950,15 @@ export enum Subscribtion_Plan_Update_Column {
   /** column name */
   CreatedAt = 'created_at',
   /** column name */
-  Id = 'id',
+  Description = 'description',
   /** column name */
   Name = 'name',
+  /** column name */
+  Popular = 'popular',
+  /** column name */
+  StripeMonthlyPriceId = 'stripe_monthly_price_id',
+  /** column name */
+  StripeYearlyPriceId = 'stripe_yearly_price_id',
   /** column name */
   TextContentId = 'text_content_id',
   /** column name */
@@ -4242,7 +4310,7 @@ export type Subscription_RootSubscribtion_Plan_AggregateArgs = {
 
 
 export type Subscription_RootSubscribtion_Plan_By_PkArgs = {
-  id: Scalars['String']['input'];
+  name: Scalars['String']['input'];
 };
 
 
@@ -4832,6 +4900,7 @@ export type Translation = {
   /** An object relationship */
   text_content: Text_Content;
   text_content_id: Scalars['uuid']['output'];
+  text_label?: Maybe<Scalars['String']['output']>;
   translation: Scalars['String']['output'];
   updated_at: Scalars['timestamp']['output'];
 };
@@ -4894,6 +4963,7 @@ export type Translation_Bool_Exp = {
   languageByLanguage?: InputMaybe<Language_Bool_Exp>;
   text_content?: InputMaybe<Text_Content_Bool_Exp>;
   text_content_id?: InputMaybe<Uuid_Comparison_Exp>;
+  text_label?: InputMaybe<String_Comparison_Exp>;
   translation?: InputMaybe<String_Comparison_Exp>;
   updated_at?: InputMaybe<Timestamp_Comparison_Exp>;
 };
@@ -4901,7 +4971,9 @@ export type Translation_Bool_Exp = {
 /** unique or primary key constraints on table "translation" */
 export enum Translation_Constraint {
   /** unique or primary key constraint on columns "id" */
-  TranslationPkey = 'translation_pkey'
+  TranslationPkey = 'translation_pkey',
+  /** unique or primary key constraint on columns "language", "text_content_id", "text_label" */
+  TranslationTextContentLabelUnique = 'translation_text_content_label_unique'
 }
 
 /** input type for inserting data into table "translation" */
@@ -4912,6 +4984,7 @@ export type Translation_Insert_Input = {
   languageByLanguage?: InputMaybe<Language_Obj_Rel_Insert_Input>;
   text_content?: InputMaybe<Text_Content_Obj_Rel_Insert_Input>;
   text_content_id?: InputMaybe<Scalars['uuid']['input']>;
+  text_label?: InputMaybe<Scalars['String']['input']>;
   translation?: InputMaybe<Scalars['String']['input']>;
   updated_at?: InputMaybe<Scalars['timestamp']['input']>;
 };
@@ -4923,6 +4996,7 @@ export type Translation_Max_Fields = {
   id?: Maybe<Scalars['uuid']['output']>;
   language?: Maybe<Scalars['String']['output']>;
   text_content_id?: Maybe<Scalars['uuid']['output']>;
+  text_label?: Maybe<Scalars['String']['output']>;
   translation?: Maybe<Scalars['String']['output']>;
   updated_at?: Maybe<Scalars['timestamp']['output']>;
 };
@@ -4933,6 +5007,7 @@ export type Translation_Max_Order_By = {
   id?: InputMaybe<Order_By>;
   language?: InputMaybe<Order_By>;
   text_content_id?: InputMaybe<Order_By>;
+  text_label?: InputMaybe<Order_By>;
   translation?: InputMaybe<Order_By>;
   updated_at?: InputMaybe<Order_By>;
 };
@@ -4944,6 +5019,7 @@ export type Translation_Min_Fields = {
   id?: Maybe<Scalars['uuid']['output']>;
   language?: Maybe<Scalars['String']['output']>;
   text_content_id?: Maybe<Scalars['uuid']['output']>;
+  text_label?: Maybe<Scalars['String']['output']>;
   translation?: Maybe<Scalars['String']['output']>;
   updated_at?: Maybe<Scalars['timestamp']['output']>;
 };
@@ -4954,6 +5030,7 @@ export type Translation_Min_Order_By = {
   id?: InputMaybe<Order_By>;
   language?: InputMaybe<Order_By>;
   text_content_id?: InputMaybe<Order_By>;
+  text_label?: InputMaybe<Order_By>;
   translation?: InputMaybe<Order_By>;
   updated_at?: InputMaybe<Order_By>;
 };
@@ -4982,6 +5059,7 @@ export type Translation_Order_By = {
   languageByLanguage?: InputMaybe<Language_Order_By>;
   text_content?: InputMaybe<Text_Content_Order_By>;
   text_content_id?: InputMaybe<Order_By>;
+  text_label?: InputMaybe<Order_By>;
   translation?: InputMaybe<Order_By>;
   updated_at?: InputMaybe<Order_By>;
 };
@@ -5002,6 +5080,8 @@ export enum Translation_Select_Column {
   /** column name */
   TextContentId = 'text_content_id',
   /** column name */
+  TextLabel = 'text_label',
+  /** column name */
   Translation = 'translation',
   /** column name */
   UpdatedAt = 'updated_at'
@@ -5013,6 +5093,7 @@ export type Translation_Set_Input = {
   id?: InputMaybe<Scalars['uuid']['input']>;
   language?: InputMaybe<Scalars['String']['input']>;
   text_content_id?: InputMaybe<Scalars['uuid']['input']>;
+  text_label?: InputMaybe<Scalars['String']['input']>;
   translation?: InputMaybe<Scalars['String']['input']>;
   updated_at?: InputMaybe<Scalars['timestamp']['input']>;
 };
@@ -5031,6 +5112,7 @@ export type Translation_Stream_Cursor_Value_Input = {
   id?: InputMaybe<Scalars['uuid']['input']>;
   language?: InputMaybe<Scalars['String']['input']>;
   text_content_id?: InputMaybe<Scalars['uuid']['input']>;
+  text_label?: InputMaybe<Scalars['String']['input']>;
   translation?: InputMaybe<Scalars['String']['input']>;
   updated_at?: InputMaybe<Scalars['timestamp']['input']>;
 };
@@ -5045,6 +5127,8 @@ export enum Translation_Update_Column {
   Language = 'language',
   /** column name */
   TextContentId = 'text_content_id',
+  /** column name */
+  TextLabel = 'text_label',
   /** column name */
   Translation = 'translation',
   /** column name */
@@ -5248,21 +5332,14 @@ export type GetSubscriptionPlansQueryVariables = Exact<{
 }>;
 
 
-export type GetSubscriptionPlansQuery = { __typename?: 'query_root', subscribtion_plan: Array<{ __typename?: 'subscribtion_plan', id: string, name: string, text_content: { __typename?: 'text_content', translations: Array<{ __typename?: 'translation', translation: string }> }, subscribtion_plan_subscribtion_feature_assocs: Array<{ __typename?: 'subscribtion_plan_subscribtion_feature_assoc', subscribtionFeatureBySubscribtionFeature: { __typename?: 'subscribtion_feature', text_content: { __typename?: 'text_content', translations: Array<{ __typename?: 'translation', translation: string }> } } }> }> };
+export type GetSubscriptionPlansQuery = { __typename?: 'query_root', subscribtion_plan: Array<{ __typename?: 'subscribtion_plan', name: string, stripe_monthly_price_id: string, stripe_yearly_price_id: string, popular: boolean, text_content: { __typename?: 'text_content', translations: Array<{ __typename?: 'translation', text_label?: string | null, translation: string }> }, subscribtion_plan_subscribtion_feature_assocs: Array<{ __typename?: 'subscribtion_plan_subscribtion_feature_assoc', subscribtionFeatureBySubscribtionFeature: { __typename?: 'subscribtion_feature', text_content: { __typename?: 'text_content', translations: Array<{ __typename?: 'translation', translation: string }> } } }> }> };
 
-export type GetSubscriptionPlanIdByNameQueryVariables = Exact<{
-  name: Scalars['String']['input'];
+export type GetSubscriptionPlanNameByPriceIdQueryVariables = Exact<{
+  id?: Scalars['String']['input'];
 }>;
 
 
-export type GetSubscriptionPlanIdByNameQuery = { __typename?: 'query_root', subscribtion_plan: Array<{ __typename?: 'subscribtion_plan', id: string }> };
-
-export type GetSubscriptionPlanQueryVariables = Exact<{
-  id: Scalars['String']['input'];
-}>;
-
-
-export type GetSubscriptionPlanQuery = { __typename?: 'query_root', subscribtion_plan_by_pk?: { __typename?: 'subscribtion_plan', name: string } | null };
+export type GetSubscriptionPlanNameByPriceIdQuery = { __typename?: 'query_root', subscribtion_plan: Array<{ __typename?: 'subscribtion_plan', name: string }> };
 
 export type UpdateUserSubscriptionPlanMutationVariables = Exact<{
   id: Scalars['uuid']['input'];
@@ -5303,17 +5380,25 @@ export type UpdateUnsubscriptionFeedbackMutationVariables = Exact<{
 
 export type UpdateUnsubscriptionFeedbackMutation = { __typename?: 'mutation_root', insert_unsubscription_feedback_one?: { __typename?: 'unsubscription_feedback', id: any } | null };
 
+export type GetSubsciptionPlanTranslationByNameAndLngQueryVariables = Exact<{
+  name: Scalars['String']['input'];
+  language: Scalars['String']['input'];
+}>;
+
+
+export type GetSubsciptionPlanTranslationByNameAndLngQuery = { __typename?: 'query_root', subscribtion_plan: Array<{ __typename?: 'subscribtion_plan', text_content: { __typename?: 'text_content', translations: Array<{ __typename?: 'translation', translation: string }> } }> };
+
 
 export const GetUserDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetUser"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"auth_user_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"stripe_customer_id"}},{"kind":"Field","name":{"kind":"Name","value":"subscribtion_plan"}},{"kind":"Field","name":{"kind":"Name","value":"stripe_subscribtion_id"}},{"kind":"Field","name":{"kind":"Name","value":"team_id"}}]}}]}}]} as unknown as DocumentNode<GetUserQuery, GetUserQueryVariables>;
 export const GetUserEmailDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetUserEmail"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"auth_user_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"email"}}]}}]}}]} as unknown as DocumentNode<GetUserEmailQuery, GetUserEmailQueryVariables>;
 export const UpdateUsernameDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateUsername"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"username"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"update_auth_user_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"pk_columns"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"_set"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"username"},"value":{"kind":"Variable","name":{"kind":"Name","value":"username"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"username"}}]}}]}}]} as unknown as DocumentNode<UpdateUsernameMutation, UpdateUsernameMutationVariables>;
 export const UpdateEmailDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateEmail"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"email"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"update_auth_user_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"pk_columns"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"_set"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"email"},"value":{"kind":"Variable","name":{"kind":"Name","value":"email"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"email"}}]}}]}}]} as unknown as DocumentNode<UpdateEmailMutation, UpdateEmailMutationVariables>;
 export const UpdateUpdatedEmailDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateUpdatedEmail"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"updated_email"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"update_auth_user_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"pk_columns"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"_set"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"updated_email"},"value":{"kind":"Variable","name":{"kind":"Name","value":"updated_email"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updated_email"}}]}}]}}]} as unknown as DocumentNode<UpdateUpdatedEmailMutation, UpdateUpdatedEmailMutationVariables>;
-export const GetSubscriptionPlansDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetSubscriptionPlans"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"languageCode"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"subscribtion_plan"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"text_content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"translations"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"language"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"languageCode"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"translation"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"subscribtion_plan_subscribtion_feature_assocs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"subscribtionFeatureBySubscribtionFeature"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"text_content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"translations"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"language"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"languageCode"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"translation"}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetSubscriptionPlansQuery, GetSubscriptionPlansQueryVariables>;
-export const GetSubscriptionPlanIdByNameDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetSubscriptionPlanIdByName"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"name"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"subscribtion_plan"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"name"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"name"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<GetSubscriptionPlanIdByNameQuery, GetSubscriptionPlanIdByNameQueryVariables>;
-export const GetSubscriptionPlanDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetSubscriptionPlan"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"subscribtion_plan_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<GetSubscriptionPlanQuery, GetSubscriptionPlanQueryVariables>;
+export const GetSubscriptionPlansDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetSubscriptionPlans"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"languageCode"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"subscribtion_plan"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"stripe_monthly_price_id"}},{"kind":"Field","name":{"kind":"Name","value":"stripe_yearly_price_id"}},{"kind":"Field","name":{"kind":"Name","value":"popular"}},{"kind":"Field","name":{"kind":"Name","value":"text_content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"translations"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"language"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"languageCode"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"text_label"}},{"kind":"Field","name":{"kind":"Name","value":"translation"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"subscribtion_plan_subscribtion_feature_assocs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"subscribtionFeatureBySubscribtionFeature"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"text_content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"translations"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"language"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"languageCode"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"translation"}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetSubscriptionPlansQuery, GetSubscriptionPlansQueryVariables>;
+export const GetSubscriptionPlanNameByPriceIdDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetSubscriptionPlanNameByPriceId"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},"defaultValue":{"kind":"StringValue","value":"price_1Phb7pBeHVeQHE2CEo8SjlIg","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"subscribtion_plan"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_or"},"value":{"kind":"ListValue","values":[{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"stripe_monthly_price_id"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}}]},{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"stripe_yearly_price_id"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}}]}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<GetSubscriptionPlanNameByPriceIdQuery, GetSubscriptionPlanNameByPriceIdQueryVariables>;
 export const UpdateUserSubscriptionPlanDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateUserSubscriptionPlan"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"stripe_customer_id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"subscribtion_plan"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"subscribtion_id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"update_auth_user_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"pk_columns"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"_set"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"stripe_customer_id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"stripe_customer_id"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"subscribtion_plan"},"value":{"kind":"Variable","name":{"kind":"Name","value":"subscribtion_plan"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"stripe_subscribtion_id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"subscribtion_id"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<UpdateUserSubscriptionPlanMutation, UpdateUserSubscriptionPlanMutationVariables>;
 export const CreateTeamDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateTeam"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"name"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"insert_team_one"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"object"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"name"},"value":{"kind":"Variable","name":{"kind":"Name","value":"name"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<CreateTeamMutation, CreateTeamMutationVariables>;
 export const UpdateUserTeamIdDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateUserTeamId"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"teamid"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"update_auth_user_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"pk_columns"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"_set"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"team_id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"teamid"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<UpdateUserTeamIdMutation, UpdateUserTeamIdMutationVariables>;
 export const GetUserTeamNameDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetUserTeamName"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"teamid"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"team_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"teamid"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<GetUserTeamNameQuery, GetUserTeamNameQueryVariables>;
 export const UpdateUnsubscriptionFeedbackDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateUnsubscriptionFeedback"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"feedback"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"insert_unsubscription_feedback_one"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"object"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"feedback"},"value":{"kind":"Variable","name":{"kind":"Name","value":"feedback"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<UpdateUnsubscriptionFeedbackMutation, UpdateUnsubscriptionFeedbackMutationVariables>;
+export const GetSubsciptionPlanTranslationByNameAndLngDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetSubsciptionPlanTranslationByNameAndLng"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"name"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"language"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"subscribtion_plan"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"name"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"name"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"text_content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"translations"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"language"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"language"}}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"text_label"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"StringValue","value":"name","block":false}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"translation"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetSubsciptionPlanTranslationByNameAndLngQuery, GetSubsciptionPlanTranslationByNameAndLngQueryVariables>;

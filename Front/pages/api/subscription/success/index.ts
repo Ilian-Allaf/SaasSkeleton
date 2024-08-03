@@ -1,7 +1,7 @@
 import { prisma } from '@/lib/prismaClient';
 import { setupUnauthenticatedGraphQLClient } from '@/lib/unauthenticatedGqlClient';
 import {
-  GetSubscriptionPlanDocument,
+  GetSubscriptionPlanNameByPriceIdDocument,
   UpdateUserSubscriptionPlanDocument,
 } from '@/src/gql/graphql';
 import { generateVerificationEmailToken, sendEmail } from '@/utils/sendEmail';
@@ -45,13 +45,17 @@ export default async function handler(
       },
     });
 
-    const plan_id = subscriptions['data'][0]['items']['data'][0]['plan']['id'];
+    const price_id =
+      subscriptions['data'][0]['items']['data'][0]['price']['id'];
+
     const subscription_id =
       subscriptions['data'][0]['items']['data'][0]['subscription'];
+
     const subscriptionPlan = await UnauthenticatedGqlClient!.request(
-      GetSubscriptionPlanDocument,
-      { id: plan_id }
+      GetSubscriptionPlanNameByPriceIdDocument,
+      { id: price_id }
     );
+
     let emailContent: any;
     let redirectUrl: string;
 
@@ -68,7 +72,7 @@ export default async function handler(
         data: {
           email: customerEmail,
           password: await bcrypt.hash(generatedPassword, 10),
-          subscribtionPlan: subscriptionPlan.subscribtion_plan_by_pk?.name!,
+          subscribtionPlan: subscriptionPlan.subscribtion_plan[0].name!,
           stripeCustomerId: customer.id,
           stripeSubscribtionId: subscription_id,
         },
@@ -88,15 +92,17 @@ export default async function handler(
       redirectUrl = `/email-sent/${appSession?.user.id || existingUser?.id}`;
       const userId = appSession ? appSession.user.id : existingUser?.id;
       const gqlClient = await setupUnauthenticatedGraphQLClient(req, res);
+
       const updatedUser = await gqlClient!.request(
         UpdateUserSubscriptionPlanDocument,
         {
           id: userId,
           stripe_customer_id: customer.id,
-          subscribtion_plan: subscriptionPlan.subscribtion_plan_by_pk?.name!,
+          subscribtion_plan: subscriptionPlan.subscribtion_plan[0].name!,
           subscribtion_id: subscription_id,
         }
       );
+
       if (!updatedUser.update_auth_user_by_pk?.id) {
         return res
           .status(500)
@@ -113,11 +119,15 @@ export default async function handler(
         additionalText: '',
       });
     }
-    await sendEmail({
-      to: customerEmail,
-      subject: 'Subscription',
-      html: emailContent,
-    });
+    try {
+      await sendEmail({
+        to: customerEmail,
+        subject: 'Subscription',
+        html: emailContent,
+      });
+    } catch (err) {
+      console.error(err);
+    }
 
     // TODO: Add toasts to the front-end to inform the user about the email sent
     // TODO: Need to reaload the user session to update the user subscribtion plan
@@ -126,7 +136,7 @@ export default async function handler(
     });
     res.end();
   } catch (err) {
-    console.log(err);
+    console.error(err);
     return res
       .status(500)
       .json({ statusCode: 500, message: 'Internal Server Error' });
