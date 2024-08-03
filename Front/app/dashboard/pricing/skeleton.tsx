@@ -10,13 +10,16 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { useTranslation } from '@/i18n/client';
 import { cn } from '@/lib/utils';
+import { CheckIcon } from '@heroicons/react/outline';
 import { CheckCircle2 } from 'lucide-react';
 import { useState } from 'react';
 import { Plans } from './page';
 
 type PricingSwitchProps = {
   onSwitch: (value: string) => void;
+  t: any;
 };
 
 type PricingCardProps = {
@@ -31,6 +34,8 @@ type PricingCardProps = {
   yearlyStripeId: string;
   monthlyStripeId: string;
   exclusive?: boolean;
+  isCurrentPlan: boolean;
+  t: any;
 };
 
 const PricingHeader = ({
@@ -47,14 +52,14 @@ const PricingHeader = ({
   </section>
 );
 
-const PricingSwitch = ({ onSwitch }: PricingSwitchProps) => (
+const PricingSwitch = ({ onSwitch, t }: PricingSwitchProps) => (
   <Tabs defaultValue="0" className="w-40 mx-auto" onValueChange={onSwitch}>
     <TabsList className="py-6 px-2">
       <TabsTrigger value="0" className="text-base">
-        Monthly
+        {t('monthly')}
       </TabsTrigger>
       <TabsTrigger value="1" className="text-base">
-        Yearly
+        {t('yearly')}
       </TabsTrigger>
     </TabsList>
   </Tabs>
@@ -71,6 +76,8 @@ const PricingCard = ({
   popular,
   yearlyStripeId,
   monthlyStripeId,
+  isCurrentPlan,
+  t,
 }: PricingCardProps) => {
   const [loading, setLoading] = useState(false);
   const subscribe = async (price_id: string) => {
@@ -138,9 +145,9 @@ const PricingCard = ({
             </h3>
             <span className="flex flex-col justify-end text-sm mb-1">
               {yearlyPrice && isYearly
-                ? '/year'
+                ? '/' + t('year')
                 : monthlyPrice
-                ? '/month'
+                ? '/' + t('month')
                 : null}
             </span>
           </div>
@@ -156,12 +163,13 @@ const PricingCard = ({
       </div>
       <CardFooter className="mt-2">
         <Button
-          className="relative inline-flex w-full items-center justify-center rounded-md bg-black text-white dark:bg-white px-6 font-medium  dark:text-black transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
+          className="relative inline-flex w-full items-center justify-center rounded-md bg-black text-white dark:bg-white px-6 font-medium dark:text-black transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
           onClick={() => subscribe(isYearly ? yearlyStripeId : monthlyStripeId)}
           loading={loading}
+          disabled={isCurrentPlan}
         >
           <div className="absolute -inset-0.5 -z-10 rounded-lg bg-gradient-to-b from-[#c7d2fe] to-[#8678f9] opacity-75 blur" />
-          {actionLabel}
+          {isCurrentPlan ? <CheckIcon className="h-6 w-6" /> : actionLabel}
         </Button>
       </CardFooter>
     </Card>
@@ -180,17 +188,14 @@ export default function Skeleton({
 }: {
   subscribtionPlans: Plans;
 }) {
+  const { t } = useTranslation('pricing');
   const [isYearly, setIsYearly] = useState(false);
   const togglePricingPeriod = (value: string) =>
     setIsYearly(parseInt(value) === 1);
-  console.log(isYearly);
   return (
     <div className="py-8">
-      <PricingHeader
-        title="Pricing Plans"
-        subtitle="Choose the plan that's right for you"
-      />
-      <PricingSwitch onSwitch={togglePricingPeriod} />
+      <PricingHeader title={t('title')} subtitle={t('subtitle')} />
+      <PricingSwitch onSwitch={togglePricingPeriod} t={t} />
       <section className="flex flex-col sm:flex-row sm:flex-wrap justify-center gap-8 mt-8">
         {subscribtionPlans.map((plan) => {
           return (
@@ -200,6 +205,8 @@ export default function Skeleton({
               yearlyStripeId={plan.yearly_stripe_id}
               monthlyStripeId={plan.monthly_stripe_id}
               isYearly={isYearly}
+              isCurrentPlan={plan.isCurrentPlan}
+              t={t}
             />
           );
         })}

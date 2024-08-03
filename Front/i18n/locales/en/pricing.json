@@ -1,7 +1,10 @@
 {
-  "title": "Pricing plans for teams of all sizes",
-  "subtitle": "Choose an affordable plan that’s packed with the best features for engaging your audience, creating customer loyalty, and driving sales.",
-  "permonth": "/month",
+  "title": "Pricing Plans",
+  "subtitle": "Choose the plan that's right for you",
+  "month": "month",
+  "year": "year",
+  "monthly": "Monthly",
+  "yearly": "Yearly",
   "subscribe-button": "Get Started",
   "upgrade-button": "Upgrade"
 }

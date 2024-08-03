@@ -1,7 +1,10 @@
 {
-  "title": "Plans tarifaires pour les équipes de toutes tailles",
-  "subtitle": "Choisissez un forfait abordable doté des meilleures fonctionnalités pour engager votre public, fidéliser vos clients et générer des ventes.",
-  "permonth": "/mois",
+  "title": "Plans tarifaires",
+  "subtitle": "Choisissez le plan qui vous convient",
+  "month": "mois",
+  "year": "an",
+  "monthly": "Mensuel",
+  "yearly": "Annuel",
   "subscribe-button": "Commencer",
   "upgrade-button": "Mettre à niveau"
 }

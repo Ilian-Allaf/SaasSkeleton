@@ -2,7 +2,7 @@
 
 INSERT INTO "public"."subscribtion_plan"("name", "stripe_monthly_price_id", "stripe_yearly_price_id", "popular", "text_content_id") VALUES (E'hobby', E'price_1OdsBrBeHVeQHE2CJ5OCwSqm', E'price_1Phb7pBeHVeQHE2CEo8SjlIg', false, '927db6a6-47df-4fa8-b35d-927a7641cd08');
 INSERT INTO "public"."subscribtion_plan"("name", "stripe_monthly_price_id", "stripe_yearly_price_id", "popular", "text_content_id") VALUES (E'pro', E'price_1OdZirBeHVeQHE2CLSbmcHWH', E'price_1Phb8aBeHVeQHE2CRgGc1VdE', true, E'0c393234-7dba-4188-9b62-b5bbfc53857d');
-INSERT INTO "public"."subscribtion_plan"("name", "stripe_monthly_price_id", "stripe_yearly_price_id", "popular", "text_content_id") VALUES (E'enterprise', E'price_1OdZjFBeHVeQHE2CY7uBM1tN', E'price_1Phb9LBeHVeQHE2CPCSpDIYR', false,  E'212d73e3-3df0-484f-9b0f-7b28c301fac8');
+INSERT INTO "public"."subscribtion_plan"("name", "stripe_monthly_price_id", "stripe_yearly_price_id", "popular", "text_content_id") VALUES (E'enterprise', E'price_1OdZjFBeHVeQHE2CY7uBM1tN', E'price_1PjSZ1BeHVeQHE2CcQhV5vpU', false,  E'212d73e3-3df0-484f-9b0f-7b28c301fac8');
 
 ----------------------------------------------------------------- Features -----------------------------------------------------------------
 

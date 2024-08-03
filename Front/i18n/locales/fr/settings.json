@@ -76,7 +76,9 @@
     "reactivate-subscription": "Réactiver l'abonnement",
     "warning-subscription-end": "Votre abonnement se termine le",
     "warning-suggestion-subscription-end": "Veuillez renouveler votre abonnement pour continuer à utiliser nos services.",
-    "no-billing-planned": "Aucun plan de facturation prévu"
+    "no-billing-planned": "Aucun plan de facturation prévu",
+    "month": "mois",
+    "year": "an"
   },
   "sidebar": {
     "general": "Général",
