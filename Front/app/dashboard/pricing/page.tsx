@@ -21,6 +21,7 @@ export type Plans = {
   actionLabel: string;
   yearly_stripe_id: string;
   monthly_stripe_id: string;
+  isCurrentPlan: boolean;
 }[];
 
 export default async function Page() {
@@ -52,6 +53,7 @@ export default async function Page() {
   }): Promise<Plans> {
     const transformedSubscriptionPlans: Plans = [];
     for (const plan of subscribtionPlans.subscribtion_plan) {
+      console.log(plan);
       let name = '';
       let description = '';
 
@@ -83,13 +85,14 @@ export default async function Page() {
         yearlyPrice: yearlyPrice,
         description: description,
         features: features,
-        actionLabel:
-          userPlan.auth_user_by_pk?.subscribtion_plan === plan.name
-            ? t('upgrade-button')
-            : t('subscribe-button'),
+        actionLabel: userPlan.auth_user_by_pk?.subscribtion_plan
+          ? t('upgrade-button')
+          : t('subscribe-button'),
         popular: plan.popular,
         yearly_stripe_id: yearlyPriceId,
         monthly_stripe_id: monthlyPriceId,
+        isCurrentPlan:
+          userPlan.auth_user_by_pk?.subscribtion_plan === plan.name,
       };
 
       transformedSubscriptionPlans.push(planObject);
