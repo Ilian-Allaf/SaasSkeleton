@@ -53,7 +53,6 @@ export default async function Page() {
   }): Promise<Plans> {
     const transformedSubscriptionPlans: Plans = [];
     for (const plan of subscribtionPlans.subscribtion_plan) {
-      console.log(plan);
       let name = '';
       let description = '';
 
