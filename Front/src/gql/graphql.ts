@@ -2,33 +2,20 @@
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = {
-  [K in keyof T]: T[K];
-};
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
-  [SubKey in K]?: Maybe<T[SubKey]>;
-};
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
-  [SubKey in K]: Maybe<T[SubKey]>;
-};
-export type MakeEmpty<
-  T extends { [key: string]: unknown },
-  K extends keyof T
-> = { [_ in K]?: never };
-export type Incremental<T> =
-  | T
-  | {
-      [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never;
-    };
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
+export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: { input: string; output: string };
-  String: { input: string; output: string };
-  Boolean: { input: boolean; output: boolean };
-  Int: { input: number; output: number };
-  Float: { input: number; output: number };
-  timestamp: { input: any; output: any };
-  uuid: { input: any; output: any };
+  ID: { input: string; output: string; }
+  String: { input: string; output: string; }
+  Boolean: { input: boolean; output: boolean; }
+  Int: { input: number; output: number; }
+  Float: { input: number; output: number; }
+  timestamp: { input: any; output: any; }
+  uuid: { input: any; output: any; }
 };
 
 /** Boolean expression to compare columns of type "Boolean". All fields are combined with logical 'AND'. */
@@ -143,6 +130,7 @@ export type Auth_Account_Aggregate_Fields = {
   variance?: Maybe<Auth_Account_Variance_Fields>;
 };
 
+
 /** aggregate fields of "auth.account" */
 export type Auth_Account_Aggregate_FieldsCountArgs = {
   columns?: InputMaybe<Array<Auth_Account_Select_Column>>;
@@ -207,7 +195,7 @@ export enum Auth_Account_Constraint {
   /** unique or primary key constraint on columns "id" */
   AccountPkey = 'account_pkey',
   /** unique or primary key constraint on columns "provider_account_id", "provider" */
-  AccountProviderIdProviderAccountIdKey = 'account_provider_id_provider_account_id_key',
+  AccountProviderIdProviderAccountIdKey = 'account_provider_id_provider_account_id_key'
 }
 
 /** input type for incrementing numeric columns in table "auth.account" */
@@ -361,7 +349,7 @@ export enum Auth_Account_Select_Column {
   /** column name */
   Type = 'type',
   /** column name */
-  UserId = 'user_id',
+  UserId = 'user_id'
 }
 
 /** input type for updating data in table "auth.account" */
@@ -473,7 +461,7 @@ export enum Auth_Account_Update_Column {
   /** column name */
   Type = 'type',
   /** column name */
-  UserId = 'user_id',
+  UserId = 'user_id'
 }
 
 export type Auth_Account_Updates = {
@@ -573,6 +561,7 @@ export type Auth_Activate_Token_Aggregate_Fields = {
   min?: Maybe<Auth_Activate_Token_Min_Fields>;
 };
 
+
 /** aggregate fields of "auth.activate_token" */
 export type Auth_Activate_Token_Aggregate_FieldsCountArgs = {
   columns?: InputMaybe<Array<Auth_Activate_Token_Select_Column>>;
@@ -612,7 +601,7 @@ export enum Auth_Activate_Token_Constraint {
   /** unique or primary key constraint on columns "id" */
   ActivateTokenPkey = 'activate_token_pkey',
   /** unique or primary key constraint on columns "token" */
-  ActivateTokenTokenKey = 'activate_token_token_key',
+  ActivateTokenTokenKey = 'activate_token_token_key'
 }
 
 /** input type for inserting data into table "auth.activate_token" */
@@ -709,19 +698,19 @@ export enum Auth_Activate_Token_Select_Column {
   /** column name */
   Token = 'token',
   /** column name */
-  UserId = 'user_id',
+  UserId = 'user_id'
 }
 
 /** select "auth_activate_token_aggregate_bool_exp_bool_and_arguments_columns" columns of table "auth.activate_token" */
 export enum Auth_Activate_Token_Select_Column_Auth_Activate_Token_Aggregate_Bool_Exp_Bool_And_Arguments_Columns {
   /** column name */
-  IsValid = 'is_valid',
+  IsValid = 'is_valid'
 }
 
 /** select "auth_activate_token_aggregate_bool_exp_bool_or_arguments_columns" columns of table "auth.activate_token" */
 export enum Auth_Activate_Token_Select_Column_Auth_Activate_Token_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns {
   /** column name */
-  IsValid = 'is_valid',
+  IsValid = 'is_valid'
 }
 
 /** input type for updating data in table "auth.activate_token" */
@@ -765,7 +754,7 @@ export enum Auth_Activate_Token_Update_Column {
   /** column name */
   Token = 'token',
   /** column name */
-  UserId = 'user_id',
+  UserId = 'user_id'
 }
 
 export type Auth_Activate_Token_Updates = {
@@ -830,6 +819,7 @@ export type Auth_Password_Reset_Token_Aggregate_Fields = {
   min?: Maybe<Auth_Password_Reset_Token_Min_Fields>;
 };
 
+
 /** aggregate fields of "auth.password_reset_token" */
 export type Auth_Password_Reset_Token_Aggregate_FieldsCountArgs = {
   columns?: InputMaybe<Array<Auth_Password_Reset_Token_Select_Column>>;
@@ -869,7 +859,7 @@ export enum Auth_Password_Reset_Token_Constraint {
   /** unique or primary key constraint on columns "id" */
   PasswordResetTokenPkey = 'password_reset_token_pkey',
   /** unique or primary key constraint on columns "token" */
-  PasswordResetTokenTokenKey = 'password_reset_token_token_key',
+  PasswordResetTokenTokenKey = 'password_reset_token_token_key'
 }
 
 /** input type for inserting data into table "auth.password_reset_token" */
@@ -966,19 +956,19 @@ export enum Auth_Password_Reset_Token_Select_Column {
   /** column name */
   Token = 'token',
   /** column name */
-  UserId = 'user_id',
+  UserId = 'user_id'
 }
 
 /** select "auth_password_reset_token_aggregate_bool_exp_bool_and_arguments_columns" columns of table "auth.password_reset_token" */
 export enum Auth_Password_Reset_Token_Select_Column_Auth_Password_Reset_Token_Aggregate_Bool_Exp_Bool_And_Arguments_Columns {
   /** column name */
-  IsValid = 'is_valid',
+  IsValid = 'is_valid'
 }
 
 /** select "auth_password_reset_token_aggregate_bool_exp_bool_or_arguments_columns" columns of table "auth.password_reset_token" */
 export enum Auth_Password_Reset_Token_Select_Column_Auth_Password_Reset_Token_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns {
   /** column name */
-  IsValid = 'is_valid',
+  IsValid = 'is_valid'
 }
 
 /** input type for updating data in table "auth.password_reset_token" */
@@ -1022,7 +1012,7 @@ export enum Auth_Password_Reset_Token_Update_Column {
   /** column name */
   Token = 'token',
   /** column name */
-  UserId = 'user_id',
+  UserId = 'user_id'
 }
 
 export type Auth_Password_Reset_Token_Updates = {
@@ -1072,6 +1062,7 @@ export type Auth_Session_Aggregate_Fields = {
   min?: Maybe<Auth_Session_Min_Fields>;
 };
 
+
 /** aggregate fields of "auth.session" */
 export type Auth_Session_Aggregate_FieldsCountArgs = {
   columns?: InputMaybe<Array<Auth_Session_Select_Column>>;
@@ -1114,7 +1105,7 @@ export enum Auth_Session_Constraint {
   /** unique or primary key constraint on columns "id" */
   SessionPkey = 'session_pkey',
   /** unique or primary key constraint on columns "session_token" */
-  SessionSessionTokenKey = 'session_session_token_key',
+  SessionSessionTokenKey = 'session_session_token_key'
 }
 
 /** input type for inserting data into table "auth.session" */
@@ -1223,7 +1214,7 @@ export enum Auth_Session_Select_Column {
   /** column name */
   UpdatedAt = 'updated_at',
   /** column name */
-  UserId = 'user_id',
+  UserId = 'user_id'
 }
 
 /** input type for updating data in table "auth.session" */
@@ -1271,7 +1262,7 @@ export enum Auth_Session_Update_Column {
   /** column name */
   UpdatedAt = 'updated_at',
   /** column name */
-  UserId = 'user_id',
+  UserId = 'user_id'
 }
 
 export type Auth_Session_Updates = {
@@ -1320,6 +1311,7 @@ export type Auth_User = {
   username?: Maybe<Scalars['String']['output']>;
 };
 
+
 /** columns and relationships of "auth.user" */
 export type Auth_UserAccountsArgs = {
   distinct_on?: InputMaybe<Array<Auth_Account_Select_Column>>;
@@ -1328,6 +1320,7 @@ export type Auth_UserAccountsArgs = {
   order_by?: InputMaybe<Array<Auth_Account_Order_By>>;
   where?: InputMaybe<Auth_Account_Bool_Exp>;
 };
+
 
 /** columns and relationships of "auth.user" */
 export type Auth_UserAccounts_AggregateArgs = {
@@ -1338,6 +1331,7 @@ export type Auth_UserAccounts_AggregateArgs = {
   where?: InputMaybe<Auth_Account_Bool_Exp>;
 };
 
+
 /** columns and relationships of "auth.user" */
 export type Auth_UserActivate_TokensArgs = {
   distinct_on?: InputMaybe<Array<Auth_Activate_Token_Select_Column>>;
@@ -1346,6 +1340,7 @@ export type Auth_UserActivate_TokensArgs = {
   order_by?: InputMaybe<Array<Auth_Activate_Token_Order_By>>;
   where?: InputMaybe<Auth_Activate_Token_Bool_Exp>;
 };
+
 
 /** columns and relationships of "auth.user" */
 export type Auth_UserActivate_Tokens_AggregateArgs = {
@@ -1356,6 +1351,7 @@ export type Auth_UserActivate_Tokens_AggregateArgs = {
   where?: InputMaybe<Auth_Activate_Token_Bool_Exp>;
 };
 
+
 /** columns and relationships of "auth.user" */
 export type Auth_UserPassword_Reset_TokensArgs = {
   distinct_on?: InputMaybe<Array<Auth_Password_Reset_Token_Select_Column>>;
@@ -1364,6 +1360,7 @@ export type Auth_UserPassword_Reset_TokensArgs = {
   order_by?: InputMaybe<Array<Auth_Password_Reset_Token_Order_By>>;
   where?: InputMaybe<Auth_Password_Reset_Token_Bool_Exp>;
 };
+
 
 /** columns and relationships of "auth.user" */
 export type Auth_UserPassword_Reset_Tokens_AggregateArgs = {
@@ -1374,6 +1371,7 @@ export type Auth_UserPassword_Reset_Tokens_AggregateArgs = {
   where?: InputMaybe<Auth_Password_Reset_Token_Bool_Exp>;
 };
 
+
 /** columns and relationships of "auth.user" */
 export type Auth_UserSessionsArgs = {
   distinct_on?: InputMaybe<Array<Auth_Session_Select_Column>>;
@@ -1382,6 +1380,7 @@ export type Auth_UserSessionsArgs = {
   order_by?: InputMaybe<Array<Auth_Session_Order_By>>;
   where?: InputMaybe<Auth_Session_Bool_Exp>;
 };
+
 
 /** columns and relationships of "auth.user" */
 export type Auth_UserSessions_AggregateArgs = {
@@ -1433,6 +1432,7 @@ export type Auth_User_Aggregate_Fields = {
   max?: Maybe<Auth_User_Max_Fields>;
   min?: Maybe<Auth_User_Min_Fields>;
 };
+
 
 /** aggregate fields of "auth.user" */
 export type Auth_User_Aggregate_FieldsCountArgs = {
@@ -1496,7 +1496,7 @@ export enum Auth_User_Constraint {
   /** unique or primary key constraint on columns "stripe_subscribtion_id" */
   UserStripeSubscribtionIdKey = 'user_stripe_subscribtion_id_key',
   /** unique or primary key constraint on columns "username" */
-  UserUsernameKey = 'user_username_key',
+  UserUsernameKey = 'user_username_key'
 }
 
 /** input type for inserting data into table "auth.user" */
@@ -1674,19 +1674,19 @@ export enum Auth_User_Select_Column {
   /** column name */
   UpdatedEmail = 'updated_email',
   /** column name */
-  Username = 'username',
+  Username = 'username'
 }
 
 /** select "auth_user_aggregate_bool_exp_bool_and_arguments_columns" columns of table "auth.user" */
 export enum Auth_User_Select_Column_Auth_User_Aggregate_Bool_Exp_Bool_And_Arguments_Columns {
   /** column name */
-  Active = 'active',
+  Active = 'active'
 }
 
 /** select "auth_user_aggregate_bool_exp_bool_or_arguments_columns" columns of table "auth.user" */
 export enum Auth_User_Select_Column_Auth_User_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns {
   /** column name */
-  Active = 'active',
+  Active = 'active'
 }
 
 /** input type for updating data in table "auth.user" */
@@ -1762,7 +1762,7 @@ export enum Auth_User_Update_Column {
   /** column name */
   UpdatedEmail = 'updated_email',
   /** column name */
-  Username = 'username',
+  Username = 'username'
 }
 
 export type Auth_User_Updates = {
@@ -1777,7 +1777,7 @@ export enum Cursor_Ordering {
   /** ascending ordering of the cursor */
   Asc = 'ASC',
   /** descending ordering of the cursor */
-  Desc = 'DESC',
+  Desc = 'DESC'
 }
 
 /** columns and relationships of "language" */
@@ -1793,6 +1793,7 @@ export type Language = {
   updated_at: Scalars['timestamp']['output'];
 };
 
+
 /** columns and relationships of "language" */
 export type LanguageTranslationsArgs = {
   distinct_on?: InputMaybe<Array<Translation_Select_Column>>;
@@ -1801,6 +1802,7 @@ export type LanguageTranslationsArgs = {
   order_by?: InputMaybe<Array<Translation_Order_By>>;
   where?: InputMaybe<Translation_Bool_Exp>;
 };
+
 
 /** columns and relationships of "language" */
 export type LanguageTranslations_AggregateArgs = {
@@ -1826,6 +1828,7 @@ export type Language_Aggregate_Fields = {
   min?: Maybe<Language_Min_Fields>;
 };
 
+
 /** aggregate fields of "language" */
 export type Language_Aggregate_FieldsCountArgs = {
   columns?: InputMaybe<Array<Language_Select_Column>>;
@@ -1850,7 +1853,7 @@ export enum Language_Constraint {
   /** unique or primary key constraint on columns "name" */
   LanguageNameKey = 'language_name_key',
   /** unique or primary key constraint on columns "code" */
-  LanguagePkey = 'language_pkey',
+  LanguagePkey = 'language_pkey'
 }
 
 /** input type for inserting data into table "language" */
@@ -1926,7 +1929,7 @@ export enum Language_Select_Column {
   /** column name */
   Name = 'name',
   /** column name */
-  UpdatedAt = 'updated_at',
+  UpdatedAt = 'updated_at'
 }
 
 /** input type for updating data in table "language" */
@@ -1962,7 +1965,7 @@ export enum Language_Update_Column {
   /** column name */
   Name = 'name',
   /** column name */
-  UpdatedAt = 'updated_at',
+  UpdatedAt = 'updated_at'
 }
 
 export type Language_Updates = {
@@ -2084,33 +2087,25 @@ export type Mutation_Root = {
   /** update single row of the table: "auth.account" */
   update_auth_account_by_pk?: Maybe<Auth_Account>;
   /** update multiples rows of table: "auth.account" */
-  update_auth_account_many?: Maybe<
-    Array<Maybe<Auth_Account_Mutation_Response>>
-  >;
+  update_auth_account_many?: Maybe<Array<Maybe<Auth_Account_Mutation_Response>>>;
   /** update data of the table: "auth.activate_token" */
   update_auth_activate_token?: Maybe<Auth_Activate_Token_Mutation_Response>;
   /** update single row of the table: "auth.activate_token" */
   update_auth_activate_token_by_pk?: Maybe<Auth_Activate_Token>;
   /** update multiples rows of table: "auth.activate_token" */
-  update_auth_activate_token_many?: Maybe<
-    Array<Maybe<Auth_Activate_Token_Mutation_Response>>
-  >;
+  update_auth_activate_token_many?: Maybe<Array<Maybe<Auth_Activate_Token_Mutation_Response>>>;
   /** update data of the table: "auth.password_reset_token" */
   update_auth_password_reset_token?: Maybe<Auth_Password_Reset_Token_Mutation_Response>;
   /** update single row of the table: "auth.password_reset_token" */
   update_auth_password_reset_token_by_pk?: Maybe<Auth_Password_Reset_Token>;
   /** update multiples rows of table: "auth.password_reset_token" */
-  update_auth_password_reset_token_many?: Maybe<
-    Array<Maybe<Auth_Password_Reset_Token_Mutation_Response>>
-  >;
+  update_auth_password_reset_token_many?: Maybe<Array<Maybe<Auth_Password_Reset_Token_Mutation_Response>>>;
   /** update data of the table: "auth.session" */
   update_auth_session?: Maybe<Auth_Session_Mutation_Response>;
   /** update single row of the table: "auth.session" */
   update_auth_session_by_pk?: Maybe<Auth_Session>;
   /** update multiples rows of table: "auth.session" */
-  update_auth_session_many?: Maybe<
-    Array<Maybe<Auth_Session_Mutation_Response>>
-  >;
+  update_auth_session_many?: Maybe<Array<Maybe<Auth_Session_Mutation_Response>>>;
   /** update data of the table: "auth.user" */
   update_auth_user?: Maybe<Auth_User_Mutation_Response>;
   /** update single row of the table: "auth.user" */
@@ -2128,25 +2123,19 @@ export type Mutation_Root = {
   /** update single row of the table: "subscribtion_feature" */
   update_subscribtion_feature_by_pk?: Maybe<Subscribtion_Feature>;
   /** update multiples rows of table: "subscribtion_feature" */
-  update_subscribtion_feature_many?: Maybe<
-    Array<Maybe<Subscribtion_Feature_Mutation_Response>>
-  >;
+  update_subscribtion_feature_many?: Maybe<Array<Maybe<Subscribtion_Feature_Mutation_Response>>>;
   /** update data of the table: "subscribtion_plan" */
   update_subscribtion_plan?: Maybe<Subscribtion_Plan_Mutation_Response>;
   /** update single row of the table: "subscribtion_plan" */
   update_subscribtion_plan_by_pk?: Maybe<Subscribtion_Plan>;
   /** update multiples rows of table: "subscribtion_plan" */
-  update_subscribtion_plan_many?: Maybe<
-    Array<Maybe<Subscribtion_Plan_Mutation_Response>>
-  >;
+  update_subscribtion_plan_many?: Maybe<Array<Maybe<Subscribtion_Plan_Mutation_Response>>>;
   /** update data of the table: "subscribtion_plan_subscribtion_feature_assoc" */
   update_subscribtion_plan_subscribtion_feature_assoc?: Maybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Mutation_Response>;
   /** update single row of the table: "subscribtion_plan_subscribtion_feature_assoc" */
   update_subscribtion_plan_subscribtion_feature_assoc_by_pk?: Maybe<Subscribtion_Plan_Subscribtion_Feature_Assoc>;
   /** update multiples rows of table: "subscribtion_plan_subscribtion_feature_assoc" */
-  update_subscribtion_plan_subscribtion_feature_assoc_many?: Maybe<
-    Array<Maybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Mutation_Response>>
-  >;
+  update_subscribtion_plan_subscribtion_feature_assoc_many?: Maybe<Array<Maybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Mutation_Response>>>;
   /** update data of the table: "team" */
   update_team?: Maybe<Team_Mutation_Response>;
   /** update single row of the table: "team" */
@@ -2158,9 +2147,7 @@ export type Mutation_Root = {
   /** update single row of the table: "text_content" */
   update_text_content_by_pk?: Maybe<Text_Content>;
   /** update multiples rows of table: "text_content" */
-  update_text_content_many?: Maybe<
-    Array<Maybe<Text_Content_Mutation_Response>>
-  >;
+  update_text_content_many?: Maybe<Array<Maybe<Text_Content_Mutation_Response>>>;
   /** update data of the table: "translation" */
   update_translation?: Maybe<Translation_Mutation_Response>;
   /** update single row of the table: "translation" */
@@ -2172,142 +2159,165 @@ export type Mutation_Root = {
   /** update single row of the table: "unsubscription_feedback" */
   update_unsubscription_feedback_by_pk?: Maybe<Unsubscription_Feedback>;
   /** update multiples rows of table: "unsubscription_feedback" */
-  update_unsubscription_feedback_many?: Maybe<
-    Array<Maybe<Unsubscription_Feedback_Mutation_Response>>
-  >;
+  update_unsubscription_feedback_many?: Maybe<Array<Maybe<Unsubscription_Feedback_Mutation_Response>>>;
 };
+
 
 /** mutation root */
 export type Mutation_RootDelete_Auth_AccountArgs = {
   where: Auth_Account_Bool_Exp;
 };
 
+
 /** mutation root */
 export type Mutation_RootDelete_Auth_Account_By_PkArgs = {
   id: Scalars['uuid']['input'];
 };
+
 
 /** mutation root */
 export type Mutation_RootDelete_Auth_Activate_TokenArgs = {
   where: Auth_Activate_Token_Bool_Exp;
 };
 
+
 /** mutation root */
 export type Mutation_RootDelete_Auth_Activate_Token_By_PkArgs = {
   id: Scalars['uuid']['input'];
 };
+
 
 /** mutation root */
 export type Mutation_RootDelete_Auth_Password_Reset_TokenArgs = {
   where: Auth_Password_Reset_Token_Bool_Exp;
 };
 
+
 /** mutation root */
 export type Mutation_RootDelete_Auth_Password_Reset_Token_By_PkArgs = {
   id: Scalars['uuid']['input'];
 };
+
 
 /** mutation root */
 export type Mutation_RootDelete_Auth_SessionArgs = {
   where: Auth_Session_Bool_Exp;
 };
 
+
 /** mutation root */
 export type Mutation_RootDelete_Auth_Session_By_PkArgs = {
   id: Scalars['uuid']['input'];
 };
+
 
 /** mutation root */
 export type Mutation_RootDelete_Auth_UserArgs = {
   where: Auth_User_Bool_Exp;
 };
 
+
 /** mutation root */
 export type Mutation_RootDelete_Auth_User_By_PkArgs = {
   id: Scalars['uuid']['input'];
 };
+
 
 /** mutation root */
 export type Mutation_RootDelete_LanguageArgs = {
   where: Language_Bool_Exp;
 };
 
+
 /** mutation root */
 export type Mutation_RootDelete_Language_By_PkArgs = {
   code: Scalars['String']['input'];
 };
+
 
 /** mutation root */
 export type Mutation_RootDelete_Subscribtion_FeatureArgs = {
   where: Subscribtion_Feature_Bool_Exp;
 };
 
+
 /** mutation root */
 export type Mutation_RootDelete_Subscribtion_Feature_By_PkArgs = {
   name: Scalars['String']['input'];
 };
+
 
 /** mutation root */
 export type Mutation_RootDelete_Subscribtion_PlanArgs = {
   where: Subscribtion_Plan_Bool_Exp;
 };
 
+
 /** mutation root */
 export type Mutation_RootDelete_Subscribtion_Plan_By_PkArgs = {
   name: Scalars['String']['input'];
 };
 
-/** mutation root */
-export type Mutation_RootDelete_Subscribtion_Plan_Subscribtion_Feature_AssocArgs =
-  {
-    where: Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp;
-  };
 
 /** mutation root */
-export type Mutation_RootDelete_Subscribtion_Plan_Subscribtion_Feature_Assoc_By_PkArgs =
-  {
-    id: Scalars['uuid']['input'];
-  };
+export type Mutation_RootDelete_Subscribtion_Plan_Subscribtion_Feature_AssocArgs = {
+  where: Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Subscribtion_Plan_Subscribtion_Feature_Assoc_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
 
 /** mutation root */
 export type Mutation_RootDelete_TeamArgs = {
   where: Team_Bool_Exp;
 };
 
+
 /** mutation root */
 export type Mutation_RootDelete_Team_By_PkArgs = {
   id: Scalars['uuid']['input'];
 };
+
 
 /** mutation root */
 export type Mutation_RootDelete_Text_ContentArgs = {
   where: Text_Content_Bool_Exp;
 };
 
+
 /** mutation root */
 export type Mutation_RootDelete_Text_Content_By_PkArgs = {
   id: Scalars['uuid']['input'];
 };
+
 
 /** mutation root */
 export type Mutation_RootDelete_TranslationArgs = {
   where: Translation_Bool_Exp;
 };
 
+
 /** mutation root */
 export type Mutation_RootDelete_Translation_By_PkArgs = {
   id: Scalars['uuid']['input'];
 };
+
 
 /** mutation root */
 export type Mutation_RootDelete_Unsubscription_FeedbackArgs = {
   where: Unsubscription_Feedback_Bool_Exp;
 };
 
+
 /** mutation root */
 export type Mutation_RootDelete_Unsubscription_Feedback_By_PkArgs = {
   id: Scalars['uuid']['input'];
 };
+
 
 /** mutation root */
 export type Mutation_RootInsert_Auth_AccountArgs = {
@@ -2315,11 +2325,13 @@ export type Mutation_RootInsert_Auth_AccountArgs = {
   on_conflict?: InputMaybe<Auth_Account_On_Conflict>;
 };
 
+
 /** mutation root */
 export type Mutation_RootInsert_Auth_Account_OneArgs = {
   object: Auth_Account_Insert_Input;
   on_conflict?: InputMaybe<Auth_Account_On_Conflict>;
 };
+
 
 /** mutation root */
 export type Mutation_RootInsert_Auth_Activate_TokenArgs = {
@@ -2327,11 +2339,13 @@ export type Mutation_RootInsert_Auth_Activate_TokenArgs = {
   on_conflict?: InputMaybe<Auth_Activate_Token_On_Conflict>;
 };
 
+
 /** mutation root */
 export type Mutation_RootInsert_Auth_Activate_Token_OneArgs = {
   object: Auth_Activate_Token_Insert_Input;
   on_conflict?: InputMaybe<Auth_Activate_Token_On_Conflict>;
 };
+
 
 /** mutation root */
 export type Mutation_RootInsert_Auth_Password_Reset_TokenArgs = {
@@ -2339,11 +2353,13 @@ export type Mutation_RootInsert_Auth_Password_Reset_TokenArgs = {
   on_conflict?: InputMaybe<Auth_Password_Reset_Token_On_Conflict>;
 };
 
+
 /** mutation root */
 export type Mutation_RootInsert_Auth_Password_Reset_Token_OneArgs = {
   object: Auth_Password_Reset_Token_Insert_Input;
   on_conflict?: InputMaybe<Auth_Password_Reset_Token_On_Conflict>;
 };
+
 
 /** mutation root */
 export type Mutation_RootInsert_Auth_SessionArgs = {
@@ -2351,11 +2367,13 @@ export type Mutation_RootInsert_Auth_SessionArgs = {
   on_conflict?: InputMaybe<Auth_Session_On_Conflict>;
 };
 
+
 /** mutation root */
 export type Mutation_RootInsert_Auth_Session_OneArgs = {
   object: Auth_Session_Insert_Input;
   on_conflict?: InputMaybe<Auth_Session_On_Conflict>;
 };
+
 
 /** mutation root */
 export type Mutation_RootInsert_Auth_UserArgs = {
@@ -2363,11 +2381,13 @@ export type Mutation_RootInsert_Auth_UserArgs = {
   on_conflict?: InputMaybe<Auth_User_On_Conflict>;
 };
 
+
 /** mutation root */
 export type Mutation_RootInsert_Auth_User_OneArgs = {
   object: Auth_User_Insert_Input;
   on_conflict?: InputMaybe<Auth_User_On_Conflict>;
 };
+
 
 /** mutation root */
 export type Mutation_RootInsert_LanguageArgs = {
@@ -2375,11 +2395,13 @@ export type Mutation_RootInsert_LanguageArgs = {
   on_conflict?: InputMaybe<Language_On_Conflict>;
 };
 
+
 /** mutation root */
 export type Mutation_RootInsert_Language_OneArgs = {
   object: Language_Insert_Input;
   on_conflict?: InputMaybe<Language_On_Conflict>;
 };
+
 
 /** mutation root */
 export type Mutation_RootInsert_Subscribtion_FeatureArgs = {
@@ -2387,11 +2409,13 @@ export type Mutation_RootInsert_Subscribtion_FeatureArgs = {
   on_conflict?: InputMaybe<Subscribtion_Feature_On_Conflict>;
 };
 
+
 /** mutation root */
 export type Mutation_RootInsert_Subscribtion_Feature_OneArgs = {
   object: Subscribtion_Feature_Insert_Input;
   on_conflict?: InputMaybe<Subscribtion_Feature_On_Conflict>;
 };
+
 
 /** mutation root */
 export type Mutation_RootInsert_Subscribtion_PlanArgs = {
@@ -2399,25 +2423,27 @@ export type Mutation_RootInsert_Subscribtion_PlanArgs = {
   on_conflict?: InputMaybe<Subscribtion_Plan_On_Conflict>;
 };
 
+
 /** mutation root */
 export type Mutation_RootInsert_Subscribtion_Plan_OneArgs = {
   object: Subscribtion_Plan_Insert_Input;
   on_conflict?: InputMaybe<Subscribtion_Plan_On_Conflict>;
 };
 
-/** mutation root */
-export type Mutation_RootInsert_Subscribtion_Plan_Subscribtion_Feature_AssocArgs =
-  {
-    objects: Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Insert_Input>;
-    on_conflict?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_On_Conflict>;
-  };
 
 /** mutation root */
-export type Mutation_RootInsert_Subscribtion_Plan_Subscribtion_Feature_Assoc_OneArgs =
-  {
-    object: Subscribtion_Plan_Subscribtion_Feature_Assoc_Insert_Input;
-    on_conflict?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_On_Conflict>;
-  };
+export type Mutation_RootInsert_Subscribtion_Plan_Subscribtion_Feature_AssocArgs = {
+  objects: Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Insert_Input>;
+  on_conflict?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Subscribtion_Plan_Subscribtion_Feature_Assoc_OneArgs = {
+  object: Subscribtion_Plan_Subscribtion_Feature_Assoc_Insert_Input;
+  on_conflict?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_On_Conflict>;
+};
+
 
 /** mutation root */
 export type Mutation_RootInsert_TeamArgs = {
@@ -2425,11 +2451,13 @@ export type Mutation_RootInsert_TeamArgs = {
   on_conflict?: InputMaybe<Team_On_Conflict>;
 };
 
+
 /** mutation root */
 export type Mutation_RootInsert_Team_OneArgs = {
   object: Team_Insert_Input;
   on_conflict?: InputMaybe<Team_On_Conflict>;
 };
+
 
 /** mutation root */
 export type Mutation_RootInsert_Text_ContentArgs = {
@@ -2437,11 +2465,13 @@ export type Mutation_RootInsert_Text_ContentArgs = {
   on_conflict?: InputMaybe<Text_Content_On_Conflict>;
 };
 
+
 /** mutation root */
 export type Mutation_RootInsert_Text_Content_OneArgs = {
   object: Text_Content_Insert_Input;
   on_conflict?: InputMaybe<Text_Content_On_Conflict>;
 };
+
 
 /** mutation root */
 export type Mutation_RootInsert_TranslationArgs = {
@@ -2449,11 +2479,13 @@ export type Mutation_RootInsert_TranslationArgs = {
   on_conflict?: InputMaybe<Translation_On_Conflict>;
 };
 
+
 /** mutation root */
 export type Mutation_RootInsert_Translation_OneArgs = {
   object: Translation_Insert_Input;
   on_conflict?: InputMaybe<Translation_On_Conflict>;
 };
+
 
 /** mutation root */
 export type Mutation_RootInsert_Unsubscription_FeedbackArgs = {
@@ -2461,11 +2493,13 @@ export type Mutation_RootInsert_Unsubscription_FeedbackArgs = {
   on_conflict?: InputMaybe<Unsubscription_Feedback_On_Conflict>;
 };
 
+
 /** mutation root */
 export type Mutation_RootInsert_Unsubscription_Feedback_OneArgs = {
   object: Unsubscription_Feedback_Insert_Input;
   on_conflict?: InputMaybe<Unsubscription_Feedback_On_Conflict>;
 };
+
 
 /** mutation root */
 export type Mutation_RootUpdate_Auth_AccountArgs = {
@@ -2474,6 +2508,7 @@ export type Mutation_RootUpdate_Auth_AccountArgs = {
   where: Auth_Account_Bool_Exp;
 };
 
+
 /** mutation root */
 export type Mutation_RootUpdate_Auth_Account_By_PkArgs = {
   _inc?: InputMaybe<Auth_Account_Inc_Input>;
@@ -2481,10 +2516,12 @@ export type Mutation_RootUpdate_Auth_Account_By_PkArgs = {
   pk_columns: Auth_Account_Pk_Columns_Input;
 };
 
+
 /** mutation root */
 export type Mutation_RootUpdate_Auth_Account_ManyArgs = {
   updates: Array<Auth_Account_Updates>;
 };
+
 
 /** mutation root */
 export type Mutation_RootUpdate_Auth_Activate_TokenArgs = {
@@ -2492,16 +2529,19 @@ export type Mutation_RootUpdate_Auth_Activate_TokenArgs = {
   where: Auth_Activate_Token_Bool_Exp;
 };
 
+
 /** mutation root */
 export type Mutation_RootUpdate_Auth_Activate_Token_By_PkArgs = {
   _set?: InputMaybe<Auth_Activate_Token_Set_Input>;
   pk_columns: Auth_Activate_Token_Pk_Columns_Input;
 };
 
+
 /** mutation root */
 export type Mutation_RootUpdate_Auth_Activate_Token_ManyArgs = {
   updates: Array<Auth_Activate_Token_Updates>;
 };
+
 
 /** mutation root */
 export type Mutation_RootUpdate_Auth_Password_Reset_TokenArgs = {
@@ -2509,16 +2549,19 @@ export type Mutation_RootUpdate_Auth_Password_Reset_TokenArgs = {
   where: Auth_Password_Reset_Token_Bool_Exp;
 };
 
+
 /** mutation root */
 export type Mutation_RootUpdate_Auth_Password_Reset_Token_By_PkArgs = {
   _set?: InputMaybe<Auth_Password_Reset_Token_Set_Input>;
   pk_columns: Auth_Password_Reset_Token_Pk_Columns_Input;
 };
 
+
 /** mutation root */
 export type Mutation_RootUpdate_Auth_Password_Reset_Token_ManyArgs = {
   updates: Array<Auth_Password_Reset_Token_Updates>;
 };
+
 
 /** mutation root */
 export type Mutation_RootUpdate_Auth_SessionArgs = {
@@ -2526,16 +2569,19 @@ export type Mutation_RootUpdate_Auth_SessionArgs = {
   where: Auth_Session_Bool_Exp;
 };
 
+
 /** mutation root */
 export type Mutation_RootUpdate_Auth_Session_By_PkArgs = {
   _set?: InputMaybe<Auth_Session_Set_Input>;
   pk_columns: Auth_Session_Pk_Columns_Input;
 };
 
+
 /** mutation root */
 export type Mutation_RootUpdate_Auth_Session_ManyArgs = {
   updates: Array<Auth_Session_Updates>;
 };
+
 
 /** mutation root */
 export type Mutation_RootUpdate_Auth_UserArgs = {
@@ -2543,16 +2589,19 @@ export type Mutation_RootUpdate_Auth_UserArgs = {
   where: Auth_User_Bool_Exp;
 };
 
+
 /** mutation root */
 export type Mutation_RootUpdate_Auth_User_By_PkArgs = {
   _set?: InputMaybe<Auth_User_Set_Input>;
   pk_columns: Auth_User_Pk_Columns_Input;
 };
 
+
 /** mutation root */
 export type Mutation_RootUpdate_Auth_User_ManyArgs = {
   updates: Array<Auth_User_Updates>;
 };
+
 
 /** mutation root */
 export type Mutation_RootUpdate_LanguageArgs = {
@@ -2560,16 +2609,19 @@ export type Mutation_RootUpdate_LanguageArgs = {
   where: Language_Bool_Exp;
 };
 
+
 /** mutation root */
 export type Mutation_RootUpdate_Language_By_PkArgs = {
   _set?: InputMaybe<Language_Set_Input>;
   pk_columns: Language_Pk_Columns_Input;
 };
 
+
 /** mutation root */
 export type Mutation_RootUpdate_Language_ManyArgs = {
   updates: Array<Language_Updates>;
 };
+
 
 /** mutation root */
 export type Mutation_RootUpdate_Subscribtion_FeatureArgs = {
@@ -2577,16 +2629,19 @@ export type Mutation_RootUpdate_Subscribtion_FeatureArgs = {
   where: Subscribtion_Feature_Bool_Exp;
 };
 
+
 /** mutation root */
 export type Mutation_RootUpdate_Subscribtion_Feature_By_PkArgs = {
   _set?: InputMaybe<Subscribtion_Feature_Set_Input>;
   pk_columns: Subscribtion_Feature_Pk_Columns_Input;
 };
 
+
 /** mutation root */
 export type Mutation_RootUpdate_Subscribtion_Feature_ManyArgs = {
   updates: Array<Subscribtion_Feature_Updates>;
 };
+
 
 /** mutation root */
 export type Mutation_RootUpdate_Subscribtion_PlanArgs = {
@@ -2594,36 +2649,39 @@ export type Mutation_RootUpdate_Subscribtion_PlanArgs = {
   where: Subscribtion_Plan_Bool_Exp;
 };
 
+
 /** mutation root */
 export type Mutation_RootUpdate_Subscribtion_Plan_By_PkArgs = {
   _set?: InputMaybe<Subscribtion_Plan_Set_Input>;
   pk_columns: Subscribtion_Plan_Pk_Columns_Input;
 };
 
+
 /** mutation root */
 export type Mutation_RootUpdate_Subscribtion_Plan_ManyArgs = {
   updates: Array<Subscribtion_Plan_Updates>;
 };
 
-/** mutation root */
-export type Mutation_RootUpdate_Subscribtion_Plan_Subscribtion_Feature_AssocArgs =
-  {
-    _set?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Set_Input>;
-    where: Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp;
-  };
 
 /** mutation root */
-export type Mutation_RootUpdate_Subscribtion_Plan_Subscribtion_Feature_Assoc_By_PkArgs =
-  {
-    _set?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Set_Input>;
-    pk_columns: Subscribtion_Plan_Subscribtion_Feature_Assoc_Pk_Columns_Input;
-  };
+export type Mutation_RootUpdate_Subscribtion_Plan_Subscribtion_Feature_AssocArgs = {
+  _set?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Set_Input>;
+  where: Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp;
+};
+
 
 /** mutation root */
-export type Mutation_RootUpdate_Subscribtion_Plan_Subscribtion_Feature_Assoc_ManyArgs =
-  {
-    updates: Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Updates>;
-  };
+export type Mutation_RootUpdate_Subscribtion_Plan_Subscribtion_Feature_Assoc_By_PkArgs = {
+  _set?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Set_Input>;
+  pk_columns: Subscribtion_Plan_Subscribtion_Feature_Assoc_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Subscribtion_Plan_Subscribtion_Feature_Assoc_ManyArgs = {
+  updates: Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Updates>;
+};
+
 
 /** mutation root */
 export type Mutation_RootUpdate_TeamArgs = {
@@ -2631,16 +2689,19 @@ export type Mutation_RootUpdate_TeamArgs = {
   where: Team_Bool_Exp;
 };
 
+
 /** mutation root */
 export type Mutation_RootUpdate_Team_By_PkArgs = {
   _set?: InputMaybe<Team_Set_Input>;
   pk_columns: Team_Pk_Columns_Input;
 };
 
+
 /** mutation root */
 export type Mutation_RootUpdate_Team_ManyArgs = {
   updates: Array<Team_Updates>;
 };
+
 
 /** mutation root */
 export type Mutation_RootUpdate_Text_ContentArgs = {
@@ -2648,16 +2709,19 @@ export type Mutation_RootUpdate_Text_ContentArgs = {
   where: Text_Content_Bool_Exp;
 };
 
+
 /** mutation root */
 export type Mutation_RootUpdate_Text_Content_By_PkArgs = {
   _set?: InputMaybe<Text_Content_Set_Input>;
   pk_columns: Text_Content_Pk_Columns_Input;
 };
 
+
 /** mutation root */
 export type Mutation_RootUpdate_Text_Content_ManyArgs = {
   updates: Array<Text_Content_Updates>;
 };
+
 
 /** mutation root */
 export type Mutation_RootUpdate_TranslationArgs = {
@@ -2665,16 +2729,19 @@ export type Mutation_RootUpdate_TranslationArgs = {
   where: Translation_Bool_Exp;
 };
 
+
 /** mutation root */
 export type Mutation_RootUpdate_Translation_By_PkArgs = {
   _set?: InputMaybe<Translation_Set_Input>;
   pk_columns: Translation_Pk_Columns_Input;
 };
 
+
 /** mutation root */
 export type Mutation_RootUpdate_Translation_ManyArgs = {
   updates: Array<Translation_Updates>;
 };
+
 
 /** mutation root */
 export type Mutation_RootUpdate_Unsubscription_FeedbackArgs = {
@@ -2682,11 +2749,13 @@ export type Mutation_RootUpdate_Unsubscription_FeedbackArgs = {
   where: Unsubscription_Feedback_Bool_Exp;
 };
 
+
 /** mutation root */
 export type Mutation_RootUpdate_Unsubscription_Feedback_By_PkArgs = {
   _set?: InputMaybe<Unsubscription_Feedback_Set_Input>;
   pk_columns: Unsubscription_Feedback_Pk_Columns_Input;
 };
+
 
 /** mutation root */
 export type Mutation_RootUpdate_Unsubscription_Feedback_ManyArgs = {
@@ -2706,7 +2775,7 @@ export enum Order_By {
   /** in descending order, nulls first */
   DescNullsFirst = 'desc_nulls_first',
   /** in descending order, nulls last */
-  DescNullsLast = 'desc_nulls_last',
+  DescNullsLast = 'desc_nulls_last'
 }
 
 export type Query_Root = {
@@ -2791,6 +2860,7 @@ export type Query_Root = {
   unsubscription_feedback_by_pk?: Maybe<Unsubscription_Feedback>;
 };
 
+
 export type Query_RootAuth_AccountArgs = {
   distinct_on?: InputMaybe<Array<Auth_Account_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -2798,6 +2868,7 @@ export type Query_RootAuth_AccountArgs = {
   order_by?: InputMaybe<Array<Auth_Account_Order_By>>;
   where?: InputMaybe<Auth_Account_Bool_Exp>;
 };
+
 
 export type Query_RootAuth_Account_AggregateArgs = {
   distinct_on?: InputMaybe<Array<Auth_Account_Select_Column>>;
@@ -2807,9 +2878,11 @@ export type Query_RootAuth_Account_AggregateArgs = {
   where?: InputMaybe<Auth_Account_Bool_Exp>;
 };
 
+
 export type Query_RootAuth_Account_By_PkArgs = {
   id: Scalars['uuid']['input'];
 };
+
 
 export type Query_RootAuth_Activate_TokenArgs = {
   distinct_on?: InputMaybe<Array<Auth_Activate_Token_Select_Column>>;
@@ -2819,6 +2892,7 @@ export type Query_RootAuth_Activate_TokenArgs = {
   where?: InputMaybe<Auth_Activate_Token_Bool_Exp>;
 };
 
+
 export type Query_RootAuth_Activate_Token_AggregateArgs = {
   distinct_on?: InputMaybe<Array<Auth_Activate_Token_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -2827,9 +2901,11 @@ export type Query_RootAuth_Activate_Token_AggregateArgs = {
   where?: InputMaybe<Auth_Activate_Token_Bool_Exp>;
 };
 
+
 export type Query_RootAuth_Activate_Token_By_PkArgs = {
   id: Scalars['uuid']['input'];
 };
+
 
 export type Query_RootAuth_Password_Reset_TokenArgs = {
   distinct_on?: InputMaybe<Array<Auth_Password_Reset_Token_Select_Column>>;
@@ -2839,6 +2915,7 @@ export type Query_RootAuth_Password_Reset_TokenArgs = {
   where?: InputMaybe<Auth_Password_Reset_Token_Bool_Exp>;
 };
 
+
 export type Query_RootAuth_Password_Reset_Token_AggregateArgs = {
   distinct_on?: InputMaybe<Array<Auth_Password_Reset_Token_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -2847,9 +2924,11 @@ export type Query_RootAuth_Password_Reset_Token_AggregateArgs = {
   where?: InputMaybe<Auth_Password_Reset_Token_Bool_Exp>;
 };
 
+
 export type Query_RootAuth_Password_Reset_Token_By_PkArgs = {
   id: Scalars['uuid']['input'];
 };
+
 
 export type Query_RootAuth_SessionArgs = {
   distinct_on?: InputMaybe<Array<Auth_Session_Select_Column>>;
@@ -2859,6 +2938,7 @@ export type Query_RootAuth_SessionArgs = {
   where?: InputMaybe<Auth_Session_Bool_Exp>;
 };
 
+
 export type Query_RootAuth_Session_AggregateArgs = {
   distinct_on?: InputMaybe<Array<Auth_Session_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -2867,9 +2947,11 @@ export type Query_RootAuth_Session_AggregateArgs = {
   where?: InputMaybe<Auth_Session_Bool_Exp>;
 };
 
+
 export type Query_RootAuth_Session_By_PkArgs = {
   id: Scalars['uuid']['input'];
 };
+
 
 export type Query_RootAuth_UserArgs = {
   distinct_on?: InputMaybe<Array<Auth_User_Select_Column>>;
@@ -2879,6 +2961,7 @@ export type Query_RootAuth_UserArgs = {
   where?: InputMaybe<Auth_User_Bool_Exp>;
 };
 
+
 export type Query_RootAuth_User_AggregateArgs = {
   distinct_on?: InputMaybe<Array<Auth_User_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -2887,9 +2970,11 @@ export type Query_RootAuth_User_AggregateArgs = {
   where?: InputMaybe<Auth_User_Bool_Exp>;
 };
 
+
 export type Query_RootAuth_User_By_PkArgs = {
   id: Scalars['uuid']['input'];
 };
+
 
 export type Query_RootLanguageArgs = {
   distinct_on?: InputMaybe<Array<Language_Select_Column>>;
@@ -2899,6 +2984,7 @@ export type Query_RootLanguageArgs = {
   where?: InputMaybe<Language_Bool_Exp>;
 };
 
+
 export type Query_RootLanguage_AggregateArgs = {
   distinct_on?: InputMaybe<Array<Language_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -2907,9 +2993,11 @@ export type Query_RootLanguage_AggregateArgs = {
   where?: InputMaybe<Language_Bool_Exp>;
 };
 
+
 export type Query_RootLanguage_By_PkArgs = {
   code: Scalars['String']['input'];
 };
+
 
 export type Query_RootSubscribtion_FeatureArgs = {
   distinct_on?: InputMaybe<Array<Subscribtion_Feature_Select_Column>>;
@@ -2919,6 +3007,7 @@ export type Query_RootSubscribtion_FeatureArgs = {
   where?: InputMaybe<Subscribtion_Feature_Bool_Exp>;
 };
 
+
 export type Query_RootSubscribtion_Feature_AggregateArgs = {
   distinct_on?: InputMaybe<Array<Subscribtion_Feature_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -2927,9 +3016,11 @@ export type Query_RootSubscribtion_Feature_AggregateArgs = {
   where?: InputMaybe<Subscribtion_Feature_Bool_Exp>;
 };
 
+
 export type Query_RootSubscribtion_Feature_By_PkArgs = {
   name: Scalars['String']['input'];
 };
+
 
 export type Query_RootSubscribtion_PlanArgs = {
   distinct_on?: InputMaybe<Array<Subscribtion_Plan_Select_Column>>;
@@ -2939,6 +3030,7 @@ export type Query_RootSubscribtion_PlanArgs = {
   where?: InputMaybe<Subscribtion_Plan_Bool_Exp>;
 };
 
+
 export type Query_RootSubscribtion_Plan_AggregateArgs = {
   distinct_on?: InputMaybe<Array<Subscribtion_Plan_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -2947,38 +3039,34 @@ export type Query_RootSubscribtion_Plan_AggregateArgs = {
   where?: InputMaybe<Subscribtion_Plan_Bool_Exp>;
 };
 
+
 export type Query_RootSubscribtion_Plan_By_PkArgs = {
   name: Scalars['String']['input'];
 };
 
+
 export type Query_RootSubscribtion_Plan_Subscribtion_Feature_AssocArgs = {
-  distinct_on?: InputMaybe<
-    Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Select_Column>
-  >;
+  distinct_on?: InputMaybe<Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<
-    Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Order_By>
-  >;
+  order_by?: InputMaybe<Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Order_By>>;
   where?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp>;
 };
 
-export type Query_RootSubscribtion_Plan_Subscribtion_Feature_Assoc_AggregateArgs =
-  {
-    distinct_on?: InputMaybe<
-      Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Select_Column>
-    >;
-    limit?: InputMaybe<Scalars['Int']['input']>;
-    offset?: InputMaybe<Scalars['Int']['input']>;
-    order_by?: InputMaybe<
-      Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Order_By>
-    >;
-    where?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp>;
-  };
+
+export type Query_RootSubscribtion_Plan_Subscribtion_Feature_Assoc_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Order_By>>;
+  where?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp>;
+};
+
 
 export type Query_RootSubscribtion_Plan_Subscribtion_Feature_Assoc_By_PkArgs = {
   id: Scalars['uuid']['input'];
 };
+
 
 export type Query_RootTeamArgs = {
   distinct_on?: InputMaybe<Array<Team_Select_Column>>;
@@ -2988,6 +3076,7 @@ export type Query_RootTeamArgs = {
   where?: InputMaybe<Team_Bool_Exp>;
 };
 
+
 export type Query_RootTeam_AggregateArgs = {
   distinct_on?: InputMaybe<Array<Team_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -2996,9 +3085,11 @@ export type Query_RootTeam_AggregateArgs = {
   where?: InputMaybe<Team_Bool_Exp>;
 };
 
+
 export type Query_RootTeam_By_PkArgs = {
   id: Scalars['uuid']['input'];
 };
+
 
 export type Query_RootText_ContentArgs = {
   distinct_on?: InputMaybe<Array<Text_Content_Select_Column>>;
@@ -3008,6 +3099,7 @@ export type Query_RootText_ContentArgs = {
   where?: InputMaybe<Text_Content_Bool_Exp>;
 };
 
+
 export type Query_RootText_Content_AggregateArgs = {
   distinct_on?: InputMaybe<Array<Text_Content_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -3016,9 +3108,11 @@ export type Query_RootText_Content_AggregateArgs = {
   where?: InputMaybe<Text_Content_Bool_Exp>;
 };
 
+
 export type Query_RootText_Content_By_PkArgs = {
   id: Scalars['uuid']['input'];
 };
+
 
 export type Query_RootTranslationArgs = {
   distinct_on?: InputMaybe<Array<Translation_Select_Column>>;
@@ -3028,6 +3122,7 @@ export type Query_RootTranslationArgs = {
   where?: InputMaybe<Translation_Bool_Exp>;
 };
 
+
 export type Query_RootTranslation_AggregateArgs = {
   distinct_on?: InputMaybe<Array<Translation_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -3036,9 +3131,11 @@ export type Query_RootTranslation_AggregateArgs = {
   where?: InputMaybe<Translation_Bool_Exp>;
 };
 
+
 export type Query_RootTranslation_By_PkArgs = {
   id: Scalars['uuid']['input'];
 };
+
 
 export type Query_RootUnsubscription_FeedbackArgs = {
   distinct_on?: InputMaybe<Array<Unsubscription_Feedback_Select_Column>>;
@@ -3048,6 +3145,7 @@ export type Query_RootUnsubscription_FeedbackArgs = {
   where?: InputMaybe<Unsubscription_Feedback_Bool_Exp>;
 };
 
+
 export type Query_RootUnsubscription_Feedback_AggregateArgs = {
   distinct_on?: InputMaybe<Array<Unsubscription_Feedback_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -3055,6 +3153,7 @@ export type Query_RootUnsubscription_Feedback_AggregateArgs = {
   order_by?: InputMaybe<Array<Unsubscription_Feedback_Order_By>>;
   where?: InputMaybe<Unsubscription_Feedback_Bool_Exp>;
 };
+
 
 export type Query_RootUnsubscription_Feedback_By_PkArgs = {
   id: Scalars['uuid']['input'];
@@ -3075,33 +3174,25 @@ export type Subscribtion_Feature = {
   updated_at: Scalars['timestamp']['output'];
 };
 
-/** columns and relationships of "subscribtion_feature" */
-export type Subscribtion_FeatureSubscribtion_Plan_Subscribtion_Feature_AssocsArgs =
-  {
-    distinct_on?: InputMaybe<
-      Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Select_Column>
-    >;
-    limit?: InputMaybe<Scalars['Int']['input']>;
-    offset?: InputMaybe<Scalars['Int']['input']>;
-    order_by?: InputMaybe<
-      Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Order_By>
-    >;
-    where?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp>;
-  };
 
 /** columns and relationships of "subscribtion_feature" */
-export type Subscribtion_FeatureSubscribtion_Plan_Subscribtion_Feature_Assocs_AggregateArgs =
-  {
-    distinct_on?: InputMaybe<
-      Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Select_Column>
-    >;
-    limit?: InputMaybe<Scalars['Int']['input']>;
-    offset?: InputMaybe<Scalars['Int']['input']>;
-    order_by?: InputMaybe<
-      Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Order_By>
-    >;
-    where?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp>;
-  };
+export type Subscribtion_FeatureSubscribtion_Plan_Subscribtion_Feature_AssocsArgs = {
+  distinct_on?: InputMaybe<Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Order_By>>;
+  where?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp>;
+};
+
+
+/** columns and relationships of "subscribtion_feature" */
+export type Subscribtion_FeatureSubscribtion_Plan_Subscribtion_Feature_Assocs_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Order_By>>;
+  where?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp>;
+};
 
 /** aggregated selection of "subscribtion_feature" */
 export type Subscribtion_Feature_Aggregate = {
@@ -3128,6 +3219,7 @@ export type Subscribtion_Feature_Aggregate_Fields = {
   max?: Maybe<Subscribtion_Feature_Max_Fields>;
   min?: Maybe<Subscribtion_Feature_Min_Fields>;
 };
+
 
 /** aggregate fields of "subscribtion_feature" */
 export type Subscribtion_Feature_Aggregate_FieldsCountArgs = {
@@ -3166,7 +3258,7 @@ export type Subscribtion_Feature_Bool_Exp = {
 /** unique or primary key constraints on table "subscribtion_feature" */
 export enum Subscribtion_Feature_Constraint {
   /** unique or primary key constraint on columns "name" */
-  SubscribtionFeaturePkey = 'subscribtion_feature_pkey',
+  SubscribtionFeaturePkey = 'subscribtion_feature_pkey'
 }
 
 /** input type for inserting data into table "subscribtion_feature" */
@@ -3260,7 +3352,7 @@ export enum Subscribtion_Feature_Select_Column {
   /** column name */
   TextContentId = 'text_content_id',
   /** column name */
-  UpdatedAt = 'updated_at',
+  UpdatedAt = 'updated_at'
 }
 
 /** input type for updating data in table "subscribtion_feature" */
@@ -3296,7 +3388,7 @@ export enum Subscribtion_Feature_Update_Column {
   /** column name */
   TextContentId = 'text_content_id',
   /** column name */
-  UpdatedAt = 'updated_at',
+  UpdatedAt = 'updated_at'
 }
 
 export type Subscribtion_Feature_Updates = {
@@ -3329,33 +3421,26 @@ export type Subscribtion_Plan = {
   users_aggregate: Auth_User_Aggregate;
 };
 
-/** columns and relationships of "subscribtion_plan" */
-export type Subscribtion_PlanSubscribtion_Plan_Subscribtion_Feature_AssocsArgs =
-  {
-    distinct_on?: InputMaybe<
-      Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Select_Column>
-    >;
-    limit?: InputMaybe<Scalars['Int']['input']>;
-    offset?: InputMaybe<Scalars['Int']['input']>;
-    order_by?: InputMaybe<
-      Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Order_By>
-    >;
-    where?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp>;
-  };
 
 /** columns and relationships of "subscribtion_plan" */
-export type Subscribtion_PlanSubscribtion_Plan_Subscribtion_Feature_Assocs_AggregateArgs =
-  {
-    distinct_on?: InputMaybe<
-      Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Select_Column>
-    >;
-    limit?: InputMaybe<Scalars['Int']['input']>;
-    offset?: InputMaybe<Scalars['Int']['input']>;
-    order_by?: InputMaybe<
-      Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Order_By>
-    >;
-    where?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp>;
-  };
+export type Subscribtion_PlanSubscribtion_Plan_Subscribtion_Feature_AssocsArgs = {
+  distinct_on?: InputMaybe<Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Order_By>>;
+  where?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp>;
+};
+
+
+/** columns and relationships of "subscribtion_plan" */
+export type Subscribtion_PlanSubscribtion_Plan_Subscribtion_Feature_Assocs_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Order_By>>;
+  where?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp>;
+};
+
 
 /** columns and relationships of "subscribtion_plan" */
 export type Subscribtion_PlanUsersArgs = {
@@ -3365,6 +3450,7 @@ export type Subscribtion_PlanUsersArgs = {
   order_by?: InputMaybe<Array<Auth_User_Order_By>>;
   where?: InputMaybe<Auth_User_Bool_Exp>;
 };
+
 
 /** columns and relationships of "subscribtion_plan" */
 export type Subscribtion_PlanUsers_AggregateArgs = {
@@ -3417,6 +3503,7 @@ export type Subscribtion_Plan_Aggregate_Fields = {
   min?: Maybe<Subscribtion_Plan_Min_Fields>;
 };
 
+
 /** aggregate fields of "subscribtion_plan" */
 export type Subscribtion_Plan_Aggregate_FieldsCountArgs = {
   columns?: InputMaybe<Array<Subscribtion_Plan_Select_Column>>;
@@ -3464,7 +3551,7 @@ export enum Subscribtion_Plan_Constraint {
   /** unique or primary key constraint on columns "stripe_monthly_price_id" */
   SubscribtionPlanStripeMonthlyPriceIdKey = 'subscribtion_plan_stripe_monthly_price_id_key',
   /** unique or primary key constraint on columns "stripe_yearly_price_id" */
-  SubscribtionPlanStripeYearlyPriceIdKey = 'subscribtion_plan_stripe_yearly_price_id_key',
+  SubscribtionPlanStripeYearlyPriceIdKey = 'subscribtion_plan_stripe_yearly_price_id_key'
 }
 
 /** input type for inserting data into table "subscribtion_plan" */
@@ -3588,19 +3675,19 @@ export enum Subscribtion_Plan_Select_Column {
   /** column name */
   TextContentId = 'text_content_id',
   /** column name */
-  UpdatedAt = 'updated_at',
+  UpdatedAt = 'updated_at'
 }
 
 /** select "subscribtion_plan_aggregate_bool_exp_bool_and_arguments_columns" columns of table "subscribtion_plan" */
 export enum Subscribtion_Plan_Select_Column_Subscribtion_Plan_Aggregate_Bool_Exp_Bool_And_Arguments_Columns {
   /** column name */
-  Popular = 'popular',
+  Popular = 'popular'
 }
 
 /** select "subscribtion_plan_aggregate_bool_exp_bool_or_arguments_columns" columns of table "subscribtion_plan" */
 export enum Subscribtion_Plan_Select_Column_Subscribtion_Plan_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns {
   /** column name */
-  Popular = 'popular',
+  Popular = 'popular'
 }
 
 /** input type for updating data in table "subscribtion_plan" */
@@ -3660,15 +3747,12 @@ export type Subscribtion_Plan_Subscribtion_Feature_Assoc_Aggregate_Bool_Exp = {
   count?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Aggregate_Bool_Exp_Count>;
 };
 
-export type Subscribtion_Plan_Subscribtion_Feature_Assoc_Aggregate_Bool_Exp_Count =
-  {
-    arguments?: InputMaybe<
-      Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Select_Column>
-    >;
-    distinct?: InputMaybe<Scalars['Boolean']['input']>;
-    filter?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp>;
-    predicate: Int_Comparison_Exp;
-  };
+export type Subscribtion_Plan_Subscribtion_Feature_Assoc_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+  filter?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
 
 /** aggregate fields of "subscribtion_plan_subscribtion_feature_assoc" */
 export type Subscribtion_Plan_Subscribtion_Feature_Assoc_Aggregate_Fields = {
@@ -3678,14 +3762,12 @@ export type Subscribtion_Plan_Subscribtion_Feature_Assoc_Aggregate_Fields = {
   min?: Maybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Min_Fields>;
 };
 
+
 /** aggregate fields of "subscribtion_plan_subscribtion_feature_assoc" */
-export type Subscribtion_Plan_Subscribtion_Feature_Assoc_Aggregate_FieldsCountArgs =
-  {
-    columns?: InputMaybe<
-      Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Select_Column>
-    >;
-    distinct?: InputMaybe<Scalars['Boolean']['input']>;
-  };
+export type Subscribtion_Plan_Subscribtion_Feature_Assoc_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
 
 /** order by aggregate values of table "subscribtion_plan_subscribtion_feature_assoc" */
 export type Subscribtion_Plan_Subscribtion_Feature_Assoc_Aggregate_Order_By = {
@@ -3695,22 +3777,17 @@ export type Subscribtion_Plan_Subscribtion_Feature_Assoc_Aggregate_Order_By = {
 };
 
 /** input type for inserting array relation for remote table "subscribtion_plan_subscribtion_feature_assoc" */
-export type Subscribtion_Plan_Subscribtion_Feature_Assoc_Arr_Rel_Insert_Input =
-  {
-    data: Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Insert_Input>;
-    /** upsert condition */
-    on_conflict?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_On_Conflict>;
-  };
+export type Subscribtion_Plan_Subscribtion_Feature_Assoc_Arr_Rel_Insert_Input = {
+  data: Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Insert_Input>;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_On_Conflict>;
+};
 
 /** Boolean expression to filter rows from the table "subscribtion_plan_subscribtion_feature_assoc". All fields are combined with a logical 'AND'. */
 export type Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp = {
-  _and?: InputMaybe<
-    Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp>
-  >;
+  _and?: InputMaybe<Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp>>;
   _not?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp>;
-  _or?: InputMaybe<
-    Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp>
-  >;
+  _or?: InputMaybe<Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp>>;
   created_at?: InputMaybe<Timestamp_Comparison_Exp>;
   id?: InputMaybe<Uuid_Comparison_Exp>;
   subscribtionFeatureBySubscribtionFeature?: InputMaybe<Subscribtion_Feature_Bool_Exp>;
@@ -3723,7 +3800,7 @@ export type Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp = {
 /** unique or primary key constraints on table "subscribtion_plan_subscribtion_feature_assoc" */
 export enum Subscribtion_Plan_Subscribtion_Feature_Assoc_Constraint {
   /** unique or primary key constraint on columns "id" */
-  SubscribtionPlanSubscribtionFeatureAssocPkey = 'subscribtion_plan_subscribtion_feature_assoc_pkey',
+  SubscribtionPlanSubscribtionFeatureAssocPkey = 'subscribtion_plan_subscribtion_feature_assoc_pkey'
 }
 
 /** input type for inserting data into table "subscribtion_plan_subscribtion_feature_assoc" */
@@ -3818,7 +3895,7 @@ export enum Subscribtion_Plan_Subscribtion_Feature_Assoc_Select_Column {
   /** column name */
   SubscribtionPlan = 'subscribtion_plan',
   /** column name */
-  UpdatedAt = 'updated_at',
+  UpdatedAt = 'updated_at'
 }
 
 /** input type for updating data in table "subscribtion_plan_subscribtion_feature_assoc" */
@@ -3839,14 +3916,13 @@ export type Subscribtion_Plan_Subscribtion_Feature_Assoc_Stream_Cursor_Input = {
 };
 
 /** Initial value of the column from where the streaming should start */
-export type Subscribtion_Plan_Subscribtion_Feature_Assoc_Stream_Cursor_Value_Input =
-  {
-    created_at?: InputMaybe<Scalars['timestamp']['input']>;
-    id?: InputMaybe<Scalars['uuid']['input']>;
-    subscribtion_feature?: InputMaybe<Scalars['String']['input']>;
-    subscribtion_plan?: InputMaybe<Scalars['String']['input']>;
-    updated_at?: InputMaybe<Scalars['timestamp']['input']>;
-  };
+export type Subscribtion_Plan_Subscribtion_Feature_Assoc_Stream_Cursor_Value_Input = {
+  created_at?: InputMaybe<Scalars['timestamp']['input']>;
+  id?: InputMaybe<Scalars['uuid']['input']>;
+  subscribtion_feature?: InputMaybe<Scalars['String']['input']>;
+  subscribtion_plan?: InputMaybe<Scalars['String']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamp']['input']>;
+};
 
 /** update columns of table "subscribtion_plan_subscribtion_feature_assoc" */
 export enum Subscribtion_Plan_Subscribtion_Feature_Assoc_Update_Column {
@@ -3859,7 +3935,7 @@ export enum Subscribtion_Plan_Subscribtion_Feature_Assoc_Update_Column {
   /** column name */
   SubscribtionPlan = 'subscribtion_plan',
   /** column name */
-  UpdatedAt = 'updated_at',
+  UpdatedAt = 'updated_at'
 }
 
 export type Subscribtion_Plan_Subscribtion_Feature_Assoc_Updates = {
@@ -3886,7 +3962,7 @@ export enum Subscribtion_Plan_Update_Column {
   /** column name */
   TextContentId = 'text_content_id',
   /** column name */
-  UpdatedAt = 'updated_at',
+  UpdatedAt = 'updated_at'
 }
 
 export type Subscribtion_Plan_Updates = {
@@ -4004,6 +4080,7 @@ export type Subscription_Root = {
   unsubscription_feedback_stream: Array<Unsubscription_Feedback>;
 };
 
+
 export type Subscription_RootAuth_AccountArgs = {
   distinct_on?: InputMaybe<Array<Auth_Account_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -4011,6 +4088,7 @@ export type Subscription_RootAuth_AccountArgs = {
   order_by?: InputMaybe<Array<Auth_Account_Order_By>>;
   where?: InputMaybe<Auth_Account_Bool_Exp>;
 };
+
 
 export type Subscription_RootAuth_Account_AggregateArgs = {
   distinct_on?: InputMaybe<Array<Auth_Account_Select_Column>>;
@@ -4020,15 +4098,18 @@ export type Subscription_RootAuth_Account_AggregateArgs = {
   where?: InputMaybe<Auth_Account_Bool_Exp>;
 };
 
+
 export type Subscription_RootAuth_Account_By_PkArgs = {
   id: Scalars['uuid']['input'];
 };
+
 
 export type Subscription_RootAuth_Account_StreamArgs = {
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Auth_Account_Stream_Cursor_Input>>;
   where?: InputMaybe<Auth_Account_Bool_Exp>;
 };
+
 
 export type Subscription_RootAuth_Activate_TokenArgs = {
   distinct_on?: InputMaybe<Array<Auth_Activate_Token_Select_Column>>;
@@ -4038,6 +4119,7 @@ export type Subscription_RootAuth_Activate_TokenArgs = {
   where?: InputMaybe<Auth_Activate_Token_Bool_Exp>;
 };
 
+
 export type Subscription_RootAuth_Activate_Token_AggregateArgs = {
   distinct_on?: InputMaybe<Array<Auth_Activate_Token_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -4046,15 +4128,18 @@ export type Subscription_RootAuth_Activate_Token_AggregateArgs = {
   where?: InputMaybe<Auth_Activate_Token_Bool_Exp>;
 };
 
+
 export type Subscription_RootAuth_Activate_Token_By_PkArgs = {
   id: Scalars['uuid']['input'];
 };
+
 
 export type Subscription_RootAuth_Activate_Token_StreamArgs = {
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Auth_Activate_Token_Stream_Cursor_Input>>;
   where?: InputMaybe<Auth_Activate_Token_Bool_Exp>;
 };
+
 
 export type Subscription_RootAuth_Password_Reset_TokenArgs = {
   distinct_on?: InputMaybe<Array<Auth_Password_Reset_Token_Select_Column>>;
@@ -4064,6 +4149,7 @@ export type Subscription_RootAuth_Password_Reset_TokenArgs = {
   where?: InputMaybe<Auth_Password_Reset_Token_Bool_Exp>;
 };
 
+
 export type Subscription_RootAuth_Password_Reset_Token_AggregateArgs = {
   distinct_on?: InputMaybe<Array<Auth_Password_Reset_Token_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -4072,15 +4158,18 @@ export type Subscription_RootAuth_Password_Reset_Token_AggregateArgs = {
   where?: InputMaybe<Auth_Password_Reset_Token_Bool_Exp>;
 };
 
+
 export type Subscription_RootAuth_Password_Reset_Token_By_PkArgs = {
   id: Scalars['uuid']['input'];
 };
+
 
 export type Subscription_RootAuth_Password_Reset_Token_StreamArgs = {
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Auth_Password_Reset_Token_Stream_Cursor_Input>>;
   where?: InputMaybe<Auth_Password_Reset_Token_Bool_Exp>;
 };
+
 
 export type Subscription_RootAuth_SessionArgs = {
   distinct_on?: InputMaybe<Array<Auth_Session_Select_Column>>;
@@ -4090,6 +4179,7 @@ export type Subscription_RootAuth_SessionArgs = {
   where?: InputMaybe<Auth_Session_Bool_Exp>;
 };
 
+
 export type Subscription_RootAuth_Session_AggregateArgs = {
   distinct_on?: InputMaybe<Array<Auth_Session_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -4098,15 +4188,18 @@ export type Subscription_RootAuth_Session_AggregateArgs = {
   where?: InputMaybe<Auth_Session_Bool_Exp>;
 };
 
+
 export type Subscription_RootAuth_Session_By_PkArgs = {
   id: Scalars['uuid']['input'];
 };
+
 
 export type Subscription_RootAuth_Session_StreamArgs = {
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Auth_Session_Stream_Cursor_Input>>;
   where?: InputMaybe<Auth_Session_Bool_Exp>;
 };
+
 
 export type Subscription_RootAuth_UserArgs = {
   distinct_on?: InputMaybe<Array<Auth_User_Select_Column>>;
@@ -4116,6 +4209,7 @@ export type Subscription_RootAuth_UserArgs = {
   where?: InputMaybe<Auth_User_Bool_Exp>;
 };
 
+
 export type Subscription_RootAuth_User_AggregateArgs = {
   distinct_on?: InputMaybe<Array<Auth_User_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -4124,15 +4218,18 @@ export type Subscription_RootAuth_User_AggregateArgs = {
   where?: InputMaybe<Auth_User_Bool_Exp>;
 };
 
+
 export type Subscription_RootAuth_User_By_PkArgs = {
   id: Scalars['uuid']['input'];
 };
+
 
 export type Subscription_RootAuth_User_StreamArgs = {
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Auth_User_Stream_Cursor_Input>>;
   where?: InputMaybe<Auth_User_Bool_Exp>;
 };
+
 
 export type Subscription_RootLanguageArgs = {
   distinct_on?: InputMaybe<Array<Language_Select_Column>>;
@@ -4142,6 +4239,7 @@ export type Subscription_RootLanguageArgs = {
   where?: InputMaybe<Language_Bool_Exp>;
 };
 
+
 export type Subscription_RootLanguage_AggregateArgs = {
   distinct_on?: InputMaybe<Array<Language_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -4150,15 +4248,18 @@ export type Subscription_RootLanguage_AggregateArgs = {
   where?: InputMaybe<Language_Bool_Exp>;
 };
 
+
 export type Subscription_RootLanguage_By_PkArgs = {
   code: Scalars['String']['input'];
 };
+
 
 export type Subscription_RootLanguage_StreamArgs = {
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Language_Stream_Cursor_Input>>;
   where?: InputMaybe<Language_Bool_Exp>;
 };
+
 
 export type Subscription_RootSubscribtion_FeatureArgs = {
   distinct_on?: InputMaybe<Array<Subscribtion_Feature_Select_Column>>;
@@ -4168,6 +4269,7 @@ export type Subscription_RootSubscribtion_FeatureArgs = {
   where?: InputMaybe<Subscribtion_Feature_Bool_Exp>;
 };
 
+
 export type Subscription_RootSubscribtion_Feature_AggregateArgs = {
   distinct_on?: InputMaybe<Array<Subscribtion_Feature_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -4176,15 +4278,18 @@ export type Subscription_RootSubscribtion_Feature_AggregateArgs = {
   where?: InputMaybe<Subscribtion_Feature_Bool_Exp>;
 };
 
+
 export type Subscription_RootSubscribtion_Feature_By_PkArgs = {
   name: Scalars['String']['input'];
 };
+
 
 export type Subscription_RootSubscribtion_Feature_StreamArgs = {
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Subscribtion_Feature_Stream_Cursor_Input>>;
   where?: InputMaybe<Subscribtion_Feature_Bool_Exp>;
 };
+
 
 export type Subscription_RootSubscribtion_PlanArgs = {
   distinct_on?: InputMaybe<Array<Subscribtion_Plan_Select_Column>>;
@@ -4194,6 +4299,7 @@ export type Subscription_RootSubscribtion_PlanArgs = {
   where?: InputMaybe<Subscribtion_Plan_Bool_Exp>;
 };
 
+
 export type Subscription_RootSubscribtion_Plan_AggregateArgs = {
   distinct_on?: InputMaybe<Array<Subscribtion_Plan_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -4202,9 +4308,11 @@ export type Subscription_RootSubscribtion_Plan_AggregateArgs = {
   where?: InputMaybe<Subscribtion_Plan_Bool_Exp>;
 };
 
+
 export type Subscription_RootSubscribtion_Plan_By_PkArgs = {
   name: Scalars['String']['input'];
 };
+
 
 export type Subscription_RootSubscribtion_Plan_StreamArgs = {
   batch_size: Scalars['Int']['input'];
@@ -4212,45 +4320,36 @@ export type Subscription_RootSubscribtion_Plan_StreamArgs = {
   where?: InputMaybe<Subscribtion_Plan_Bool_Exp>;
 };
 
-export type Subscription_RootSubscribtion_Plan_Subscribtion_Feature_AssocArgs =
-  {
-    distinct_on?: InputMaybe<
-      Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Select_Column>
-    >;
-    limit?: InputMaybe<Scalars['Int']['input']>;
-    offset?: InputMaybe<Scalars['Int']['input']>;
-    order_by?: InputMaybe<
-      Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Order_By>
-    >;
-    where?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp>;
-  };
 
-export type Subscription_RootSubscribtion_Plan_Subscribtion_Feature_Assoc_AggregateArgs =
-  {
-    distinct_on?: InputMaybe<
-      Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Select_Column>
-    >;
-    limit?: InputMaybe<Scalars['Int']['input']>;
-    offset?: InputMaybe<Scalars['Int']['input']>;
-    order_by?: InputMaybe<
-      Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Order_By>
-    >;
-    where?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp>;
-  };
+export type Subscription_RootSubscribtion_Plan_Subscribtion_Feature_AssocArgs = {
+  distinct_on?: InputMaybe<Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Order_By>>;
+  where?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp>;
+};
 
-export type Subscription_RootSubscribtion_Plan_Subscribtion_Feature_Assoc_By_PkArgs =
-  {
-    id: Scalars['uuid']['input'];
-  };
 
-export type Subscription_RootSubscribtion_Plan_Subscribtion_Feature_Assoc_StreamArgs =
-  {
-    batch_size: Scalars['Int']['input'];
-    cursor: Array<
-      InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Stream_Cursor_Input>
-    >;
-    where?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp>;
-  };
+export type Subscription_RootSubscribtion_Plan_Subscribtion_Feature_Assoc_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Subscribtion_Plan_Subscribtion_Feature_Assoc_Order_By>>;
+  where?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp>;
+};
+
+
+export type Subscription_RootSubscribtion_Plan_Subscribtion_Feature_Assoc_By_PkArgs = {
+  id: Scalars['uuid']['input'];
+};
+
+
+export type Subscription_RootSubscribtion_Plan_Subscribtion_Feature_Assoc_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Stream_Cursor_Input>>;
+  where?: InputMaybe<Subscribtion_Plan_Subscribtion_Feature_Assoc_Bool_Exp>;
+};
+
 
 export type Subscription_RootTeamArgs = {
   distinct_on?: InputMaybe<Array<Team_Select_Column>>;
@@ -4260,6 +4359,7 @@ export type Subscription_RootTeamArgs = {
   where?: InputMaybe<Team_Bool_Exp>;
 };
 
+
 export type Subscription_RootTeam_AggregateArgs = {
   distinct_on?: InputMaybe<Array<Team_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -4268,15 +4368,18 @@ export type Subscription_RootTeam_AggregateArgs = {
   where?: InputMaybe<Team_Bool_Exp>;
 };
 
+
 export type Subscription_RootTeam_By_PkArgs = {
   id: Scalars['uuid']['input'];
 };
+
 
 export type Subscription_RootTeam_StreamArgs = {
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Team_Stream_Cursor_Input>>;
   where?: InputMaybe<Team_Bool_Exp>;
 };
+
 
 export type Subscription_RootText_ContentArgs = {
   distinct_on?: InputMaybe<Array<Text_Content_Select_Column>>;
@@ -4286,6 +4389,7 @@ export type Subscription_RootText_ContentArgs = {
   where?: InputMaybe<Text_Content_Bool_Exp>;
 };
 
+
 export type Subscription_RootText_Content_AggregateArgs = {
   distinct_on?: InputMaybe<Array<Text_Content_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -4294,15 +4398,18 @@ export type Subscription_RootText_Content_AggregateArgs = {
   where?: InputMaybe<Text_Content_Bool_Exp>;
 };
 
+
 export type Subscription_RootText_Content_By_PkArgs = {
   id: Scalars['uuid']['input'];
 };
+
 
 export type Subscription_RootText_Content_StreamArgs = {
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Text_Content_Stream_Cursor_Input>>;
   where?: InputMaybe<Text_Content_Bool_Exp>;
 };
+
 
 export type Subscription_RootTranslationArgs = {
   distinct_on?: InputMaybe<Array<Translation_Select_Column>>;
@@ -4312,6 +4419,7 @@ export type Subscription_RootTranslationArgs = {
   where?: InputMaybe<Translation_Bool_Exp>;
 };
 
+
 export type Subscription_RootTranslation_AggregateArgs = {
   distinct_on?: InputMaybe<Array<Translation_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -4320,15 +4428,18 @@ export type Subscription_RootTranslation_AggregateArgs = {
   where?: InputMaybe<Translation_Bool_Exp>;
 };
 
+
 export type Subscription_RootTranslation_By_PkArgs = {
   id: Scalars['uuid']['input'];
 };
+
 
 export type Subscription_RootTranslation_StreamArgs = {
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Translation_Stream_Cursor_Input>>;
   where?: InputMaybe<Translation_Bool_Exp>;
 };
+
 
 export type Subscription_RootUnsubscription_FeedbackArgs = {
   distinct_on?: InputMaybe<Array<Unsubscription_Feedback_Select_Column>>;
@@ -4338,6 +4449,7 @@ export type Subscription_RootUnsubscription_FeedbackArgs = {
   where?: InputMaybe<Unsubscription_Feedback_Bool_Exp>;
 };
 
+
 export type Subscription_RootUnsubscription_Feedback_AggregateArgs = {
   distinct_on?: InputMaybe<Array<Unsubscription_Feedback_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -4346,9 +4458,11 @@ export type Subscription_RootUnsubscription_Feedback_AggregateArgs = {
   where?: InputMaybe<Unsubscription_Feedback_Bool_Exp>;
 };
 
+
 export type Subscription_RootUnsubscription_Feedback_By_PkArgs = {
   id: Scalars['uuid']['input'];
 };
+
 
 export type Subscription_RootUnsubscription_Feedback_StreamArgs = {
   batch_size: Scalars['Int']['input'];
@@ -4367,6 +4481,7 @@ export type Team = {
   users_aggregate: Auth_User_Aggregate;
 };
 
+
 /** columns and relationships of "team" */
 export type TeamUsersArgs = {
   distinct_on?: InputMaybe<Array<Auth_User_Select_Column>>;
@@ -4375,6 +4490,7 @@ export type TeamUsersArgs = {
   order_by?: InputMaybe<Array<Auth_User_Order_By>>;
   where?: InputMaybe<Auth_User_Bool_Exp>;
 };
+
 
 /** columns and relationships of "team" */
 export type TeamUsers_AggregateArgs = {
@@ -4400,6 +4516,7 @@ export type Team_Aggregate_Fields = {
   min?: Maybe<Team_Min_Fields>;
 };
 
+
 /** aggregate fields of "team" */
 export type Team_Aggregate_FieldsCountArgs = {
   columns?: InputMaybe<Array<Team_Select_Column>>;
@@ -4420,7 +4537,7 @@ export type Team_Bool_Exp = {
 /** unique or primary key constraints on table "team" */
 export enum Team_Constraint {
   /** unique or primary key constraint on columns "id" */
-  TeamPkey = 'team_pkey',
+  TeamPkey = 'team_pkey'
 }
 
 /** input type for inserting data into table "team" */
@@ -4484,7 +4601,7 @@ export enum Team_Select_Column {
   /** column name */
   Id = 'id',
   /** column name */
-  Name = 'name',
+  Name = 'name'
 }
 
 /** input type for updating data in table "team" */
@@ -4512,7 +4629,7 @@ export enum Team_Update_Column {
   /** column name */
   Id = 'id',
   /** column name */
-  Name = 'name',
+  Name = 'name'
 }
 
 export type Team_Updates = {
@@ -4542,6 +4659,7 @@ export type Text_Content = {
   updated_at: Scalars['timestamp']['output'];
 };
 
+
 /** columns and relationships of "text_content" */
 export type Text_ContentSubscribtion_FeaturesArgs = {
   distinct_on?: InputMaybe<Array<Subscribtion_Feature_Select_Column>>;
@@ -4550,6 +4668,7 @@ export type Text_ContentSubscribtion_FeaturesArgs = {
   order_by?: InputMaybe<Array<Subscribtion_Feature_Order_By>>;
   where?: InputMaybe<Subscribtion_Feature_Bool_Exp>;
 };
+
 
 /** columns and relationships of "text_content" */
 export type Text_ContentSubscribtion_Features_AggregateArgs = {
@@ -4560,6 +4679,7 @@ export type Text_ContentSubscribtion_Features_AggregateArgs = {
   where?: InputMaybe<Subscribtion_Feature_Bool_Exp>;
 };
 
+
 /** columns and relationships of "text_content" */
 export type Text_ContentSubscribtion_PlansArgs = {
   distinct_on?: InputMaybe<Array<Subscribtion_Plan_Select_Column>>;
@@ -4568,6 +4688,7 @@ export type Text_ContentSubscribtion_PlansArgs = {
   order_by?: InputMaybe<Array<Subscribtion_Plan_Order_By>>;
   where?: InputMaybe<Subscribtion_Plan_Bool_Exp>;
 };
+
 
 /** columns and relationships of "text_content" */
 export type Text_ContentSubscribtion_Plans_AggregateArgs = {
@@ -4578,6 +4699,7 @@ export type Text_ContentSubscribtion_Plans_AggregateArgs = {
   where?: InputMaybe<Subscribtion_Plan_Bool_Exp>;
 };
 
+
 /** columns and relationships of "text_content" */
 export type Text_ContentTranslationsArgs = {
   distinct_on?: InputMaybe<Array<Translation_Select_Column>>;
@@ -4586,6 +4708,7 @@ export type Text_ContentTranslationsArgs = {
   order_by?: InputMaybe<Array<Translation_Order_By>>;
   where?: InputMaybe<Translation_Bool_Exp>;
 };
+
 
 /** columns and relationships of "text_content" */
 export type Text_ContentTranslations_AggregateArgs = {
@@ -4610,6 +4733,7 @@ export type Text_Content_Aggregate_Fields = {
   max?: Maybe<Text_Content_Max_Fields>;
   min?: Maybe<Text_Content_Min_Fields>;
 };
+
 
 /** aggregate fields of "text_content" */
 export type Text_Content_Aggregate_FieldsCountArgs = {
@@ -4636,7 +4760,7 @@ export type Text_Content_Bool_Exp = {
 /** unique or primary key constraints on table "text_content" */
 export enum Text_Content_Constraint {
   /** unique or primary key constraint on columns "id" */
-  TextContentPkey = 'text_content_pkey',
+  TextContentPkey = 'text_content_pkey'
 }
 
 /** input type for inserting data into table "text_content" */
@@ -4710,7 +4834,7 @@ export enum Text_Content_Select_Column {
   /** column name */
   Id = 'id',
   /** column name */
-  UpdatedAt = 'updated_at',
+  UpdatedAt = 'updated_at'
 }
 
 /** input type for updating data in table "text_content" */
@@ -4742,7 +4866,7 @@ export enum Text_Content_Update_Column {
   /** column name */
   Id = 'id',
   /** column name */
-  UpdatedAt = 'updated_at',
+  UpdatedAt = 'updated_at'
 }
 
 export type Text_Content_Updates = {
@@ -4807,6 +4931,7 @@ export type Translation_Aggregate_Fields = {
   min?: Maybe<Translation_Min_Fields>;
 };
 
+
 /** aggregate fields of "translation" */
 export type Translation_Aggregate_FieldsCountArgs = {
   columns?: InputMaybe<Array<Translation_Select_Column>>;
@@ -4848,7 +4973,7 @@ export enum Translation_Constraint {
   /** unique or primary key constraint on columns "id" */
   TranslationPkey = 'translation_pkey',
   /** unique or primary key constraint on columns "language", "text_content_id", "text_label" */
-  TranslationTextContentLabelUnique = 'translation_text_content_label_unique',
+  TranslationTextContentLabelUnique = 'translation_text_content_label_unique'
 }
 
 /** input type for inserting data into table "translation" */
@@ -4959,7 +5084,7 @@ export enum Translation_Select_Column {
   /** column name */
   Translation = 'translation',
   /** column name */
-  UpdatedAt = 'updated_at',
+  UpdatedAt = 'updated_at'
 }
 
 /** input type for updating data in table "translation" */
@@ -5007,7 +5132,7 @@ export enum Translation_Update_Column {
   /** column name */
   Translation = 'translation',
   /** column name */
-  UpdatedAt = 'updated_at',
+  UpdatedAt = 'updated_at'
 }
 
 export type Translation_Updates = {
@@ -5039,6 +5164,7 @@ export type Unsubscription_Feedback_Aggregate_Fields = {
   min?: Maybe<Unsubscription_Feedback_Min_Fields>;
 };
 
+
 /** aggregate fields of "unsubscription_feedback" */
 export type Unsubscription_Feedback_Aggregate_FieldsCountArgs = {
   columns?: InputMaybe<Array<Unsubscription_Feedback_Select_Column>>;
@@ -5057,7 +5183,7 @@ export type Unsubscription_Feedback_Bool_Exp = {
 /** unique or primary key constraints on table "unsubscription_feedback" */
 export enum Unsubscription_Feedback_Constraint {
   /** unique or primary key constraint on columns "id" */
-  UnsubscriptionFeedbackPkey = 'unsubscription_feedback_pkey',
+  UnsubscriptionFeedbackPkey = 'unsubscription_feedback_pkey'
 }
 
 /** input type for inserting data into table "unsubscription_feedback" */
@@ -5112,7 +5238,7 @@ export enum Unsubscription_Feedback_Select_Column {
   /** column name */
   Feedback = 'feedback',
   /** column name */
-  Id = 'id',
+  Id = 'id'
 }
 
 /** input type for updating data in table "unsubscription_feedback" */
@@ -5140,7 +5266,7 @@ export enum Unsubscription_Feedback_Update_Column {
   /** column name */
   Feedback = 'feedback',
   /** column name */
-  Id = 'id',
+  Id = 'id'
 }
 
 export type Unsubscription_Feedback_Updates = {
@@ -5167,119 +5293,53 @@ export type GetUserQueryVariables = Exact<{
   id: Scalars['uuid']['input'];
 }>;
 
-export type GetUserQuery = {
-  __typename?: 'query_root';
-  auth_user_by_pk?: {
-    __typename?: 'auth_user';
-    id: any;
-    stripe_customer_id?: string | null;
-    subscribtion_plan?: string | null;
-    stripe_subscribtion_id?: string | null;
-    team_id?: any | null;
-  } | null;
-};
+
+export type GetUserQuery = { __typename?: 'query_root', auth_user_by_pk?: { __typename?: 'auth_user', id: any, stripe_customer_id?: string | null, subscribtion_plan?: string | null, stripe_subscribtion_id?: string | null, team_id?: any | null } | null };
 
 export type GetUserEmailQueryVariables = Exact<{
   id: Scalars['uuid']['input'];
 }>;
 
-export type GetUserEmailQuery = {
-  __typename?: 'query_root';
-  auth_user_by_pk?: { __typename?: 'auth_user'; email: string } | null;
-};
+
+export type GetUserEmailQuery = { __typename?: 'query_root', auth_user_by_pk?: { __typename?: 'auth_user', email: string } | null };
 
 export type UpdateUsernameMutationVariables = Exact<{
   id: Scalars['uuid']['input'];
   username: Scalars['String']['input'];
 }>;
 
-export type UpdateUsernameMutation = {
-  __typename?: 'mutation_root';
-  update_auth_user_by_pk?: {
-    __typename?: 'auth_user';
-    username?: string | null;
-  } | null;
-};
+
+export type UpdateUsernameMutation = { __typename?: 'mutation_root', update_auth_user_by_pk?: { __typename?: 'auth_user', username?: string | null } | null };
 
 export type UpdateEmailMutationVariables = Exact<{
   id: Scalars['uuid']['input'];
   email: Scalars['String']['input'];
 }>;
 
-export type UpdateEmailMutation = {
-  __typename?: 'mutation_root';
-  update_auth_user_by_pk?: { __typename?: 'auth_user'; email: string } | null;
-};
+
+export type UpdateEmailMutation = { __typename?: 'mutation_root', update_auth_user_by_pk?: { __typename?: 'auth_user', email: string } | null };
 
 export type UpdateUpdatedEmailMutationVariables = Exact<{
   id: Scalars['uuid']['input'];
   updated_email: Scalars['String']['input'];
 }>;
 
-export type UpdateUpdatedEmailMutation = {
-  __typename?: 'mutation_root';
-  update_auth_user_by_pk?: {
-    __typename?: 'auth_user';
-    updated_email?: string | null;
-  } | null;
-};
+
+export type UpdateUpdatedEmailMutation = { __typename?: 'mutation_root', update_auth_user_by_pk?: { __typename?: 'auth_user', updated_email?: string | null } | null };
 
 export type GetSubscriptionPlansQueryVariables = Exact<{
   languageCode: Scalars['String']['input'];
 }>;
 
-export type GetSubscriptionPlansQuery = {
-  __typename?: 'query_root';
-  subscribtion_plan: Array<{
-    __typename?: 'subscribtion_plan';
-    name: string;
-    stripe_monthly_price_id: string;
-    stripe_yearly_price_id: string;
-    popular: boolean;
-    text_content: {
-      __typename?: 'text_content';
-      translations: Array<{
-        __typename?: 'translation';
-        text_label?: string | null;
-        translation: string;
-      }>;
-    };
-    subscribtion_plan_subscribtion_feature_assocs: Array<{
-      __typename?: 'subscribtion_plan_subscribtion_feature_assoc';
-      subscribtionFeatureBySubscribtionFeature: {
-        __typename?: 'subscribtion_feature';
-        text_content: {
-          __typename?: 'text_content';
-          translations: Array<{
-            __typename?: 'translation';
-            translation: string;
-          }>;
-        };
-      };
-    }>;
-  }>;
-};
+
+export type GetSubscriptionPlansQuery = { __typename?: 'query_root', subscribtion_plan: Array<{ __typename?: 'subscribtion_plan', name: string, stripe_monthly_price_id: string, stripe_yearly_price_id: string, popular: boolean, text_content: { __typename?: 'text_content', translations: Array<{ __typename?: 'translation', text_label?: string | null, translation: string }> }, subscribtion_plan_subscribtion_feature_assocs: Array<{ __typename?: 'subscribtion_plan_subscribtion_feature_assoc', subscribtionFeatureBySubscribtionFeature: { __typename?: 'subscribtion_feature', text_content: { __typename?: 'text_content', translations: Array<{ __typename?: 'translation', translation: string }> } } }> }> };
 
 export type GetSubscriptionPlanNameByPriceIdQueryVariables = Exact<{
   id?: Scalars['String']['input'];
 }>;
 
-export type GetSubscriptionPlanIdByNameQuery = {
-  __typename?: 'query_root';
-  subscribtion_plan: Array<{ __typename?: 'subscribtion_plan'; id: string }>;
-};
 
-export type GetSubscriptionPlanQueryVariables = Exact<{
-  id: Scalars['String']['input'];
-}>;
-
-export type GetSubscriptionPlanQuery = {
-  __typename?: 'query_root';
-  subscribtion_plan_by_pk?: {
-    __typename?: 'subscribtion_plan';
-    name: string;
-  } | null;
-};
+export type GetSubscriptionPlanNameByPriceIdQuery = { __typename?: 'query_root', subscribtion_plan: Array<{ __typename?: 'subscribtion_plan', name: string }> };
 
 export type UpdateUserSubscriptionPlanMutationVariables = Exact<{
   id: Scalars['uuid']['input'];
@@ -5288,1120 +5348,57 @@ export type UpdateUserSubscriptionPlanMutationVariables = Exact<{
   subscribtion_id: Scalars['String']['input'];
 }>;
 
-export type UpdateUserSubscriptionPlanMutation = {
-  __typename?: 'mutation_root';
-  update_auth_user_by_pk?: { __typename?: 'auth_user'; id: any } | null;
-};
+
+export type UpdateUserSubscriptionPlanMutation = { __typename?: 'mutation_root', update_auth_user_by_pk?: { __typename?: 'auth_user', id: any } | null };
 
 export type CreateTeamMutationVariables = Exact<{
   name: Scalars['String']['input'];
 }>;
 
-export type CreateTeamMutation = {
-  __typename?: 'mutation_root';
-  insert_team_one?: { __typename?: 'team'; id: any; name: string } | null;
-};
+
+export type CreateTeamMutation = { __typename?: 'mutation_root', insert_team_one?: { __typename?: 'team', id: any, name: string } | null };
 
 export type UpdateUserTeamIdMutationVariables = Exact<{
   id: Scalars['uuid']['input'];
   teamid: Scalars['uuid']['input'];
 }>;
 
-export type UpdateUserTeamIdMutation = {
-  __typename?: 'mutation_root';
-  update_auth_user_by_pk?: { __typename?: 'auth_user'; id: any } | null;
-};
+
+export type UpdateUserTeamIdMutation = { __typename?: 'mutation_root', update_auth_user_by_pk?: { __typename?: 'auth_user', id: any } | null };
 
 export type GetUserTeamNameQueryVariables = Exact<{
   teamid: Scalars['uuid']['input'];
 }>;
 
-export type GetUserTeamNameQuery = {
-  __typename?: 'query_root';
-  team_by_pk?: { __typename?: 'team'; name: string } | null;
-};
 
-export type GetUserTeamNameQueryVariables = Exact<{
-  teamid: Scalars['uuid']['input'];
-}>;
-
-export type GetUserTeamNameQuery = {
-  __typename?: 'query_root';
-  team_by_pk?: { __typename?: 'team'; name: string } | null;
-};
+export type GetUserTeamNameQuery = { __typename?: 'query_root', team_by_pk?: { __typename?: 'team', name: string } | null };
 
 export type UpdateUnsubscriptionFeedbackMutationVariables = Exact<{
   feedback: Scalars['String']['input'];
 }>;
 
-export type UpdateUnsubscriptionFeedbackMutation = {
-  __typename?: 'mutation_root';
-  insert_unsubscription_feedback_one?: {
-    __typename?: 'unsubscription_feedback';
-    id: any;
-  } | null;
-};
 
-export const GetUserDocument = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'OperationDefinition',
-      operation: 'query',
-      name: { kind: 'Name', value: 'GetUser' },
-      variableDefinitions: [
-        {
-          kind: 'VariableDefinition',
-          variable: { kind: 'Variable', name: { kind: 'Name', value: 'id' } },
-          type: {
-            kind: 'NonNullType',
-            type: { kind: 'NamedType', name: { kind: 'Name', value: 'uuid' } },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'auth_user_by_pk' },
-            arguments: [
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'id' },
-                value: {
-                  kind: 'Variable',
-                  name: { kind: 'Name', value: 'id' },
-                },
-              },
-            ],
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'stripe_customer_id' },
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'subscribtion_plan' },
-                },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'stripe_subscribtion_id' },
-                },
-                { kind: 'Field', name: { kind: 'Name', value: 'team_id' } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<GetUserQuery, GetUserQueryVariables>;
-export const GetUserEmailDocument = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'OperationDefinition',
-      operation: 'query',
-      name: { kind: 'Name', value: 'GetUserEmail' },
-      variableDefinitions: [
-        {
-          kind: 'VariableDefinition',
-          variable: { kind: 'Variable', name: { kind: 'Name', value: 'id' } },
-          type: {
-            kind: 'NonNullType',
-            type: { kind: 'NamedType', name: { kind: 'Name', value: 'uuid' } },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'auth_user_by_pk' },
-            arguments: [
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'id' },
-                value: {
-                  kind: 'Variable',
-                  name: { kind: 'Name', value: 'id' },
-                },
-              },
-            ],
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'email' } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<GetUserEmailQuery, GetUserEmailQueryVariables>;
-export const UpdateUsernameDocument = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'OperationDefinition',
-      operation: 'mutation',
-      name: { kind: 'Name', value: 'UpdateUsername' },
-      variableDefinitions: [
-        {
-          kind: 'VariableDefinition',
-          variable: { kind: 'Variable', name: { kind: 'Name', value: 'id' } },
-          type: {
-            kind: 'NonNullType',
-            type: { kind: 'NamedType', name: { kind: 'Name', value: 'uuid' } },
-          },
-        },
-        {
-          kind: 'VariableDefinition',
-          variable: {
-            kind: 'Variable',
-            name: { kind: 'Name', value: 'username' },
-          },
-          type: {
-            kind: 'NonNullType',
-            type: {
-              kind: 'NamedType',
-              name: { kind: 'Name', value: 'String' },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'update_auth_user_by_pk' },
-            arguments: [
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'pk_columns' },
-                value: {
-                  kind: 'ObjectValue',
-                  fields: [
-                    {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'id' },
-                      value: {
-                        kind: 'Variable',
-                        name: { kind: 'Name', value: 'id' },
-                      },
-                    },
-                  ],
-                },
-              },
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: '_set' },
-                value: {
-                  kind: 'ObjectValue',
-                  fields: [
-                    {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'username' },
-                      value: {
-                        kind: 'Variable',
-                        name: { kind: 'Name', value: 'username' },
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'username' } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  UpdateUsernameMutation,
-  UpdateUsernameMutationVariables
->;
-export const UpdateEmailDocument = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'OperationDefinition',
-      operation: 'mutation',
-      name: { kind: 'Name', value: 'UpdateEmail' },
-      variableDefinitions: [
-        {
-          kind: 'VariableDefinition',
-          variable: { kind: 'Variable', name: { kind: 'Name', value: 'id' } },
-          type: {
-            kind: 'NonNullType',
-            type: { kind: 'NamedType', name: { kind: 'Name', value: 'uuid' } },
-          },
-        },
-        {
-          kind: 'VariableDefinition',
-          variable: {
-            kind: 'Variable',
-            name: { kind: 'Name', value: 'email' },
-          },
-          type: {
-            kind: 'NonNullType',
-            type: {
-              kind: 'NamedType',
-              name: { kind: 'Name', value: 'String' },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'update_auth_user_by_pk' },
-            arguments: [
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'pk_columns' },
-                value: {
-                  kind: 'ObjectValue',
-                  fields: [
-                    {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'id' },
-                      value: {
-                        kind: 'Variable',
-                        name: { kind: 'Name', value: 'id' },
-                      },
-                    },
-                  ],
-                },
-              },
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: '_set' },
-                value: {
-                  kind: 'ObjectValue',
-                  fields: [
-                    {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'email' },
-                      value: {
-                        kind: 'Variable',
-                        name: { kind: 'Name', value: 'email' },
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'email' } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<UpdateEmailMutation, UpdateEmailMutationVariables>;
-export const UpdateUpdatedEmailDocument = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'OperationDefinition',
-      operation: 'mutation',
-      name: { kind: 'Name', value: 'UpdateUpdatedEmail' },
-      variableDefinitions: [
-        {
-          kind: 'VariableDefinition',
-          variable: { kind: 'Variable', name: { kind: 'Name', value: 'id' } },
-          type: {
-            kind: 'NonNullType',
-            type: { kind: 'NamedType', name: { kind: 'Name', value: 'uuid' } },
-          },
-        },
-        {
-          kind: 'VariableDefinition',
-          variable: {
-            kind: 'Variable',
-            name: { kind: 'Name', value: 'updated_email' },
-          },
-          type: {
-            kind: 'NonNullType',
-            type: {
-              kind: 'NamedType',
-              name: { kind: 'Name', value: 'String' },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'update_auth_user_by_pk' },
-            arguments: [
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'pk_columns' },
-                value: {
-                  kind: 'ObjectValue',
-                  fields: [
-                    {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'id' },
-                      value: {
-                        kind: 'Variable',
-                        name: { kind: 'Name', value: 'id' },
-                      },
-                    },
-                  ],
-                },
-              },
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: '_set' },
-                value: {
-                  kind: 'ObjectValue',
-                  fields: [
-                    {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'updated_email' },
-                      value: {
-                        kind: 'Variable',
-                        name: { kind: 'Name', value: 'updated_email' },
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'updated_email' },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  UpdateUpdatedEmailMutation,
-  UpdateUpdatedEmailMutationVariables
->;
-export const GetSubscriptionPlansDocument = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'OperationDefinition',
-      operation: 'query',
-      name: { kind: 'Name', value: 'GetSubscriptionPlans' },
-      variableDefinitions: [
-        {
-          kind: 'VariableDefinition',
-          variable: {
-            kind: 'Variable',
-            name: { kind: 'Name', value: 'languageCode' },
-          },
-          type: {
-            kind: 'NonNullType',
-            type: {
-              kind: 'NamedType',
-              name: { kind: 'Name', value: 'String' },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'subscribtion_plan' },
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'name' } },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'text_content' },
-                  selectionSet: {
-                    kind: 'SelectionSet',
-                    selections: [
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'translations' },
-                        arguments: [
-                          {
-                            kind: 'Argument',
-                            name: { kind: 'Name', value: 'where' },
-                            value: {
-                              kind: 'ObjectValue',
-                              fields: [
-                                {
-                                  kind: 'ObjectField',
-                                  name: { kind: 'Name', value: 'language' },
-                                  value: {
-                                    kind: 'ObjectValue',
-                                    fields: [
-                                      {
-                                        kind: 'ObjectField',
-                                        name: { kind: 'Name', value: '_eq' },
-                                        value: {
-                                          kind: 'Variable',
-                                          name: {
-                                            kind: 'Name',
-                                            value: 'languageCode',
-                                          },
-                                        },
-                                      },
-                                    ],
-                                  },
-                                },
-                              ],
-                            },
-                          },
-                        ],
-                        selectionSet: {
-                          kind: 'SelectionSet',
-                          selections: [
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'translation' },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-                {
-                  kind: 'Field',
-                  name: {
-                    kind: 'Name',
-                    value: 'subscribtion_plan_subscribtion_feature_assocs',
-                  },
-                  selectionSet: {
-                    kind: 'SelectionSet',
-                    selections: [
-                      {
-                        kind: 'Field',
-                        name: {
-                          kind: 'Name',
-                          value: 'subscribtionFeatureBySubscribtionFeature',
-                        },
-                        selectionSet: {
-                          kind: 'SelectionSet',
-                          selections: [
-                            {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'text_content' },
-                              selectionSet: {
-                                kind: 'SelectionSet',
-                                selections: [
-                                  {
-                                    kind: 'Field',
-                                    name: {
-                                      kind: 'Name',
-                                      value: 'translations',
-                                    },
-                                    arguments: [
-                                      {
-                                        kind: 'Argument',
-                                        name: { kind: 'Name', value: 'where' },
-                                        value: {
-                                          kind: 'ObjectValue',
-                                          fields: [
-                                            {
-                                              kind: 'ObjectField',
-                                              name: {
-                                                kind: 'Name',
-                                                value: 'language',
-                                              },
-                                              value: {
-                                                kind: 'ObjectValue',
-                                                fields: [
-                                                  {
-                                                    kind: 'ObjectField',
-                                                    name: {
-                                                      kind: 'Name',
-                                                      value: '_eq',
-                                                    },
-                                                    value: {
-                                                      kind: 'Variable',
-                                                      name: {
-                                                        kind: 'Name',
-                                                        value: 'languageCode',
-                                                      },
-                                                    },
-                                                  },
-                                                ],
-                                              },
-                                            },
-                                          ],
-                                        },
-                                      },
-                                    ],
-                                    selectionSet: {
-                                      kind: 'SelectionSet',
-                                      selections: [
-                                        {
-                                          kind: 'Field',
-                                          name: {
-                                            kind: 'Name',
-                                            value: 'translation',
-                                          },
-                                        },
-                                      ],
-                                    },
-                                  },
-                                ],
-                              },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  GetSubscriptionPlansQuery,
-  GetSubscriptionPlansQueryVariables
->;
-export const GetSubscriptionPlanIdByNameDocument = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'OperationDefinition',
-      operation: 'query',
-      name: { kind: 'Name', value: 'GetSubscriptionPlanIdByName' },
-      variableDefinitions: [
-        {
-          kind: 'VariableDefinition',
-          variable: { kind: 'Variable', name: { kind: 'Name', value: 'name' } },
-          type: {
-            kind: 'NonNullType',
-            type: {
-              kind: 'NamedType',
-              name: { kind: 'Name', value: 'String' },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'subscribtion_plan' },
-            arguments: [
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'where' },
-                value: {
-                  kind: 'ObjectValue',
-                  fields: [
-                    {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'name' },
-                      value: {
-                        kind: 'ObjectValue',
-                        fields: [
-                          {
-                            kind: 'ObjectField',
-                            name: { kind: 'Name', value: '_eq' },
-                            value: {
-                              kind: 'Variable',
-                              name: { kind: 'Name', value: 'name' },
-                            },
-                          },
-                        ],
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  GetSubscriptionPlanIdByNameQuery,
-  GetSubscriptionPlanIdByNameQueryVariables
->;
-export const GetSubscriptionPlanDocument = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'OperationDefinition',
-      operation: 'query',
-      name: { kind: 'Name', value: 'GetSubscriptionPlan' },
-      variableDefinitions: [
-        {
-          kind: 'VariableDefinition',
-          variable: { kind: 'Variable', name: { kind: 'Name', value: 'id' } },
-          type: {
-            kind: 'NonNullType',
-            type: {
-              kind: 'NamedType',
-              name: { kind: 'Name', value: 'String' },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'subscribtion_plan_by_pk' },
-            arguments: [
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'id' },
-                value: {
-                  kind: 'Variable',
-                  name: { kind: 'Name', value: 'id' },
-                },
-              },
-            ],
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'name' } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  GetSubscriptionPlanQuery,
-  GetSubscriptionPlanQueryVariables
->;
-export const UpdateUserSubscriptionPlanDocument = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'OperationDefinition',
-      operation: 'mutation',
-      name: { kind: 'Name', value: 'UpdateUserSubscriptionPlan' },
-      variableDefinitions: [
-        {
-          kind: 'VariableDefinition',
-          variable: { kind: 'Variable', name: { kind: 'Name', value: 'id' } },
-          type: {
-            kind: 'NonNullType',
-            type: { kind: 'NamedType', name: { kind: 'Name', value: 'uuid' } },
-          },
-        },
-        {
-          kind: 'VariableDefinition',
-          variable: {
-            kind: 'Variable',
-            name: { kind: 'Name', value: 'stripe_customer_id' },
-          },
-          type: {
-            kind: 'NonNullType',
-            type: {
-              kind: 'NamedType',
-              name: { kind: 'Name', value: 'String' },
-            },
-          },
-        },
-        {
-          kind: 'VariableDefinition',
-          variable: {
-            kind: 'Variable',
-            name: { kind: 'Name', value: 'subscribtion_plan' },
-          },
-          type: {
-            kind: 'NonNullType',
-            type: {
-              kind: 'NamedType',
-              name: { kind: 'Name', value: 'String' },
-            },
-          },
-        },
-        {
-          kind: 'VariableDefinition',
-          variable: {
-            kind: 'Variable',
-            name: { kind: 'Name', value: 'subscribtion_id' },
-          },
-          type: {
-            kind: 'NonNullType',
-            type: {
-              kind: 'NamedType',
-              name: { kind: 'Name', value: 'String' },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'update_auth_user_by_pk' },
-            arguments: [
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'pk_columns' },
-                value: {
-                  kind: 'ObjectValue',
-                  fields: [
-                    {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'id' },
-                      value: {
-                        kind: 'Variable',
-                        name: { kind: 'Name', value: 'id' },
-                      },
-                    },
-                  ],
-                },
-              },
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: '_set' },
-                value: {
-                  kind: 'ObjectValue',
-                  fields: [
-                    {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'stripe_customer_id' },
-                      value: {
-                        kind: 'Variable',
-                        name: { kind: 'Name', value: 'stripe_customer_id' },
-                      },
-                    },
-                    {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'subscribtion_plan' },
-                      value: {
-                        kind: 'Variable',
-                        name: { kind: 'Name', value: 'subscribtion_plan' },
-                      },
-                    },
-                    {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'stripe_subscribtion_id' },
-                      value: {
-                        kind: 'Variable',
-                        name: { kind: 'Name', value: 'subscribtion_id' },
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  UpdateUserSubscriptionPlanMutation,
-  UpdateUserSubscriptionPlanMutationVariables
->;
-export const CreateTeamDocument = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'OperationDefinition',
-      operation: 'mutation',
-      name: { kind: 'Name', value: 'CreateTeam' },
-      variableDefinitions: [
-        {
-          kind: 'VariableDefinition',
-          variable: { kind: 'Variable', name: { kind: 'Name', value: 'name' } },
-          type: {
-            kind: 'NonNullType',
-            type: {
-              kind: 'NamedType',
-              name: { kind: 'Name', value: 'String' },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'insert_team_one' },
-            arguments: [
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'object' },
-                value: {
-                  kind: 'ObjectValue',
-                  fields: [
-                    {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'name' },
-                      value: {
-                        kind: 'Variable',
-                        name: { kind: 'Name', value: 'name' },
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'name' } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<CreateTeamMutation, CreateTeamMutationVariables>;
-export const UpdateUserTeamIdDocument = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'OperationDefinition',
-      operation: 'mutation',
-      name: { kind: 'Name', value: 'UpdateUserTeamId' },
-      variableDefinitions: [
-        {
-          kind: 'VariableDefinition',
-          variable: { kind: 'Variable', name: { kind: 'Name', value: 'id' } },
-          type: {
-            kind: 'NonNullType',
-            type: { kind: 'NamedType', name: { kind: 'Name', value: 'uuid' } },
-          },
-        },
-        {
-          kind: 'VariableDefinition',
-          variable: {
-            kind: 'Variable',
-            name: { kind: 'Name', value: 'teamid' },
-          },
-          type: {
-            kind: 'NonNullType',
-            type: { kind: 'NamedType', name: { kind: 'Name', value: 'uuid' } },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'update_auth_user_by_pk' },
-            arguments: [
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'pk_columns' },
-                value: {
-                  kind: 'ObjectValue',
-                  fields: [
-                    {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'id' },
-                      value: {
-                        kind: 'Variable',
-                        name: { kind: 'Name', value: 'id' },
-                      },
-                    },
-                  ],
-                },
-              },
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: '_set' },
-                value: {
-                  kind: 'ObjectValue',
-                  fields: [
-                    {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'team_id' },
-                      value: {
-                        kind: 'Variable',
-                        name: { kind: 'Name', value: 'teamid' },
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  UpdateUserTeamIdMutation,
-  UpdateUserTeamIdMutationVariables
->;
-export const GetUserTeamNameDocument = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'OperationDefinition',
-      operation: 'query',
-      name: { kind: 'Name', value: 'GetUserTeamName' },
-      variableDefinitions: [
-        {
-          kind: 'VariableDefinition',
-          variable: {
-            kind: 'Variable',
-            name: { kind: 'Name', value: 'teamid' },
-          },
-          type: {
-            kind: 'NonNullType',
-            type: { kind: 'NamedType', name: { kind: 'Name', value: 'uuid' } },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'team_by_pk' },
-            arguments: [
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'id' },
-                value: {
-                  kind: 'Variable',
-                  name: { kind: 'Name', value: 'teamid' },
-                },
-              },
-            ],
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'name' } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  GetUserTeamNameQuery,
-  GetUserTeamNameQueryVariables
->;
-export const UpdateUnsubscriptionFeedbackDocument = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'OperationDefinition',
-      operation: 'mutation',
-      name: { kind: 'Name', value: 'UpdateUnsubscriptionFeedback' },
-      variableDefinitions: [
-        {
-          kind: 'VariableDefinition',
-          variable: {
-            kind: 'Variable',
-            name: { kind: 'Name', value: 'feedback' },
-          },
-          type: {
-            kind: 'NonNullType',
-            type: {
-              kind: 'NamedType',
-              name: { kind: 'Name', value: 'String' },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'insert_unsubscription_feedback_one' },
-            arguments: [
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'object' },
-                value: {
-                  kind: 'ObjectValue',
-                  fields: [
-                    {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'feedback' },
-                      value: {
-                        kind: 'Variable',
-                        name: { kind: 'Name', value: 'feedback' },
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  UpdateUnsubscriptionFeedbackMutation,
-  UpdateUnsubscriptionFeedbackMutationVariables
->;
+export type UpdateUnsubscriptionFeedbackMutation = { __typename?: 'mutation_root', insert_unsubscription_feedback_one?: { __typename?: 'unsubscription_feedback', id: any } | null };
+
+export type GetSubsciptionPlanTranslationByNameAndLngQueryVariables = Exact<{
+  name: Scalars['String']['input'];
+  language: Scalars['String']['input'];
+}>;
+
+
+export type GetSubsciptionPlanTranslationByNameAndLngQuery = { __typename?: 'query_root', subscribtion_plan: Array<{ __typename?: 'subscribtion_plan', text_content: { __typename?: 'text_content', translations: Array<{ __typename?: 'translation', translation: string }> } }> };
+
+
+export const GetUserDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetUser"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"auth_user_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"stripe_customer_id"}},{"kind":"Field","name":{"kind":"Name","value":"subscribtion_plan"}},{"kind":"Field","name":{"kind":"Name","value":"stripe_subscribtion_id"}},{"kind":"Field","name":{"kind":"Name","value":"team_id"}}]}}]}}]} as unknown as DocumentNode<GetUserQuery, GetUserQueryVariables>;
+export const GetUserEmailDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetUserEmail"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"auth_user_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"email"}}]}}]}}]} as unknown as DocumentNode<GetUserEmailQuery, GetUserEmailQueryVariables>;
+export const UpdateUsernameDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateUsername"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"username"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"update_auth_user_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"pk_columns"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"_set"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"username"},"value":{"kind":"Variable","name":{"kind":"Name","value":"username"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"username"}}]}}]}}]} as unknown as DocumentNode<UpdateUsernameMutation, UpdateUsernameMutationVariables>;
+export const UpdateEmailDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateEmail"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"email"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"update_auth_user_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"pk_columns"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"_set"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"email"},"value":{"kind":"Variable","name":{"kind":"Name","value":"email"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"email"}}]}}]}}]} as unknown as DocumentNode<UpdateEmailMutation, UpdateEmailMutationVariables>;
+export const UpdateUpdatedEmailDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateUpdatedEmail"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"updated_email"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"update_auth_user_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"pk_columns"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"_set"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"updated_email"},"value":{"kind":"Variable","name":{"kind":"Name","value":"updated_email"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updated_email"}}]}}]}}]} as unknown as DocumentNode<UpdateUpdatedEmailMutation, UpdateUpdatedEmailMutationVariables>;
+export const GetSubscriptionPlansDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetSubscriptionPlans"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"languageCode"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"subscribtion_plan"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"stripe_monthly_price_id"}},{"kind":"Field","name":{"kind":"Name","value":"stripe_yearly_price_id"}},{"kind":"Field","name":{"kind":"Name","value":"popular"}},{"kind":"Field","name":{"kind":"Name","value":"text_content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"translations"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"language"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"languageCode"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"text_label"}},{"kind":"Field","name":{"kind":"Name","value":"translation"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"subscribtion_plan_subscribtion_feature_assocs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"subscribtionFeatureBySubscribtionFeature"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"text_content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"translations"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"language"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"languageCode"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"translation"}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetSubscriptionPlansQuery, GetSubscriptionPlansQueryVariables>;
+export const GetSubscriptionPlanNameByPriceIdDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetSubscriptionPlanNameByPriceId"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},"defaultValue":{"kind":"StringValue","value":"price_1Phb7pBeHVeQHE2CEo8SjlIg","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"subscribtion_plan"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_or"},"value":{"kind":"ListValue","values":[{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"stripe_monthly_price_id"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}}]},{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"stripe_yearly_price_id"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}}]}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<GetSubscriptionPlanNameByPriceIdQuery, GetSubscriptionPlanNameByPriceIdQueryVariables>;
+export const UpdateUserSubscriptionPlanDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateUserSubscriptionPlan"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"stripe_customer_id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"subscribtion_plan"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"subscribtion_id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"update_auth_user_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"pk_columns"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"_set"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"stripe_customer_id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"stripe_customer_id"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"subscribtion_plan"},"value":{"kind":"Variable","name":{"kind":"Name","value":"subscribtion_plan"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"stripe_subscribtion_id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"subscribtion_id"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<UpdateUserSubscriptionPlanMutation, UpdateUserSubscriptionPlanMutationVariables>;
+export const CreateTeamDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateTeam"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"name"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"insert_team_one"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"object"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"name"},"value":{"kind":"Variable","name":{"kind":"Name","value":"name"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<CreateTeamMutation, CreateTeamMutationVariables>;
+export const UpdateUserTeamIdDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateUserTeamId"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"teamid"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"update_auth_user_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"pk_columns"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"_set"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"team_id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"teamid"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<UpdateUserTeamIdMutation, UpdateUserTeamIdMutationVariables>;
+export const GetUserTeamNameDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetUserTeamName"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"teamid"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"team_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"teamid"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<GetUserTeamNameQuery, GetUserTeamNameQueryVariables>;
+export const UpdateUnsubscriptionFeedbackDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateUnsubscriptionFeedback"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"feedback"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"insert_unsubscription_feedback_one"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"object"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"feedback"},"value":{"kind":"Variable","name":{"kind":"Name","value":"feedback"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<UpdateUnsubscriptionFeedbackMutation, UpdateUnsubscriptionFeedbackMutationVariables>;
+export const GetSubsciptionPlanTranslationByNameAndLngDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetSubsciptionPlanTranslationByNameAndLng"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"name"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"language"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"subscribtion_plan"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"name"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"name"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"text_content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"translations"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"language"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"language"}}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"text_label"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"StringValue","value":"name","block":false}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"translation"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetSubsciptionPlanTranslationByNameAndLngQuery, GetSubsciptionPlanTranslationByNameAndLngQueryVariables>;
