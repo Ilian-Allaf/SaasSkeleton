@@ -34,8 +34,6 @@ export function withI18nMiddleware(middleware: CustomMiddleware) {
       response.cookies.set(cookieName, lng);
     }
 
-    console.log(lng);
-
     return middleware(req, event, response);
   };
 }
