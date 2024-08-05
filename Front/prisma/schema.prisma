@@ -58,6 +58,7 @@ model User {
   session               Session[]
   activateTokens        ActivateToken[]
   passwordResetToken    PasswordResetToken[]
+  valorantPlayerId      String?     @map("valorant_player_id")
   teamId                String?     @map("team_id")
 
   @@map("user")
