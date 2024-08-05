@@ -10,7 +10,7 @@ CREATE TABLE "auth"."user" (
     "email" TEXT NOT NULL,
     "updated_email" TEXT,
     "active" BOOLEAN DEFAULT false,
-    "role" TEXT NOT NULL DEFAULT 'user',
+    "admin_id" TEXT NOT NULL DEFAULT 'user',
     "image" TEXT,
     "subscribtion_plan" TEXT,
     "stripe_customer_id" TEXT UNIQUE,
@@ -24,6 +24,7 @@ CREATE TABLE "auth"."user" (
 CREATE UNIQUE INDEX "user_email_key" ON "auth"."user"("email");
 ALTER TABLE "auth"."user" ADD CONSTRAINT "user_subscribtion_plan_fkey" FOREIGN KEY ("subscribtion_plan") REFERENCES "public"."subscribtion_plan"("name") ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE "auth"."user" ADD CONSTRAINT "user_team_id_fkey" FOREIGN KEY ("team_id") REFERENCES "public"."team"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "public"."team" ADD CONSTRAINT "team_admin_id_fkey" FOREIGN KEY ("admin_id") REFERENCES "auth"."user"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 CREATE TABLE "auth"."account" (
     "id" UUID DEFAULT gen_random_uuid() NOT NULL,

@@ -95,8 +95,8 @@ mutation UpdateUserSubscriptionPlan(
   }
 }
 
-mutation CreateTeam($name: String!) {
-  insert_team_one(object: { name: $name }) {
+mutation CreateTeam($name: String!, $admin_id: uuid) {
+  insert_team_one(object: { name: $name, admin_id: $admin_id }) {
     id
     name
   }

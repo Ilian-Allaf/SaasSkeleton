@@ -29,7 +29,7 @@ select_permissions:
         - name
         - text_content_id
       filter: {}
-    comment: ''
+    comment: ""
   - role: user
     permission:
       columns:
@@ -40,4 +40,4 @@ select_permissions:
         - updated_at
         - text_content_id
       filter: {}
-    comment: ''
+    comment: ""
