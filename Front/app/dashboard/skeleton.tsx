@@ -1,39 +1,39 @@
-
-'use client'
-import React from 'react';
-import { useSession} from 'next-auth/react'
-import { useTranslation } from '@/i18n/client'
-import { Button } from "@/components/ui/button"
+'use client';
+import { LinkValorantPlayerId } from '@/actions/riotApiActions/linkValorantPlayerId';
+import { Button } from '@/components/ui/button';
+import { useTranslation } from '@/i18n/client';
+import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import MatchScoreCard from './matchScoreCard';
 
 export default function Skeleton() {
   const { data: session } = useSession();
-  const { t } = useTranslation('dashboard')
+  const { t } = useTranslation('dashboard');
   const router = useRouter();
 
-  
-
   const teamRedirect = () => {
-    if(session?.user?.teamId){
-      router.push('dashboard/manage-team')
+    if (session?.user?.teamId) {
+      router.push('dashboard/manage-team');
+    } else {
+      router.push('dashboard/create-team');
     }
-    else {
-      router.push('dashboard/create-team'); 
-    }
-  }
+  };
 
   return (
-    <div> 
-      {session ? (
-        <>
-          <p>{t("reception.welcome")}, {session.user?.username }</p>        
-          <Button variant="default" size="default" onClick={teamRedirect}>
-            {t("reception.createTeam")} 
-          </Button>
-        </>
-      ) : (
-        <p>You are not authenticated</p>
-      )}
+    <div className="flex flex-col mb-8 space-y-6">
+      <Button variant="default" size="default" onClick={teamRedirect}>
+        {t('reception.createTeam')}
+      </Button>
+      <Button
+        variant="default"
+        size="default"
+        onClick={() =>
+          LinkValorantPlayerId({ username: 'Farouk', tag: '1849' })
+        }
+      >
+        Link Valorant Account
+      </Button>
+      <MatchScoreCard />
     </div>
   );
 }
