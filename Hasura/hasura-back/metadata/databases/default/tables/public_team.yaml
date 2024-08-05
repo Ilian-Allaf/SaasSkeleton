@@ -1,6 +1,13 @@
 table:
   name: team
   schema: public
+object_relationships:
+  - name: user
+    using:
+      foreign_key_constraint_on: admin_id
+  - name: userByAdminid
+    using:
+      foreign_key_constraint_on: admin_id
 array_relationships:
   - name: users
     using:

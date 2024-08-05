@@ -16,7 +16,7 @@ select_permissions:
         - subscribtion_feature
         - subscribtion_plan
       filter: {}
-    comment: ''
+    comment: ""
   - role: user
     permission:
       columns:
@@ -26,4 +26,4 @@ select_permissions:
         - updated_at
         - id
       filter: {}
-    comment: ''
+    comment: ""

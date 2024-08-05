@@ -12,7 +12,7 @@ import { authOptions } from 'pages/api/auth/[...nextauth]';
 export async function RegisterUserTeam({
   name,
 }: {
-  name?: string;
+  name: string;
 }): Promise<any> {
   const session = await getServerSession(authOptions);
   if (!session) {
@@ -27,7 +27,7 @@ export async function RegisterUserTeam({
   const gqlClient = await setupGraphQLClient();
   const data: CreateTeamMutation = await gqlClient!.request(
     CreateTeamDocument,
-    { name: name }
+    { name: name, admin_id: session.user.id }
   );
   await gqlClient!.request(UpdateUserTeamIdDocument, {
     id: session.user.id,

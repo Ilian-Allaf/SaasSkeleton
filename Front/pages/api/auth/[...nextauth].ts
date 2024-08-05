@@ -112,7 +112,7 @@ export const authOptions: NextAuthOptions = {
         } else if (session?.subscriptionPlan) {
           token.subscriptionPlan = session.subscriptionPlan;
         } else if (session?.teamId) {
-          token.teamId = session.teamId
+          token.teamId = session.teamId;
         }
       }
 
@@ -122,10 +122,9 @@ export const authOptions: NextAuthOptions = {
           id: (user as User).id,
           email: (user as User).email,
           username: (user as User).username,
-          role: (user as User).role,
           active: (user as User).active,
           subscriptionPlan: (user as User).subscribtionPlan,
-          teamId : (user as User).teamId,
+          teamId: (user as User).teamId,
         };
       }
       return token;
@@ -141,7 +140,7 @@ export const authOptions: NextAuthOptions = {
           id: token.id,
           active: token.active,
           subscriptionPlan: token.subscriptionPlan,
-          teamId : token.teamId,
+          teamId: token.teamId,
         },
       };
     },
