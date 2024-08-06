@@ -10,7 +10,7 @@ CREATE TABLE "auth"."user" (
     "email" TEXT NOT NULL,
     "updated_email" TEXT,
     "active" BOOLEAN DEFAULT false,
-    "admin_id" TEXT NOT NULL DEFAULT 'user',
+    "role" TEXT NOT NULL DEFAULT 'user',
     "image" TEXT,
     "subscribtion_plan" TEXT,
     "stripe_customer_id" TEXT UNIQUE,
