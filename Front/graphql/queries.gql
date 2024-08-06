@@ -134,3 +134,20 @@ query GetSubsciptionPlanTranslationByNameAndLng(
     }
   }
 }
+
+query GetTeamMembersValorantUuIdByTeamId($teamId: uuid!) {
+  team_by_pk(id: $teamId) {
+    users {
+      valorant_player_id
+    }
+  }
+}
+
+mutation UpdatePlayerValorantId($id: uuid!, $valorant_player_id: String!) {
+  update_auth_user_by_pk(
+    pk_columns: { id: $id }
+    _set: { valorant_player_id: $valorant_player_id }
+  ) {
+    id
+  }
+}

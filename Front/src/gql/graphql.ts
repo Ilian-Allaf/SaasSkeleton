@@ -1317,6 +1317,7 @@ export type Auth_User = {
   updated_at: Scalars['timestamp']['output'];
   updated_email?: Maybe<Scalars['String']['output']>;
   username?: Maybe<Scalars['String']['output']>;
+  valorant_player_id?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -1535,6 +1536,7 @@ export type Auth_User_Bool_Exp = {
   updated_at?: InputMaybe<Timestamp_Comparison_Exp>;
   updated_email?: InputMaybe<String_Comparison_Exp>;
   username?: InputMaybe<String_Comparison_Exp>;
+  valorant_player_id?: InputMaybe<String_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "auth.user" */
@@ -1575,6 +1577,7 @@ export type Auth_User_Insert_Input = {
   updated_at?: InputMaybe<Scalars['timestamp']['input']>;
   updated_email?: InputMaybe<Scalars['String']['input']>;
   username?: InputMaybe<Scalars['String']['input']>;
+  valorant_player_id?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** aggregate max on columns */
@@ -1593,6 +1596,7 @@ export type Auth_User_Max_Fields = {
   updated_at?: Maybe<Scalars['timestamp']['output']>;
   updated_email?: Maybe<Scalars['String']['output']>;
   username?: Maybe<Scalars['String']['output']>;
+  valorant_player_id?: Maybe<Scalars['String']['output']>;
 };
 
 /** order by max() on columns of table "auth.user" */
@@ -1610,6 +1614,7 @@ export type Auth_User_Max_Order_By = {
   updated_at?: InputMaybe<Order_By>;
   updated_email?: InputMaybe<Order_By>;
   username?: InputMaybe<Order_By>;
+  valorant_player_id?: InputMaybe<Order_By>;
 };
 
 /** aggregate min on columns */
@@ -1628,6 +1633,7 @@ export type Auth_User_Min_Fields = {
   updated_at?: Maybe<Scalars['timestamp']['output']>;
   updated_email?: Maybe<Scalars['String']['output']>;
   username?: Maybe<Scalars['String']['output']>;
+  valorant_player_id?: Maybe<Scalars['String']['output']>;
 };
 
 /** order by min() on columns of table "auth.user" */
@@ -1645,6 +1651,7 @@ export type Auth_User_Min_Order_By = {
   updated_at?: InputMaybe<Order_By>;
   updated_email?: InputMaybe<Order_By>;
   username?: InputMaybe<Order_By>;
+  valorant_player_id?: InputMaybe<Order_By>;
 };
 
 /** response of any mutation on the table "auth.user" */
@@ -1694,6 +1701,7 @@ export type Auth_User_Order_By = {
   updated_at?: InputMaybe<Order_By>;
   updated_email?: InputMaybe<Order_By>;
   username?: InputMaybe<Order_By>;
+  valorant_player_id?: InputMaybe<Order_By>;
 };
 
 /** primary key columns input for table: auth.user */
@@ -1730,7 +1738,9 @@ export enum Auth_User_Select_Column {
   /** column name */
   UpdatedEmail = 'updated_email',
   /** column name */
-  Username = 'username'
+  Username = 'username',
+  /** column name */
+  ValorantPlayerId = 'valorant_player_id'
 }
 
 /** select "auth_user_aggregate_bool_exp_bool_and_arguments_columns" columns of table "auth.user" */
@@ -1761,6 +1771,7 @@ export type Auth_User_Set_Input = {
   updated_at?: InputMaybe<Scalars['timestamp']['input']>;
   updated_email?: InputMaybe<Scalars['String']['input']>;
   username?: InputMaybe<Scalars['String']['input']>;
+  valorant_player_id?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** Streaming cursor of the table "auth_user" */
@@ -1787,6 +1798,7 @@ export type Auth_User_Stream_Cursor_Value_Input = {
   updated_at?: InputMaybe<Scalars['timestamp']['input']>;
   updated_email?: InputMaybe<Scalars['String']['input']>;
   username?: InputMaybe<Scalars['String']['input']>;
+  valorant_player_id?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** update columns of table "auth.user" */
@@ -1818,7 +1830,9 @@ export enum Auth_User_Update_Column {
   /** column name */
   UpdatedEmail = 'updated_email',
   /** column name */
-  Username = 'username'
+  Username = 'username',
+  /** column name */
+  ValorantPlayerId = 'valorant_player_id'
 }
 
 export type Auth_User_Updates = {
@@ -5506,6 +5520,21 @@ export type GetSubsciptionPlanTranslationByNameAndLngQueryVariables = Exact<{
 
 export type GetSubsciptionPlanTranslationByNameAndLngQuery = { __typename?: 'query_root', subscribtion_plan: Array<{ __typename?: 'subscribtion_plan', text_content: { __typename?: 'text_content', translations: Array<{ __typename?: 'translation', translation: string }> } }> };
 
+export type GetTeamMembersValorantUuIdByTeamIdQueryVariables = Exact<{
+  teamId: Scalars['uuid']['input'];
+}>;
+
+
+export type GetTeamMembersValorantUuIdByTeamIdQuery = { __typename?: 'query_root', team_by_pk?: { __typename?: 'team', users: Array<{ __typename?: 'auth_user', valorant_player_id?: string | null }> } | null };
+
+export type UpdatePlayerValorantIdMutationVariables = Exact<{
+  id: Scalars['uuid']['input'];
+  valorant_player_id: Scalars['String']['input'];
+}>;
+
+
+export type UpdatePlayerValorantIdMutation = { __typename?: 'mutation_root', update_auth_user_by_pk?: { __typename?: 'auth_user', id: any } | null };
+
 
 export const GetUserDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetUser"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"auth_user_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"stripe_customer_id"}},{"kind":"Field","name":{"kind":"Name","value":"subscribtion_plan"}},{"kind":"Field","name":{"kind":"Name","value":"stripe_subscribtion_id"}},{"kind":"Field","name":{"kind":"Name","value":"team_id"}}]}}]}}]} as unknown as DocumentNode<GetUserQuery, GetUserQueryVariables>;
 export const GetUserEmailDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetUserEmail"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"auth_user_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"email"}}]}}]}}]} as unknown as DocumentNode<GetUserEmailQuery, GetUserEmailQueryVariables>;
@@ -5520,3 +5549,5 @@ export const UpdateUserTeamIdDocument = {"kind":"Document","definitions":[{"kind
 export const GetUserTeamNameDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetUserTeamName"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"team_id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"team_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"team_id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<GetUserTeamNameQuery, GetUserTeamNameQueryVariables>;
 export const UpdateUnsubscriptionFeedbackDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateUnsubscriptionFeedback"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"feedback"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"insert_unsubscription_feedback_one"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"object"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"feedback"},"value":{"kind":"Variable","name":{"kind":"Name","value":"feedback"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<UpdateUnsubscriptionFeedbackMutation, UpdateUnsubscriptionFeedbackMutationVariables>;
 export const GetSubsciptionPlanTranslationByNameAndLngDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetSubsciptionPlanTranslationByNameAndLng"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"name"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"language"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"subscribtion_plan"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"name"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"name"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"text_content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"translations"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"language"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"language"}}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"text_label"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_eq"},"value":{"kind":"StringValue","value":"name","block":false}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"translation"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetSubsciptionPlanTranslationByNameAndLngQuery, GetSubsciptionPlanTranslationByNameAndLngQueryVariables>;
+export const GetTeamMembersValorantUuIdByTeamIdDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetTeamMembersValorantUuIdByTeamId"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"teamId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"team_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"teamId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"users"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"valorant_player_id"}}]}}]}}]}}]} as unknown as DocumentNode<GetTeamMembersValorantUuIdByTeamIdQuery, GetTeamMembersValorantUuIdByTeamIdQueryVariables>;
+export const UpdatePlayerValorantIdDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdatePlayerValorantId"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"uuid"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"valorant_player_id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"update_auth_user_by_pk"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"pk_columns"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}},{"kind":"Argument","name":{"kind":"Name","value":"_set"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"valorant_player_id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"valorant_player_id"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<UpdatePlayerValorantIdMutation, UpdatePlayerValorantIdMutationVariables>;

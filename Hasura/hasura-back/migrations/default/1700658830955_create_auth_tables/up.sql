@@ -16,6 +16,7 @@ CREATE TABLE "auth"."user" (
     "stripe_customer_id" TEXT UNIQUE,
     "stripe_subscribtion_id" TEXT UNIQUE,
     "team_id" UUID,
+    "valorant_player_id" TEXT,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
