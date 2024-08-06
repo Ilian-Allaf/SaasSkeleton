@@ -19,6 +19,6 @@ export async function addPlayer({ teamId }: { teamId?: string }): Promise<any> {
   const gqlClient = await setupGraphQLClient();
   await gqlClient!.request(UpdateUserTeamIdDocument, {
     id: session.user.id,
-    teamid: teamId,
+    team_id: teamId,
   });
 }

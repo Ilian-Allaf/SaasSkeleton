@@ -102,14 +102,14 @@ mutation CreateTeam($name: String!, $admin_id: uuid) {
   }
 }
 
-mutation UpdateUserTeamId($id: uuid!, $teamid: uuid!) {
-  update_auth_user_by_pk(pk_columns: { id: $id }, _set: { team_id: $teamid }) {
+mutation UpdateUserTeamId($id: uuid!, $team_id: uuid!) {
+  update_auth_user_by_pk(pk_columns: { id: $id }, _set: { team_id: $team_id }) {
     id
   }
 }
 
-query GetUserTeamName($teamid: uuid!) {
-  team_by_pk(id: $teamid) {
+query GetUserTeamName($team_id: uuid!) {
+  team_by_pk(id: $team_id) {
     name
   }
 }
