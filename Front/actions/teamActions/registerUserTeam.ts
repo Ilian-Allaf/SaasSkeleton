@@ -31,7 +31,7 @@ export async function RegisterUserTeam({
   );
   await gqlClient!.request(UpdateUserTeamIdDocument, {
     id: session.user.id,
-    teamid: data.insert_team_one?.id,
-  }); // next step is to add a parameter to set this user as admin/captain in the team. Otherwise create two different files for adding people doesnt make sense (addPlayer / registerUserTeam)
+    team_id: data.insert_team_one?.id,
+  });
   return data.insert_team_one?.id;
 }

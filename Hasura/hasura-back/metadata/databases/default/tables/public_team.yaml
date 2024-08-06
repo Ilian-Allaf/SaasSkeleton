@@ -5,7 +5,7 @@ object_relationships:
   - name: user
     using:
       foreign_key_constraint_on: admin_id
-  - name: userByAdminid
+  - name: userByAdminId
     using:
       foreign_key_constraint_on: admin_id
 array_relationships:

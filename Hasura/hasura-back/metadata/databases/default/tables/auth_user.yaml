@@ -58,7 +58,7 @@ select_permissions:
         - email
         - id
         - image
-        - admin_id
+        - role
         - stripe_customer_id
         - stripe_subscribtion_id
         - subscribtion_plan
