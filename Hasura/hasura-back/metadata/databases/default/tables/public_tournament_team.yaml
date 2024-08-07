@@ -1,0 +1,39 @@
+table:
+  name: tournament_team
+  schema: public
+object_relationships:
+  - name: team
+    using:
+      foreign_key_constraint_on: team_id
+  - name: tournament
+    using:
+      foreign_key_constraint_on: tournament_id
+array_relationships:
+  - name: matches
+    using:
+      foreign_key_constraint_on:
+        column: blue_team_id
+        table:
+          name: match
+          schema: public
+  - name: matchesByRedTeamId
+    using:
+      foreign_key_constraint_on:
+        column: red_team_id
+        table:
+          name: match
+          schema: public
+  - name: tournament_team_tournament_assocs
+    using:
+      foreign_key_constraint_on:
+        column: team_id
+        table:
+          name: tournament_team_tournament_assoc
+          schema: public
+  - name: user_tournament_team_assocs
+    using:
+      foreign_key_constraint_on:
+        column: tournament_team_id
+        table:
+          name: user_tournament_team_assoc
+          schema: public

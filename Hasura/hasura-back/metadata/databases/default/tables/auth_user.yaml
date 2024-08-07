@@ -67,7 +67,7 @@ select_permissions:
       filter:
         id:
           _eq: x-hasura-user-id
-    comment: ''
+    comment: ""
 update_permissions:
   - role: service
     permission:
@@ -77,7 +77,7 @@ update_permissions:
         - subscribtion_plan
       filter: {}
       check: {}
-    comment: ''
+    comment: ""
   - role: user
     permission:
       columns:
@@ -91,4 +91,4 @@ update_permissions:
         id:
           _eq: x-hasura-user-id
       check: null
-    comment: ''
+    comment: ""

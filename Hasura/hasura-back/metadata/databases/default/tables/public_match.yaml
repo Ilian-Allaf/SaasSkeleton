@@ -1,0 +1,13 @@
+table:
+  name: match
+  schema: public
+object_relationships:
+  - name: tournament
+    using:
+      foreign_key_constraint_on: tournament_id
+  - name: tournamentTeamByRedTeamId
+    using:
+      foreign_key_constraint_on: red_team_id
+  - name: tournament_team
+    using:
+      foreign_key_constraint_on: blue_team_id
