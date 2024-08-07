@@ -1,7 +1,7 @@
 'use client';
 
 // Import the necessary modules
-import { ResendVerificationEmail } from '@/actions/resendVerificationEmail';
+import { ResendVerificationEmail } from '@/actions/userActions/resendVerificationEmail';
 import SendEmailSuccess from '@/components/SendEmailSuccess';
 import useServerAction from '@/utils/customHook/useServerAction';
 import { toast } from 'sonner';

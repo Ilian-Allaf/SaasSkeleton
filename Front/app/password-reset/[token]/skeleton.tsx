@@ -3,7 +3,7 @@ import InputError from '@/components/InputError';
 import { useRouter } from 'next/navigation';
 import '../../globals.css';
 
-import { ResetPassword } from '@/actions/resetPassword';
+import { ResetPassword } from '@/actions/userActions/resetPassword';
 import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
