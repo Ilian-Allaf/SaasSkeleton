@@ -4,10 +4,10 @@ CREATE TABLE "public"."tournament" (
     "start_date" TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL,
     "end_date" TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL,
     "team_quantity" INT NOT NULL,
-    "cash_price" INT,
-    "entrance_price" INT,
+    "cash_price" NUMERIC,
+    "entrance_price" NUMERIC,
     "type" TEXT NOT NULL DEFAULT 'single elimination',
-    "manager" UUID NOT NULL,
+    "manager" UUID,
     CONSTRAINT "tournament_pkey" PRIMARY KEY ("id")
 );
 
