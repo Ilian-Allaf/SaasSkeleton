@@ -51,6 +51,20 @@ array_relationships:
         table:
           name: team
           schema: public
+  - name: tournaments
+    using:
+      foreign_key_constraint_on:
+        column: manager
+        table:
+          name: tournament
+          schema: public
+  - name: user_tournament_team_assocs
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          name: user_tournament_team_assoc
+          schema: public
 select_permissions:
   - role: user
     permission:
